@@ -12,13 +12,14 @@ describe('articles index', () => {
   it('listArticles filters by category', async () => {
     const articles = await listArticles({ locale: 'ko', category: 'torticollis' })
     expect(articles.every((a) => a.category === 'torticollis')).toBe(true)
+    expect(articles.length).toBeGreaterThan(0)
   })
 
   it('getArticle returns by slug', async () => {
-    const article = await getArticle({ locale: 'ko', slug: '_test-fixture' })
+    const article = await getArticle({ locale: 'ko', slug: 'torticollis-symptoms' })
     expect(article).not.toBeNull()
-    expect(article?.title).toBe('테스트 픽스처')
-    expect(article?.body).toContain('# 테스트 본문')
+    expect(article?.title).toBe('영아 사경, 이런 증상이 보인다면')
+    expect(article?.body).toContain('## 사경')
   })
 
   it('getArticle returns null for missing slug', async () => {
@@ -33,11 +34,11 @@ describe('articles index', () => {
     }
   })
 
-  it('getRelated falls back to same category when relatedSlugs empty', async () => {
-    const article = await getArticle({ locale: 'ko', slug: '_test-fixture' })
+  it('getRelated returns related articles when relatedSlugs set', async () => {
+    const article = await getArticle({ locale: 'ko', slug: 'torticollis-symptoms' })
     if (!article) throw new Error('fixture missing')
     const related = await getRelated(article)
-    // 픽스처가 유일하면 빈 배열
-    expect(Array.isArray(related)).toBe(true)
+    expect(related.length).toBeGreaterThan(0)
+    expect(related[0].slug).toBe('tummy-time-guide')
   })
 })

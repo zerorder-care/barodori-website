@@ -19,7 +19,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       />
     ),
     img: (props) => (
-      // MDX img → next/image (width/height required, but src 알 수 없으므로 fill)
       <span className="block relative my-6 aspect-[16/9] overflow-hidden rounded-lg">
         <Image
           src={props.src ?? ''}
