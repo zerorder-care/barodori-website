@@ -1,5 +1,31 @@
-import { isLocale } from '@/lib/i18n/dictionary'
 import { notFound } from 'next/navigation'
+import { isLocale } from '@/lib/i18n/dictionary'
+import { buildMetadata } from '@/lib/seo/metadata'
+import { Hero } from '@/components/marketing/Hero'
+import { StatStrip } from '@/components/marketing/StatStrip'
+import { SymptomGrid } from '@/components/marketing/SymptomGrid'
+import { ActionGuide } from '@/components/marketing/ActionGuide'
+import { ProductFeatures } from '@/components/marketing/ProductFeatures'
+import { ArticleTeaserGrid } from '@/components/marketing/ArticleTeaserGrid'
+import { SafetyNotice } from '@/components/marketing/SafetyNotice'
+import { InstallCta } from '@/components/marketing/InstallCta'
+import { organizationJsonLd, mobileAppJsonLd, jsonLdScript } from '@/lib/seo/jsonLd'
+import type { Locale } from '@/lib/i18n/config'
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  if (!isLocale(locale)) return {}
+  return buildMetadata({
+    title: '바로도리 - 영아 사경/사두 가정 케어',
+    description: '아기의 작은 고개, 바로도리에서 함께 살펴봐요. 영아 사경/사두 의심부터 가정 운동까지.',
+    path: `/${locale}`,
+    locale,
+  })
+}
 
 export default async function HomePage({
   params,
@@ -8,10 +34,25 @@ export default async function HomePage({
 }) {
   const { locale } = await params
   if (!isLocale(locale)) notFound()
+  const loc = locale as Locale
   return (
-    <main className="p-8">
-      <h1 className="text-2xl font-bold">바로도리 ({locale})</h1>
-      <p>홈 페이지 — Task 11에서 완성됩니다.</p>
-    </main>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(organizationJsonLd()) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(mobileAppJsonLd()) }}
+      />
+      <Hero locale={loc} />
+      <StatStrip />
+      <SymptomGrid />
+      <ActionGuide />
+      <ProductFeatures locale={loc} />
+      <ArticleTeaserGrid locale={loc} />
+      <SafetyNotice locale={loc} />
+      <InstallCta locale={loc} surface="home_footer" />
+    </>
   )
 }
