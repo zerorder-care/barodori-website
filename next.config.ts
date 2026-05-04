@@ -1,8 +1,5 @@
 import type { NextConfig } from 'next'
 import createMDX from '@next/mdx'
-import remarkGfm from 'remark-gfm'
-import rehypeSlug from 'rehype-slug'
-import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 
 const nextConfig: NextConfig = {
   pageExtensions: ['ts', 'tsx', 'md', 'mdx'],
@@ -11,13 +8,11 @@ const nextConfig: NextConfig = {
   },
 }
 
+// Turbopack의 @next/mdx 로더는 직렬화 가능한 옵션만 받음 → plugin 함수는 string 이름으로 전달
 const withMDX = createMDX({
   options: {
-    remarkPlugins: [remarkGfm],
-    rehypePlugins: [
-      rehypeSlug,
-      [rehypeAutolinkHeadings, { behavior: 'wrap' }],
-    ],
+    remarkPlugins: ['remark-gfm'],
+    rehypePlugins: ['rehype-slug'],
   },
 })
 
