@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { isLocale, getDictionary } from '@/lib/i18n/dictionary'
 import { locales, indexableLocales, type Locale } from '@/lib/i18n/config'
+import { AnalyticsProvider } from '@/components/analytics/AnalyticsProvider'
 
 export async function generateStaticParams() {
   return locales.map((locale) => ({ locale }))
@@ -31,5 +32,10 @@ export default async function LocaleLayout({
   if (!isLocale(locale)) notFound()
   // dict 는 children에 props로 못 내리므로 server component tree에서 fetch
   await getDictionary(locale)
-  return <>{children}</>
+  return (
+    <>
+      <AnalyticsProvider />
+      {children}
+    </>
+  )
 }
