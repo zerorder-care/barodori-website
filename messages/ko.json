@@ -1,0 +1,25 @@
+{
+  "common": {
+    "appName": "바로도리",
+    "install": "앱 설치",
+    "comingSoon": "출시 예정",
+    "betaSignup": "베타 서포터즈 신청"
+  },
+  "nav": {
+    "home": "홈",
+    "product": "제품 소개",
+    "articles": "사경 아티클",
+    "install": "앱 설치"
+  },
+  "footer": {
+    "tagline": "아기의 작은 고개, 바로도리에서 함께 살펴봐요",
+    "privacy": "개인정보처리방침",
+    "terms": "이용약관",
+    "copyright": "© {year} 제로더(Zerorder)"
+  },
+  "medical": {
+    "title": "의료 안내",
+    "body": "바로도리는 의료기관의 진단을 대체하지 않습니다. 통증, 강한 울음, 발열, 호흡 이상, 신경학적 이상이 있으면 즉시 병원 진료를 받으세요."
+  },
+  "comingSoonNotice": "2026-05-20 베타 출시 예정입니다. 베타 서포터즈로 먼저 만나보세요."
+}
