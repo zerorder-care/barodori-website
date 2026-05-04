@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 바로도리 제품 웹사이트
 
-## Getting Started
+영아 사경/사두 케어 앱 바로도리(BaroDori)의 제품 소개 + 사경 아티클 사이트. (https://barodori.com)
 
-First, run the development server:
+## 스택
+- Next.js 16 (App Router, 풀-SSG)
+- React 19, TypeScript 5
+- Tailwind v4 + Pretendard
+- MDX 기반 아티클 (`content/articles/{locale}/*.mdx`)
+- GA4 + Amplitude
+
+## 개발
 
 ```bash
+npm install
+cp .env.example .env.local
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+http://localhost:3000 → /ko 로 리다이렉트.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 스크립트
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `npm run dev` 개발 서버
+- `npm run build` 정적 빌드
+- `npm run start` 빌드 결과 서빙
+- `npm run lint` ESLint
+- `npm run typecheck` TypeScript 검사
+- `npm run test` Vitest 단위 테스트
 
-## Learn More
+## 콘텐츠 추가
 
-To learn more about Next.js, take a look at the following resources:
+`content/articles/ko/<slug>.mdx` 생성 → frontmatter 작성 → 이미지는 `public/articles/<slug>/` → `npm run build` → 자동 sitemap 등록.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 환경변수
+`.env.example` 참고. 모든 키는 미설정 가능하며, 그에 따라 동작이 달라집니다 (스토어 링크 미설정 시 "출시 예정" 상태 등).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 설계 문서
+- 설계 spec: `docs/superpowers/specs/2026-05-04-barodori-website-mvp-design.md`
+- 구현 플랜: `docs/superpowers/plans/2026-05-04-barodori-website-mvp.md`

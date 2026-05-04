@@ -13,7 +13,7 @@ import { MedicalNotice } from '@/components/article/mdx/MedicalNotice'
 import { InstallCta } from '@/components/marketing/InstallCta'
 import { TrackedLink } from '@/components/analytics/TrackedLink'
 import { getArticle, getRelated, listAllSlugs } from '@/lib/content/articles'
-import { useMDXComponents } from '@/mdx-components'
+import { getMDXComponents } from '@/mdx-components'
 import { articleJsonLd, jsonLdScript } from '@/lib/seo/jsonLd'
 import type { Locale } from '@/lib/i18n/config'
 
@@ -50,7 +50,7 @@ export default async function ArticleDetailPage({
   const article = await getArticle({ locale: loc, slug })
   if (!article) notFound()
   const related = await getRelated(article)
-  const mdxComponents = useMDXComponents({})
+  const mdxComponents = getMDXComponents({})
 
   return (
     <>

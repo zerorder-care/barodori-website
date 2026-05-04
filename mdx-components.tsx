@@ -4,7 +4,8 @@ import { Callout } from '@/components/article/mdx/Callout'
 import { MedicalNotice } from '@/components/article/mdx/MedicalNotice'
 import { ExerciseCard } from '@/components/article/mdx/ExerciseCard'
 
-export function useMDXComponents(components: MDXComponents): MDXComponents {
+/** Internal builder — not named `use*` so it is safe to call from async Server Components. */
+function buildMDXComponents(components: MDXComponents): MDXComponents {
   return {
     ...components,
     h2: (props) => <h2 className="mt-10 mb-3 text-2xl font-bold" {...props} />,
@@ -32,4 +33,14 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     MedicalNotice,
     ExerciseCard,
   }
+}
+
+/** Required by @next/mdx for MDX file rendering. */
+export function useMDXComponents(components: MDXComponents): MDXComponents {
+  return buildMDXComponents(components)
+}
+
+/** Plain alias for use in async Server Components (avoids react-hooks/rules-of-hooks). */
+export function getMDXComponents(components: MDXComponents): MDXComponents {
+  return buildMDXComponents(components)
 }

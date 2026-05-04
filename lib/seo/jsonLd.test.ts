@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { organizationJsonLd, mobileAppJsonLd, articleJsonLd } from './jsonLd'
+import { organizationJsonLd, articleJsonLd } from './jsonLd'
 
 describe('JSON-LD generators', () => {
   it('organizationJsonLd has @context and @type', () => {

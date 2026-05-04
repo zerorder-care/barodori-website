@@ -24,7 +24,6 @@ export function track(event: string, props?: Record<string, unknown>): void {
   }
   if (process.env.NODE_ENV === 'development') {
     // 개발 모드에서 콘솔로 확인
-    // eslint-disable-next-line no-console
     console.debug('[analytics]', event, props)
   }
 }
