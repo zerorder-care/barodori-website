@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation'
 import { isLocale, getDictionary } from '@/lib/i18n/dictionary'
 import { locales, indexableLocales, type Locale } from '@/lib/i18n/config'
 import { AnalyticsProvider } from '@/components/analytics/AnalyticsProvider'
+import { Header } from '@/components/layout/Header'
+import { Footer } from '@/components/layout/Footer'
 
 export async function generateStaticParams() {
   return locales.map((locale) => ({ locale }))
@@ -35,7 +37,9 @@ export default async function LocaleLayout({
   return (
     <>
       <AnalyticsProvider />
-      {children}
+      <Header locale={locale as Locale} />
+      <main className="flex-1">{children}</main>
+      <Footer locale={locale as Locale} />
     </>
   )
 }
