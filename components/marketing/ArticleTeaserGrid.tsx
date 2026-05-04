@@ -21,7 +21,13 @@ export async function ArticleTeaserGrid({ locale }: { locale: Locale }) {
               className="block overflow-hidden rounded-lg bg-white shadow-sm transition hover:shadow-md"
             >
               <div className="relative aspect-[16/9] bg-[--color-bg-muted]">
-                <Image src={a.heroImage} alt={a.heroImageAlt} fill className="object-cover" />
+                <Image
+                  src={a.heroImage}
+                  alt={a.heroImageAlt}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover"
+                />
               </div>
               <div className="p-4">
                 <Badge>{categoryLabels[a.category][locale]}</Badge>

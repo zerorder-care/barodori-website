@@ -30,7 +30,13 @@ export function ProductDetail() {
               <p className="mt-3 leading-relaxed text-[--color-text-secondary]">{s.desc}</p>
             </div>
             <div className="relative aspect-[3/4] w-full max-w-xs sm:mx-auto">
-              <Image src={s.image} alt={s.title} fill className="object-contain" />
+              <Image
+                src={s.image}
+                alt={s.title}
+                fill
+                sizes="(max-width: 640px) 100vw, 320px"
+                className="object-contain"
+              />
             </div>
           </div>
         </Container>

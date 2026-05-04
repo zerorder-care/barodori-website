@@ -16,7 +16,14 @@ export function ArticleHeader({ article }: { article: Article }) {
         <span>· {article.readingMinutes}분 읽기</span>
       </div>
       <div className="relative mt-6 aspect-[16/9] overflow-hidden rounded-lg bg-[--color-bg-muted]">
-        <Image src={article.heroImage} alt={article.heroImageAlt} fill priority className="object-cover" />
+        <Image
+          src={article.heroImage}
+          alt={article.heroImageAlt}
+          fill
+          priority
+          sizes="(max-width: 768px) 100vw, 768px"
+          className="object-cover"
+        />
       </div>
     </header>
   )
