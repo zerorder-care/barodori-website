@@ -21,7 +21,14 @@ type NavLabels = {
   install: string
 }
 
-const navKeys = ['product', 'reviews', 'community', 'articles', 'newsroom', 'faq'] as const
+const navKeys = [
+  'product',
+  // 'reviews', // 실제 후기 데이터 연동 전까지 숨김
+  'community',
+  'articles',
+  'newsroom',
+  'faq',
+] as const
 
 export function HeaderNav({
   locale,

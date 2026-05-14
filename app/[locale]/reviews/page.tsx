@@ -7,11 +7,12 @@ import { ReviewsBoard } from '@/components/reviews/ReviewsBoard'
 import { expertRecommendations, mediaMentions } from '@/lib/content/reviews'
 import { isLocale } from '@/lib/i18n/dictionary'
 import { buildMetadata } from '@/lib/seo/metadata'
+import { siteFeatures } from '@/lib/site/features'
 import type { Locale } from '@/lib/i18n/config'
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
-  if (!isLocale(locale)) return {}
+  if (!isLocale(locale) || !siteFeatures.reviews) return {}
   return buildMetadata({
     title: '보호자 후기 - 바로도리',
     description: '바로도리를 사용한 보호자들의 이야기와 전문가 추천을 확인하세요.',
@@ -23,6 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function ReviewsPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
   if (!isLocale(locale)) notFound()
+  if (!siteFeatures.reviews) notFound()
   const loc = locale as Locale
 
   return (

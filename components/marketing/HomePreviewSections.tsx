@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Container } from '@/components/ui/Container'
 import { expertRecommendations, parentReviews } from '@/lib/content/reviews'
+import { siteFeatures } from '@/lib/site/features'
 import type { CommunityPost } from '@/lib/content/community'
 import type { NewsroomPost } from '@/lib/content/newsroom'
 import type { Locale } from '@/lib/i18n/config'
@@ -17,31 +18,33 @@ export function HomePreviewSections({
 }) {
   return (
     <>
-      <section className="bg-[var(--color-bg-muted)] py-24">
-        <Container>
-          <SectionHeader
-            eyebrow="사용자 후기 하이라이트"
-            title="실제 보호자들의 진솔한 이야기"
-            description="바로도리와 함께 회복을 시작한 가족들의 후기를 만나보세요"
-            href={`/${locale}/reviews`}
-            linkLabel="더 많은 후기 보기"
-          />
-          <div className="mt-10 grid gap-6 lg:grid-cols-3">
-            {parentReviews.slice(0, 3).map((review) => (
-              <article key={review.id} className="min-h-64 rounded-[8px] border border-[var(--color-border)] bg-white p-7">
-                <p className="text-xs font-semibold text-[var(--color-text-secondary)]">{review.babyAge}</p>
-                <p className="mt-5 text-lg tracking-[0.12em]">★★★★★</p>
-                <h3 className="mt-4 text-lg font-bold leading-snug">“{review.title}”</h3>
-                <p className="mt-4 text-sm leading-relaxed text-[var(--color-text-secondary)]">{review.body}</p>
-                <div className="mt-8 flex items-center justify-between text-xs text-[var(--color-text-secondary)]">
-                  <span>{review.duration}</span>
-                  <time dateTime={review.writtenAt}>{review.writtenAt}</time>
-                </div>
-              </article>
-            ))}
-          </div>
-        </Container>
-      </section>
+      {siteFeatures.reviews && (
+        <section className="bg-[var(--color-bg-muted)] py-24">
+          <Container>
+            <SectionHeader
+              eyebrow="사용자 후기 하이라이트"
+              title="실제 보호자들의 진솔한 이야기"
+              description="바로도리와 함께 회복을 시작한 가족들의 후기를 만나보세요"
+              href={`/${locale}/reviews`}
+              linkLabel="더 많은 후기 보기"
+            />
+            <div className="mt-10 grid gap-6 lg:grid-cols-3">
+              {parentReviews.slice(0, 3).map((review) => (
+                <article key={review.id} className="min-h-64 rounded-[8px] border border-[var(--color-border)] bg-white p-7">
+                  <p className="text-xs font-semibold text-[var(--color-text-secondary)]">{review.babyAge}</p>
+                  <p className="mt-5 text-lg tracking-[0.12em]">★★★★★</p>
+                  <h3 className="mt-4 text-lg font-bold leading-snug">“{review.title}”</h3>
+                  <p className="mt-4 text-sm leading-relaxed text-[var(--color-text-secondary)]">{review.body}</p>
+                  <div className="mt-8 flex items-center justify-between text-xs text-[var(--color-text-secondary)]">
+                    <span>{review.duration}</span>
+                    <time dateTime={review.writtenAt}>{review.writtenAt}</time>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </Container>
+        </section>
+      )}
 
       <section className="bg-white py-24">
         <Container>
