@@ -14,12 +14,13 @@ export type CommunityPost = {
   id: string
   category: CommunityCategory
   author: string
-  babyAge: string
+  babyAge?: string
   title: string
   preview: string
   body: string[]
   likeCount: number
   commentCount: number
+  viewCount?: number
   createdAt: string
   recentComment?: string
   thumbnail?: string
@@ -122,4 +123,3 @@ export const communityPosts: CommunityPost[] = [
 export function getCommunityPost(id: string): CommunityPost | undefined {
   return communityPosts.find((post) => post.id === id)
 }
-

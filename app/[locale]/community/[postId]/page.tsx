@@ -1,14 +1,13 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { Container } from '@/components/ui/Container'
-import { communityCategories, communityPosts, getCommunityPost } from '@/lib/content/community'
+import { getCommunityPostDetail } from '@/lib/api/community'
+import { communityCategories } from '@/lib/content/community'
 import { isLocale } from '@/lib/i18n/dictionary'
-import { locales, type Locale } from '@/lib/i18n/config'
+import type { Locale } from '@/lib/i18n/config'
 import { buildMetadata } from '@/lib/seo/metadata'
 
-export async function generateStaticParams() {
-  return locales.flatMap((locale) => communityPosts.map((post) => ({ locale, postId: post.id })))
-}
+export const dynamic = 'force-dynamic'
 
 export async function generateMetadata({
   params,
@@ -17,7 +16,7 @@ export async function generateMetadata({
 }) {
   const { locale, postId } = await params
   if (!isLocale(locale)) return {}
-  const post = getCommunityPost(postId)
+  const post = await getCommunityPostDetail(postId)
   if (!post) return {}
   return buildMetadata({
     title: `${post.title} - 바로도리 커뮤니티`,
@@ -35,7 +34,7 @@ export default async function CommunityDetailPage({
   const { locale, postId } = await params
   if (!isLocale(locale)) notFound()
   const loc = locale as Locale
-  const post = getCommunityPost(postId)
+  const post = await getCommunityPostDetail(postId)
   if (!post) notFound()
   const category = communityCategories.find((item) => item.value === post.category)?.label
 
@@ -50,21 +49,36 @@ export default async function CommunityDetailPage({
             <span className="rounded-pill bg-[var(--color-primary-light)] px-3 py-1 font-semibold text-[var(--color-primary-dark)]">
               {category}
             </span>
-            <span>{post.author} · 아이 {post.babyAge}</span>
+            <span>
+              {post.author}
+              {post.babyAge ? ` · 아이 ${post.babyAge}` : ''}
+            </span>
             <time dateTime={post.createdAt}>{new Date(post.createdAt).toLocaleDateString('ko-KR')}</time>
           </div>
           <h1 className="mt-4 text-3xl font-bold leading-tight">{post.title}</h1>
           <div className="mt-4 flex gap-4 text-sm font-semibold text-[var(--color-text-secondary)]">
             <span>마음 {post.likeCount}</span>
             <span>댓글 {post.commentCount}</span>
+            {typeof post.viewCount === 'number' && <span>조회 {post.viewCount}</span>}
           </div>
         </div>
 
-        <div className="mt-8 space-y-4 leading-relaxed text-[var(--color-text-primary)]">
-          {post.body.map((paragraph) => (
-            <p key={paragraph}>{paragraph}</p>
-          ))}
-        </div>
+        {post.thumbnail && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={post.thumbnail} alt="" className="mt-8 max-h-[420px] w-full rounded-[8px] object-cover" />
+        )}
+
+        {post.body.length > 0 ? (
+          <div className="mt-8 space-y-4 leading-relaxed text-[var(--color-text-primary)]">
+            {post.body.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
+        ) : (
+          <p className="mt-8 rounded-[8px] bg-[var(--color-bg-muted)] p-5 text-sm text-[var(--color-text-secondary)]">
+            본문 내용은 바로도리 앱에서 확인할 수 있습니다.
+          </p>
+        )}
 
         <div className="mt-8 flex flex-wrap gap-3">
           <button
@@ -111,4 +125,3 @@ export default async function CommunityDetailPage({
     </Container>
   )
 }
-

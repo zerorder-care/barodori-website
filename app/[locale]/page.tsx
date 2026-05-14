@@ -7,8 +7,11 @@ import { ActionGuide } from '@/components/marketing/ActionGuide'
 import { ProductFeatures } from '@/components/marketing/ProductFeatures'
 import { InstallCta } from '@/components/marketing/InstallCta'
 import { HomePreviewSections } from '@/components/marketing/HomePreviewSections'
+import { listCommunityPosts } from '@/lib/api/community'
 import { organizationJsonLd, mobileAppJsonLd, jsonLdScript } from '@/lib/seo/jsonLd'
 import type { Locale } from '@/lib/i18n/config'
+
+export const dynamic = 'force-dynamic'
 
 export async function generateMetadata({
   params,
@@ -33,6 +36,8 @@ export default async function HomePage({
   const { locale } = await params
   if (!isLocale(locale)) notFound()
   const loc = locale as Locale
+  const communityPreview = await listCommunityPosts({ sort: 'popular', limit: 3 })
+
   return (
     <>
       <script
@@ -47,7 +52,7 @@ export default async function HomePage({
       <SymptomGrid />
       <ProductFeatures locale={loc} />
       <ActionGuide />
-      <HomePreviewSections locale={loc} />
+      <HomePreviewSections locale={loc} communityPosts={communityPreview.posts} />
       <InstallCta locale={loc} surface="home_footer" />
     </>
   )

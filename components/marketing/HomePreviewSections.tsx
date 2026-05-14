@@ -1,11 +1,17 @@
 import Link from 'next/link'
 import { Container } from '@/components/ui/Container'
-import { communityPosts } from '@/lib/content/community'
 import { newsroomPosts } from '@/lib/content/newsroom'
 import { expertRecommendations, parentReviews } from '@/lib/content/reviews'
+import type { CommunityPost } from '@/lib/content/community'
 import type { Locale } from '@/lib/i18n/config'
 
-export function HomePreviewSections({ locale }: { locale: Locale }) {
+export function HomePreviewSections({
+  locale,
+  communityPosts,
+}: {
+  locale: Locale
+  communityPosts: CommunityPost[]
+}) {
   return (
     <>
       <section className="bg-[var(--color-bg-muted)] py-24">
@@ -88,24 +94,30 @@ export function HomePreviewSections({ locale }: { locale: Locale }) {
             href={`/${locale}/community`}
             linkLabel="커뮤니티 더 보기"
           />
-          <div className="mt-10 grid gap-6 lg:grid-cols-3">
-            {communityPosts.slice(0, 3).map((post) => (
-              <Link
-                key={post.id}
-                href={`/${locale}/community/${post.id}`}
-                className="min-h-56 rounded-[8px] border border-[var(--color-border)] bg-white p-7 transition hover:shadow-md"
-              >
-                <p className="inline-flex rounded-[4px] bg-[#efefef] px-2 py-1 text-xs font-semibold text-[var(--color-text-secondary)]">
-                  {post.author}
-                </p>
-                <h3 className="mt-4 text-lg font-bold">{post.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-[var(--color-text-secondary)]">{post.preview}</p>
-                <p className="mt-8 text-xs font-semibold text-[var(--color-text-secondary)]">
-                  ♥ {post.likeCount} · 댓글 {post.commentCount}
-                </p>
-              </Link>
-            ))}
-          </div>
+          {communityPosts.length > 0 ? (
+            <div className="mt-10 grid gap-6 lg:grid-cols-3">
+              {communityPosts.slice(0, 3).map((post) => (
+                <Link
+                  key={post.id}
+                  href={`/${locale}/community/${post.id}`}
+                  className="min-h-56 rounded-[8px] border border-[var(--color-border)] bg-white p-7 transition hover:shadow-md"
+                >
+                  <p className="inline-flex rounded-[4px] bg-[#efefef] px-2 py-1 text-xs font-semibold text-[var(--color-text-secondary)]">
+                    {post.author}
+                  </p>
+                  <h3 className="mt-4 text-lg font-bold">{post.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-[var(--color-text-secondary)]">{post.preview}</p>
+                  <p className="mt-8 text-xs font-semibold text-[var(--color-text-secondary)]">
+                    ♥ {post.likeCount} · 댓글 {post.commentCount}
+                  </p>
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <p className="mt-10 rounded-[8px] border border-[var(--color-border)] bg-white p-8 text-center text-sm text-[var(--color-text-secondary)]">
+              커뮤니티 게시글을 준비하고 있습니다.
+            </p>
+          )}
         </Container>
       </section>
 

@@ -2,9 +2,13 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { CommunityBoard } from '@/components/community/CommunityBoard'
 import { Container } from '@/components/ui/Container'
+import { listCommunityPosts } from '@/lib/api/community'
+import { communityCategories, type CommunityCategory, type CommunitySort } from '@/lib/content/community'
 import { isLocale } from '@/lib/i18n/dictionary'
 import { buildMetadata } from '@/lib/seo/metadata'
 import type { Locale } from '@/lib/i18n/config'
+
+export const dynamic = 'force-dynamic'
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
@@ -17,10 +21,28 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   })
 }
 
-export default async function CommunityPage({ params }: { params: Promise<{ locale: string }> }) {
+export default async function CommunityPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ locale: string }>
+  searchParams: Promise<{ category?: string; q?: string; sort?: string; offset?: string }>
+}) {
   const { locale } = await params
+  const sp = await searchParams
   if (!isLocale(locale)) notFound()
   const loc = locale as Locale
+  const category = normalizeCategory(sp.category)
+  const sort = normalizeSort(sp.sort)
+  const query = typeof sp.q === 'string' ? sp.q.trim() : ''
+  const offset = parseOffset(sp.offset)
+  const result = await listCommunityPosts({
+    category: category === 'all' ? undefined : category,
+    sort,
+    q: query,
+    offset,
+    limit: 20,
+  })
 
   return (
     <>
@@ -49,8 +71,31 @@ export default async function CommunityPage({ params }: { params: Promise<{ loca
             앱에서 글쓰기
           </Link>
         </div>
-        <CommunityBoard locale={loc} />
+        <CommunityBoard
+          locale={loc}
+          posts={result.posts}
+          category={category}
+          sort={sort}
+          query={query}
+          nextOffset={result.nextOffset}
+          hasMore={result.hasMore}
+          error={result.error}
+        />
       </Container>
     </>
   )
+}
+
+function normalizeCategory(value: string | undefined): CommunityCategory | 'all' {
+  if (!value) return 'all'
+  return communityCategories.some((category) => category.value === value) ? (value as CommunityCategory | 'all') : 'all'
+}
+
+function normalizeSort(value: string | undefined): CommunitySort {
+  return value === 'latest' ? 'latest' : 'popular'
+}
+
+function parseOffset(value: string | undefined): number {
+  const parsed = Number.parseInt(value ?? '0', 10)
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : 0
 }
