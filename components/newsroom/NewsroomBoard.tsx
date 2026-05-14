@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import type { NewsroomCategoryOption } from '@/lib/api/content'
 import type { NewsroomCategory, NewsroomPost } from '@/lib/content/newsroom'
 import type { Locale } from '@/lib/i18n/config'
@@ -92,8 +93,14 @@ function NewsroomCard({ post, categoryLabel }: { post: NewsroomPost; categoryLab
           style={{ backgroundImage: `url(${JSON.stringify(post.thumbnail)})` }}
         />
       ) : (
-        <div className="grid aspect-[16/9] place-items-center border-b border-dashed border-[#b9b9b9] bg-[#e6e6e6] text-xs text-[var(--color-text-secondary)]">
-          대표 이미지
+        <div className="relative aspect-[16/9] w-full border-b border-[var(--color-border)]">
+          <Image
+            src="/images/newsroom-fallback.png"
+            alt=""
+            fill
+            sizes="(max-width: 640px) 100vw, 33vw"
+            className="object-cover"
+          />
         </div>
       )}
       <div className="p-6">

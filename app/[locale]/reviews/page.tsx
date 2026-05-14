@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { Container } from '@/components/ui/Container'
 import { InstallCta } from '@/components/marketing/InstallCta'
@@ -64,10 +65,14 @@ export default async function ReviewsPage({ params }: { params: Promise<{ locale
           </div>
           <div className="mt-10 rounded-[12px] border border-[var(--color-border)] bg-white p-10">
             <div className="grid gap-8 lg:grid-cols-[160px_1fr] lg:items-center">
-              <div className="grid h-32 w-32 place-items-center rounded-full border border-dashed border-[#b9b9b9] bg-[#e7e7e7] text-center text-xs text-[var(--color-text-secondary)]">
-                의료진
-                <br />
-                프로필 사진
+              <div className="relative h-32 w-32 overflow-hidden rounded-full bg-[var(--color-bg-muted)]">
+                <Image
+                  src="/images/expert/medical-advisor.png"
+                  alt="의료진 일러스트"
+                  fill
+                  sizes="128px"
+                  className="object-cover"
+                />
               </div>
               <div>
                 <p className="text-4xl font-bold text-[#b9b9b9]">“</p>

@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { Badge } from '@/components/ui/Badge'
 import { categoryLabels } from '@/lib/content/categories'
 import type { Article } from '@/lib/content/articles'
@@ -14,8 +15,15 @@ export function ArticleHeader({ article }: { article: Article }) {
         <span>· {article.publishedAt}</span>
         <span>· {article.readingMinutes}분 읽기</span>
       </div>
-      <div className="mt-8 grid aspect-[16/9] place-items-center rounded-[8px] border border-dashed border-[#b9b9b9] bg-[#e6e6e6] text-sm text-[var(--color-text-secondary)]">
-        대표 이미지 · {article.heroImageAlt}
+      <div className="relative mt-8 aspect-[16/9] overflow-hidden rounded-[8px] border border-[var(--color-border)] bg-[var(--color-bg-muted)]">
+        <Image
+          src={article.heroImage}
+          alt={article.heroImageAlt}
+          fill
+          sizes="(max-width: 768px) 100vw, 768px"
+          className="object-cover"
+          priority
+        />
       </div>
     </header>
   )

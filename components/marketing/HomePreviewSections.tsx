@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { Container } from '@/components/ui/Container'
 import { expertRecommendations, parentReviews } from '@/lib/content/reviews'
 import type { CommunityPost } from '@/lib/content/community'
@@ -51,10 +52,14 @@ export function HomePreviewSections({
           />
           <div className="mt-10 rounded-[12px] border border-[var(--color-border)] bg-[#f7f7f7] p-10">
             <div className="grid gap-8 lg:grid-cols-[160px_1fr] lg:items-center">
-              <div className="grid h-32 w-32 place-items-center rounded-full border border-dashed border-[#b9b9b9] bg-[#e7e7e7] text-center text-xs text-[var(--color-text-secondary)]">
-                의료진
-                <br />
-                프로필 사진
+              <div className="relative h-32 w-32 overflow-hidden rounded-full bg-white">
+                <Image
+                  src="/images/expert/medical-advisor.png"
+                  alt="의료진 일러스트"
+                  fill
+                  sizes="128px"
+                  className="object-cover"
+                />
               </div>
               <div>
                 <p className="text-4xl font-bold text-[#b9b9b9]">“</p>
@@ -159,8 +164,14 @@ function NewsroomPreviewCard({ post }: { post: NewsroomPost }) {
           style={{ backgroundImage: `url(${JSON.stringify(post.thumbnail)})` }}
         />
       ) : (
-        <div className="grid aspect-[16/9] place-items-center border-b border-dashed border-[#b9b9b9] bg-[#e6e6e6] text-xs text-[var(--color-text-secondary)]">
-          대표 이미지
+        <div className="relative aspect-[16/9] w-full border-b border-[var(--color-border)]">
+          <Image
+            src="/images/newsroom-fallback.png"
+            alt=""
+            fill
+            sizes="(max-width: 640px) 100vw, 33vw"
+            className="object-cover"
+          />
         </div>
       )}
       <div className="p-6">

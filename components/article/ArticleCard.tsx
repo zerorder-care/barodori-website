@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { Badge } from '@/components/ui/Badge'
 import { categoryLabels } from '@/lib/content/categories'
 import type { Article } from '@/lib/content/articles'
@@ -9,8 +10,14 @@ export function ArticleCard({ article }: { article: Article }) {
       href={`/${article.locale}/articles/${article.slug}`}
       className="group block overflow-hidden rounded-[8px] border border-[var(--color-border)] bg-white transition hover:shadow-md"
     >
-      <div className="grid aspect-[16/9] place-items-center border-b border-dashed border-[#b9b9b9] bg-[#e6e6e6] text-xs text-[var(--color-text-secondary)]">
-        대표 이미지
+      <div className="relative aspect-[16/9] border-b border-[var(--color-border)] bg-[var(--color-bg-muted)]">
+        <Image
+          src={article.heroImage}
+          alt={article.heroImageAlt}
+          fill
+          sizes="(max-width: 640px) 100vw, 33vw"
+          className="object-cover transition duration-300 group-hover:scale-[1.02]"
+        />
       </div>
       <div className="p-6">
         <Badge>{categoryLabels[article.category][article.locale]}</Badge>
