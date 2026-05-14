@@ -7,6 +7,7 @@ import { ActionGuide } from '@/components/marketing/ActionGuide'
 import { ProductFeatures } from '@/components/marketing/ProductFeatures'
 import { InstallCta } from '@/components/marketing/InstallCta'
 import { HomePreviewSections } from '@/components/marketing/HomePreviewSections'
+import { ArticleTeaserGrid } from '@/components/marketing/ArticleTeaserGrid'
 import { listCommunityPosts } from '@/lib/api/community'
 import { listNewsroomPosts } from '@/lib/api/content'
 import { organizationJsonLd, mobileAppJsonLd, jsonLdScript } from '@/lib/seo/jsonLd'
@@ -56,6 +57,7 @@ export default async function HomePage({
       <SymptomGrid />
       <ProductFeatures locale={loc} />
       <ActionGuide />
+      <ArticleTeaserGrid locale={loc} />
       <HomePreviewSections locale={loc} communityPosts={communityPreview.posts} newsroomPosts={newsroomPreview.posts} />
       <InstallCta locale={loc} surface="home_footer" />
     </>

@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { getStoreLinks, isAppLive } from '@/lib/install/storeLinks'
 import { track } from '@/lib/analytics'
 import type { Locale } from '@/lib/i18n/config'
@@ -17,59 +18,81 @@ export function StoreButtons({ surface, locale }: Props) {
     track('cta_install_click', { surface, platform, locale, live })
   }
 
-  if (!live) {
+  return (
+    <div className="flex flex-col gap-3 sm:flex-row">
+      <StoreBadge
+        href={ios}
+        disabled={!live}
+        onClick={onClick('ios')}
+        label="App Store에서 다운로드"
+        src="/images/store/app-store.svg"
+        width={120}
+        height={40}
+      />
+      <StoreBadge
+        href={android}
+        disabled={!live}
+        onClick={onClick('android')}
+        label="Google Play에서 다운로드"
+        src="/images/store/google-play.png"
+        width={155}
+        height={60}
+        imageClassName="h-[54px] w-auto max-w-none object-contain"
+      />
+    </div>
+  )
+}
+
+function StoreBadge({
+  href,
+  disabled,
+  onClick,
+  label,
+  src,
+  width,
+  height,
+  imageClassName = 'h-10 w-auto object-contain',
+}: {
+  href: string | null
+  disabled: boolean
+  onClick: () => void
+  label: string
+  src: string
+  width: number
+  height: number
+  imageClassName?: string
+}) {
+  const image = (
+    <Image
+      src={src}
+      alt={label}
+      width={width}
+      height={height}
+      className={imageClassName}
+    />
+  )
+
+  if (disabled || !href) {
     return (
-      <div className="flex flex-col gap-3 sm:flex-row">
-        <button
-          type="button"
-          disabled
-          className="inline-flex min-h-12 items-center justify-center gap-3 rounded-[8px] bg-white px-5 py-2 text-sm font-semibold text-black shadow-sm disabled:opacity-100"
-        >
-          <span className="h-5 w-5 rounded-[4px] bg-[#6f6f6f]" />
-          <span className="text-left leading-tight">
-            <span className="block text-[10px] uppercase text-[#777]">Download on the</span>
-            App Store
-          </span>
-        </button>
-        <button
-          type="button"
-          disabled
-          className="inline-flex min-h-12 items-center justify-center gap-3 rounded-[8px] bg-white px-5 py-2 text-sm font-semibold text-black shadow-sm disabled:opacity-100"
-        >
-          <span className="h-5 w-5 rounded-[4px] bg-[#6f6f6f]" />
-          <span className="text-left leading-tight">
-            <span className="block text-[10px] uppercase text-[#777]">Get it on</span>
-            Google Play
-          </span>
-        </button>
-      </div>
+      <button
+        type="button"
+        disabled
+        aria-label={`${label} - 출시 예정`}
+        className="inline-flex h-10 items-center justify-center overflow-hidden opacity-60"
+      >
+        {image}
+      </button>
     )
   }
 
   return (
-    <div className="flex flex-col gap-3 sm:flex-row">
-      <a
-        href={ios ?? '#'}
-        onClick={onClick('ios')}
-        className="inline-flex min-h-12 items-center justify-center gap-3 rounded-[8px] bg-white px-5 py-2 text-sm font-semibold text-black shadow-sm"
-      >
-        <span className="h-5 w-5 rounded-[4px] bg-[#6f6f6f]" />
-        <span className="text-left leading-tight">
-          <span className="block text-[10px] uppercase text-[#777]">Download on the</span>
-          App Store
-        </span>
-      </a>
-      <a
-        href={android ?? '#'}
-        onClick={onClick('android')}
-        className="inline-flex min-h-12 items-center justify-center gap-3 rounded-[8px] bg-white px-5 py-2 text-sm font-semibold text-black shadow-sm"
-      >
-        <span className="h-5 w-5 rounded-[4px] bg-[#6f6f6f]" />
-        <span className="text-left leading-tight">
-          <span className="block text-[10px] uppercase text-[#777]">Get it on</span>
-          Google Play
-        </span>
-      </a>
-    </div>
+    <a
+      href={href}
+      onClick={onClick}
+      aria-label={label}
+      className="inline-flex h-10 items-center justify-center overflow-hidden transition hover:opacity-85"
+    >
+      {image}
+    </a>
   )
 }

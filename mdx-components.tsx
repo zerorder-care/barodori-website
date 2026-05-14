@@ -1,5 +1,4 @@
 import type { MDXComponents } from 'mdx/types'
-import Image from 'next/image'
 import { Callout } from '@/components/article/mdx/Callout'
 import { MedicalNotice } from '@/components/article/mdx/MedicalNotice'
 import { ExerciseCard } from '@/components/article/mdx/ExerciseCard'
@@ -20,12 +19,12 @@ function buildMDXComponents(components: MDXComponents): MDXComponents {
       />
     ),
     img: (props) => (
-      <span className="block relative my-6 aspect-[16/9] overflow-hidden rounded-lg">
-        <Image
+      <span className="relative my-6 block aspect-[16/9] overflow-hidden rounded-lg">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
           src={props.src ?? ''}
           alt={props.alt ?? ''}
-          fill
-          className="object-cover"
+          className="h-full w-full object-cover"
         />
       </span>
     ),

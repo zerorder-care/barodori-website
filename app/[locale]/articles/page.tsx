@@ -1,13 +1,16 @@
 import { notFound } from 'next/navigation'
+import Link from 'next/link'
 import { isLocale } from '@/lib/i18n/dictionary'
 import { buildMetadata } from '@/lib/seo/metadata'
 import { Container } from '@/components/ui/Container'
 import { CategoryFilter } from '@/components/article/CategoryFilter'
 import { ArticleCard } from '@/components/article/ArticleCard'
 import { InstallCta } from '@/components/marketing/InstallCta'
-import { listArticles } from '@/lib/content/articles'
+import { listArticlePosts } from '@/lib/api/articles'
 import { isCategory, type Category } from '@/lib/content/categories'
 import type { Locale } from '@/lib/i18n/config'
+
+export const dynamic = 'force-dynamic'
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
@@ -25,7 +28,7 @@ export default async function ArticlesIndexPage({
   searchParams,
 }: {
   params: Promise<{ locale: string }>
-  searchParams: Promise<{ cat?: string; q?: string }>
+  searchParams: Promise<{ cat?: string; q?: string; offset?: string }>
 }) {
   const { locale } = await params
   const sp = await searchParams
@@ -33,11 +36,21 @@ export default async function ArticlesIndexPage({
   const loc = locale as Locale
   const category: Category | undefined = sp.cat && isCategory(sp.cat) ? sp.cat : undefined
   const query = typeof sp.q === 'string' ? sp.q.trim() : ''
-  const allArticles = await listArticles({ locale: loc })
-  const recommended = allArticles.slice(0, 3)
-  const articles = (category ? allArticles.filter((a) => a.category === category) : allArticles).filter((article) => {
-    if (!query) return true
-    return `${article.title} ${article.excerpt}`.toLowerCase().includes(query.toLowerCase())
+  const offset = parseOffset(sp.offset)
+  const [recommendedResult, articleResult] = await Promise.all([
+    listArticlePosts({ locale: loc, limit: 3 }),
+    listArticlePosts({ locale: loc, category, q: query, offset, limit: 20 }),
+  ])
+  const recommended = recommendedResult.articles
+  const articles = articleResult.articles
+  const error = articleResult.error ?? recommendedResult.error
+  const nextOffset = articleResult.nextOffset
+  const hasMore = articleResult.hasMore
+
+  const moreHref = buildArticlesHref(loc, {
+    category,
+    q: query,
+    offset: nextOffset ?? undefined,
   })
 
   return (
@@ -91,6 +104,11 @@ export default async function ArticlesIndexPage({
 
         <section className="mt-16">
           <h2 className="text-2xl font-bold">전체 아티클</h2>
+          {error && (
+            <p className="mt-6 rounded-[8px] border border-[var(--color-border)] bg-[var(--color-bg-muted)] p-4 text-sm text-[var(--color-text-secondary)]">
+              아티클을 불러오지 못했어요. 잠시 후 다시 시도해주세요.
+            </p>
+          )}
           {articles.length === 0 ? (
             <p className="mt-8 rounded-[8px] border border-[var(--color-border)] p-8 text-center text-[var(--color-text-secondary)]">
               {query ? `'${query}'에 대한 결과가 없어요.` : '아직 등록된 아티클이 없어요.'}
@@ -103,12 +121,16 @@ export default async function ArticlesIndexPage({
                 ))}
               </div>
               <div className="mt-10 flex justify-center">
-                <button
-                  type="button"
-                  className="inline-flex min-h-11 items-center justify-center rounded-[8px] border border-[var(--color-text-primary)] px-6 text-sm font-bold"
-                >
-                  더보기 +
-                </button>
+                {hasMore && nextOffset !== null ? (
+                  <Link
+                    href={moreHref}
+                    className="inline-flex min-h-11 items-center justify-center rounded-[8px] border border-[var(--color-text-primary)] px-6 text-sm font-bold"
+                  >
+                    다음 아티클 보기 +
+                  </Link>
+                ) : (
+                  <span className="text-sm text-[var(--color-text-secondary)]">마지막 아티클입니다</span>
+                )}
               </div>
             </>
           )}
@@ -118,4 +140,25 @@ export default async function ArticlesIndexPage({
       <InstallCta locale={loc} surface="articles_footer" />
     </>
   )
+}
+
+function buildArticlesHref(
+  locale: Locale,
+  params: {
+    category?: Category
+    q?: string
+    offset?: number
+  },
+) {
+  const search = new URLSearchParams()
+  if (params.category) search.set('cat', params.category)
+  if (params.q?.trim()) search.set('q', params.q.trim())
+  if (params.offset) search.set('offset', String(params.offset))
+  const queryString = search.toString()
+  return queryString ? `/${locale}/articles?${queryString}` : `/${locale}/articles`
+}
+
+function parseOffset(value: string | undefined): number {
+  const parsed = Number.parseInt(value ?? '0', 10)
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : 0
 }

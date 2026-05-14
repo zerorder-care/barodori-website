@@ -12,10 +12,13 @@ import { RelatedArticles } from '@/components/article/RelatedArticles'
 import { MedicalNotice } from '@/components/article/mdx/MedicalNotice'
 import { InstallCta } from '@/components/marketing/InstallCta'
 import { TrackedLink } from '@/components/analytics/TrackedLink'
-import { getArticle, getRelated, listAllSlugs } from '@/lib/content/articles'
+import { getArticlePost, getRelatedArticlePosts } from '@/lib/api/articles'
+import { listAllSlugs } from '@/lib/content/articles'
 import { getMDXComponents } from '@/mdx-components'
 import { articleJsonLd, jsonLdScript } from '@/lib/seo/jsonLd'
 import type { Locale } from '@/lib/i18n/config'
+
+export const dynamic = 'force-dynamic'
 
 export async function generateStaticParams() {
   return listAllSlugs()
@@ -28,7 +31,7 @@ export async function generateMetadata({
 }) {
   const { locale, slug } = await params
   if (!isLocale(locale)) return {}
-  const article = await getArticle({ locale, slug })
+  const article = await getArticlePost({ locale, slug })
   if (!article) return {}
   return buildMetadata({
     title: article.title,
@@ -47,9 +50,9 @@ export default async function ArticleDetailPage({
   const { locale, slug } = await params
   if (!isLocale(locale)) notFound()
   const loc = locale as Locale
-  const article = await getArticle({ locale: loc, slug })
+  const article = await getArticlePost({ locale: loc, slug })
   if (!article) notFound()
-  const related = await getRelated(article)
+  const related = await getRelatedArticlePosts(article)
   const mdxComponents = getMDXComponents({})
 
   return (

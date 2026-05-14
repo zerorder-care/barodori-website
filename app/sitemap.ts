@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next'
-import { listArticles } from '@/lib/content/articles'
+import { listArticlePosts } from '@/lib/api/articles'
 import { defaultLocale } from '@/lib/i18n/config'
 import { siteFeatures } from '@/lib/site/features'
 
@@ -19,7 +19,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${SITE_URL}/${defaultLocale}/faq`, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${SITE_URL}/${defaultLocale}/install`, changeFrequency: 'monthly', priority: 0.7 },
   ]
-  const articles = await listArticles({ locale: defaultLocale })
+  const articleResult = await listArticlePosts({ locale: defaultLocale, limit: 50 })
+  const articles = articleResult.articles
   const articleRoutes: MetadataRoute.Sitemap = articles.map((a) => ({
     url: `${SITE_URL}/${defaultLocale}/articles/${a.slug}`,
     lastModified: a.updatedAt,

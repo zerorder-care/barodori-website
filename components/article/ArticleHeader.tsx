@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import { Badge } from '@/components/ui/Badge'
 import { categoryLabels } from '@/lib/content/categories'
 import type { Article } from '@/lib/content/articles'
@@ -16,13 +15,11 @@ export function ArticleHeader({ article }: { article: Article }) {
         <span>· {article.readingMinutes}분 읽기</span>
       </div>
       <div className="relative mt-8 aspect-[16/9] overflow-hidden rounded-[8px] border border-[var(--color-border)] bg-[var(--color-bg-muted)]">
-        <Image
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
           src={article.heroImage}
           alt={article.heroImageAlt}
-          fill
-          sizes="(max-width: 768px) 100vw, 768px"
-          className="object-cover"
-          priority
+          className="h-full w-full object-cover"
         />
       </div>
     </header>

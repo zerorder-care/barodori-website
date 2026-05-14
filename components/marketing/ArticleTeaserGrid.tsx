@@ -1,13 +1,12 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import { Container } from '@/components/ui/Container'
-import { listArticles } from '@/lib/content/articles'
+import { listArticlePosts } from '@/lib/api/articles'
 import { Badge } from '@/components/ui/Badge'
 import { categoryLabels } from '@/lib/content/categories'
 import type { Locale } from '@/lib/i18n/config'
 
 export async function ArticleTeaserGrid({ locale }: { locale: Locale }) {
-  const articles = (await listArticles({ locale })).slice(0, 3)
+  const { articles } = await listArticlePosts({ locale, limit: 3 })
   if (articles.length === 0) return null
   return (
     <section className="bg-[var(--color-bg-muted)] py-16">
@@ -21,12 +20,11 @@ export async function ArticleTeaserGrid({ locale }: { locale: Locale }) {
               className="block overflow-hidden rounded-lg bg-white shadow-sm transition hover:shadow-md"
             >
               <div className="relative aspect-[16/9] bg-[var(--color-bg-muted)]">
-                <Image
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
                   src={a.heroImage}
                   alt={a.heroImageAlt}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className="object-cover"
+                  className="h-full w-full object-cover"
                 />
               </div>
               <div className="p-4">

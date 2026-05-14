@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import { Badge } from '@/components/ui/Badge'
 import { categoryLabels } from '@/lib/content/categories'
 import type { Article } from '@/lib/content/articles'
@@ -11,12 +10,11 @@ export function ArticleCard({ article }: { article: Article }) {
       className="group block overflow-hidden rounded-[8px] border border-[var(--color-border)] bg-white transition hover:shadow-md"
     >
       <div className="relative aspect-[16/9] border-b border-[var(--color-border)] bg-[var(--color-bg-muted)]">
-        <Image
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
           src={article.heroImage}
           alt={article.heroImageAlt}
-          fill
-          sizes="(max-width: 640px) 100vw, 33vw"
-          className="object-cover transition duration-300 group-hover:scale-[1.02]"
+          className="h-full w-full object-cover transition duration-300 group-hover:scale-[1.02]"
         />
       </div>
       <div className="p-6">

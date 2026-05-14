@@ -25,14 +25,15 @@ export function Hero({ locale }: { locale: Locale }) {
           </div>
           <p className="mt-5 text-xs text-[var(--color-text-secondary)]">* 현재 베타 운영중 · 정식 출시 2026.5.20 예정</p>
         </div>
-        <div className="relative grid min-h-[360px] place-items-center rounded-[24px] border border-dashed border-[#b9b9b9] bg-[#e6e6e6] p-8 lg:min-h-[460px]">
-          <div className="relative aspect-[3/4] w-full max-w-[240px]">
+        <div className="relative grid min-h-[380px] place-items-center overflow-hidden rounded-[24px] border border-[var(--color-border)] bg-white p-6 shadow-sm lg:min-h-[500px]">
+          <div className="absolute inset-x-0 bottom-0 h-24 bg-[var(--color-primary-light)]" />
+          <div className="relative aspect-[760/1500] w-full max-w-[300px]">
             <Image
-              src="/images/hero-app-mockup.png"
+              src="/images/hero-phone.png"
               alt="바로도리 앱 화면"
               fill
-              sizes="(max-width: 640px) 60vw, 240px"
-              className="object-contain"
+              sizes="(max-width: 640px) 70vw, 300px"
+              className="object-contain drop-shadow-[0_24px_34px_rgba(0,0,0,0.18)]"
               priority
             />
           </div>
