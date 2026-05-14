@@ -1,6 +1,8 @@
 import Link from 'next/link'
+import { cookies } from 'next/headers'
 import { notFound } from 'next/navigation'
 import { Container } from '@/components/ui/Container'
+import { AUTH_ACCESS_COOKIE } from '@/lib/auth/session'
 import { isLocale } from '@/lib/i18n/dictionary'
 import { buildMetadata } from '@/lib/seo/metadata'
 
@@ -18,6 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function MyPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
   if (!isLocale(locale)) notFound()
+  const authenticated = Boolean((await cookies()).get(AUTH_ACCESS_COOKIE)?.value)
 
   return (
     <>
@@ -41,14 +44,16 @@ export default async function MyPage({ params }: { params: Promise<{ locale: str
             </div>
             <h2 className="mt-5 text-2xl font-bold">사용자님</h2>
             <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-secondary)]">
-              로그인 후 내 정보를 확인할 수 있습니다.
+              {authenticated ? '앱과 동일한 계정으로 로그인되어 있습니다.' : '로그인 후 내 정보를 확인할 수 있습니다.'}
             </p>
-            <Link
-              href={`/${locale}/login`}
-              className="mt-6 inline-flex min-h-11 w-full items-center justify-center rounded-[8px] bg-[var(--color-primary)] px-5 text-sm font-bold text-white"
-            >
-              로그인하기
-            </Link>
+            {!authenticated && (
+              <Link
+                href={`/${locale}/login?next=/${locale}/mypage`}
+                className="mt-6 inline-flex min-h-11 w-full items-center justify-center rounded-[8px] bg-[var(--color-primary)] px-5 text-sm font-bold text-white"
+              >
+                로그인하기
+              </Link>
+            )}
             <nav className="mt-6 grid gap-2 border-t border-[var(--color-border)] pt-5 text-sm font-semibold">
               {['내 정보', '아이 정보', '내 활동', '계정 관리'].map((item, index) => (
                 <a

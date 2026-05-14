@@ -1,10 +1,10 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import { SocialLoginPanel } from '@/components/auth/SocialLoginPanel'
 import { Container } from '@/components/ui/Container'
 import { isLocale } from '@/lib/i18n/dictionary'
+import type { Locale } from '@/lib/i18n/config'
 import { buildMetadata } from '@/lib/seo/metadata'
-
-const providers = ['카카오톡', 'Google', 'Naver', 'Apple'] as const
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
@@ -17,9 +17,17 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   })
 }
 
-export default async function LoginPage({ params }: { params: Promise<{ locale: string }> }) {
+export default async function LoginPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ locale: string }>
+  searchParams: Promise<{ next?: string; error?: string }>
+}) {
   const { locale } = await params
   if (!isLocale(locale)) notFound()
+  const search = await searchParams
+  const nextPath = normalizeNextPath(search.next, locale)
 
   return (
     <section className="bg-[var(--color-bg-muted)] py-20">
@@ -33,17 +41,7 @@ export default async function LoginPage({ params }: { params: Promise<{ locale: 
             홈페이지는 소셜 로그인만 지원합니다. 앱과 같은 계정으로 로그인하면 사용자님 정보를 이어서 사용할 수 있고,
             앱에서는 필요한 온보딩을 다시 진행합니다.
           </p>
-          <div className="mt-6 grid gap-3">
-            {providers.map((provider) => (
-              <button
-                key={provider}
-                type="button"
-                className="min-h-12 rounded-[8px] border border-[var(--color-border)] px-4 text-sm font-bold transition hover:bg-[var(--color-bg-muted)]"
-              >
-                {provider}로 계속하기
-              </button>
-            ))}
-          </div>
+          <SocialLoginPanel locale={locale as Locale} nextPath={nextPath} initialError={search.error} />
           <p className="mt-5 text-xs leading-relaxed text-[var(--color-text-secondary)]">
             계속 진행하면{' '}
             <Link href={`/${locale}/legal/terms`} className="font-semibold underline">
@@ -59,4 +57,9 @@ export default async function LoginPage({ params }: { params: Promise<{ locale: 
       </Container>
     </section>
   )
+}
+
+function normalizeNextPath(value: string | undefined, locale: string) {
+  if (!value || !value.startsWith('/') || value.startsWith('//')) return `/${locale}/mypage`
+  return value
 }

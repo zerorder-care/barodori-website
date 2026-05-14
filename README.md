@@ -35,6 +35,8 @@ http://localhost:3000 → /ko 로 리다이렉트.
 ## 환경변수
 `.env.example` 참고. 모든 키는 미설정 가능하며, 그에 따라 동작이 달라집니다 (스토어 링크 미설정 시 "출시 예정" 상태 등).
 
+소셜 로그인은 Firebase Web 설정(`NEXT_PUBLIC_FIREBASE_*`)이 필요합니다. 카카오/네이버는 서버 라우트에서 OAuth code를 교환하므로 `KAKAO_REST_API_KEY`, `KAKAO_CLIENT_SECRET`, `NAVER_CLIENT_ID`, `NAVER_CLIENT_SECRET`도 배포 환경에 등록해야 합니다.
+
 ## 설계 문서
 - 설계 spec: `docs/superpowers/specs/2026-05-04-barodori-website-mvp-design.md`
 - 구현 플랜: `docs/superpowers/plans/2026-05-04-barodori-website-mvp.md`

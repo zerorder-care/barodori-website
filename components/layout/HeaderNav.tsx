@@ -1,8 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { useState } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
 import { QrInstallModal } from '@/components/install/QrInstallModal'
 import { LocaleSwitcher } from '@/components/layout/LocaleSwitcher'
 import { isAppLive } from '@/lib/install/storeLinks'
@@ -18,6 +18,8 @@ type NavLabels = {
   newsroom: string
   faq: string
   login: string
+  logout: string
+  mypage: string
   install: string
 }
 
@@ -40,7 +42,9 @@ export function HeaderNav({
   labels: NavLabels
 }) {
   const pathname = usePathname()
+  const router = useRouter()
   const [open, setOpen] = useState(false)
+  const [authenticated, setAuthenticated] = useState(false)
   const live = isAppLive()
   const links = getExternalLinks()
 
@@ -49,6 +53,32 @@ export function HeaderNav({
     href: `/${locale}/${key === 'product' ? 'product' : key}`,
     label: labels[key],
   }))
+
+  useEffect(() => {
+    let mounted = true
+    fetch('/api/auth/session', { cache: 'no-store' })
+      .then((response) => response.json())
+      .then((data: { authenticated?: boolean }) => {
+        if (mounted) setAuthenticated(Boolean(data.authenticated))
+      })
+      .catch(() => {
+        if (mounted) setAuthenticated(false)
+      })
+
+    return () => {
+      mounted = false
+    }
+  }, [pathname])
+
+  async function handleLogout() {
+    await fetch('/api/auth/session', { method: 'DELETE' }).catch(() => null)
+    setAuthenticated(false)
+    setOpen(false)
+    if (pathname.startsWith(`/${locale}/mypage`)) {
+      router.push(`/${locale}/login`)
+    }
+    router.refresh()
+  }
 
   return (
     <header className="sticky top-0 z-40 border-b border-[#e7e7e7] bg-white/95 backdrop-blur">
@@ -76,12 +106,12 @@ export function HeaderNav({
         </nav>
         <div className="hidden items-center gap-3 lg:flex">
           <LocaleSwitcher current={locale} />
-          <Link
-            href={`/${locale}/login`}
-            className="rounded-pill px-3 py-2 text-sm font-semibold text-[var(--color-text-primary)] hover:bg-[var(--color-bg-muted)]"
-          >
-            {labels.login}
-          </Link>
+          <AuthLinks
+            authenticated={authenticated}
+            locale={locale}
+            labels={labels}
+            onLogout={handleLogout}
+          />
           <HeaderCta live={live} locale={locale} betaForm={links.betaForm} installLabel={labels.install} />
         </div>
         <button
@@ -113,9 +143,13 @@ export function HeaderNav({
             ))}
             <div className="mt-4 flex items-center justify-between border-t border-[var(--color-border)] pt-4">
               <LocaleSwitcher current={locale} />
-              <Link href={`/${locale}/login`} onClick={() => setOpen(false)} className="text-sm font-semibold">
-                {labels.login}
-              </Link>
+              <AuthLinks
+                authenticated={authenticated}
+                locale={locale}
+                labels={labels}
+                onLogout={handleLogout}
+                onNavigate={() => setOpen(false)}
+              />
             </div>
             <div className="mt-4">
               <HeaderCta live={live} locale={locale} betaForm={links.betaForm} installLabel={labels.install} />
@@ -159,6 +193,51 @@ function HeaderCta({
       <span className="inline-flex min-h-9 shrink-0 items-center justify-center rounded-[8px] bg-[#e9e9e9] px-5 py-2 text-center text-xs font-semibold leading-tight text-[var(--color-text-secondary)]">
         {launchCopy.betaLabel}
       </span>
+    </div>
+  )
+}
+
+function AuthLinks({
+  authenticated,
+  locale,
+  labels,
+  onLogout,
+  onNavigate,
+}: {
+  authenticated: boolean
+  locale: Locale
+  labels: Pick<NavLabels, 'login' | 'logout' | 'mypage'>
+  onLogout: () => void
+  onNavigate?: () => void
+}) {
+  if (!authenticated) {
+    return (
+      <Link
+        href={`/${locale}/login`}
+        onClick={onNavigate}
+        className="rounded-pill px-3 py-2 text-sm font-semibold text-[var(--color-text-primary)] hover:bg-[var(--color-bg-muted)]"
+      >
+        {labels.login}
+      </Link>
+    )
+  }
+
+  return (
+    <div className="flex items-center gap-2">
+      <Link
+        href={`/${locale}/mypage`}
+        onClick={onNavigate}
+        className="rounded-pill px-3 py-2 text-sm font-semibold text-[var(--color-text-primary)] hover:bg-[var(--color-bg-muted)]"
+      >
+        {labels.mypage}
+      </Link>
+      <button
+        type="button"
+        onClick={onLogout}
+        className="rounded-pill px-3 py-2 text-sm font-semibold text-[var(--color-text-secondary)] hover:bg-[var(--color-bg-muted)] hover:text-[var(--color-text-primary)]"
+      >
+        {labels.logout}
+      </button>
     </div>
   )
 }
