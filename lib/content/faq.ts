@@ -10,7 +10,7 @@ export type FaqItem = {
 export const faqCategories = [
   { value: 'all', label: '전체' },
   { value: 'general', label: '서비스 일반' },
-  { value: 'measurement', label: '측정·진단' },
+  { value: 'measurement', label: '기록·리포트' },
   { value: 'payment', label: '비용·결제' },
   { value: 'privacy', label: '개인정보·보안' },
   { value: 'technical', label: '기술 문제' },
@@ -29,14 +29,14 @@ export const faqItems: FaqItem[] = [
     category: 'general',
     question: '몇 개월부터 사용 가능한가요?',
     answer:
-      '0~12개월 영유아 보호자를 주요 대상으로 설계하고 있습니다. 아이의 상태나 진료 이력에 따라 사용 전 의료진과 상담하는 것을 권장합니다.',
+      '0~12개월 영유아 보호자를 주요 대상으로 설계하고 있습니다. 아이의 상태나 진료 이력에 따라 사용 전 담당 병원과 상담하는 것을 권장합니다.',
   },
   {
     id: 'faq-3',
     category: 'measurement',
-    question: '측정 결과가 정확한가요?',
+    question: '상태 기록은 어떻게 참고해야 하나요?',
     answer:
-      '바로도리의 측정 기능은 보호자의 관찰과 기록을 돕기 위한 보조 도구입니다. 진단이나 치료 판단은 의료기관의 진료를 기준으로 해야 합니다.',
+      '바로도리의 기록 기능은 보호자의 관찰과 정리를 돕기 위한 보조 도구입니다. 아이 상태에 대한 최종 판단은 병원 진료를 기준으로 해주세요.',
   },
   {
     id: 'faq-4',

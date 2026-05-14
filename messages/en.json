@@ -27,8 +27,8 @@
     "copyright": "© {year} Zerorder"
   },
   "medical": {
-    "title": "Medical Notice",
-    "body": "BaroDori does not replace medical diagnosis. If your baby shows signs of pain, intense crying, fever, breathing issues, or neurological symptoms, seek medical attention immediately."
+    "title": "Usage Notice",
+    "body": "BaroDori does not replace care or judgment from a hospital or clinician. If your baby shows signs of pain, intense crying, fever, breathing issues, or neurological symptoms, seek medical attention immediately."
   },
   "comingSoonNotice": "Official launch is scheduled for June 1, 2026. Sign up as a supporter to get early access."
 }

@@ -11,14 +11,14 @@ export function Hero({ locale }: { locale: Locale }) {
           <p className="inline-flex rounded-pill bg-[var(--color-primary)] px-3 py-1 text-xs font-semibold text-white">
             Hero · 메인 영역
           </p>
-          <p className="mt-8 text-sm text-[var(--color-text-secondary)]">AI 기반 영유아 사경 · 사두 가정 재활 보조 앱</p>
+          <p className="mt-8 text-sm text-[var(--color-text-secondary)]">영유아 사경 · 사두 가정 관리 보조 앱</p>
           <h1 className="mt-5 text-4xl font-bold leading-[1.18] sm:text-5xl">
-            아이에게는 더 나은 회복을,
+            아이의 변화를 차분하게 살피고,
             <br />
-            보호자에게는 더 큰 안심을
+            보호자는 더 쉽게 이어가도록
           </h1>
           <p className="mt-6 max-w-xl text-base leading-relaxed text-[var(--color-text-secondary)]">
-            전문 의료진과 함께 만든 가정용 재활 보조 앱으로 우리 아이의 상태를 객관적으로 확인하고 맞춤 운동을 시작하세요.
+            보호자 경험을 바탕으로 만든 가정 관리 보조 앱으로 아이의 상태 변화를 기록하고, 상황에 맞는 운동 루틴을 참고해보세요.
           </p>
           <div className="mt-8">
             <StoreButtons surface="hero" locale={locale} />

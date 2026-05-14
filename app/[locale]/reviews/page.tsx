@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   if (!isLocale(locale) || !siteFeatures.reviews) return {}
   return buildMetadata({
     title: '보호자 후기 - 바로도리',
-    description: '바로도리를 사용한 보호자들의 이야기와 전문가 추천을 확인하세요.',
+    description: '바로도리를 사용한 보호자들의 이야기와 서비스 방향을 확인하세요.',
     path: `/${locale}/reviews`,
     locale,
   })
@@ -40,7 +40,7 @@ export default async function ReviewsPage({ params }: { params: Promise<{ locale
             보호자들의 이야기
           </h1>
           <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-[var(--color-text-secondary)]">
-            실제 사용자 후기와 전문가 추천을 확인해보세요
+            실제 사용자 후기와 바로도리의 서비스 방향을 확인해보세요
           </p>
           <div className="mx-auto mt-10 grid max-w-[780px] gap-6 sm:grid-cols-3">
             <TrustMetric label="누적 사용자 수" value="1,200+" />
@@ -58,11 +58,11 @@ export default async function ReviewsPage({ params }: { params: Promise<{ locale
         <Container>
           <div className="text-center">
             <p className="inline-flex rounded-pill bg-[var(--color-primary)] px-3 py-1 text-xs font-semibold text-white">
-              전문가 추천
+              서비스 방향
             </p>
-            <h2 className="mt-4 text-3xl font-bold sm:text-4xl">전문 의료진의 추천</h2>
+            <h2 className="mt-4 text-3xl font-bold sm:text-4xl">보호자 관점의 가정 관리</h2>
             <p className="mt-3 text-sm text-[var(--color-text-secondary)]">
-              가정 재활에 대한 전문가의 시선과 추천 멘트를 확인해보세요
+              보호자가 집에서 더 차분하게 관찰하고 기록할 수 있도록 설계하고 있습니다.
             </p>
           </div>
           <div className="mt-10 rounded-[12px] border border-[var(--color-border)] bg-white p-10">
@@ -70,7 +70,7 @@ export default async function ReviewsPage({ params }: { params: Promise<{ locale
               <div className="relative h-32 w-32 overflow-hidden rounded-full bg-[var(--color-bg-muted)]">
                 <Image
                   src="/images/expert/medical-advisor.png"
-                  alt="의료진 일러스트"
+                  alt="서비스 방향 일러스트"
                   fill
                   sizes="128px"
                   className="object-cover"

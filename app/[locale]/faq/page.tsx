@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   if (!isLocale(locale)) return {}
   return buildMetadata({
     title: '자주 묻는 질문 - 바로도리',
-    description: '바로도리 서비스, 측정, 결제, 개인정보, 기술 문제에 대한 답변을 확인하세요.',
+    description: '바로도리 서비스, 기록, 결제, 개인정보, 기술 문제에 대한 답변을 확인하세요.',
     path: `/${locale}/faq`,
     locale,
   })

@@ -62,7 +62,7 @@ export const parentReviews: ParentReview[] = [
     condition: 'both',
     rating: 5,
     title: '눈대중이 아니라 기록으로 남는 점이 안심됐어요',
-    body: '매번 좋아지는지 헷갈렸는데 측정 기록과 리포트를 보면서 아이 상태를 더 차분하게 볼 수 있었습니다.',
+    body: '매번 좋아지는지 헷갈렸는데 상태 기록과 리포트를 보면서 아이 상태를 더 차분하게 볼 수 있었습니다.',
     duration: '1개월 사용',
     writtenAt: '2026-04-25',
   },
@@ -82,11 +82,11 @@ export const parentReviews: ParentReview[] = [
 export const expertRecommendations: ExpertRecommendation[] = [
   {
     id: 'expert-1',
-    name: '서지현 교수',
-    role: '재활의학과',
-    organization: '분당서울대학교병원',
+    name: '바로도리 팀',
+    role: '서비스 기획',
+    organization: '보호자 중심 가정 관리 서비스',
     quote:
-      '가정에서 보호자가 아이 상태를 꾸준히 관찰하고 안전하게 운동을 이어갈 수 있도록 돕는 보조 도구의 역할이 중요합니다.',
+      '가정에서 보호자가 아이 상태를 꾸준히 관찰하고 운동 기록을 이어갈 수 있도록 돕는 보조 도구를 지향합니다.',
   },
 ]
 
@@ -94,9 +94,8 @@ export const mediaMentions: MediaMention[] = [
   {
     id: 'media-1',
     outlet: '바로도리 뉴스',
-    title: 'AI 기반 영유아 가정 재활 보조 앱 바로도리 베타 준비',
+    title: '영유아 가정 관리 보조 앱 바로도리 베타 준비',
     publishedAt: '2026-05-10',
     href: '/ko/newsroom',
   },
 ]
-

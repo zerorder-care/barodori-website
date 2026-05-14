@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   if (!isLocale(locale)) return {}
   return buildMetadata({
     title: '제품 소개 - 바로도리',
-    description: '바로도리 앱의 핵심 기능: AI 머리 모양 진단, 맞춤 가정 운동, 진료 가이드',
+    description: '바로도리 앱의 핵심 기능: 상태 기록, 가정 운동 루틴, 보호자 기록 관리',
     path: `/${locale}/product`,
     locale,
   })
@@ -34,7 +34,7 @@ export default async function ProductPage({ params }: { params: Promise<{ locale
             </p>
             <h2 className="mt-4 text-3xl font-bold sm:text-4xl">이런 고민, 있으신가요?</h2>
             <p className="mt-3 text-sm text-[var(--color-text-secondary)]">
-              사경 · 사두 재활을 집에서 이어가는 부모님들이 가장 많이 마주하는 어려움이에요
+              사경 · 사두 관리를 집에서 이어가는 부모님들이 가장 많이 마주하는 어려움이에요
             </p>
           </div>
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
@@ -62,18 +62,18 @@ export default async function ProductPage({ params }: { params: Promise<{ locale
         <Container>
           <div className="text-center">
             <p className="inline-flex rounded-pill bg-[var(--color-primary)] px-3 py-1 text-xs font-semibold text-white">
-              차별점 · 전문성
+              차별점 · 서비스 방향
             </p>
             <h2 className="mt-4 text-3xl font-bold sm:text-4xl">왜 바로도리인가요?</h2>
             <p className="mt-3 text-sm text-[var(--color-text-secondary)]">
-              실제 경험에서 출발해, 의료진과 함께 만들고, 객관적 데이터로 검증해요
+              실제 보호자 경험에서 출발해, 관찰과 기록을 더 쉽게 이어가도록 설계했어요
             </p>
           </div>
           <div className="mt-10 grid gap-6 sm:grid-cols-3">
             {[
               ['실제 경험에서 출발', '대표의 자녀 사경 경험을 바탕으로 보호자 관점의 불안을 줄이는 흐름을 설계했습니다.'],
-              ['전문 의료진 협업', '분당서울대학교병원 재활의학과 서지현 교수와의 협업을 통해 서비스 완성도를 높이고 있습니다.'],
-              ['객관적 측정 기반', '주관적 판단의 한계를 보완하도록 AI 기반 측정과 기록 흐름을 제공합니다.'],
+              ['정보 확인 기준 마련', '보호자가 참고할 수 있는 정보를 조심스럽고 명확한 표현으로 정리합니다.'],
+              ['기록 기반 변화 확인', '주관적 판단만으로는 놓치기 쉬운 변화를 기록 흐름으로 살펴볼 수 있도록 돕습니다.'],
             ].map(([title, body], index) => (
               <article key={title} className="rounded-[8px] border border-[var(--color-border)] bg-white p-8">
                 <p className="text-2xl font-bold text-[#a5a5a5]">{String(index + 1).padStart(2, '0')}</p>

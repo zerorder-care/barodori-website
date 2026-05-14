@@ -9,22 +9,22 @@ const steps = [
     imageAlt: '앱 설치와 아이 정보 등록 일러스트',
   },
   {
-    title: '아이 상태 측정하기',
-    desc: '가이드에 따라 사진을 촬영해 상태를 측정해요',
+    title: '아이 상태 기록하기',
+    desc: '가이드에 따라 사진을 촬영해 상태 변화를 기록해요',
     image: '/images/steps/measure.png',
-    imageAlt: '아이 상태 측정 일러스트',
+    imageAlt: '아이 상태 기록 일러스트',
   },
   {
-    title: 'AI 분석 결과 및 맞춤 운동 확인',
-    desc: '분석 리포트와 추천 운동을 확인해요',
+    title: '보조 리포트와 운동 루틴 확인',
+    desc: '기록을 바탕으로 참고 리포트와 운동 루틴을 확인해요',
     image: '/images/steps/analyze.png',
-    imageAlt: 'AI 분석 결과 확인 일러스트',
+    imageAlt: '보조 리포트 확인 일러스트',
   },
   {
-    title: '가정에서 재활 운동 진행',
+    title: '가정에서 운동 루틴 진행',
     desc: '음성 가이드와 함께 루틴을 진행해요',
     image: '/images/steps/home-exercise.png',
-    imageAlt: '가정 재활 운동 진행 일러스트',
+    imageAlt: '가정 운동 루틴 진행 일러스트',
   },
 ] as const
 
@@ -36,7 +36,7 @@ export function ActionGuide() {
           <p className="inline-flex rounded-pill bg-[var(--color-primary)] px-3 py-1 text-xs font-semibold text-white">
             이용 방법
           </p>
-          <h2 className="mt-4 text-3xl font-bold sm:text-4xl">단 4단계로 시작하는 가정 재활</h2>
+          <h2 className="mt-4 text-3xl font-bold sm:text-4xl">단 4단계로 시작하는 가정 관리</h2>
           <p className="mt-3 text-sm text-[var(--color-text-secondary)]">앱 설치부터 운동까지, 어렵지 않아요</p>
         </div>
         <ol className="mt-12 grid gap-6 lg:grid-cols-4">

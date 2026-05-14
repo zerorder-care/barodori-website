@@ -43,15 +43,15 @@ export const newsroomPosts: NewsroomPost[] = [
   {
     id: 'news-2',
     category: 'press',
-    title: '제로더, AI 기반 영유아 가정 재활 보조 서비스 개발',
+    title: '제로더, 영유아 가정 관리 보조 서비스 개발',
     excerpt: '보호자가 집에서도 아이 상태를 꾸준히 기록하고 운동을 이어갈 수 있도록 돕는 앱을 준비 중입니다.',
     publishedAt: '2026-05-08',
   },
   {
     id: 'news-3',
     category: 'partnership',
-    title: '의료진 협업 기반 콘텐츠 검수 체계 준비',
-    excerpt: '사경/사두 정보 콘텐츠의 정확성을 높이기 위해 전문가 자문 프로세스를 구축하고 있습니다.',
+    title: '정보 콘텐츠 검토 기준 준비',
+    excerpt: '사경/사두 정보 콘텐츠를 더 조심스럽고 명확한 표현으로 제공하기 위한 검토 기준을 마련하고 있습니다.',
     publishedAt: '2026-04-30',
   },
 ]

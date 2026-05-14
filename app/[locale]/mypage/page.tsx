@@ -90,7 +90,7 @@ export default async function MyPage({ params }: { params: Promise<{ locale: str
             <section id="mypage-3" className="rounded-[8px] bg-[#303030] p-6 text-sm leading-relaxed text-white/75">
               <h2 className="text-xl font-bold text-white">앱 전용 기능 안내</h2>
               <p className="mt-3">
-                운동 기록과 측정 결과는 앱에서 확인할 수 있습니다. 홈페이지 마이페이지는 계정과 커뮤니티 활동 중심으로
+                운동 기록과 상태 기록은 앱에서 확인할 수 있습니다. 홈페이지 마이페이지는 계정과 커뮤니티 활동 중심으로
                 제공될 예정입니다.
               </p>
             </section>

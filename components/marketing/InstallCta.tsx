@@ -10,9 +10,9 @@ export function InstallCta({ locale, surface }: { locale: Locale; surface: strin
         <h2 className="mt-8 max-w-2xl text-3xl font-bold leading-tight sm:text-4xl">
           지금 바로도리에서
           <br />
-          우리 아이의 회복을 시작해보세요
+          우리 아이의 가정 관리를 시작해보세요
         </h2>
-        <p className="mt-5 text-sm text-white/70">전문 의료진과 함께 만든 가정 재활 보조 앱, 바로도리에서 만나보세요</p>
+        <p className="mt-5 text-sm text-white/70">보호자의 관찰과 운동 기록을 돕는 바로도리를 만나보세요</p>
         <div className="mt-8">
           <StoreButtons surface={surface} locale={locale} />
         </div>

@@ -3,13 +3,13 @@ import { Container } from '@/components/ui/Container'
 
 const sections = [
   {
-    title: 'AI 기반 상태 측정',
-    desc: '가이드에 맞춰 촬영하면 기울기, 가동범위, 두상 변화를 기록합니다. 보호자가 주관적으로 판단하기 어려운 변화를 객관 수치로 살펴볼 수 있도록 돕습니다.',
+    title: '사진 기반 상태 기록',
+    desc: '가이드에 맞춰 촬영하면 기울기, 가동범위, 두상 변화 흐름을 기록합니다. 보호자가 놓치기 쉬운 변화를 참고 지표로 살펴볼 수 있도록 돕습니다.',
     image: '/images/features/measurement.png',
   },
   {
-    title: '맞춤형 운동 프로그램',
-    desc: '근성 사경, 자세성 사경 등 아이 상태에 따라 기울이기, 회전, 도리도리, 터미타임 루틴을 코스형으로 안내합니다.',
+    title: '참고 운동 루틴',
+    desc: '아이 정보와 보호자 기록을 참고해 기울이기, 회전, 도리도리, 터미타임 루틴을 코스형으로 안내합니다.',
     image: '/images/features/exercise.png',
   },
   {
@@ -19,7 +19,7 @@ const sections = [
   },
   {
     title: '기록 및 리포트',
-    desc: '운동 수행 기록과 측정 결과를 모아 변화 흐름을 확인합니다. 병원 상담 전 보호자가 정리해야 할 내용을 줄이는 것이 목표입니다.',
+    desc: '운동 수행 기록과 상태 기록을 모아 변화 흐름을 확인합니다. 진료 상담 전 보호자가 상황을 정리하는 데 참고할 수 있습니다.',
     image: '/images/features/report.png',
   },
   {
@@ -37,9 +37,9 @@ export function ProductDetail() {
           <p className="inline-flex rounded-pill bg-[var(--color-primary)] px-3 py-1 text-xs font-semibold text-white">
             핵심 기능 소개
           </p>
-          <h2 className="mt-4 text-3xl font-bold sm:text-4xl">가정 재활의 모든 과정을 한 안에서</h2>
+          <h2 className="mt-4 text-3xl font-bold sm:text-4xl">가정 관리의 흐름을 한 안에서</h2>
           <p className="mt-3 text-sm text-[var(--color-text-secondary)]">
-            AI 측정부터 맞춤 운동, 보조 음원, 리포트, 보호자 지원까지 다섯 가지 핵심 기능을 제공해요
+            상태 기록부터 운동 루틴, 보조 음원, 리포트, 보호자 지원까지 다섯 가지 핵심 기능을 제공해요
           </p>
         </div>
       </Container>
@@ -54,7 +54,7 @@ export function ProductDetail() {
               <h3 className="mt-4 text-3xl font-bold">{s.title}</h3>
               <p className="mt-5 leading-relaxed text-[var(--color-text-secondary)]">{s.desc}</p>
               <ul className="mt-6 space-y-2 text-sm text-[var(--color-text-secondary)]">
-                <li>• 아이 상태를 객관적으로 확인</li>
+                <li>• 아이 상태 변화를 기록으로 확인</li>
                 <li>• 보호자가 따라가기 쉬운 단계형 안내</li>
                 <li>• 기록과 리포트로 변화 흐름 확인</li>
               </ul>

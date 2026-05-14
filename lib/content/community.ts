@@ -99,11 +99,11 @@ export const communityPosts: CommunityPost[] = [
     category: 'official_content',
     author: '바로도리',
     babyAge: '운영진',
-    title: '측정 전 아이 컨디션을 먼저 확인해주세요',
+    title: '기록 전 아이 컨디션을 먼저 확인해주세요',
     preview: '정확한 기록을 위해 촬영 전 확인하면 좋은 체크포인트를 안내드려요.',
     body: [
       '아이가 배고프거나 졸린 시간에는 촬영 자세가 쉽게 흐트러질 수 있어요.',
-      '측정은 아이가 비교적 편안한 시간에, 보호자 두 명이 함께 진행하면 더 안정적입니다.',
+      '촬영 기록은 아이가 비교적 편안한 시간에, 보호자 두 명이 함께 진행하면 더 안정적입니다.',
     ],
     likeCount: 42,
     commentCount: 4,

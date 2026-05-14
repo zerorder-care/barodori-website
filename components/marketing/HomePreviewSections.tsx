@@ -24,7 +24,7 @@ export function HomePreviewSections({
             <SectionHeader
               eyebrow="사용자 후기 하이라이트"
               title="실제 보호자들의 진솔한 이야기"
-              description="바로도리와 함께 회복을 시작한 가족들의 후기를 만나보세요"
+              description="바로도리와 함께 가정 관리를 이어간 가족들의 후기를 만나보세요"
               href={`/${locale}/reviews`}
               linkLabel="더 많은 후기 보기"
             />
@@ -49,16 +49,16 @@ export function HomePreviewSections({
       <section className="bg-white py-24">
         <Container>
           <SectionHeader
-            eyebrow="전문가 추천 · 차별점"
-            title="전문 의료진과 함께 만들었습니다"
-            description="실제 보호자 경험과 의료진의 전문성이 만나 만든 가정 재활 보조 서비스예요"
+            eyebrow="서비스 방향 · 차별점"
+            title="보호자 경험에서 출발했습니다"
+            description="가정에서 꾸준히 관찰하고 기록할 수 있도록 보호자 관점의 흐름을 담았어요"
           />
           <div className="mt-10 rounded-[12px] border border-[var(--color-border)] bg-[#f7f7f7] p-10">
             <div className="grid gap-8 lg:grid-cols-[160px_1fr] lg:items-center">
               <div className="relative h-32 w-32 overflow-hidden rounded-full bg-white">
                 <Image
                   src="/images/expert/medical-advisor.png"
-                  alt="의료진 일러스트"
+                  alt="바로도리 서비스 일러스트"
                   fill
                   sizes="128px"
                   className="object-cover"
@@ -68,12 +68,12 @@ export function HomePreviewSections({
                 <p className="text-4xl font-bold text-[#b9b9b9]">“</p>
                 <p className="mt-2 max-w-3xl leading-relaxed">
                   {expertRecommendations[0]?.quote ??
-                    '영유아 사경 · 사두는 조기 발견과 꾸준한 가정 재활이 무엇보다 중요합니다.'}
+                    '가정에서 보호자가 아이 상태를 꾸준히 관찰하고 기록할 수 있도록 돕는 보조 도구를 지향합니다.'}
                 </p>
                 <p className="mt-5 text-sm font-bold">
-                  {expertRecommendations[0]?.name ?? '서지현 교수'}
+                  {expertRecommendations[0]?.name ?? '바로도리 팀'}
                   <span className="ml-3 font-medium text-[var(--color-text-secondary)]">
-                    {expertRecommendations[0]?.organization ?? '분당서울대학교병원 재활의학과'}
+                    {expertRecommendations[0]?.organization ?? '보호자 중심 가정 관리 서비스'}
                   </span>
                 </p>
               </div>
@@ -82,8 +82,8 @@ export function HomePreviewSections({
           <div className="mt-10 grid gap-6 lg:grid-cols-3">
             {[
               ['실제 보호자 경험 기반', '대표의 자녀 사경 경험에서 출발해 보호자 관점의 기능을 담았어요'],
-              ['전문 의료진 협업', '분당서울대학교병원 재활의학과 서지현 교수와의 임상 협업으로 신뢰성을 확보했어요'],
-              ['AI 기반 객관적 측정', '사진 한 장으로 기울기와 가동범위, 두상을 수치화해 변화를 객관적으로 추적해요'],
+              ['정보 확인 기준 마련', '보호자가 참고할 수 있는 정보를 더 조심스럽고 명확한 표현으로 정리해요'],
+              ['기록 기반 변화 확인', '사진과 운동 기록을 모아 아이의 변화 흐름을 차분하게 살펴볼 수 있어요'],
             ].map(([title, body], index) => (
               <article key={title} className="rounded-[8px] border border-[var(--color-border)] bg-white p-7">
                 <p className="text-2xl font-bold text-[#a5a5a5]">{String(index + 1).padStart(2, '0')}</p>

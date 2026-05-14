@@ -16,7 +16,7 @@ export function SymptomGrid() {
           </p>
           <h2 className="mt-4 text-3xl font-bold sm:text-4xl">이런 고민, 있으신가요?</h2>
           <p className="mt-3 text-sm text-[var(--color-text-secondary)]">
-            가정에서 사경 · 사두 재활을 진행하는 부모님들이 가장 많이 호소하는 어려움이에요
+            가정에서 사경 · 사두 관리를 이어가는 부모님들이 가장 많이 호소하는 어려움이에요
           </p>
         </div>
         <div className="mt-12 grid gap-6 lg:grid-cols-3">
