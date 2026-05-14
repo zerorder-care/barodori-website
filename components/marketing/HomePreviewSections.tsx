@@ -143,7 +143,7 @@ export function HomePreviewSections({
           {newsroomPosts.length > 0 ? (
             <div className="mt-10 grid gap-6 sm:grid-cols-3">
               {newsroomPosts.slice(0, 3).map((post) => (
-                <NewsroomPreviewCard key={post.id} post={post} />
+                <NewsroomPreviewCard key={post.id} locale={locale} post={post} />
               ))}
             </div>
           ) : (
@@ -157,7 +157,7 @@ export function HomePreviewSections({
   )
 }
 
-function NewsroomPreviewCard({ post }: { post: NewsroomPost }) {
+function NewsroomPreviewCard({ locale, post }: { locale: Locale; post: NewsroomPost }) {
   const content = (
     <>
       {post.thumbnail ? (
@@ -193,7 +193,14 @@ function NewsroomPreviewCard({ post }: { post: NewsroomPost }) {
     )
   }
 
-  return <article className="overflow-hidden rounded-[8px] border border-[var(--color-border)] bg-white">{content}</article>
+  return (
+    <Link
+      href={`/${locale}/newsroom/${post.id}`}
+      className="overflow-hidden rounded-[8px] border border-[var(--color-border)] bg-white transition hover:shadow-md"
+    >
+      {content}
+    </Link>
+  )
 }
 
 function SectionHeader({

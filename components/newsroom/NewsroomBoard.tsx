@@ -63,6 +63,7 @@ export function NewsroomBoard({
           {posts.map((post) => (
             <NewsroomCard
               key={post.id}
+              locale={locale}
               post={post}
               categoryLabel={categoryLabelByValue.get(post.category) ?? post.category}
             />
@@ -83,7 +84,15 @@ export function NewsroomBoard({
   )
 }
 
-function NewsroomCard({ post, categoryLabel }: { post: NewsroomPost; categoryLabel: string }) {
+function NewsroomCard({
+  locale,
+  post,
+  categoryLabel,
+}: {
+  locale: Locale
+  post: NewsroomPost
+  categoryLabel: string
+}) {
   const content = (
     <>
       {post.thumbnail ? (
@@ -133,7 +142,14 @@ function NewsroomCard({ post, categoryLabel }: { post: NewsroomPost; categoryLab
     )
   }
 
-  return <article className="overflow-hidden rounded-[8px] border border-[var(--color-border)] bg-white">{content}</article>
+  return (
+    <Link
+      href={`/${locale}/newsroom/${post.id}`}
+      className="overflow-hidden rounded-[8px] border border-[var(--color-border)] bg-white transition hover:shadow-md"
+    >
+      {content}
+    </Link>
+  )
 }
 
 function buildNewsroomHref(locale: Locale, category: CategoryFilter, query: string, page?: number): string {

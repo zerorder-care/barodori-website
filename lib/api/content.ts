@@ -8,6 +8,7 @@ import {
   newsroomCategories,
   newsroomPosts as fallbackNewsroomPosts,
   type NewsroomCategory,
+  type NewsroomContentBlock,
   type NewsroomPost,
 } from '@/lib/content/newsroom'
 
@@ -72,6 +73,7 @@ type PublicNewsroomPost = {
   external_url?: string | null
   publishedAt?: string | null
   published_at?: string | null
+  content?: NewsroomContentBlock[] | null
 }
 
 type PublicNewsroomListResponse = {
@@ -175,6 +177,25 @@ export async function listNewsroomPosts({
   }
 }
 
+export async function getNewsroomPost(postId: string): Promise<NewsroomPost | null> {
+  const apiBaseUrl = getApiBaseUrl()
+
+  if (!apiBaseUrl) {
+    return fallbackNewsroomPosts.find((post) => post.id === postId) ?? null
+  }
+
+  try {
+    const data = await fetchBackendApi<PublicNewsroomPost>(
+      apiBaseUrl,
+      `/api/v1/content/newsroom/${postId}`,
+      'content_newsroom_api',
+    )
+    return mapNewsroomPost(data)
+  } catch {
+    return null
+  }
+}
+
 export async function getFaqContent({ category, q }: FaqContentParams = {}): Promise<FaqContentResult> {
   const apiBaseUrl = getApiBaseUrl()
 
@@ -262,6 +283,7 @@ function mapNewsroomPost(post: PublicNewsroomPost): NewsroomPost {
     publishedAt: formatDate(post.publishedAt ?? post.published_at),
     href: post.externalUrl ?? post.external_url ?? undefined,
     thumbnail: post.thumbnailImage ?? post.thumbnail_image ?? undefined,
+    content: post.content ?? undefined,
   }
 }
 

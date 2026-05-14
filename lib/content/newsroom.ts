@@ -1,5 +1,18 @@
 export type NewsroomCategory = 'notice' | 'press' | 'partnership' | 'event'
 
+export type NewsroomContentBlock = {
+  type?: string
+  content?: string
+  text?: string
+  imageUrl?: string | null
+  image_url?: string | null
+  thumbnailUrl?: string | null
+  thumbnail_url?: string | null
+  url?: string | null
+  src?: string | null
+  alt?: string
+}
+
 export type NewsroomPost = {
   id: string
   category: NewsroomCategory
@@ -8,6 +21,7 @@ export type NewsroomPost = {
   publishedAt: string
   href?: string
   thumbnail?: string
+  content?: NewsroomContentBlock[]
 }
 
 export const newsroomCategories = [
