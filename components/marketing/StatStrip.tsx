@@ -8,14 +8,14 @@ const stats = [
 
 export function StatStrip() {
   return (
-    <section aria-label="핵심 통계" className="border-y border-[--color-border] bg-white py-10">
+    <section aria-label="핵심 통계" className="border-y border-[var(--color-border)] bg-white py-10">
       <Container className="grid grid-cols-3 gap-4 text-center">
         {stats.map((s) => (
           <div key={s.label}>
-            <p className="text-2xl font-bold text-[--color-primary-dark] sm:text-3xl">{s.value}</p>
-            <p className="mt-1 text-xs text-[--color-text-secondary] sm:text-sm">{s.label}</p>
+            <p className="text-2xl font-bold text-[var(--color-primary-dark)] sm:text-3xl">{s.value}</p>
+            <p className="mt-1 text-xs text-[var(--color-text-secondary)] sm:text-sm">{s.label}</p>
             {'source' in s && s.source && (
-              <p className="mt-0.5 text-[10px] text-[--color-text-secondary]/70">출처: {s.source}</p>
+              <p className="mt-0.5 text-[10px] text-[var(--color-text-secondary)]/70">출처: {s.source}</p>
             )}
           </div>
         ))}

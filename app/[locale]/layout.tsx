@@ -5,6 +5,7 @@ import { locales, indexableLocales, type Locale } from '@/lib/i18n/config'
 import { AnalyticsProvider } from '@/components/analytics/AnalyticsProvider'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
+import { KakaoFloatingButton } from '@/components/layout/KakaoFloatingButton'
 
 export async function generateStaticParams() {
   return locales.map((locale) => ({ locale }))
@@ -39,6 +40,7 @@ export default async function LocaleLayout({
       <AnalyticsProvider />
       <Header locale={locale as Locale} />
       <main className="flex-1">{children}</main>
+      <KakaoFloatingButton locale={locale as Locale} />
       <Footer locale={locale as Locale} />
     </>
   )

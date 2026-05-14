@@ -28,7 +28,7 @@ export default async function InstallPage({ params }: { params: Promise<{ locale
       <section className="py-16">
         <Container className="text-center">
           <h1 className="text-3xl font-bold sm:text-4xl">바로도리 앱 설치</h1>
-          <p className="mt-3 text-[--color-text-secondary]">
+          <p className="mt-3 text-[var(--color-text-secondary)]">
             {live
               ? '앱스토어에서 바로 다운로드하세요.'
               : '2026-05-20 베타 출시 예정입니다. 베타 서포터즈로 먼저 만나보세요.'}
@@ -39,7 +39,7 @@ export default async function InstallPage({ params }: { params: Promise<{ locale
           {!live && (
             <div
               id="coming-soon"
-              className="mx-auto mt-10 max-w-md rounded-lg border border-[--color-border] bg-[--color-bg-muted] p-5 text-sm text-[--color-text-secondary]"
+              className="mx-auto mt-10 max-w-md rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-muted)] p-5 text-sm text-[var(--color-text-secondary)]"
             >
               QR 코드 / 스토어 링크는 정식 출시 시 활성화됩니다.
             </div>

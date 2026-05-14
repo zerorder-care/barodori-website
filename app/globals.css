@@ -26,14 +26,14 @@
 }
 
 :root {
-  --color-primary: #FFB700;
-  --color-primary-light: #FFF3D6;
-  --color-primary-dark: #E6A500;
+  --color-primary: #1F1F1F;
+  --color-primary-light: #F4F4F4;
+  --color-primary-dark: #111111;
   --color-bg: #FFFFFF;
-  --color-bg-muted: #F8FAFC;
-  --color-text-primary: #000000;
-  --color-text-secondary: #64748B;
-  --color-border: #E2E8F0;
+  --color-bg-muted: #F5F5F5;
+  --color-text-primary: #191919;
+  --color-text-secondary: #6F6F6F;
+  --color-border: #D9D9D9;
   --color-danger: #EF4444;
   --color-warning: #F59E0B;
   --color-success: #10B981;
@@ -60,10 +60,28 @@
   --radius-sm: var(--radius-sm);
   --radius-md: var(--radius-md);
   --radius-lg: var(--radius-lg);
+  --radius-pill: var(--radius-pill);
 }
 
 html, body {
   background: var(--color-bg);
   color: var(--color-text-primary);
   font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+html {
+  scroll-padding-top: 72px;
+}
+
+body {
+  min-height: 100vh;
+}
+
+::selection {
+  background: #191919;
+  color: #ffffff;
 }

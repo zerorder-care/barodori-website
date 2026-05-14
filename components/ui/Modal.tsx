@@ -43,7 +43,7 @@ export function Modal({
         <button
           type="button"
           onClick={onClose}
-          className="absolute right-4 top-4 text-2xl leading-none text-[--color-text-secondary]"
+          className="absolute right-4 top-4 text-2xl leading-none text-[var(--color-text-secondary)]"
           aria-label="닫기"
         >
           ×

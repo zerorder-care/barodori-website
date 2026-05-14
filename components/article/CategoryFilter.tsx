@@ -12,8 +12,10 @@ export function CategoryFilter({ locale }: { locale: Locale }) {
     <nav className="flex flex-wrap gap-2">
       <Link
         href={`/${locale}/articles`}
-        className={`rounded-pill px-4 py-1.5 text-sm ${
-          current === null ? 'bg-black text-white' : 'bg-[--color-bg-muted]'
+        className={`rounded-[8px] px-4 py-2 text-sm font-semibold ${
+          current === null
+            ? 'bg-[var(--color-primary)] text-white'
+            : 'border border-[var(--color-border)] bg-white text-[var(--color-text-secondary)]'
         }`}
       >
         전체
@@ -22,8 +24,10 @@ export function CategoryFilter({ locale }: { locale: Locale }) {
         <Link
           key={c}
           href={`/${locale}/articles?cat=${c}`}
-          className={`rounded-pill px-4 py-1.5 text-sm ${
-            current === c ? 'bg-black text-white' : 'bg-[--color-bg-muted]'
+          className={`rounded-[8px] px-4 py-2 text-sm font-semibold ${
+            current === c
+              ? 'bg-[var(--color-primary)] text-white'
+              : 'border border-[var(--color-border)] bg-white text-[var(--color-text-secondary)]'
           }`}
         >
           {categoryLabels[c][locale]}

@@ -2,13 +2,11 @@ import { notFound } from 'next/navigation'
 import { isLocale } from '@/lib/i18n/dictionary'
 import { buildMetadata } from '@/lib/seo/metadata'
 import { Hero } from '@/components/marketing/Hero'
-import { StatStrip } from '@/components/marketing/StatStrip'
 import { SymptomGrid } from '@/components/marketing/SymptomGrid'
 import { ActionGuide } from '@/components/marketing/ActionGuide'
 import { ProductFeatures } from '@/components/marketing/ProductFeatures'
-import { ArticleTeaserGrid } from '@/components/marketing/ArticleTeaserGrid'
-import { SafetyNotice } from '@/components/marketing/SafetyNotice'
 import { InstallCta } from '@/components/marketing/InstallCta'
+import { HomePreviewSections } from '@/components/marketing/HomePreviewSections'
 import { organizationJsonLd, mobileAppJsonLd, jsonLdScript } from '@/lib/seo/jsonLd'
 import type { Locale } from '@/lib/i18n/config'
 
@@ -46,12 +44,10 @@ export default async function HomePage({
         dangerouslySetInnerHTML={{ __html: jsonLdScript(mobileAppJsonLd()) }}
       />
       <Hero locale={loc} />
-      <StatStrip />
       <SymptomGrid />
-      <ActionGuide />
       <ProductFeatures locale={loc} />
-      <ArticleTeaserGrid locale={loc} />
-      <SafetyNotice locale={loc} />
+      <ActionGuide />
+      <HomePreviewSections locale={loc} />
       <InstallCta locale={loc} surface="home_footer" />
     </>
   )

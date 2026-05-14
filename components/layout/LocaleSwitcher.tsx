@@ -14,7 +14,7 @@ export function LocaleSwitcher({ current }: { current: Locale }) {
           <Link
             key={l}
             href={target}
-            className={l === current ? 'font-semibold text-[--color-text-primary]' : 'text-[--color-text-secondary]'}
+            className={l === current ? 'font-semibold text-[var(--color-text-primary)]' : 'text-[var(--color-text-secondary)]'}
           >
             {l.toUpperCase()}
           </Link>

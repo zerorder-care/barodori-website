@@ -7,12 +7,20 @@
   },
   "nav": {
     "home": "홈",
-    "product": "제품 소개",
-    "articles": "사경 아티클",
+    "product": "서비스 소개",
+    "reviews": "후기",
+    "community": "커뮤니티",
+    "articles": "아티클",
+    "newsroom": "뉴스룸",
+    "faq": "자주 묻는 질문",
+    "login": "로그인",
+    "mypage": "마이페이지",
     "install": "앱 설치"
   },
   "footer": {
     "tagline": "아기의 작은 고개, 바로도리에서 함께 살펴봐요",
+    "support": "고객센터",
+    "businessInfo": "사업자정보확인",
     "privacy": "개인정보처리방침",
     "terms": "이용약관",
     "copyright": "© {year} 제로더(Zerorder)"

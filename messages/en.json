@@ -8,11 +8,19 @@
   "nav": {
     "home": "Home",
     "product": "Product",
+    "reviews": "Reviews",
+    "community": "Community",
     "articles": "Articles",
+    "newsroom": "Newsroom",
+    "faq": "FAQ",
+    "login": "Log in",
+    "mypage": "My page",
     "install": "Install"
   },
   "footer": {
     "tagline": "Care for your baby's little neck, together with BaroDori",
+    "support": "Support",
+    "businessInfo": "Business info",
     "privacy": "Privacy",
     "terms": "Terms",
     "copyright": "© {year} Zerorder"

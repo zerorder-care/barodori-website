@@ -19,12 +19,12 @@ export function Toc({ markdown }: { markdown: string }) {
   }
   if (headings.length < 2) return null
   return (
-    <nav aria-label="목차" className="mb-8 rounded-lg bg-[--color-bg-muted] p-4 text-sm">
+    <nav aria-label="목차" className="mb-8 rounded-lg bg-[var(--color-bg-muted)] p-4 text-sm">
       <p className="font-semibold">목차</p>
       <ul className="mt-2 space-y-1">
         {headings.map((h) => (
           <li key={h.id} className={h.level === 3 ? 'ml-4' : ''}>
-            <a href={`#${h.id}`} className="text-[--color-text-secondary] hover:text-[--color-text-primary]">
+            <a href={`#${h.id}`} className="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]">
               {h.text}
             </a>
           </li>

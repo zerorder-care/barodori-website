@@ -19,40 +19,56 @@ export function StoreButtons({ surface, locale }: Props) {
 
   if (!live) {
     return (
-      <div className="flex flex-col gap-2 sm:flex-row">
+      <div className="flex flex-col gap-3 sm:flex-row">
         <button
           type="button"
           disabled
-          className="inline-flex items-center justify-center rounded-pill bg-[--color-bg-muted] px-6 py-3 text-sm text-[--color-text-secondary]"
+          className="inline-flex min-h-12 items-center justify-center gap-3 rounded-[8px] bg-white px-5 py-2 text-sm font-semibold text-black shadow-sm disabled:opacity-100"
         >
-          App Store · 출시 예정
+          <span className="h-5 w-5 rounded-[4px] bg-[#6f6f6f]" />
+          <span className="text-left leading-tight">
+            <span className="block text-[10px] uppercase text-[#777]">Download on the</span>
+            App Store
+          </span>
         </button>
         <button
           type="button"
           disabled
-          className="inline-flex items-center justify-center rounded-pill bg-[--color-bg-muted] px-6 py-3 text-sm text-[--color-text-secondary]"
+          className="inline-flex min-h-12 items-center justify-center gap-3 rounded-[8px] bg-white px-5 py-2 text-sm font-semibold text-black shadow-sm disabled:opacity-100"
         >
-          Google Play · 출시 예정
+          <span className="h-5 w-5 rounded-[4px] bg-[#6f6f6f]" />
+          <span className="text-left leading-tight">
+            <span className="block text-[10px] uppercase text-[#777]">Get it on</span>
+            Google Play
+          </span>
         </button>
       </div>
     )
   }
 
   return (
-    <div className="flex flex-col gap-2 sm:flex-row">
+    <div className="flex flex-col gap-3 sm:flex-row">
       <a
         href={ios ?? '#'}
         onClick={onClick('ios')}
-        className="inline-flex items-center justify-center rounded-pill bg-black px-6 py-3 text-sm font-medium text-white"
+        className="inline-flex min-h-12 items-center justify-center gap-3 rounded-[8px] bg-white px-5 py-2 text-sm font-semibold text-black shadow-sm"
       >
-        App Store
+        <span className="h-5 w-5 rounded-[4px] bg-[#6f6f6f]" />
+        <span className="text-left leading-tight">
+          <span className="block text-[10px] uppercase text-[#777]">Download on the</span>
+          App Store
+        </span>
       </a>
       <a
         href={android ?? '#'}
         onClick={onClick('android')}
-        className="inline-flex items-center justify-center rounded-pill bg-black px-6 py-3 text-sm font-medium text-white"
+        className="inline-flex min-h-12 items-center justify-center gap-3 rounded-[8px] bg-white px-5 py-2 text-sm font-semibold text-black shadow-sm"
       >
-        Google Play
+        <span className="h-5 w-5 rounded-[4px] bg-[#6f6f6f]" />
+        <span className="text-left leading-tight">
+          <span className="block text-[10px] uppercase text-[#777]">Get it on</span>
+          Google Play
+        </span>
       </a>
     </div>
   )

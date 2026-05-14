@@ -7,10 +7,10 @@ export async function MedicalNotice({ locale }: { locale: Locale }) {
     <aside
       role="note"
       aria-label={dict.medical.title}
-      className="my-8 rounded-lg border border-[--color-danger] bg-red-50 p-5"
+      className="my-8 rounded-lg border border-[var(--color-danger)] bg-red-50 p-5"
     >
-      <p className="font-semibold text-[--color-danger]">{dict.medical.title}</p>
-      <p className="mt-2 text-sm leading-relaxed text-[--color-text-primary]">
+      <p className="font-semibold text-[var(--color-danger)]">{dict.medical.title}</p>
+      <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-primary)]">
         {dict.medical.body}
       </p>
     </aside>

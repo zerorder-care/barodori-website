@@ -88,14 +88,14 @@ export default async function ArticleDetailPage({
               }}
             />
           </div>
-          <aside className="my-8 rounded-lg border border-[--color-primary] bg-[--color-primary-light] p-5 text-sm leading-relaxed">
+          <aside className="my-8 rounded-lg border border-[var(--color-primary)] bg-[var(--color-primary-light)] p-5 text-sm leading-relaxed">
             <p>
               바로도리 앱은 이 글에서 다룬 신호를 객관 수치로 확인하고 운동까지 안내합니다.{' '}
               <TrackedLink
                 href={`/${loc}/product`}
                 event="article_to_product_click"
                 eventProps={{ slug: article.slug, locale: loc }}
-                className="font-semibold text-[--color-primary-dark] underline"
+                className="font-semibold text-[var(--color-primary-dark)] underline"
               >
                 제품 알아보기 →
               </TrackedLink>

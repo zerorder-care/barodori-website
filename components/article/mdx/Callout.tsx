@@ -6,9 +6,9 @@ type Props = {
 }
 
 const styles: Record<NonNullable<Props['type']>, string> = {
-  info: 'border-l-4 border-[--color-primary] bg-[--color-primary-light] text-[--color-text-primary]',
-  warning: 'border-l-4 border-[--color-warning] bg-amber-50 text-[--color-text-primary]',
-  medical: 'border-l-4 border-[--color-danger] bg-red-50 text-[--color-text-primary]',
+  info: 'border-l-4 border-[var(--color-primary)] bg-[var(--color-primary-light)] text-[var(--color-text-primary)]',
+  warning: 'border-l-4 border-[var(--color-warning)] bg-amber-50 text-[var(--color-text-primary)]',
+  medical: 'border-l-4 border-[var(--color-danger)] bg-red-50 text-[var(--color-text-primary)]',
 }
 
 export function Callout({ type = 'info', children }: Props) {

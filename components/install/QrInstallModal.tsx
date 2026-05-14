@@ -27,7 +27,7 @@ export function QrInstallModal({ surface, locale, children }: Props) {
       <button
         type="button"
         onClick={onTriggerClick}
-        className="inline-flex items-center justify-center rounded-pill bg-[--color-primary] px-6 py-3 text-sm font-semibold text-black"
+        className="inline-flex items-center justify-center rounded-pill bg-[var(--color-primary)] px-6 py-3 text-sm font-semibold text-white"
       >
         {children}
       </button>
@@ -35,18 +35,18 @@ export function QrInstallModal({ surface, locale, children }: Props) {
         {live ? (
           <div>
             <h2 className="text-lg font-semibold">QR 코드로 설치</h2>
-            <p className="mt-2 text-sm text-[--color-text-secondary]">
+            <p className="mt-2 text-sm text-[var(--color-text-secondary)]">
               모바일로 QR 코드를 스캔하면 앱스토어로 이동합니다.
             </p>
             {/* 실제 QR 이미지는 출시 시 추가. MVP는 placeholder */}
-            <div className="mx-auto mt-4 grid h-40 w-40 place-items-center rounded-lg border border-dashed border-[--color-border] text-xs text-[--color-text-secondary]">
+            <div className="mx-auto mt-4 grid h-40 w-40 place-items-center rounded-lg border border-dashed border-[var(--color-border)] text-xs text-[var(--color-text-secondary)]">
               QR 이미지 (출시 시 업데이트)
             </div>
           </div>
         ) : (
           <div>
             <h2 className="text-lg font-semibold">출시 예정</h2>
-            <p className="mt-2 text-sm leading-relaxed text-[--color-text-secondary]">
+            <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-secondary)]">
               바로도리는 2026-05-20 베타 출시 예정입니다. 베타 서포터즈로 미리 만나보세요.
             </p>
             {beta && (
@@ -55,7 +55,7 @@ export function QrInstallModal({ surface, locale, children }: Props) {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => track('cta_beta_form_click', { surface: `${surface}:modal`, locale })}
-                className="mt-4 inline-flex w-full items-center justify-center rounded-pill bg-[--color-primary] px-6 py-3 text-sm font-semibold text-black"
+                className="mt-4 inline-flex w-full items-center justify-center rounded-pill bg-[var(--color-primary)] px-6 py-3 text-sm font-semibold text-white"
               >
                 베타 서포터즈 신청
               </a>
