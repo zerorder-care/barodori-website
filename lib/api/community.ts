@@ -5,12 +5,7 @@ import {
   type CommunityPost,
   type CommunitySort,
 } from '@/lib/content/community'
-
-type ApiEnvelope<T> = {
-  code?: number
-  message?: string
-  data?: T
-}
+import { fetchBackendApi, getApiBaseUrl } from '@/lib/api/client'
 
 type PublicAuthor = {
   nickname: string
@@ -95,9 +90,6 @@ export type CommunityListParams = {
   limit?: number
 }
 
-const DEFAULT_VERCEL_API_BASE_URL = 'https://staging.api.barodori.com'
-const DEFAULT_PRODUCTION_API_BASE_URL = 'https://api.barodori.com'
-
 export async function listCommunityPosts({
   category,
   q,
@@ -119,7 +111,11 @@ export async function listCommunityPosts({
   if (q?.trim()) params.set('q', q.trim())
 
   try {
-    const data = await fetchApi<PublicPostListResponse>(apiBaseUrl, `/api/v1/community/public/posts?${params}`)
+    const data = await fetchBackendApi<PublicPostListResponse>(
+      apiBaseUrl,
+      `/api/v1/community/public/posts?${params}`,
+      'community_api',
+    )
     return {
       posts: data.posts.map(mapListItem),
       nextOffset: data.nextOffset ?? null,
@@ -145,10 +141,12 @@ export async function getCommunityPostDetail(postId: string): Promise<CommunityP
 
   try {
     const [post, comments] = await Promise.all([
-      fetchApi<PublicPostDetail>(apiBaseUrl, `/api/v1/community/public/posts/${postId}`),
-      fetchApi<PublicCommentListResponse>(apiBaseUrl, `/api/v1/community/public/posts/${postId}/comments?limit=20`).catch(
-        () => ({ comments: [], hasMore: false }),
-      ),
+      fetchBackendApi<PublicPostDetail>(apiBaseUrl, `/api/v1/community/public/posts/${postId}`, 'community_api'),
+      fetchBackendApi<PublicCommentListResponse>(
+        apiBaseUrl,
+        `/api/v1/community/public/posts/${postId}/comments?limit=20`,
+        'community_api',
+      ).catch(() => ({ comments: [], hasMore: false })),
     ])
 
     return {
@@ -159,36 +157,6 @@ export async function getCommunityPostDetail(postId: string): Promise<CommunityP
   } catch {
     return null
   }
-}
-
-function getApiBaseUrl(): string | null {
-  const configured = process.env.BARODORI_API_BASE_URL || process.env.NEXT_PUBLIC_API_BASE_URL
-  if (configured) return configured.replace(/\/$/, '')
-  if (process.env.VERCEL_URL?.endsWith('.vercel.app')) return DEFAULT_VERCEL_API_BASE_URL
-  if (process.env.NODE_ENV === 'production') return DEFAULT_PRODUCTION_API_BASE_URL
-  return null
-}
-
-async function fetchApi<T>(apiBaseUrl: string, path: string): Promise<T> {
-  const response = await fetch(`${apiBaseUrl}${path}`, {
-    cache: 'no-store',
-    headers: {
-      accept: 'application/json',
-    },
-  })
-
-  if (!response.ok) {
-    throw new Error(`community_api_http_${response.status}`)
-  }
-
-  const payload = (await response.json()) as ApiEnvelope<T>
-  if (payload.code !== undefined && payload.code !== 0) {
-    throw new Error(payload.message ?? `community_api_code_${payload.code}`)
-  }
-  if (!payload.data) {
-    throw new Error('community_api_empty_data')
-  }
-  return payload.data
 }
 
 function buildFallbackList({

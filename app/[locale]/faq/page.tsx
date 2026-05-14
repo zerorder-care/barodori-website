@@ -1,9 +1,15 @@
 import { notFound } from 'next/navigation'
 import { FaqAccordion } from '@/components/faq/FaqAccordion'
 import { Container } from '@/components/ui/Container'
+import { getFaqContent } from '@/lib/api/content'
 import { getExternalLinks } from '@/lib/site/config'
 import { isLocale } from '@/lib/i18n/dictionary'
+import type { Locale } from '@/lib/i18n/config'
 import { buildMetadata } from '@/lib/seo/metadata'
+
+export const dynamic = 'force-dynamic'
+
+type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
@@ -16,9 +22,23 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   })
 }
 
-export default async function FaqPage({ params }: { params: Promise<{ locale: string }> }) {
+export default async function FaqPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ locale: string }>
+  searchParams: SearchParams
+}) {
   const { locale } = await params
   if (!isLocale(locale)) notFound()
+  const loc = locale as Locale
+  const search = await searchParams
+  const query = normalizeSearchParam(search.q)
+  const category = normalizeSearchParam(search.category) || 'all'
+  const faq = await getFaqContent({
+    category: category === 'all' ? undefined : category,
+    q: query,
+  })
   const kakao = getExternalLinks().kakaoChannel
 
   return (
@@ -36,7 +56,14 @@ export default async function FaqPage({ params }: { params: Promise<{ locale: st
       </section>
 
       <Container className="py-16">
-        <FaqAccordion />
+        <FaqAccordion
+          locale={loc}
+          categories={faq.categories}
+          items={faq.items}
+          category={category}
+          query={query}
+          error={faq.error}
+        />
         <section className="mt-12 rounded-[8px] bg-[#303030] p-8 text-center text-white">
           <h2 className="text-2xl font-bold">더 궁금한 점이 있으신가요?</h2>
           <p className="mt-3 text-sm text-white/70">카카오톡 채널로 문의를 남겨주시면 운영 시간에 답변드릴게요.</p>
@@ -54,4 +81,9 @@ export default async function FaqPage({ params }: { params: Promise<{ locale: st
       </Container>
     </>
   )
+}
+
+function normalizeSearchParam(value: string | string[] | undefined): string {
+  if (Array.isArray(value)) return value[0] ?? ''
+  return value ?? ''
 }

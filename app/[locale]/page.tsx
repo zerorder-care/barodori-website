@@ -8,6 +8,7 @@ import { ProductFeatures } from '@/components/marketing/ProductFeatures'
 import { InstallCta } from '@/components/marketing/InstallCta'
 import { HomePreviewSections } from '@/components/marketing/HomePreviewSections'
 import { listCommunityPosts } from '@/lib/api/community'
+import { listNewsroomPosts } from '@/lib/api/content'
 import { organizationJsonLd, mobileAppJsonLd, jsonLdScript } from '@/lib/seo/jsonLd'
 import type { Locale } from '@/lib/i18n/config'
 
@@ -36,7 +37,10 @@ export default async function HomePage({
   const { locale } = await params
   if (!isLocale(locale)) notFound()
   const loc = locale as Locale
-  const communityPreview = await listCommunityPosts({ sort: 'popular', limit: 3 })
+  const [communityPreview, newsroomPreview] = await Promise.all([
+    listCommunityPosts({ sort: 'popular', limit: 3 }),
+    listNewsroomPosts({ pageSize: 3 }),
+  ])
 
   return (
     <>
@@ -52,7 +56,7 @@ export default async function HomePage({
       <SymptomGrid />
       <ProductFeatures locale={loc} />
       <ActionGuide />
-      <HomePreviewSections locale={loc} communityPosts={communityPreview.posts} />
+      <HomePreviewSections locale={loc} communityPosts={communityPreview.posts} newsroomPosts={newsroomPreview.posts} />
       <InstallCta locale={loc} surface="home_footer" />
     </>
   )

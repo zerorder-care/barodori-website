@@ -1,4 +1,4 @@
-export type FaqCategory = 'general' | 'measurement' | 'payment' | 'privacy' | 'technical'
+export type FaqCategory = string
 
 export type FaqItem = {
   id: string
@@ -67,4 +67,3 @@ export const faqItems: FaqItem[] = [
       '정식 출시 시 iOS와 Android 지원 범위를 스토어 안내와 함께 공지할 예정입니다.',
   },
 ]
-

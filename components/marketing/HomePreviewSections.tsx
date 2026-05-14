@@ -1,16 +1,18 @@
 import Link from 'next/link'
 import { Container } from '@/components/ui/Container'
-import { newsroomPosts } from '@/lib/content/newsroom'
 import { expertRecommendations, parentReviews } from '@/lib/content/reviews'
 import type { CommunityPost } from '@/lib/content/community'
+import type { NewsroomPost } from '@/lib/content/newsroom'
 import type { Locale } from '@/lib/i18n/config'
 
 export function HomePreviewSections({
   locale,
   communityPosts,
+  newsroomPosts,
 }: {
   locale: Locale
   communityPosts: CommunityPost[]
+  newsroomPosts: NewsroomPost[]
 }) {
   return (
     <>
@@ -130,24 +132,54 @@ export function HomePreviewSections({
             href={`/${locale}/newsroom`}
             linkLabel="뉴스룸 더 보기"
           />
-          <div className="mt-10 grid gap-6 sm:grid-cols-3">
-            {newsroomPosts.slice(0, 3).map((post) => (
-              <article key={post.id} className="overflow-hidden rounded-[8px] border border-[var(--color-border)] bg-white">
-                <div className="grid aspect-[16/9] place-items-center border-b border-dashed border-[#b9b9b9] bg-[#e6e6e6] text-xs text-[var(--color-text-secondary)]">
-                  대표 이미지
-                </div>
-                <div className="p-6">
-                  <p className="text-xs text-[var(--color-text-secondary)]">{post.publishedAt}</p>
-                  <h3 className="mt-3 text-lg font-bold leading-snug">{post.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-[var(--color-text-secondary)]">{post.excerpt}</p>
-                </div>
-              </article>
-            ))}
-          </div>
+          {newsroomPosts.length > 0 ? (
+            <div className="mt-10 grid gap-6 sm:grid-cols-3">
+              {newsroomPosts.slice(0, 3).map((post) => (
+                <NewsroomPreviewCard key={post.id} post={post} />
+              ))}
+            </div>
+          ) : (
+            <p className="mt-10 rounded-[8px] border border-[var(--color-border)] bg-white p-8 text-center text-sm text-[var(--color-text-secondary)]">
+              뉴스룸 소식을 준비하고 있습니다.
+            </p>
+          )}
         </Container>
       </section>
     </>
   )
+}
+
+function NewsroomPreviewCard({ post }: { post: NewsroomPost }) {
+  const content = (
+    <>
+      {post.thumbnail ? (
+        <div
+          aria-hidden="true"
+          className="aspect-[16/9] w-full border-b border-[var(--color-border)] bg-cover bg-center"
+          style={{ backgroundImage: `url(${JSON.stringify(post.thumbnail)})` }}
+        />
+      ) : (
+        <div className="grid aspect-[16/9] place-items-center border-b border-dashed border-[#b9b9b9] bg-[#e6e6e6] text-xs text-[var(--color-text-secondary)]">
+          대표 이미지
+        </div>
+      )}
+      <div className="p-6">
+        {post.publishedAt && <p className="text-xs text-[var(--color-text-secondary)]">{post.publishedAt}</p>}
+        <h3 className="mt-3 text-lg font-bold leading-snug">{post.title}</h3>
+        <p className="mt-3 text-sm leading-relaxed text-[var(--color-text-secondary)]">{post.excerpt}</p>
+      </div>
+    </>
+  )
+
+  if (post.href) {
+    return (
+      <a href={post.href} target="_blank" rel="noopener noreferrer" className="overflow-hidden rounded-[8px] border border-[var(--color-border)] bg-white">
+        {content}
+      </a>
+    )
+  }
+
+  return <article className="overflow-hidden rounded-[8px] border border-[var(--color-border)] bg-white">{content}</article>
 }
 
 function SectionHeader({

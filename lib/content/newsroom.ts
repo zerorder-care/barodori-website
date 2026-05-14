@@ -7,6 +7,7 @@ export type NewsroomPost = {
   excerpt: string
   publishedAt: string
   href?: string
+  thumbnail?: string
 }
 
 export const newsroomCategories = [
@@ -40,4 +41,3 @@ export const newsroomPosts: NewsroomPost[] = [
     publishedAt: '2026-04-30',
   },
 ]
-

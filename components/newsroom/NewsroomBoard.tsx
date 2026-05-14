@@ -1,49 +1,58 @@
-'use client'
-
-import { useMemo, useState } from 'react'
-import { newsroomCategories, newsroomPosts, type NewsroomCategory } from '@/lib/content/newsroom'
+import Link from 'next/link'
+import type { NewsroomCategoryOption } from '@/lib/api/content'
+import type { NewsroomCategory, NewsroomPost } from '@/lib/content/newsroom'
+import type { Locale } from '@/lib/i18n/config'
 
 type CategoryFilter = NewsroomCategory | 'all'
 
-export function NewsroomBoard() {
-  const [category, setCategory] = useState<CategoryFilter>('all')
-  const [query, setQuery] = useState('')
-
-  const posts = useMemo(() => {
-    const normalized = query.trim().toLowerCase()
-    return newsroomPosts
-      .filter((post) => category === 'all' || post.category === category)
-      .filter((post) => {
-        if (!normalized) return true
-        return `${post.title} ${post.excerpt}`.toLowerCase().includes(normalized)
-      })
-  }, [category, query])
+export function NewsroomBoard({
+  locale,
+  categories,
+  posts,
+  category,
+  query,
+  nextPage,
+  error,
+}: {
+  locale: Locale
+  categories: NewsroomCategoryOption[]
+  posts: NewsroomPost[]
+  category: CategoryFilter
+  query: string
+  nextPage: number | null
+  error?: string
+}) {
+  const categoryLabelByValue = new Map(categories.map((item) => [item.value, item.label]))
 
   return (
     <div>
       <div className="flex flex-col gap-4 border-y border-[var(--color-border)] py-5 lg:flex-row lg:items-center lg:justify-between">
         <div className="flex flex-wrap gap-2">
-          {newsroomCategories.map((item) => (
-            <button
-              key={item.value}
-              type="button"
-              onClick={() => setCategory(item.value)}
-              className={chipClass(category === item.value)}
-            >
+          {categories.map((item) => (
+            <Link key={item.value} href={buildNewsroomHref(locale, item.value, query)} className={chipClass(category === item.value)}>
               {item.label}
-            </button>
+            </Link>
           ))}
         </div>
-        <label className="flex min-h-12 min-w-0 items-center rounded-[8px] border border-[var(--color-border)] bg-white px-4 lg:w-72">
-          <span className="mr-3 text-sm font-semibold text-[var(--color-text-secondary)]">검색</span>
+        <form action={`/${locale}/newsroom`} className="flex min-h-12 min-w-0 items-center rounded-[8px] border border-[var(--color-border)] bg-white px-4 lg:w-72">
+          {category !== 'all' && <input type="hidden" name="category" value={category} />}
+          <label htmlFor="newsroom-search" className="mr-3 text-sm font-semibold text-[var(--color-text-secondary)]">
+            검색
+          </label>
           <input
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
+            id="newsroom-search"
+            name="q"
+            defaultValue={query}
             placeholder="소식 검색"
             className="w-full bg-transparent text-sm outline-none"
           />
-        </label>
+        </form>
       </div>
+      {error && (
+        <p className="mt-5 rounded-[8px] border border-[var(--color-border)] bg-[var(--color-bg-muted)] p-4 text-sm text-[var(--color-text-secondary)]">
+          뉴스룸 데이터를 불러오지 못했어요. 잠시 후 다시 시도해주세요.
+        </p>
+      )}
       {posts.length === 0 ? (
         <p className="mt-8 rounded-lg border border-[var(--color-border)] p-8 text-center text-[var(--color-text-secondary)]">
           {query ? `'${query}'에 대한 결과가 없어요.` : '아직 등록된 소식이 없어요.'}
@@ -51,38 +60,82 @@ export function NewsroomBoard() {
       ) : (
         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {posts.map((post) => (
-            <article key={post.id} className="overflow-hidden rounded-[8px] border border-[var(--color-border)] bg-white transition hover:shadow-md">
-              <div className="grid aspect-[16/9] place-items-center border-b border-dashed border-[#b9b9b9] bg-[#e6e6e6] text-xs text-[var(--color-text-secondary)]">
-                대표 이미지
-              </div>
-              <div className="p-6">
-                <div className="flex items-center justify-between gap-3">
-                  <span className="rounded-[4px] bg-[#efefef] px-2 py-1 text-xs font-semibold text-[var(--color-text-secondary)]">
-                    {newsroomCategories.find((item) => item.value === post.category)?.label}
-                  </span>
-                  <time className="text-xs text-[var(--color-text-secondary)]" dateTime={post.publishedAt}>
-                    {post.publishedAt}
-                  </time>
-                </div>
-                <h2 className="mt-5 min-h-14 text-lg font-bold leading-snug">{post.title}</h2>
-                <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-[var(--color-text-secondary)]">{post.excerpt}</p>
-              </div>
-            </article>
+            <NewsroomCard
+              key={post.id}
+              post={post}
+              categoryLabel={categoryLabelByValue.get(post.category) ?? post.category}
+            />
           ))}
         </div>
       )}
-      {posts.length > 0 && (
+      {nextPage && (
         <div className="mt-10 flex justify-center">
-          <button
-            type="button"
+          <Link
+            href={buildNewsroomHref(locale, category, query, nextPage)}
             className="inline-flex min-h-11 items-center justify-center rounded-[8px] border border-[var(--color-text-primary)] px-6 text-sm font-bold"
           >
             더보기 +
-          </button>
+          </Link>
         </div>
       )}
     </div>
   )
+}
+
+function NewsroomCard({ post, categoryLabel }: { post: NewsroomPost; categoryLabel: string }) {
+  const content = (
+    <>
+      {post.thumbnail ? (
+        <div
+          aria-hidden="true"
+          className="aspect-[16/9] w-full border-b border-[var(--color-border)] bg-cover bg-center"
+          style={{ backgroundImage: `url(${JSON.stringify(post.thumbnail)})` }}
+        />
+      ) : (
+        <div className="grid aspect-[16/9] place-items-center border-b border-dashed border-[#b9b9b9] bg-[#e6e6e6] text-xs text-[var(--color-text-secondary)]">
+          대표 이미지
+        </div>
+      )}
+      <div className="p-6">
+        <div className="flex items-center justify-between gap-3">
+          <span className="rounded-[4px] bg-[#efefef] px-2 py-1 text-xs font-semibold text-[var(--color-text-secondary)]">
+            {categoryLabel}
+          </span>
+          {post.publishedAt && (
+            <time className="text-xs text-[var(--color-text-secondary)]" dateTime={post.publishedAt}>
+              {post.publishedAt}
+            </time>
+          )}
+        </div>
+        <h2 className="mt-5 min-h-14 text-lg font-bold leading-snug">{post.title}</h2>
+        <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-[var(--color-text-secondary)]">{post.excerpt}</p>
+      </div>
+    </>
+  )
+
+  if (post.href) {
+    return (
+      <a
+        href={post.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="overflow-hidden rounded-[8px] border border-[var(--color-border)] bg-white transition hover:shadow-md"
+      >
+        {content}
+      </a>
+    )
+  }
+
+  return <article className="overflow-hidden rounded-[8px] border border-[var(--color-border)] bg-white">{content}</article>
+}
+
+function buildNewsroomHref(locale: Locale, category: CategoryFilter, query: string, page?: number): string {
+  const params = new URLSearchParams()
+  if (category !== 'all') params.set('category', category)
+  if (query.trim()) params.set('q', query.trim())
+  if (page && page > 1) params.set('page', String(page))
+  const suffix = params.toString()
+  return suffix ? `/${locale}/newsroom?${suffix}` : `/${locale}/newsroom`
 }
 
 function chipClass(active: boolean) {
