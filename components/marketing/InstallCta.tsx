@@ -16,7 +16,7 @@ export function InstallCta({ locale, surface }: { locale: Locale; surface: strin
         <div className="mt-8">
           <StoreButtons surface={surface} locale={locale} />
         </div>
-        <p className="mt-6 text-xs text-white/50">* 현재 베타 운영중 · 정식 출시 2026.5.20 예정</p>
+        <p className="mt-6 text-xs text-white/50">* 현재 베타 운영중 · 정식 출시 2026.6.1 예정</p>
       </Container>
     </section>
   )

@@ -47,7 +47,7 @@ export function QrInstallModal({ surface, locale, children }: Props) {
           <div>
             <h2 className="text-lg font-semibold">출시 예정</h2>
             <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-secondary)]">
-              바로도리는 2026-05-20 베타 출시 예정입니다. 베타 서포터즈로 미리 만나보세요.
+              바로도리는 2026년 6월 1일 정식 출시 예정입니다. 베타 서포터즈로 미리 만나보세요.
             </p>
             {beta && (
               <a

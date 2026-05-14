@@ -23,7 +23,7 @@ export function Hero({ locale }: { locale: Locale }) {
           <div className="mt-8">
             <StoreButtons surface="hero" locale={locale} />
           </div>
-          <p className="mt-5 text-xs text-[var(--color-text-secondary)]">* 현재 베타 운영중 · 정식 출시 2026.5.20 예정</p>
+          <p className="mt-5 text-xs text-[var(--color-text-secondary)]">* 현재 베타 운영중 · 정식 출시 2026.6.1 예정</p>
         </div>
         <div className="relative grid min-h-[380px] place-items-center overflow-hidden rounded-[24px] border border-[var(--color-border)] bg-white p-6 shadow-sm lg:min-h-[500px]">
           <div className="absolute inset-x-0 bottom-0 h-24 bg-[var(--color-primary-light)]" />

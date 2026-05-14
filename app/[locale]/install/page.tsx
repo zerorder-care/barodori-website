@@ -31,7 +31,7 @@ export default async function InstallPage({ params }: { params: Promise<{ locale
           <p className="mt-3 text-[var(--color-text-secondary)]">
             {live
               ? '앱스토어에서 바로 다운로드하세요.'
-              : '2026-05-20 베타 출시 예정입니다. 베타 서포터즈로 먼저 만나보세요.'}
+              : '2026년 6월 1일 정식 출시 예정입니다. 베타 서포터즈로 먼저 만나보세요.'}
           </p>
           <div className="mt-8 flex justify-center">
             <StoreButtons surface="install_page" locale={loc} />
