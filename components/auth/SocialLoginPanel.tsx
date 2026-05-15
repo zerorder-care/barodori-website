@@ -42,13 +42,6 @@ const providers: Provider[] = [
     mark: 'N',
     className: 'border-[#03C75A] bg-[#03C75A] text-white hover:bg-[#02b852]',
   },
-  {
-    id: 'apple',
-    label: 'Apple',
-    actionLabel: 'Apple로 계속하기',
-    mark: 'A',
-    className: 'border-[#111] bg-[#111] text-white hover:bg-[#2a2a2a]',
-  },
 ]
 
 const loginErrorMessages: Record<string, string> = {
