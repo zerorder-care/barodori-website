@@ -24,7 +24,7 @@ export async function generateMetadata({
   if (!isLocale(locale)) return {}
   return buildMetadata({
     title: '바로도리 - 영아 사경/사두 가정 케어',
-    description: '아기의 작은 고개, 바로도리에서 함께 살펴봐요. 영아 사경/사두 의심부터 가정 운동까지.',
+    description: '정확한 측정을 기반으로한 AI 운동 설계로 가정에서 간편하게_바로도리',
     path: `/${locale}`,
     locale,
   })

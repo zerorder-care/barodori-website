@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import { defaultLocale, indexableLocales, locales, type Locale } from '@/lib/i18n/config'
+import { getSiteUrl } from '@/lib/seo/siteUrl'
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://barodori.com'
+const SITE_URL = getSiteUrl()
 const DEFAULT_OG = '/og/default.png'
 
 export function buildMetadata(params: {

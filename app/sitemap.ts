@@ -2,9 +2,10 @@ import type { MetadataRoute } from 'next'
 import { listArticlePosts } from '@/lib/api/articles'
 import { listNewsroomPosts } from '@/lib/api/content'
 import { defaultLocale } from '@/lib/i18n/config'
+import { getSiteUrl } from '@/lib/seo/siteUrl'
 import { siteFeatures } from '@/lib/site/features'
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://barodori.com'
+const SITE_URL = getSiteUrl()
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // ko 만 인덱싱

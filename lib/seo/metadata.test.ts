@@ -9,7 +9,7 @@ describe('buildMetadata', () => {
       path: '/ko/articles/foo',
       locale: 'ko',
     })
-    expect(meta.alternates?.canonical).toBe('https://barodori.com/ko/articles/foo')
+    expect(meta.alternates?.canonical).toBe('https://www.barodori.com/ko/articles/foo')
   })
 
   it('builds hreflang languages with x-default=ko', () => {
@@ -20,9 +20,9 @@ describe('buildMetadata', () => {
       locale: 'ko',
     })
     expect(meta.alternates?.languages).toEqual({
-      ko: 'https://barodori.com/ko/articles/foo',
-      en: 'https://barodori.com/en/articles/foo',
-      'x-default': 'https://barodori.com/ko/articles/foo',
+      ko: 'https://www.barodori.com/ko/articles/foo',
+      en: 'https://www.barodori.com/en/articles/foo',
+      'x-default': 'https://www.barodori.com/ko/articles/foo',
     })
   })
 
@@ -44,9 +44,9 @@ describe('buildMetadata', () => {
       locale: 'ko',
       image: '/og/custom.png',
     })
-    expect(meta.openGraph?.images).toEqual([{ url: 'https://barodori.com/og/custom.png' }])
+    expect(meta.openGraph?.images).toEqual([{ url: 'https://www.barodori.com/og/custom.png' }])
 
     const fallback = buildMetadata({ title: 'T', description: 'd', path: '/ko', locale: 'ko' })
-    expect(fallback.openGraph?.images).toEqual([{ url: 'https://barodori.com/og/default.png' }])
+    expect(fallback.openGraph?.images).toEqual([{ url: 'https://www.barodori.com/og/default.png' }])
   })
 })

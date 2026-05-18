@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
 import { Analytics } from '@vercel/analytics/next'
+import { getSiteUrl } from '@/lib/seo/siteUrl'
 import './globals.css'
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://barodori.com'),
+  metadataBase: new URL(getSiteUrl()),
   title: {
     default: '바로도리',
     template: '%s | 바로도리',

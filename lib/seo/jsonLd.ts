@@ -1,6 +1,7 @@
 import type { Locale } from '@/lib/i18n/config'
+import { getSiteUrl } from '@/lib/seo/siteUrl'
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://barodori.com'
+const SITE_URL = getSiteUrl()
 
 export function organizationJsonLd() {
   return {
