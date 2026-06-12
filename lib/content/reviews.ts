@@ -38,9 +38,9 @@ export const reviewAgeGroups = [
 
 export const reviewConditions = [
   { value: 'all', label: '전체' },
-  { value: 'torticollis', label: '사경' },
-  { value: 'head-shape', label: '사두' },
-  { value: 'both', label: '사경+사두' },
+  { value: 'torticollis', label: '사경·목 관찰' },
+  { value: 'head-shape', label: '사두·두상 참고' },
+  { value: 'both', label: '사경·두상 참고' },
 ] as const
 
 export const parentReviews: ParentReview[] = [
@@ -84,9 +84,9 @@ export const expertRecommendations: ExpertRecommendation[] = [
     id: 'expert-1',
     name: '바로도리 팀',
     role: '서비스 기획',
-    organization: '보호자 중심 가정 관리 서비스',
+    organization: '홈케어 운동 기록 서비스',
     quote:
-      '가정에서 보호자가 아이 상태를 꾸준히 관찰하고 운동 기록을 이어갈 수 있도록 돕는 보조 도구를 지향합니다.',
+      '집에서 한 운동과 아이 반응을 꾸준히 기록하고, 다음 상담 전 보호자가 상황을 정리할 수 있도록 돕는 기록 도구를 지향합니다.',
   },
 ]
 
@@ -94,7 +94,7 @@ export const mediaMentions: MediaMention[] = [
   {
     id: 'media-1',
     outlet: '바로도리 뉴스',
-    title: '영유아 가정 관리 보조 앱 바로도리 베타 준비',
+    title: '우리 아이 홈케어 운동 기록 앱 바로도리 준비',
     publishedAt: '2026-05-10',
     href: '/ko/newsroom',
   },

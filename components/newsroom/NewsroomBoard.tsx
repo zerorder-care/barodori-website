@@ -164,7 +164,7 @@ function buildNewsroomHref(locale: Locale, category: CategoryFilter, query: stri
 function chipClass(active: boolean) {
   return `rounded-[8px] px-4 py-2 text-sm font-semibold ${
     active
-      ? 'bg-[var(--color-primary)] text-white'
+      ? 'bg-[var(--color-primary)] text-[var(--color-text-primary)]'
       : 'border border-[var(--color-border)] bg-white text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]'
   }`
 }

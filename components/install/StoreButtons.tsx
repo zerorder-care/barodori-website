@@ -77,7 +77,7 @@ function StoreBadge({
       <button
         type="button"
         disabled
-        aria-label={`${label} - 출시 예정`}
+        aria-label={`${label} - 스토어 링크 준비 중`}
         className="inline-flex h-10 items-center justify-center overflow-hidden opacity-60"
       >
         {image}

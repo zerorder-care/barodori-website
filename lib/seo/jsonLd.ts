@@ -20,7 +20,12 @@ export function mobileAppJsonLd() {
     name: '바로도리',
     operatingSystem: 'iOS, Android',
     applicationCategory: 'HealthApplication',
+    description: '집에서 한 아기·영유아 홈케어 운동과 물리치료 방문 기록을 달력·리포트로 확인할 수 있도록 돕는 아이 운동 다이어리 앱입니다.',
     url: `${SITE_URL}/ko/install`,
+    audience: {
+      '@type': 'PeopleAudience',
+      audienceType: '아기와 영유아의 홈케어 운동을 기록하는 보호자',
+    },
   } as const
 }
 

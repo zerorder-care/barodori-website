@@ -18,8 +18,8 @@ describe('articles index', () => {
   it('getArticle returns by slug', async () => {
     const article = await getArticle({ locale: 'ko', slug: 'torticollis-symptoms' })
     expect(article).not.toBeNull()
-    expect(article?.title).toBe('영아 사경, 이런 증상이 보인다면')
-    expect(article?.body).toContain('## 사경')
+    expect(article?.title).toBe('아기 사경이 걱정될 때 상담 전 기록해둘 것')
+    expect(article?.body).toContain('## 아기 사경')
   })
 
   it('getArticle returns null for missing slug', async () => {

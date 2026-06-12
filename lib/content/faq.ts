@@ -22,7 +22,7 @@ export const faqItems: FaqItem[] = [
     category: 'general',
     question: '바로도리는 어떤 서비스인가요?',
     answer:
-      '바로도리는 영유아 사경·사두 관리에 어려움을 느끼는 보호자가 아이 상태를 기록하고 가정 운동 루틴을 이어갈 수 있도록 돕는 웰니스 앱입니다.',
+      '바로도리는 집에서 한 아기 운동 기록, 영유아 홈케어 루틴, 물리치료 방문 기록, 아이 반응을 한곳에 남기고 달력·리포트로 확인할 수 있도록 돕는 아이 운동 다이어리 앱입니다.',
   },
   {
     id: 'faq-2',
@@ -50,7 +50,7 @@ export const faqItems: FaqItem[] = [
     category: 'payment',
     question: '이용 요금이 얼마인가요?',
     answer:
-      '베타 기간의 이용 방식과 정식 출시 후 요금제는 운영 정책 확정 후 홈페이지와 앱에서 안내드릴 예정입니다.',
+      '베타/알림 신청과 스토어 오픈 이후 이용 방식은 운영 정책 확정 후 홈페이지와 앱에서 안내드릴 예정입니다.',
   },
   {
     id: 'faq-6',
@@ -64,6 +64,6 @@ export const faqItems: FaqItem[] = [
     category: 'technical',
     question: '어떤 기기에서 사용할 수 있나요?',
     answer:
-      '정식 출시 시 iOS와 Android 지원 범위를 스토어 안내와 함께 공지할 예정입니다.',
+      '스토어 링크가 준비되면 iOS와 Android 지원 범위를 스토어 안내와 함께 공지할 예정입니다.',
   },
 ]

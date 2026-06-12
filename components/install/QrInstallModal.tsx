@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { Modal } from '@/components/ui/Modal'
 import { isAppLive, getBetaFormUrl } from '@/lib/install/storeLinks'
 import { track } from '@/lib/analytics'
+import { launchCopy } from '@/lib/site/config'
 import type { Locale } from '@/lib/i18n/config'
 
 type Props = {
@@ -27,7 +28,7 @@ export function QrInstallModal({ surface, locale, children }: Props) {
       <button
         type="button"
         onClick={onTriggerClick}
-        className="inline-flex items-center justify-center rounded-pill bg-[var(--color-primary)] px-6 py-3 text-sm font-semibold text-white"
+        className="inline-flex items-center justify-center rounded-pill bg-[var(--color-primary)] px-6 py-3 text-sm font-semibold text-[var(--color-text-primary)]"
       >
         {children}
       </button>
@@ -38,16 +39,16 @@ export function QrInstallModal({ surface, locale, children }: Props) {
             <p className="mt-2 text-sm text-[var(--color-text-secondary)]">
               모바일로 QR 코드를 스캔하면 앱스토어로 이동합니다.
             </p>
-            {/* 실제 QR 이미지는 출시 시 추가. MVP는 placeholder */}
+            {/* 실제 QR 이미지는 스토어 링크 오픈 시 추가합니다. */}
             <div className="mx-auto mt-4 grid h-40 w-40 place-items-center rounded-lg border border-dashed border-[var(--color-border)] text-xs text-[var(--color-text-secondary)]">
-              QR 이미지 (출시 시 업데이트)
+              QR 이미지 (오픈 시 업데이트)
             </div>
           </div>
         ) : (
           <div>
-            <h2 className="text-lg font-semibold">출시 예정</h2>
+            <h2 className="text-lg font-semibold">앱 오픈 준비 중</h2>
             <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-secondary)]">
-              바로도리는 2026년 6월 1일 정식 출시 예정입니다. 베타 서포터즈로 미리 만나보세요.
+              바로도리는 아기와 아이의 홈케어 운동을 기록하고 달력·리포트로 확인하는 앱입니다. 오픈 소식을 받아보거나 베타 참여 가능 여부를 확인해 주세요.
             </p>
             {beta && (
               <a
@@ -55,9 +56,9 @@ export function QrInstallModal({ surface, locale, children }: Props) {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => track('cta_beta_form_click', { surface: `${surface}:modal`, locale })}
-                className="mt-4 inline-flex w-full items-center justify-center rounded-pill bg-[var(--color-primary)] px-6 py-3 text-sm font-semibold text-white"
+                className="mt-4 inline-flex w-full items-center justify-center rounded-pill bg-[var(--color-primary)] px-6 py-3 text-sm font-semibold text-[var(--color-text-primary)]"
               >
-                베타 서포터즈 신청
+                {launchCopy.pendingCta}
               </a>
             )}
           </div>

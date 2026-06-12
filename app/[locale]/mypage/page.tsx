@@ -26,7 +26,7 @@ export default async function MyPage({ params }: { params: Promise<{ locale: str
     <>
       <section className="bg-[var(--color-bg-muted)] py-16">
         <Container>
-          <p className="inline-flex rounded-pill bg-[var(--color-primary)] px-3 py-1 text-xs font-semibold text-white">
+          <p className="inline-flex rounded-pill bg-[var(--color-primary)] px-3 py-1 text-xs font-semibold text-[var(--color-text-primary)]">
             마이페이지
           </p>
           <h1 className="mt-5 text-4xl font-bold leading-tight">내 정보와 활동을 한눈에 확인하세요</h1>
@@ -49,7 +49,7 @@ export default async function MyPage({ params }: { params: Promise<{ locale: str
             {!authenticated && (
               <Link
                 href={`/${locale}/login?next=/${locale}/mypage`}
-                className="mt-6 inline-flex min-h-11 w-full items-center justify-center rounded-[8px] bg-[var(--color-primary)] px-5 text-sm font-bold text-white"
+                className="mt-6 inline-flex min-h-11 w-full items-center justify-center rounded-[8px] bg-[var(--color-primary)] px-5 text-sm font-bold text-[var(--color-text-primary)]"
               >
                 로그인하기
               </Link>

@@ -6,6 +6,7 @@ import { Container } from '@/components/ui/Container'
 import { CategoryFilter } from '@/components/article/CategoryFilter'
 import { ArticleCard } from '@/components/article/ArticleCard'
 import { InstallCta } from '@/components/marketing/InstallCta'
+import { SafetyNotice } from '@/components/marketing/SafetyNotice'
 import { listArticlePosts } from '@/lib/api/articles'
 import { isCategory, type Category } from '@/lib/content/categories'
 import type { Locale } from '@/lib/i18n/config'
@@ -16,8 +17,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params
   if (!isLocale(locale)) return {}
   return buildMetadata({
-    title: '사경 아티클 - 바로도리',
-    description: '영아 사경, 두상 비대칭, 가정 운동, 월령별 관리 정보',
+    title: '홈케어 노트 - 아기 사경·터미타임 기록 참고',
+    description: '아기 사경이 걱정될 때, 터미타임을 시작할 때, 두상 비대칭을 기록할 때 상담 전 참고할 수 있는 안전 노트를 확인하세요.',
     path: `/${locale}/articles`,
     locale,
   })
@@ -57,12 +58,12 @@ export default async function ArticlesIndexPage({
     <>
       <section className="bg-[var(--color-bg-muted)] py-20">
         <Container className="text-center">
-          <p className="inline-flex rounded-pill bg-[var(--color-primary)] px-3 py-1 text-xs font-semibold text-white">
-            아티클
+          <p className="inline-flex rounded-pill bg-[var(--color-primary-light)] px-3 py-1 text-xs font-semibold text-[var(--color-primary-dark)]">
+            홈케어 노트
           </p>
-          <h1 className="mt-6 text-4xl font-bold leading-tight sm:text-5xl">사경·사두에 대한 다양한 정보</h1>
+          <h1 className="mt-6 text-4xl font-bold leading-tight sm:text-5xl">아기 사경·터미타임이 걱정될 때 참고할 기록 노트</h1>
           <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-[var(--color-text-secondary)]">
-            핵심 정보부터 가정 운동, 월령별 관리까지 보호자에게 필요한 글을 모았습니다.
+            진단이나 치료 판단을 대신하지 않고, 목 관찰, 두상 비대칭, 터미타임, 홈케어 운동 기록을 상담 전 정리하는 데 도움이 되는 글을 모았습니다.
           </p>
         </Container>
       </section>
@@ -79,7 +80,7 @@ export default async function ArticlesIndexPage({
             <input
               name="q"
               defaultValue={query}
-              placeholder="아티클 검색"
+              placeholder="노트 검색"
               className="w-full bg-transparent text-sm outline-none"
             />
           </form>
@@ -89,10 +90,10 @@ export default async function ArticlesIndexPage({
           <section className="mt-12">
             <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
               <div>
-                <p className="text-sm font-bold text-[var(--color-text-secondary)]">필독 가이드</p>
-                <h2 className="mt-2 text-2xl font-bold">꼭 읽어보세요</h2>
+                <p className="text-sm font-bold text-[var(--color-text-secondary)]">처음 읽는 가이드</p>
+                <h2 className="mt-2 text-2xl font-bold">상담 전 정리에 참고하세요</h2>
               </div>
-              <p className="text-sm text-[var(--color-text-secondary)]">처음 방문한 보호자를 위한 추천 콘텐츠</p>
+              <p className="text-sm text-[var(--color-text-secondary)]">아기 사경, 두상 비대칭, 터미타임 기록을 시작하는 보호자를 위한 추천 콘텐츠</p>
             </div>
             <div className="mt-6 grid gap-6 sm:grid-cols-3">
               {recommended.map((a) => (
@@ -103,15 +104,15 @@ export default async function ArticlesIndexPage({
         )}
 
         <section className="mt-16">
-          <h2 className="text-2xl font-bold">전체 아티클</h2>
+          <h2 className="text-2xl font-bold">전체 노트</h2>
           {error && (
             <p className="mt-6 rounded-[8px] border border-[var(--color-border)] bg-[var(--color-bg-muted)] p-4 text-sm text-[var(--color-text-secondary)]">
-              아티클을 불러오지 못했어요. 잠시 후 다시 시도해주세요.
+              노트를 불러오지 못했어요. 잠시 후 다시 시도해주세요.
             </p>
           )}
           {articles.length === 0 ? (
             <p className="mt-8 rounded-[8px] border border-[var(--color-border)] p-8 text-center text-[var(--color-text-secondary)]">
-              {query ? `'${query}'에 대한 결과가 없어요.` : '아직 등록된 아티클이 없어요.'}
+              {query ? `'${query}'에 대한 결과가 없어요.` : '아직 등록된 노트가 없어요.'}
             </p>
           ) : (
             <>
@@ -126,10 +127,10 @@ export default async function ArticlesIndexPage({
                     href={moreHref}
                     className="inline-flex min-h-11 items-center justify-center rounded-[8px] border border-[var(--color-text-primary)] px-6 text-sm font-bold"
                   >
-                    다음 아티클 보기 +
+                    다음 노트 보기 +
                   </Link>
                 ) : (
-                  <span className="text-sm text-[var(--color-text-secondary)]">마지막 아티클입니다</span>
+                  <span className="text-sm text-[var(--color-text-secondary)]">마지막 노트입니다</span>
                 )}
               </div>
             </>
@@ -137,6 +138,7 @@ export default async function ArticlesIndexPage({
         </section>
       </Container>
 
+      <SafetyNotice locale={loc} />
       <InstallCta locale={loc} surface="articles_footer" />
     </>
   )

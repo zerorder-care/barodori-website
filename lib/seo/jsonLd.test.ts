@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { organizationJsonLd, articleJsonLd } from './jsonLd'
+import { organizationJsonLd, articleJsonLd, mobileAppJsonLd } from './jsonLd'
 
 describe('JSON-LD generators', () => {
   it('organizationJsonLd has @context and @type', () => {
@@ -25,5 +25,12 @@ describe('JSON-LD generators', () => {
     expect(ld.inLanguage).toBe('ko')
     expect(ld.image).toContain('https://')
     expect(ld.mainEntityOfPage).toContain('/ko/articles/foo')
+  })
+
+  it('mobileAppJsonLd describes the home-care recording app', () => {
+    const ld = mobileAppJsonLd()
+    expect(ld['@type']).toBe('MobileApplication')
+    expect(ld.description).toContain('홈케어 운동')
+    expect(ld.description).toContain('달력·리포트')
   })
 })

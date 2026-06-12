@@ -1,25 +1,25 @@
 {
   "common": {
     "appName": "BaroDori",
-    "install": "Install app",
-    "comingSoon": "Coming soon",
-    "betaSignup": "Join beta supporters"
+    "install": "Start the app",
+    "comingSoon": "Opening soon",
+    "betaSignup": "Get launch updates"
   },
   "nav": {
     "home": "Home",
-    "product": "Product",
+    "product": "Recording features",
     "reviews": "Reviews",
     "community": "Community",
-    "articles": "Articles",
-    "newsroom": "Newsroom",
+    "articles": "Home-care notes",
+    "newsroom": "Updates",
     "faq": "FAQ",
     "login": "Log in",
     "logout": "Log out",
     "mypage": "My page",
-    "install": "Install"
+    "install": "Start the app"
   },
   "footer": {
-    "tagline": "Care for your baby's little neck, together with BaroDori",
+    "tagline": "Record your child's home-care exercises each day and review them in a calendar and reports.",
     "support": "Support",
     "businessInfo": "Business info",
     "privacy": "Privacy",
@@ -28,7 +28,9 @@
   },
   "medical": {
     "title": "Usage Notice",
-    "body": "BaroDori does not replace care or judgment from a hospital or clinician. If your baby shows signs of pain, intense crying, fever, breathing issues, or neurological symptoms, seek medical attention immediately."
+    "body": "BaroDori is a home-care recording tool and does not replace treatment or diagnosis. Exercise methods and intensity should be decided with your clinician or therapist. Records and reports are reference materials for organizing the situation.",
+    "emergency": "If your child shows pain, intense crying, fever, breathing issues, sudden movement restriction, or neurological symptoms, seek medical attention immediately.",
+    "stress": "Caregiver condition-check results are for reference only and must not be used for diagnosis or treatment decisions."
   },
-  "comingSoonNotice": "Official launch is scheduled for June 1, 2026. Sign up as a supporter to get early access."
+  "comingSoonNotice": "Before store links open, sign up for beta or launch updates to hear from BaroDori first."
 }

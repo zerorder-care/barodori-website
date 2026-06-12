@@ -61,7 +61,7 @@ export function CommunityBoard({
                 key={value}
                 href={buildCommunityHref(locale, { category, sort: value, q: query })}
                 className={`rounded-[6px] px-4 py-2 text-sm font-semibold ${
-                  sort === value ? 'bg-[var(--color-primary)] text-white' : 'text-[var(--color-text-secondary)]'
+                  sort === value ? 'bg-[var(--color-primary)] text-[var(--color-text-primary)]' : 'text-[var(--color-text-secondary)]'
                 }`}
               >
                 {value === 'popular' ? '인기순' : '최신순'}
@@ -148,7 +148,7 @@ export function CommunityBoard({
 function chipClass(active: boolean) {
   return `rounded-[8px] px-4 py-2 text-sm font-semibold ${
     active
-      ? 'bg-[var(--color-primary)] text-white'
+      ? 'bg-[var(--color-primary)] text-[var(--color-text-primary)]'
       : 'border border-[var(--color-border)] bg-white text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]'
   }`
 }

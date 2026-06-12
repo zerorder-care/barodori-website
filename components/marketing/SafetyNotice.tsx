@@ -9,11 +9,15 @@ export async function SafetyNotice({ locale }: { locale: Locale }) {
       <Container>
         <aside
           role="note"
-          className="rounded-[8px] border border-dashed border-[var(--color-border)] bg-white p-5 text-center"
+          className="rounded-[8px] border border-[#FDE68A] bg-[#FFFBEB] p-6"
           aria-label={dict.medical.title}
         >
-          <p className="text-xs font-semibold text-[var(--color-text-secondary)]">{dict.medical.title}</p>
-          <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-secondary)]">{dict.medical.body}</p>
+          <p className="text-xs font-semibold text-[var(--color-primary-dark)]">{dict.medical.title}</p>
+          <div className="mt-3 space-y-2 text-sm leading-relaxed text-[var(--color-text-secondary)]">
+            <p>{dict.medical.body}</p>
+            <p>{dict.medical.emergency}</p>
+            <p>{dict.medical.stress}</p>
+          </div>
         </aside>
       </Container>
     </section>

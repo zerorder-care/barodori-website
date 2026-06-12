@@ -1,22 +1,40 @@
 import { Container } from '@/components/ui/Container'
 import { StoreButtons } from '@/components/install/StoreButtons'
+import { isAppLive } from '@/lib/install/storeLinks'
+import { getExternalLinks, launchCopy } from '@/lib/site/config'
 import type { Locale } from '@/lib/i18n/config'
 
 export function InstallCta({ locale, surface }: { locale: Locale; surface: string }) {
+  const live = isAppLive()
+  const betaForm = getExternalLinks().betaForm
+  const notice = live ? launchCopy.liveNotice : launchCopy.pendingNotice
+
   return (
-    <section className="bg-[#303030] py-24 text-white">
+    <section className="bg-[#111827] py-24 text-white">
       <Container className="flex flex-col items-center text-center">
-        <p className="rounded-pill bg-white/10 px-3 py-1 text-xs font-semibold text-white/80">하단 다운로드 영역</p>
+        <p className="rounded-pill bg-white/10 px-3 py-1 text-xs font-semibold text-white/80">일단 켜고, 오늘의 홈케어부터</p>
         <h2 className="mt-8 max-w-2xl text-3xl font-bold leading-tight sm:text-4xl">
-          지금 바로도리에서
+          집에서 한 운동과 아이 반응을
           <br />
-          우리 아이의 가정 관리를 시작해보세요
+          바로 남겨보세요
         </h2>
-        <p className="mt-5 text-sm text-white/70">보호자의 관찰과 운동 기록을 돕는 바로도리를 만나보세요</p>
+        <p className="mt-5 max-w-xl text-sm leading-relaxed text-white/70">
+          기록이 쌓이면 달력과 리포트로 다시 확인할 수 있습니다.
+        </p>
         <div className="mt-8">
           <StoreButtons surface={surface} locale={locale} />
         </div>
-        <p className="mt-6 text-xs text-white/50">* 현재 베타 운영중 · 정식 출시 2026.6.1 예정</p>
+        {!live && (
+          <a
+            href={betaForm ?? `/${locale}/install`}
+            target={betaForm ? '_blank' : undefined}
+            rel={betaForm ? 'noopener noreferrer' : undefined}
+            className="mt-6 inline-flex min-h-11 items-center justify-center rounded-[8px] bg-[var(--color-primary)] px-6 text-sm font-bold text-[var(--color-text-primary)]"
+          >
+            {launchCopy.pendingCta}
+          </a>
+        )}
+        <p className="mt-5 text-xs text-white/50">{notice}</p>
       </Container>
     </section>
   )

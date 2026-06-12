@@ -12,7 +12,7 @@ export default function NotFound() {
         주소가 잘못 입력되었거나 페이지가 이동되었을 수 있어요.
       </p>
       <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-        <Link href="/ko" className="rounded-pill bg-[var(--color-primary)] px-6 py-3 text-sm font-bold text-white">
+        <Link href="/ko" className="rounded-pill bg-[var(--color-primary)] px-6 py-3 text-sm font-bold text-[var(--color-text-primary)]">
           홈으로 가기
         </Link>
         <Link href="/ko/faq" className="rounded-pill border border-[var(--color-border)] px-6 py-3 text-sm font-bold">

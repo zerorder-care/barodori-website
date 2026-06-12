@@ -24,7 +24,7 @@ export function HomePreviewSections({
             <SectionHeader
               eyebrow="사용자 후기 하이라이트"
               title="실제 보호자들의 진솔한 이야기"
-              description="바로도리와 함께 가정 관리를 이어간 가족들의 후기를 만나보세요"
+              description="바로도리와 함께 홈케어 운동 기록을 이어간 가족들의 후기를 만나보세요"
               href={`/${locale}/reviews`}
               linkLabel="더 많은 후기 보기"
             />
@@ -50,8 +50,8 @@ export function HomePreviewSections({
         <Container>
           <SectionHeader
             eyebrow="서비스 방향 · 차별점"
-            title="보호자 경험에서 출발했습니다"
-            description="가정에서 꾸준히 관찰하고 기록할 수 있도록 보호자 관점의 흐름을 담았어요"
+            title="기록이 있으면 다음 상담도, 다음 운동도 덜 막막해집니다"
+            description="바로도리는 판단을 대신하기보다 보호자가 아이의 홈케어 흐름을 차분히 정리하도록 돕는 기록 도구입니다."
           />
           <div className="mt-10 rounded-[12px] border border-[var(--color-border)] bg-[#f7f7f7] p-10">
             <div className="grid gap-8 lg:grid-cols-[160px_1fr] lg:items-center">
@@ -68,12 +68,12 @@ export function HomePreviewSections({
                 <p className="text-4xl font-bold text-[#b9b9b9]">“</p>
                 <p className="mt-2 max-w-3xl leading-relaxed">
                   {expertRecommendations[0]?.quote ??
-                    '가정에서 보호자가 아이 상태를 꾸준히 관찰하고 기록할 수 있도록 돕는 보조 도구를 지향합니다.'}
+                    '집에서 한 운동, 물리치료 방문, 아이 반응을 함께 남기면 다음 상담 전 상황을 조금 더 차분히 정리할 수 있습니다.'}
                 </p>
                 <p className="mt-5 text-sm font-bold">
                   {expertRecommendations[0]?.name ?? '바로도리 팀'}
                   <span className="ml-3 font-medium text-[var(--color-text-secondary)]">
-                    {expertRecommendations[0]?.organization ?? '보호자 중심 가정 관리 서비스'}
+                    {expertRecommendations[0]?.organization ?? '홈케어 운동 기록 서비스'}
                   </span>
                 </p>
               </div>
@@ -81,9 +81,9 @@ export function HomePreviewSections({
           </div>
           <div className="mt-10 grid gap-6 lg:grid-cols-3">
             {[
-              ['실제 보호자 경험 기반', '대표의 자녀 사경 경험에서 출발해 보호자 관점의 기능을 담았어요'],
-              ['정보 확인 기준 마련', '보호자가 참고할 수 있는 정보를 더 조심스럽고 명확한 표현으로 정리해요'],
-              ['기록 기반 변화 확인', '사진과 운동 기록을 모아 아이의 변화 흐름을 차분하게 살펴볼 수 있어요'],
+              ['오늘의 루틴에서 출발', '상담 후 정한 운동을 오늘 얼마나 했는지 남기는 흐름을 우선합니다.'],
+              ['상담 전 정리 기준 마련', '사진, 영상, 메모를 참고 자료로 모아 보호자가 상황을 설명하기 쉽게 돕습니다.'],
+              ['달력과 리포트로 다시 보기', '운동한 날과 쉬어간 날을 한눈에 확인하며 홈케어 리듬을 살펴볼 수 있어요.'],
             ].map(([title, body], index) => (
               <article key={title} className="rounded-[8px] border border-[var(--color-border)] bg-white p-7">
                 <p className="text-2xl font-bold text-[#a5a5a5]">{String(index + 1).padStart(2, '0')}</p>
@@ -98,11 +98,11 @@ export function HomePreviewSections({
       <section className="bg-[var(--color-bg-muted)] py-24">
         <Container>
           <SectionHeader
-            eyebrow="커뮤니티 미리보기"
-            title="보호자들의 살아 있는 이야기"
-            description="소통방 · 질문방에서 매일 새로운 이야기가 이어지고 있어요"
+            eyebrow="함께 이어가는 홈케어 기록"
+            title="비슷한 하루를 보내는 보호자들의 이야기"
+            description="운동일지, 아이 반응, 작은 응원을 나눕니다. 운동 방법과 강도는 담당 전문의·치료사 상담을 기준으로 해주세요."
             href={`/${locale}/community`}
-            linkLabel="커뮤니티 더 보기"
+            linkLabel="커뮤니티 둘러보기"
           />
           {communityPosts.length > 0 ? (
             <div className="mt-10 grid gap-6 lg:grid-cols-3">
@@ -134,11 +134,11 @@ export function HomePreviewSections({
       <section className="bg-white py-24">
         <Container>
           <SectionHeader
-            eyebrow="뉴스룸 미리보기"
-            title="바로도리의 새로운 소식"
-            description="서비스 업데이트와 보도자료, 제휴 소식을 가장 먼저 만나보세요"
+            eyebrow="바로도리 소식"
+            title="홈케어 기록을 더 쉽게 만드는 업데이트"
+            description="서비스 업데이트, 운영 소식, 콘텐츠 검토 기준을 알려드립니다."
             href={`/${locale}/newsroom`}
-            linkLabel="뉴스룸 더 보기"
+            linkLabel="소식 더 보기"
           />
           {newsroomPosts.length > 0 ? (
             <div className="mt-10 grid gap-6 sm:grid-cols-3">
@@ -219,7 +219,7 @@ function SectionHeader({
   return (
     <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
       <div>
-        <p className="inline-flex rounded-pill bg-[var(--color-primary)] px-3 py-1 text-xs font-semibold text-white">{eyebrow}</p>
+        <p className="inline-flex rounded-pill bg-[var(--color-primary-light)] px-3 py-1 text-xs font-semibold text-[var(--color-primary-dark)]">{eyebrow}</p>
         <h2 className="mt-4 text-3xl font-bold sm:text-4xl">{title}</h2>
         {description && <p className="mt-3 text-sm text-[var(--color-text-secondary)]">{description}</p>}
       </div>

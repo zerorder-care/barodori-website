@@ -1,7 +1,10 @@
 export const launchCopy = {
-  betaDate: '2026-06-01',
-  betaLabel: '6월 1일 출시 예정',
-  appDownloadPending: '앱 다운로드는 출시 후 제공됩니다.',
+  appStatusLabel: '홈케어 운동 기록 앱',
+  liveNotice: 'iOS와 Android에서 바로도리를 만나보세요.',
+  pendingNotice: '스토어 링크가 준비되면 이곳에서 바로 안내합니다.',
+  pendingCta: '오픈 소식 받기',
+  installCta: '앱 시작하기',
+  appDownloadPending: '스토어 링크가 준비되면 이곳에서 바로 안내합니다.',
 } as const
 
 export function getExternalLinks() {

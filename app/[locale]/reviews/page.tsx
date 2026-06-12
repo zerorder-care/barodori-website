@@ -31,7 +31,7 @@ export default async function ReviewsPage({ params }: { params: Promise<{ locale
     <>
       <section className="bg-[var(--color-bg-muted)] py-20">
         <Container className="text-center">
-          <p className="inline-flex rounded-pill bg-[var(--color-primary)] px-3 py-1 text-xs font-semibold text-white">
+          <p className="inline-flex rounded-pill bg-[var(--color-primary)] px-3 py-1 text-xs font-semibold text-[var(--color-text-primary)]">
             메인 영역 · 후기 콘텐츠
           </p>
           <h1 className="mt-6 text-4xl font-bold leading-tight sm:text-5xl">
@@ -57,12 +57,12 @@ export default async function ReviewsPage({ params }: { params: Promise<{ locale
       <section className="bg-[var(--color-bg-muted)] py-24">
         <Container>
           <div className="text-center">
-            <p className="inline-flex rounded-pill bg-[var(--color-primary)] px-3 py-1 text-xs font-semibold text-white">
+            <p className="inline-flex rounded-pill bg-[var(--color-primary)] px-3 py-1 text-xs font-semibold text-[var(--color-text-primary)]">
               서비스 방향
             </p>
-            <h2 className="mt-4 text-3xl font-bold sm:text-4xl">보호자 관점의 가정 관리</h2>
+            <h2 className="mt-4 text-3xl font-bold sm:text-4xl">보호자 관점의 홈케어 기록</h2>
             <p className="mt-3 text-sm text-[var(--color-text-secondary)]">
-              보호자가 집에서 더 차분하게 관찰하고 기록할 수 있도록 설계하고 있습니다.
+              보호자가 집에서 한 운동과 아이 반응을 더 차분하게 기록할 수 있도록 설계하고 있습니다.
             </p>
           </div>
           <div className="mt-10 rounded-[12px] border border-[var(--color-border)] bg-white p-10">
@@ -92,7 +92,7 @@ export default async function ReviewsPage({ params }: { params: Promise<{ locale
       <Container className="py-24">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="inline-flex rounded-pill bg-[var(--color-primary)] px-3 py-1 text-xs font-semibold text-white">
+            <p className="inline-flex rounded-pill bg-[var(--color-primary)] px-3 py-1 text-xs font-semibold text-[var(--color-text-primary)]">
               미디어 보도
             </p>
             <h2 className="mt-4 text-3xl font-bold">바로도리, 언론에서 만나보세요</h2>

@@ -28,7 +28,7 @@ export default function ErrorPage({
         <button
           type="button"
           onClick={unstable_retry}
-          className="rounded-pill bg-[var(--color-primary)] px-6 py-3 text-sm font-bold text-white"
+          className="rounded-pill bg-[var(--color-primary)] px-6 py-3 text-sm font-bold text-[var(--color-text-primary)]"
         >
           다시 시도
         </button>

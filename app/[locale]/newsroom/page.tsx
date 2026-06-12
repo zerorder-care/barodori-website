@@ -18,8 +18,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params
   if (!isLocale(locale)) return {}
   return buildMetadata({
-    title: '뉴스룸 - 바로도리',
-    description: '바로도리의 공지, 보도자료, 제휴, 이벤트 소식을 확인하세요.',
+    title: '바로도리 소식',
+    description: '우리 아이 홈케어 운동 기록을 더 쉽게 이어가기 위한 서비스 업데이트와 공지, 제휴 소식을 확인하세요.',
     path: `/${locale}/newsroom`,
     locale,
   })
@@ -51,12 +51,12 @@ export default async function NewsroomPage({
     <>
       <section className="bg-[var(--color-bg-muted)] py-20">
         <Container className="text-center">
-          <p className="inline-flex rounded-pill bg-[var(--color-primary)] px-3 py-1 text-xs font-semibold text-white">
-            뉴스룸
+          <p className="inline-flex rounded-pill bg-[var(--color-primary-light)] px-3 py-1 text-xs font-semibold text-[var(--color-primary-dark)]">
+            바로도리 소식
           </p>
           <h1 className="mt-6 text-4xl font-bold leading-tight sm:text-5xl">바로도리 소식</h1>
           <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-[var(--color-text-secondary)]">
-            회사와 서비스의 최신 공지, 보도자료, 제휴 소식을 모았습니다.
+            우리 아이 홈케어 운동 기록을 더 쉽게 이어가기 위한 서비스 업데이트와 공지, 제휴 소식을 모았습니다.
           </p>
         </Container>
       </section>

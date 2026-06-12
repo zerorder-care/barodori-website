@@ -48,6 +48,8 @@ export async function Footer({ locale }: { locale: Locale }) {
           <p className="mt-3 leading-relaxed">
             문의는 카카오톡 채널로 남겨주세요.
             <br />
+            의료 상담이 필요한 내용은 담당 전문의·치료사에게 문의해 주세요.
+            <br />
             {companyInfo.supportHours}
             <br />
             주말 및 공휴일 휴무
@@ -78,6 +80,11 @@ export async function Footer({ locale }: { locale: Locale }) {
             </div>
           )}
         </div>
+      </Container>
+      <Container>
+        <p className="mt-10 border-t border-white/10 pt-5 text-xs leading-relaxed text-white/45">
+          바로도리는 치료·진단을 대신하지 않는 홈케어 기록 도구입니다.
+        </p>
       </Container>
     </footer>
   )

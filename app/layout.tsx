@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     default: '바로도리',
     template: '%s | 바로도리',
   },
-  description: '영아 사경/사두를 위한 가정 케어 앱',
+  description: '아기 운동 기록과 영유아 홈케어 루틴을 달력·리포트로 확인하는 아이 운동 다이어리',
   icons: {
     icon: [
       { url: '/favicons/barodori-icon-16.svg', sizes: '16x16', type: 'image/svg+xml' },

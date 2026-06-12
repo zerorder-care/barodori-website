@@ -45,7 +45,7 @@ export default async function FaqPage({
     <>
       <section className="bg-[var(--color-bg-muted)] py-20">
         <Container className="text-center">
-          <p className="inline-flex rounded-pill bg-[var(--color-primary)] px-3 py-1 text-xs font-semibold text-white">
+          <p className="inline-flex rounded-pill bg-[var(--color-primary)] px-3 py-1 text-xs font-semibold text-[var(--color-text-primary)]">
             FAQ
           </p>
           <h1 className="mt-6 text-4xl font-bold leading-tight sm:text-5xl">자주 묻는 질문</h1>

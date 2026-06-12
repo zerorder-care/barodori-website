@@ -33,7 +33,7 @@ export default async function LoginPage({
     <section className="bg-[var(--color-bg-muted)] py-20">
       <Container>
         <div className="mx-auto max-w-md rounded-[8px] border border-[var(--color-border)] bg-white p-8">
-          <p className="inline-flex rounded-pill bg-[var(--color-primary)] px-3 py-1 text-xs font-semibold text-white">
+          <p className="inline-flex rounded-pill bg-[var(--color-primary)] px-3 py-1 text-xs font-semibold text-[var(--color-text-primary)]">
             Account
           </p>
           <h1 className="mt-5 text-3xl font-bold">로그인 / 회원가입</h1>

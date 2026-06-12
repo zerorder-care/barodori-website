@@ -31,7 +31,7 @@ export function ReviewsBoard() {
       <div className="flex flex-col gap-5">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p className="inline-flex rounded-pill bg-[var(--color-primary)] px-3 py-1 text-xs font-semibold text-white">
+            <p className="inline-flex rounded-pill bg-[var(--color-primary)] px-3 py-1 text-xs font-semibold text-[var(--color-text-primary)]">
               필터
             </p>
             <h2 className="mt-3 text-2xl font-bold">보호자 후기 둘러보기</h2>
@@ -103,7 +103,7 @@ function FilterGroup({ label, children }: { label: string; children: React.React
 function chipClass(active: boolean) {
   return `rounded-pill px-4 py-2 text-sm font-semibold ${
     active
-      ? 'bg-[var(--color-primary)] text-white'
+      ? 'bg-[var(--color-primary)] text-[var(--color-text-primary)]'
       : 'border border-[var(--color-border)] bg-white text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]'
   }`
 }

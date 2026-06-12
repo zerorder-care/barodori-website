@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { CommunityBoard } from '@/components/community/CommunityBoard'
+import { SafetyNotice } from '@/components/marketing/SafetyNotice'
 import { Container } from '@/components/ui/Container'
 import { listCommunityPosts } from '@/lib/api/community'
 import { communityCategories, type CommunityCategory, type CommunitySort } from '@/lib/content/community'
@@ -14,8 +15,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params
   if (!isLocale(locale)) return {}
   return buildMetadata({
-    title: '커뮤니티 - 바로도리',
-    description: '사경·사두를 겪는 보호자들의 질문, 기록, 응원을 둘러보세요.',
+    title: '보호자 커뮤니티 - 바로도리',
+    description: '아이 홈케어 운동 기록과 경험을 나누는 보호자 커뮤니티를 둘러보세요. 의료 판단은 담당 전문의·치료사 상담을 기준으로 합니다.',
     path: `/${locale}/community`,
     locale,
   })
@@ -48,12 +49,12 @@ export default async function CommunityPage({
     <>
       <section className="bg-[var(--color-bg-muted)] py-20">
         <Container className="text-center">
-          <p className="inline-flex rounded-pill bg-[var(--color-primary)] px-3 py-1 text-xs font-semibold text-white">
+          <p className="inline-flex rounded-pill bg-[var(--color-primary-light)] px-3 py-1 text-xs font-semibold text-[var(--color-primary-dark)]">
             커뮤니티
           </p>
-          <h1 className="mt-6 text-4xl font-bold leading-tight sm:text-5xl">보호자들이 함께 나누는 이야기</h1>
+          <h1 className="mt-6 text-4xl font-bold leading-tight sm:text-5xl">홈케어를 이어가는 보호자들의 기록</h1>
           <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-[var(--color-text-secondary)]">
-            비회원도 커뮤니티 분위기를 미리 확인할 수 있습니다. 글 작성과 댓글은 바로도리 앱에서 가능합니다.
+            비회원도 커뮤니티 분위기를 미리 확인할 수 있습니다. 글 작성과 댓글은 바로도리 앱에서 가능하며, 의료 판단이 필요한 내용은 담당 전문의·치료사와 상담해 주세요.
           </p>
         </Container>
       </section>
@@ -62,13 +63,13 @@ export default async function CommunityPage({
         <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <h2 className="text-2xl font-bold">커뮤니티 게시글</h2>
-            <p className="mt-2 text-sm text-[var(--color-text-secondary)]">소통방 · 질문방 · 희망일기의 최신 이야기를 둘러보세요.</p>
+            <p className="mt-2 text-sm text-[var(--color-text-secondary)]">운동일지 · 질문 · 응원 · 바로도리 노트를 둘러보세요.</p>
           </div>
           <Link
             href={`/${loc}/install`}
-            className="inline-flex min-h-11 items-center justify-center rounded-[8px] bg-[var(--color-primary)] px-5 text-sm font-bold text-white"
+            className="inline-flex min-h-11 items-center justify-center rounded-[8px] bg-[var(--color-primary)] px-5 text-sm font-bold text-[var(--color-text-primary)]"
           >
-            앱에서 글쓰기
+            앱에서 기록 나누기
           </Link>
         </div>
         <CommunityBoard
@@ -82,6 +83,7 @@ export default async function CommunityPage({
           error={result.error}
         />
       </Container>
+      <SafetyNotice locale={loc} />
     </>
   )
 }

@@ -1,9 +1,10 @@
 import { Container } from '@/components/ui/Container'
 
 const symptoms = [
-  '병원 안내만으로는 집에서 어떻게 운동시켜야 할지 막막해요',
-  '아이 상태가 좋아지고 있는 건지 눈대중으로는 알기 어려워요',
-  '면역력 약한 아이를 데리고 병원을 자주 오가는 게 부담돼요',
+  '오늘 운동을 했는지 헷갈려요',
+  '몇 분, 몇 번 했는지 따로 적기 번거로워요',
+  '물리치료 다녀온 날과 집에서 한 운동이 흩어져요',
+  '아이 반응과 사진·영상을 진료 전 정리하기 어려워요',
 ] as const
 
 export function SymptomGrid() {
@@ -11,15 +12,15 @@ export function SymptomGrid() {
     <section className="bg-white py-20">
       <Container>
         <div className="text-center">
-          <p className="inline-flex rounded-pill bg-[var(--color-primary)] px-3 py-1 text-xs font-semibold text-white">
-            공감 영역
+          <p className="inline-flex rounded-pill bg-[var(--color-primary-light)] px-3 py-1 text-xs font-semibold text-[var(--color-primary-dark)]">
+            매일 이어가는 일이 제일 어렵다면
           </p>
-          <h2 className="mt-4 text-3xl font-bold sm:text-4xl">이런 고민, 있으신가요?</h2>
+          <h2 className="mt-4 text-3xl font-bold sm:text-4xl">오늘 했는지, 얼마나 했는지, 어떻게 남길지</h2>
           <p className="mt-3 text-sm text-[var(--color-text-secondary)]">
-            가정에서 사경 · 사두 관리를 이어가는 부모님들이 가장 많이 호소하는 어려움이에요
+            홈케어는 거창한 계획보다 작은 기록이 쌓일 때 이어가기 쉬워집니다.
           </p>
         </div>
-        <div className="mt-12 grid gap-6 lg:grid-cols-3">
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {symptoms.map((title, index) => (
             <article key={title} className="min-h-52 rounded-[8px] border border-[var(--color-border)] bg-[#f7f7f7] p-8">
               <p className="text-2xl font-bold text-[#a5a5a5]">{String(index + 1).padStart(2, '0')}</p>

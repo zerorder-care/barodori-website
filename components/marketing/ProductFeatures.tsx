@@ -5,28 +5,40 @@ import type { Locale } from '@/lib/i18n/config'
 
 const features = [
   {
-    title: '사진 기반 상태 기록',
-    desc: '기울기, 가동범위, 두상 변화를 눈대중에만 의존하지 않고 기록으로 확인',
-    icon: '/images/features/measurement.png',
-    iconAlt: '상태 기록 아이콘',
-  },
-  {
-    title: '참고 운동 루틴',
-    desc: '아이 정보와 보호자 기록을 참고한 코스형 가정 운동 루틴',
+    title: '오늘 할 운동',
+    desc: '상담 후 정한 홈케어 운동을 오늘 루틴으로 확인해요.',
     icon: '/images/features/exercise.png',
-    iconAlt: '운동 루틴 아이콘',
+    iconAlt: '오늘 할 홈케어 운동 아이콘',
   },
   {
-    title: '운동 기록 및 리포트',
-    desc: '하루 운동과 상태 기록을 쌓아 아이의 변화를 차분하게 추적',
+    title: '시간·횟수 기록',
+    desc: '스톱워치와 횟수 기록으로 오늘 한 운동을 바로 남겨요.',
+    icon: '/images/steps/home-exercise.png',
+    iconAlt: '시간과 횟수 기록 아이콘',
+  },
+  {
+    title: '물리치료 방문 기록',
+    desc: '병원에 다녀온 날, 받은 안내, 다음 예약을 함께 정리해요.',
+    icon: '/images/steps/install-profile.png',
+    iconAlt: '물리치료 방문 기록 아이콘',
+  },
+  {
+    title: '사진·영상 리포트',
+    desc: '아이 반응과 참고 자료를 모아 상담 전 흐름을 정리해요.',
     icon: '/images/features/report.png',
-    iconAlt: '운동 기록 리포트 아이콘',
+    iconAlt: '사진과 영상 리포트 아이콘',
   },
   {
-    title: '보호자 지원',
-    desc: '커뮤니티, 챗봇, 정보 콘텐츠로 보호자의 막막함을 덜어주는 구조',
+    title: '달력으로 보는 꾸준함',
+    desc: '운동한 날과 쉬어간 날을 달력에서 한눈에 확인해요.',
+    icon: '/images/steps/analyze.png',
+    iconAlt: '달력으로 보는 홈케어 기록 아이콘',
+  },
+  {
+    title: '보호자 컨디션 체크',
+    desc: '보호자의 스트레스 상태를 참고용 컨디션 체크로 가볍게 돌아봐요.',
     icon: '/images/features/support.png',
-    iconAlt: '보호자 지원 아이콘',
+    iconAlt: '보호자 컨디션 체크 아이콘',
   },
 ] as const
 
@@ -35,15 +47,15 @@ export function ProductFeatures({ locale }: { locale: Locale }) {
     <section className="bg-[var(--color-bg-muted)] py-24">
       <Container>
         <div className="text-center">
-          <p className="inline-flex rounded-pill bg-[var(--color-primary)] px-3 py-1 text-xs font-semibold text-white">
+          <p className="inline-flex rounded-pill bg-[var(--color-primary-light)] px-3 py-1 text-xs font-semibold text-[var(--color-primary-dark)]">
             핵심 기능 소개
           </p>
-          <h2 className="mt-4 text-3xl font-bold sm:text-4xl">우리 아이의 가정 관리, 이렇게 도와드려요</h2>
+          <h2 className="mt-4 text-3xl font-bold sm:text-4xl">홈케어 운동을 기록하고 다시 확인하는 흐름</h2>
           <p className="mt-3 text-sm text-[var(--color-text-secondary)]">
-            상태 기록부터 운동 루틴, 기록 관리까지 가정에서 이어가기 쉽게
+            매일 한 운동, 아이 반응, 상담 전 참고 자료가 흩어지지 않도록 한곳에 모아요.
           </p>
         </div>
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((f, index) => (
             <article key={f.title} className="min-h-[360px] rounded-[8px] border border-[var(--color-border)] bg-white p-7">
               <div className="relative h-16 w-16 overflow-hidden rounded-[8px] bg-[#f2f2f2]">

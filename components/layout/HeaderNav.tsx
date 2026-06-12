@@ -85,7 +85,7 @@ export function HeaderNav({
       <div className="mx-auto flex h-[70px] w-full max-w-[1056px] items-center justify-between px-5 sm:px-6">
         <Link
           href={`/${locale}`}
-          className="inline-flex h-8 items-center rounded-sm border border-[#cfcfcf] px-4 text-sm font-bold tracking-normal"
+          className="inline-flex h-8 items-center rounded-sm border border-[#F2C94C] bg-[var(--color-primary-light)] px-4 text-sm font-bold tracking-normal text-[var(--color-text-primary)]"
         >
           {appName}
         </Link>
@@ -186,12 +186,12 @@ function HeaderCta({
         href={betaForm ?? `/${locale}/install`}
         target={betaForm ? '_blank' : undefined}
         rel={betaForm ? 'noopener noreferrer' : undefined}
-        className="inline-flex min-h-9 shrink-0 items-center justify-center rounded-[8px] bg-[var(--color-primary)] px-5 py-2 text-sm font-semibold text-white"
+        className="inline-flex min-h-9 shrink-0 items-center justify-center rounded-[8px] bg-[var(--color-primary)] px-5 py-2 text-sm font-semibold text-[var(--color-text-primary)]"
       >
-        베타 신청
+        {launchCopy.pendingCta}
       </a>
       <span className="inline-flex min-h-9 shrink-0 items-center justify-center rounded-[8px] bg-[#e9e9e9] px-5 py-2 text-center text-xs font-semibold leading-tight text-[var(--color-text-secondary)]">
-        {launchCopy.betaLabel}
+        {launchCopy.appStatusLabel}
       </span>
     </div>
   )

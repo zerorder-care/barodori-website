@@ -8,7 +8,7 @@ type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
 }
 
 const variants: Record<Variant, string> = {
-  primary: 'bg-[var(--color-primary)] text-white hover:bg-[var(--color-primary-dark)]',
+  primary: 'bg-[var(--color-primary)] text-[var(--color-text-primary)] hover:bg-[var(--color-primary-light)]',
   secondary: 'border border-[var(--color-border)] bg-white text-[var(--color-text-primary)] hover:bg-[var(--color-bg-muted)]',
   ghost: 'bg-transparent text-[var(--color-text-primary)] hover:bg-[var(--color-bg-muted)]',
 }
