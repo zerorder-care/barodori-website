@@ -102,6 +102,52 @@ describe('article API adapter', () => {
     expect(article?.body).toContain('![두상 체크 화면](https://cdn.test/detail.png)')
     expect(String(fetchMock.mock.calls[0][0])).toBe('https://api.test/api/v1/community/public/posts/post-1')
   })
+
+  it('merges local MDX fallback articles when the public API has no posts', async () => {
+    process.env = {
+      ...originalEnv,
+      BARODORI_API_BASE_URL: 'https://api.test',
+    }
+    const fetchMock = vi.fn(async () =>
+      jsonResponse({
+        code: 0,
+        data: {
+          posts: [],
+          nextOffset: null,
+          hasMore: false,
+        },
+      }),
+    )
+    vi.stubGlobal('fetch', fetchMock)
+
+    const result = await listArticlePosts({ locale: 'ko', limit: 20 })
+
+    expect(result.source).toBe('api')
+    expect(result.articles.some((article) => article.slug === 'baby-torticollis-homecare-record')).toBe(true)
+    expect(result.articles.some((article) => article.slug === 'baby-head-shape-asymmetry-record')).toBe(true)
+  })
+
+  it('falls back to local MDX detail when the public API misses a slug', async () => {
+    process.env = {
+      ...originalEnv,
+      BARODORI_API_BASE_URL: 'https://api.test',
+    }
+    const fetchMock = vi.fn(async (input: RequestInfo | URL) => {
+      expect(input).toBeDefined()
+      return new Response('Not found', { status: 404 })
+    })
+    vi.stubGlobal('fetch', fetchMock)
+
+    const article = await getArticlePost({ locale: 'ko', slug: 'baby-torticollis-homecare-record' })
+
+    expect(article).toMatchObject({
+      slug: 'baby-torticollis-homecare-record',
+      title: '아기 사경 홈케어, 운동 전후로 기록하면 좋은 것',
+    })
+    expect(String(fetchMock.mock.calls[0][0])).toBe(
+      'https://api.test/api/v1/community/public/posts/baby-torticollis-homecare-record',
+    )
+  })
 })
 
 function jsonResponse(body: unknown): Response {

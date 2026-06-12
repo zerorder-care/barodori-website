@@ -90,8 +90,8 @@ export async function listArticlePosts({
   const params = new URLSearchParams({
     category: 'official_content',
     sort: 'latest',
-    offset: String(offset),
-    limit: String(limit),
+    offset: '0',
+    limit: String(offset + limit),
   })
   if (q?.trim()) params.set('q', q.trim())
 
@@ -101,22 +101,24 @@ export async function listArticlePosts({
       `/api/v1/community/public/posts?${params}`,
       'article_community_api',
     )
-    const articles = data.posts
+    const apiArticles = data.posts
       .map((post) => mapPostToArticle(post, locale))
       .filter((article) => !category || article.category === category)
+    const fallbackArticles = await listFilteredFallbackArticles({ locale, category, q })
+    const combined = mergeArticles(apiArticles, fallbackArticles)
+    const articles = combined.slice(offset, offset + limit)
+    const nextOffset = offset + limit < combined.length || data.hasMore ? offset + limit : null
 
     return {
       articles,
-      nextOffset: data.nextOffset ?? null,
-      hasMore: data.hasMore,
+      nextOffset,
+      hasMore: nextOffset !== null,
       source: 'api',
     }
   } catch (error) {
+    const fallback = await buildFallbackList({ locale, category, q, offset, limit })
     return {
-      articles: [],
-      nextOffset: null,
-      hasMore: false,
-      source: 'api',
+      ...fallback,
       error: error instanceof Error ? error.message : 'article_community_api_error',
     }
   }
@@ -140,10 +142,12 @@ export async function getArticlePost({
       `/api/v1/community/public/posts/${slug}`,
       'article_community_api',
     )
-    if (post.category !== 'official_content') return null
+    if (post.category !== 'official_content') {
+      return getFallbackArticle({ locale, slug })
+    }
     return mapPostToArticle(post, locale, contentBlocksToMdx(post))
   } catch {
-    return null
+    return getFallbackArticle({ locale, slug })
   }
 }
 
@@ -169,14 +173,7 @@ async function buildFallbackList({
   offset = 0,
   limit = 20,
 }: ArticleListParams): Promise<ArticleListResult> {
-  const normalized = q?.trim().toLowerCase()
-  const all = await listFallbackArticles({ locale })
-  const filtered = all
-    .filter((article) => !category || article.category === category)
-    .filter((article) => {
-      if (!normalized) return true
-      return `${article.title} ${article.excerpt}`.toLowerCase().includes(normalized)
-    })
+  const filtered = await listFilteredFallbackArticles({ locale, category, q })
   const articles = filtered.slice(offset, offset + limit)
   const nextOffset = offset + limit < filtered.length ? offset + limit : null
 
@@ -186,6 +183,32 @@ async function buildFallbackList({
     hasMore: nextOffset !== null,
     source: 'fallback',
   }
+}
+
+async function listFilteredFallbackArticles({
+  locale,
+  category,
+  q,
+}: Pick<ArticleListParams, 'locale' | 'category' | 'q'>): Promise<Article[]> {
+  const normalized = q?.trim().toLowerCase()
+  const all = await listFallbackArticles({ locale })
+  return all
+    .filter((article) => !category || article.category === category)
+    .filter((article) => {
+      if (!normalized) return true
+      return `${article.title} ${article.excerpt}`.toLowerCase().includes(normalized)
+    })
+}
+
+function mergeArticles(primary: Article[], fallback: Article[]): Article[] {
+  const seen = new Set<string>()
+  const merged: Article[] = []
+  for (const article of [...primary, ...fallback]) {
+    if (seen.has(article.slug)) continue
+    seen.add(article.slug)
+    merged.push(article)
+  }
+  return merged.sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1))
 }
 
 function mapPostToArticle(post: PublicPostListItem, locale: Locale, body?: string): Article {
