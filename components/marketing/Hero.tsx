@@ -11,15 +11,12 @@ export function Hero({ locale }: { locale: Locale }) {
   return (
     <section className="py-8 sm:py-20">
       <Container className="flex flex-col items-center text-center">
-        <div className="max-w-2xl">
-          <h1 className="mt-5 text-4xl font-bold leading-[1.18] sm:text-5xl">
-            오늘도 해냈다는 기록이 쌓이도록
+        <div className="w-full">
+          <h1 className="mt-5 whitespace-nowrap text-3xl font-bold leading-[1.18] sm:text-4xl md:text-5xl lg:text-6xl xl:text-[4.25rem]">
+            우리 아이 오늘도 잘했어요
           </h1>
-          <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-[var(--color-text-secondary)]">
-            병원에서 안내받은 홈케어 운동을 오늘의 목표로 정하고, 시간·횟수·아이 반응을 한곳에 남겨보세요.
-          </p>
-          <p className="mt-5 text-sm font-semibold text-[var(--color-primary-dark)]">
-            상담 전에는 달력과 리포트로 흐름을 차분히 돌아볼 수 있어요.
+          <p className="mt-5 text-sm font-semibold text-[var(--color-primary-dark)] sm:text-lg">
+            아이와 꾸준히 집에서 재활운동을 함께할 수 있도록 도와드릴게요.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link

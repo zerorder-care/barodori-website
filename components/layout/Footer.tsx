@@ -18,10 +18,6 @@ export async function Footer({ locale }: { locale: Locale }) {
     <footer className="border-t border-white/10 bg-[#171717] py-14 text-sm text-white/60">
       <Container className="grid gap-10 lg:grid-cols-[1.4fr_1fr]">
         <div>
-          <Link href={`/${locale}`} className="inline-flex rounded-sm bg-white/12 px-4 py-2 text-sm font-bold text-white">
-            {dict.common.appName}
-          </Link>
-          <p className="mt-3 max-w-xl leading-relaxed">{dict.footer.tagline}</p>
           <dl className="mt-6 grid gap-2 text-xs sm:grid-cols-2">
             <FooterInfo label="회사명" value={companyInfo.name} />
             <FooterInfo label="대표자" value={companyInfo.ceo} />
@@ -83,7 +79,7 @@ export async function Footer({ locale }: { locale: Locale }) {
       </Container>
       <Container>
         <p className="mt-10 border-t border-white/10 pt-5 text-xs leading-relaxed text-white/45">
-          바로도리는 치료·진단을 대신하지 않는 홈케어 기록 도구예요.
+          바로도리는 치료나 진단을 대신하지 않아요. 병원에서 안내받은 운동을 보호자가 집에서 목표로 세우고, 기록하고, 리포트로 확인하도록 돕는 서비스예요.
         </p>
       </Container>
     </footer>

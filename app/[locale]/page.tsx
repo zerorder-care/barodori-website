@@ -3,9 +3,8 @@ import { isLocale } from '@/lib/i18n/dictionary'
 import { buildMetadata } from '@/lib/seo/metadata'
 import { Hero } from '@/components/marketing/Hero'
 import { HomeFeatureSections } from '@/components/marketing/HomeFeatureSections'
-import { InstallCta } from '@/components/marketing/InstallCta'
+import { HomeTogetherSection } from '@/components/marketing/HomeTogetherSection'
 import { SecondaryPaths } from '@/components/marketing/SecondaryPaths'
-import { SafetyNotice } from '@/components/marketing/SafetyNotice'
 import { organizationJsonLd, mobileAppJsonLd, jsonLdScript } from '@/lib/seo/jsonLd'
 import type { Locale } from '@/lib/i18n/config'
 
@@ -46,10 +45,9 @@ export default async function HomePage({
         dangerouslySetInnerHTML={{ __html: jsonLdScript(mobileAppJsonLd()) }}
       />
       <Hero locale={loc} />
+      <HomeTogetherSection />
       <HomeFeatureSections />
-      <SafetyNotice locale={loc} compact />
       <SecondaryPaths locale={loc} />
-      <InstallCta locale={loc} surface="home_footer" />
     </>
   )
 }
