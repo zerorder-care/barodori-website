@@ -12,12 +12,17 @@ export const metadata: Metadata = {
   description: '아기 운동 기록과 영유아 홈케어 루틴을 달력·리포트로 확인하는 아이 운동 다이어리',
   icons: {
     icon: [
-      { url: '/favicons/barodori-icon-16.svg', sizes: '16x16', type: 'image/svg+xml' },
-      { url: '/favicons/barodori-icon-32.svg', sizes: '32x32', type: 'image/svg+xml' },
-      { url: '/favicons/barodori-icon-48.svg', sizes: '48x48', type: 'image/svg+xml' },
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicons/favicon-16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicons/favicon-32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicons/favicon-48.png', sizes: '48x48', type: 'image/png' },
+      { url: '/favicons/icon-192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/favicons/icon-512.png', sizes: '512x512', type: 'image/png' },
     ],
-    shortcut: '/favicons/barodori-icon-32.svg',
+    apple: [{ url: '/favicons/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }],
+    shortcut: '/favicon.ico',
   },
+  manifest: '/site.webmanifest',
 }
 
 export default function RootLayout({

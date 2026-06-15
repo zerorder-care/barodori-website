@@ -1,0 +1,14 @@
+{
+  "name": "바로도리",
+  "short_name": "바로도리",
+  "description": "아기 사경·사두 홈케어 운동을 기록하고 달력·리포트로 확인하는 다이어리",
+  "lang": "ko",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#FFB700",
+  "icons": [
+    { "src": "/favicons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/favicons/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
