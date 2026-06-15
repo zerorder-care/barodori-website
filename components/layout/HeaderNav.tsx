@@ -8,17 +8,13 @@ import { LocaleSwitcher } from '@/components/layout/LocaleSwitcher'
 import type { Locale } from '@/lib/i18n/config'
 
 type NavLabels = {
-  home: string
   product: string
-  reviews: string
   community: string
   articles: string
   newsroom: string
   faq: string
-  login: string
   logout: string
   mypage: string
-  install: string
   start: string
 }
 
@@ -75,6 +71,13 @@ export function HeaderNav({
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  // 브라우저 뒤로/앞으로(popstate) 시 모바일 메뉴를 닫는다. (링크 클릭은 각 onClick에서 처리)
+  useEffect(() => {
+    const close = () => setOpen(false)
+    window.addEventListener('popstate', close)
+    return () => window.removeEventListener('popstate', close)
+  }, [])
+
   async function handleLogout() {
     await fetch('/api/auth/session', { method: 'DELETE' }).catch(() => null)
     setAuthenticated(false)
@@ -94,7 +97,7 @@ export function HeaderNav({
             : 'shadow-[0_4px_16px_rgba(17,24,39,0.05)]'
         }`}
       >
-        <Link href={`/${locale}`} aria-label={appName} className="inline-flex items-center gap-2">
+        <Link href={`/${locale}`} className="inline-flex items-center gap-2">
           <BarodoriMark className="h-7 w-7" />
           <span className="text-[17px] font-bold tracking-tight text-[var(--color-text-primary)]">
             {appName}
