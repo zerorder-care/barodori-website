@@ -16,7 +16,8 @@
     "login": "Log in",
     "logout": "Log out",
     "mypage": "My page",
-    "install": "Start the app"
+    "install": "Start the app",
+    "start": "Get started"
   },
   "footer": {
     "tagline": "Set daily home-care exercise goals and keep your streak going.",
