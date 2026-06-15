@@ -9,7 +9,7 @@ export function Hero({ locale }: { locale: Locale }) {
   const live = isAppLive()
 
   return (
-    <section className="py-8 sm:py-20">
+    <section className="bg-[linear-gradient(180deg,var(--color-bg)_0%,var(--color-bg-muted)_48%,var(--color-primary-light)_78%,rgba(255,183,0,0.30)_100%)] py-8 sm:py-20">
       <Container className="flex flex-col items-center text-center">
         <div className="w-full">
           <h1 className="mt-5 whitespace-nowrap text-3xl font-bold leading-[1.18] sm:text-4xl md:text-5xl lg:text-6xl xl:text-[4.25rem]">
