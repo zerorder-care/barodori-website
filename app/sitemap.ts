@@ -11,7 +11,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // ko 만 인덱싱
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: `${SITE_URL}/${defaultLocale}`, changeFrequency: 'weekly', priority: 1 },
-    { url: `${SITE_URL}/${defaultLocale}/product`, changeFrequency: 'monthly', priority: 0.8 },
     ...(siteFeatures.reviews
       ? ([{ url: `${SITE_URL}/${defaultLocale}/reviews`, changeFrequency: 'monthly', priority: 0.7 }] as MetadataRoute.Sitemap)
       : []),

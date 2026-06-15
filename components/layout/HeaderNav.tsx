@@ -8,7 +8,6 @@ import { LocaleSwitcher } from '@/components/layout/LocaleSwitcher'
 import type { Locale } from '@/lib/i18n/config'
 
 type NavLabels = {
-  product: string
   community: string
   articles: string
   newsroom: string

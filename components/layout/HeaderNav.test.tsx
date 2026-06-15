@@ -9,7 +9,6 @@ vi.mock('next/navigation', () => ({
 
 const labels = {
   home: '홈',
-  product: '기능 소개',
   reviews: '후기',
   community: '커뮤니티',
   articles: '홈케어 노트',
