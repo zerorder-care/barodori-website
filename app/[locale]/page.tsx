@@ -2,8 +2,7 @@ import { notFound } from 'next/navigation'
 import { isLocale } from '@/lib/i18n/dictionary'
 import { buildMetadata } from '@/lib/seo/metadata'
 import { Hero } from '@/components/marketing/Hero'
-import { HomeCareLoop } from '@/components/marketing/HomeCareLoop'
-import { GoalAchievement } from '@/components/marketing/GoalAchievement'
+import { HomeFeatureSections } from '@/components/marketing/HomeFeatureSections'
 import { InstallCta } from '@/components/marketing/InstallCta'
 import { SecondaryPaths } from '@/components/marketing/SecondaryPaths'
 import { SafetyNotice } from '@/components/marketing/SafetyNotice'
@@ -47,8 +46,7 @@ export default async function HomePage({
         dangerouslySetInnerHTML={{ __html: jsonLdScript(mobileAppJsonLd()) }}
       />
       <Hero locale={loc} />
-      <HomeCareLoop />
-      <GoalAchievement />
+      <HomeFeatureSections />
       <SafetyNotice locale={loc} compact />
       <SecondaryPaths locale={loc} />
       <InstallCta locale={loc} surface="home_footer" />

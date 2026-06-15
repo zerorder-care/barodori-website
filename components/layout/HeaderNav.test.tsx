@@ -38,7 +38,8 @@ describe('HeaderNav', () => {
 
   it('does not render the outdated launch CTA or dead status label', async () => {
     render(<HeaderNav locale="ko" appName="바로도리" labels={labels} />)
-    await screen.findByRole('link', { name: '기능 소개' })
+    await screen.findByRole('link', { name: '커뮤니티' })
+    expect(screen.queryByRole('link', { name: '기능 소개' })).toBeNull()
     expect(screen.queryByText('오픈 소식 받기')).toBeNull()
     expect(screen.queryByText('홈케어 운동 기록 앱')).toBeNull()
   })

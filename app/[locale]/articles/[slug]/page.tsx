@@ -95,12 +95,12 @@ export default async function ArticleDetailPage({
             <p>
               바로도리 앱은 이 글에서 다룬 관찰 내용을 기록으로 남기고, 상담 전 참고 자료로 정리할 수 있게 돕습니다.{' '}
               <TrackedLink
-                href={`/${loc}/product`}
-                event="article_to_product_click"
+                href={`/${loc}#home-features`}
+                event="article_to_home_features_click"
                 eventProps={{ slug: article.slug, locale: loc }}
                 className="font-semibold text-[var(--color-primary-dark)] underline"
               >
-                제품 알아보기 →
+                기능 흐름 보기 →
               </TrackedLink>
             </p>
           </aside>

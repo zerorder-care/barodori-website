@@ -19,7 +19,6 @@ type NavLabels = {
 }
 
 const navKeys = [
-  'product',
   // 'reviews', // 실제 후기 데이터 연동 전까지 숨김
   'community',
   'articles',

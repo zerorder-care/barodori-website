@@ -36,9 +36,6 @@ export function GoalAchievement() {
     <section className="bg-white py-24">
       <Container>
         <div className="text-center">
-          <p className="inline-flex rounded-pill bg-[var(--color-primary-light)] px-3 py-1 text-xs font-semibold text-[var(--color-primary-dark)]">
-            기록 · 리포트
-          </p>
           <h2 className="mt-4 text-3xl font-bold sm:text-4xl">기록이 쌓이면 리포트가 됩니다</h2>
           <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-[var(--color-text-secondary)]">
             운동 목표, 오늘 기록, 주간 흐름을 한 화면에서 확인합니다.

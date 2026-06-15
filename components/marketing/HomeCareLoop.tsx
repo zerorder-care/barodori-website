@@ -26,18 +26,10 @@ export function HomeCareLoop() {
   return (
     <section id="homecare-loop" className="bg-white pb-20 pt-24 sm:py-24" aria-labelledby="homecare-loop-title">
       <Container>
-        <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-end">
-          <div>
-            <p className="text-sm font-bold text-[var(--color-primary-dark)]">홈케어 루프</p>
-            <h2 id="homecare-loop-title" className="mt-3 text-3xl font-bold leading-tight sm:text-4xl">
-              병원에서 배운 운동을
-              <br />
-              집에서도 이어가게
-            </h2>
-          </div>
-          <p className="max-w-2xl text-base leading-relaxed text-[var(--color-text-secondary)]">
-            바로도리는 운동 방법을 판단하지 않습니다. 보호자가 안내받은 운동을 목표로 세우고, 집에서 한 기록을 모아 꾸준히 이어가도록 돕습니다.
-          </p>
+        <div className="text-center">
+          <h2 id="homecare-loop-title" className="mt-3 text-3xl font-bold leading-tight sm:text-4xl">
+            병원에서 배운 운동을 집에서도 이어가게
+          </h2>
         </div>
 
         <ol className="mt-10 grid gap-4 lg:grid-cols-3">
