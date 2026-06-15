@@ -2,17 +2,11 @@ import { notFound } from 'next/navigation'
 import { isLocale } from '@/lib/i18n/dictionary'
 import { buildMetadata } from '@/lib/seo/metadata'
 import { Hero } from '@/components/marketing/Hero'
-import { StatStrip } from '@/components/marketing/StatStrip'
-import { SymptomGrid } from '@/components/marketing/SymptomGrid'
-import { ActionGuide } from '@/components/marketing/ActionGuide'
-import { ProductFeatures } from '@/components/marketing/ProductFeatures'
+import { HomeCareLoop } from '@/components/marketing/HomeCareLoop'
 import { GoalAchievement } from '@/components/marketing/GoalAchievement'
 import { InstallCta } from '@/components/marketing/InstallCta'
-import { HomePreviewSections } from '@/components/marketing/HomePreviewSections'
-import { ArticleTeaserGrid } from '@/components/marketing/ArticleTeaserGrid'
+import { SecondaryPaths } from '@/components/marketing/SecondaryPaths'
 import { SafetyNotice } from '@/components/marketing/SafetyNotice'
-import { listCommunityPosts } from '@/lib/api/community'
-import { listNewsroomPosts } from '@/lib/api/content'
 import { organizationJsonLd, mobileAppJsonLd, jsonLdScript } from '@/lib/seo/jsonLd'
 import type { Locale } from '@/lib/i18n/config'
 
@@ -26,8 +20,8 @@ export async function generateMetadata({
   const { locale } = await params
   if (!isLocale(locale)) return {}
   return buildMetadata({
-    title: '바로도리 - 아기·영유아 홈케어 운동 기록 앱',
-    description: '아기 운동 기록, 영유아 홈케어 루틴, 물리치료 방문과 아이 반응을 달력·리포트로 확인하세요.',
+    title: '바로도리 - 사경 진단 이후 홈케어 운동 기록 앱',
+    description: '병원 물리치료 이후 집에서 이어가는 홈케어 운동을 목표로 세우고, 기록하고, 리포트로 확인하세요.',
     path: `/${locale}`,
     locale,
   })
@@ -41,10 +35,6 @@ export default async function HomePage({
   const { locale } = await params
   if (!isLocale(locale)) notFound()
   const loc = locale as Locale
-  const [communityPreview, newsroomPreview] = await Promise.all([
-    listCommunityPosts({ sort: 'popular', limit: 3 }),
-    listNewsroomPosts({ pageSize: 3 }),
-  ])
 
   return (
     <>
@@ -57,14 +47,10 @@ export default async function HomePage({
         dangerouslySetInnerHTML={{ __html: jsonLdScript(mobileAppJsonLd()) }}
       />
       <Hero locale={loc} />
-      <StatStrip />
-      <SymptomGrid />
-      <ProductFeatures locale={loc} />
+      <HomeCareLoop />
       <GoalAchievement />
-      <ActionGuide />
-      <SafetyNotice locale={loc} />
-      <ArticleTeaserGrid locale={loc} />
-      <HomePreviewSections locale={loc} communityPosts={communityPreview.posts} newsroomPosts={newsroomPreview.posts} />
+      <SafetyNotice locale={loc} compact />
+      <SecondaryPaths locale={loc} />
       <InstallCta locale={loc} surface="home_footer" />
     </>
   )

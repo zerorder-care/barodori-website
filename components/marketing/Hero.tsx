@@ -6,34 +6,43 @@ import type { Locale } from '@/lib/i18n/config'
 
 export function Hero({ locale }: { locale: Locale }) {
   return (
-    <section className="bg-[var(--color-bg-muted)] py-16 sm:py-20">
-      <Container className="grid items-center gap-12 lg:grid-cols-[1fr_516px]">
+    <section className="bg-[var(--color-bg-muted)] py-8 sm:py-20">
+      <Container className="grid items-center gap-6 sm:gap-8 lg:grid-cols-[1fr_516px] lg:gap-12">
         <div>
           <p className="inline-flex rounded-pill bg-[var(--color-primary-light)] px-3 py-1 text-xs font-semibold text-[var(--color-primary-dark)]">
-            우리 아이 홈케어 운동 기록
+            사경 진단 이후 홈케어 기록
           </p>
           <h1 className="mt-5 text-4xl font-bold leading-[1.18] sm:text-5xl">
-            오늘도 해냈다는
+            병원 다음 홈케어가
             <br />
-            기록이 쌓이도록
+            기록으로 이어지게
           </h1>
           <p className="mt-6 max-w-xl text-base leading-relaxed text-[var(--color-text-secondary)]">
-            오늘의 목표 운동을 정하고, 집에서 한 운동과 아이의 반응을 기록하면 목표 달성과 꾸준함이 한눈에 보여요. 바로도리는 막막한 홈케어가 매일의 작은 루틴이 되도록 곁에서 도와드립니다.
+            물리치료를 받고 온 뒤, 집에서 할 운동 목표를 세우고 기록하세요. 바로도리는 기록을 리포트로
+            정리해 꾸준함을 확인하게 돕습니다.
           </p>
-          <p className="mt-5 text-sm font-semibold text-[var(--color-primary-dark)]">일단 켜고, 오늘의 홈케어부터</p>
-          <div className="mt-8 flex flex-col sm:flex-row">
+          <p className="mt-5 text-sm font-semibold text-[var(--color-primary-dark)]">
+            치료 판단이 아닌, 홈케어 기록과 추적을 위한 서비스
+          </p>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Link
               href={`/${locale}/install`}
               className="inline-flex min-h-12 items-center justify-center rounded-[8px] bg-[var(--color-primary)] px-6 text-sm font-bold text-[var(--color-text-primary)]"
             >
-              앱에서 시작하기
+              오늘 목표 기록하기
+            </Link>
+            <Link
+              href="#homecare-loop"
+              className="inline-flex min-h-12 items-center justify-center rounded-[8px] border border-[var(--color-text-primary)] px-6 text-sm font-bold"
+            >
+              기록 방식 보기
             </Link>
           </div>
-          <div className="mt-6">
+          <div className="mt-6 hidden sm:block">
             <StoreButtons surface="hero" locale={locale} />
           </div>
         </div>
-        <div className="flex justify-center lg:justify-end">
+        <div className="hidden justify-center sm:flex lg:justify-end">
           <div className="relative aspect-[760/1500] w-full max-w-[300px]">
             <Image
               src="/images/hero-phone.png"

@@ -20,7 +20,7 @@
     "start": "Get started"
   },
   "footer": {
-    "tagline": "Set daily home-care exercise goals and keep your streak going.",
+    "tagline": "After hospital therapy, keep home-care exercises on track with goals, records, and reports.",
     "support": "Support",
     "businessInfo": "Business info",
     "privacy": "Privacy",
@@ -29,6 +29,7 @@
   },
   "medical": {
     "title": "Usage Notice",
+    "compactBody": "BaroDori does not replace treatment or diagnosis. It helps caregivers set goals, record exercises instructed by clinicians, and review progress through reports at home.",
     "body": "BaroDori is a home-care recording tool and does not replace treatment or diagnosis. Exercise methods and intensity should be decided with your clinician or therapist. Records and reports are reference materials for organizing the situation.",
     "emergency": "If your child shows pain, intense crying, fever, breathing issues, sudden movement restriction, or neurological symptoms, seek medical attention immediately.",
     "stress": "Caregiver condition-check results are for reference only and must not be used for diagnosis or treatment decisions."

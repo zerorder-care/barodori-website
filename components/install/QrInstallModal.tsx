@@ -48,7 +48,8 @@ export function QrInstallModal({ surface, locale, children }: Props) {
           <div>
             <h2 className="text-lg font-semibold">앱 오픈 준비 중</h2>
             <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-secondary)]">
-              바로도리는 아기와 아이의 홈케어 운동을 기록하고 달력·리포트로 확인하는 앱입니다. 오픈 소식을 받아보거나 베타 참여 가능 여부를 확인해 주세요.
+              바로도리는 병원에서 안내받은 홈케어 운동을 목표로 세우고, 기록과 리포트로 확인하는 앱입니다.
+              오픈 소식을 받아보거나 베타 참여 가능 여부를 확인해 주세요.
             </p>
             {beta && (
               <a

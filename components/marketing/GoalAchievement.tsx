@@ -18,16 +18,16 @@ const week = [
 
 const highlights = [
   {
-    title: '운동별 목표를 직접 정해요',
-    desc: '고개 돌리기, 터미타임처럼 우리 아이에게 필요한 운동을 하루 몇 번 할지 정해두면, 오늘 무엇부터 할지 헷갈리지 않아요.',
+    title: '병원에서 받은 운동을 오늘 목표로',
+    desc: '보호자가 안내받은 운동을 하루 목표로 정해두고 시작합니다.',
   },
   {
-    title: '오늘 얼마나 했는지 바로 채워져요',
-    desc: '운동을 기록할 때마다 목표가 차오르고, 모두 채운 날에는 작은 축하가 기다려요.',
+    title: '한 번 할 때마다 기록으로',
+    desc: '횟수와 시간, 아이 반응을 남겨 집에서 한 운동을 놓치지 않습니다.',
   },
   {
-    title: '연속 운동으로 꾸준함이 보여요',
-    desc: '며칠째 이어오고 있는지 한눈에 확인하며, 오늘도 한 번 더 힘을 내요.',
+    title: '리포트로 꾸준함 확인',
+    desc: '주간 달성률과 연속 기록을 보며 다음 상담 전 흐름을 정리합니다.',
   },
 ] as const
 
@@ -37,11 +37,11 @@ export function GoalAchievement() {
       <Container>
         <div className="text-center">
           <p className="inline-flex rounded-pill bg-[var(--color-primary-light)] px-3 py-1 text-xs font-semibold text-[var(--color-primary-dark)]">
-            목표 설정 · 진행 상태
+            기록 · 리포트
           </p>
-          <h2 className="mt-4 text-3xl font-bold sm:text-4xl">오늘의 목표를 채우고, 달성을 확인해요</h2>
+          <h2 className="mt-4 text-3xl font-bold sm:text-4xl">기록이 쌓이면 리포트가 됩니다</h2>
           <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-[var(--color-text-secondary)]">
-            막막했던 홈케어가 오늘 채워야 할 작은 목표가 되면, 매일 이어가기가 훨씬 수월해집니다.
+            운동 목표, 오늘 기록, 주간 흐름을 한 화면에서 확인합니다.
           </p>
         </div>
 
@@ -77,7 +77,6 @@ export function GoalCardMockup() {
       aria-hidden="true"
       className="mx-auto w-full max-w-[420px] rounded-[24px] border border-[var(--color-border)] bg-[var(--color-bg-muted)] p-5 shadow-[0_24px_48px_-24px_rgba(0,0,0,0.25)]"
     >
-      {/* 오늘 목표 카드 */}
       <div className="rounded-[16px] border border-[var(--color-border)] bg-white p-5">
         <div className="flex items-center justify-between">
           <div>
@@ -119,11 +118,12 @@ export function GoalCardMockup() {
         </div>
 
         <p className="mt-5 rounded-[12px] bg-[var(--color-primary-light)] px-4 py-3 text-center text-sm font-bold text-[var(--color-primary-dark)]">
-          {allDone ? '오늘 운동 목표를 모두 달성했어요! 🎉' : `운동별 목표 ${goals.length}개 중 ${achievedCount}개 달성`}
+          {allDone
+            ? '오늘 운동 목표를 모두 달성했어요'
+            : `운동별 목표 ${goals.length}개 중 ${achievedCount}개 달성`}
         </p>
       </div>
 
-      {/* 주간 달성 + 연속 운동 */}
       <div className="mt-4 rounded-[16px] border border-[var(--color-border)] bg-white p-5">
         <div className="flex items-center justify-between">
           <p className="text-sm font-bold">이번 주 운동</p>
@@ -148,6 +148,17 @@ export function GoalCardMockup() {
               <span className="text-[10px] text-[var(--color-text-secondary)]">{day.label}</span>
             </div>
           ))}
+        </div>
+      </div>
+
+      <div className="mt-4 grid gap-3 rounded-[16px] border border-[var(--color-border)] bg-white p-5 sm:grid-cols-2">
+        <div>
+          <p className="text-xs font-semibold text-[var(--color-text-secondary)]">주간 달성률</p>
+          <p className="mt-1 text-2xl font-bold text-[var(--color-primary-dark)]">86%</p>
+        </div>
+        <div>
+          <p className="text-xs font-semibold text-[var(--color-text-secondary)]">상담 전 메모</p>
+          <p className="mt-1 text-2xl font-bold text-[var(--color-primary-dark)]">4개</p>
         </div>
       </div>
     </div>

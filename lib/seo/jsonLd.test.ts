@@ -31,6 +31,7 @@ describe('JSON-LD generators', () => {
     const ld = mobileAppJsonLd()
     expect(ld['@type']).toBe('MobileApplication')
     expect(ld.description).toContain('홈케어 운동')
-    expect(ld.description).toContain('달력·리포트')
+    expect(ld.description).toContain('목표')
+    expect(ld.description).toContain('기록과 리포트')
   })
 })
