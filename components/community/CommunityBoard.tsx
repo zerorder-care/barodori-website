@@ -137,7 +137,7 @@ export function CommunityBoard({
               다음 게시글 보기 +
             </Link>
           ) : (
-            <span className="text-sm text-[var(--color-text-secondary)]">마지막 게시글입니다</span>
+            <span className="text-sm text-[var(--color-text-secondary)]">마지막 게시글이에요</span>
           )}
         </div>
       )}

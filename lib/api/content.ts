@@ -111,6 +111,8 @@ type PublicFaqListResponse = {
 
 const NEWSROOM_DEFAULT_PAGE_SIZE = 9
 const NEWSROOM_MAX_PAGE_SIZE = 50
+const SAFE_WORKOUT_GUIDANCE_ANSWER =
+  '바로도리는 운동을 진단하거나 자동 처방하지 않아요. 담당 전문의·치료사와 정한 운동을 보호자가 목표로 등록하고, 집에서 한 시간·횟수·아이 반응을 기록하도록 도와요.'
 
 const fallbackNewsroomCategories: NewsroomCategoryOption[] = newsroomCategories.map(({ value, label }) => ({
   value,
@@ -292,8 +294,18 @@ function mapFaqItem(item: PublicFaqItem): FaqItem {
     id: item.id,
     category: item.category.slug,
     question: item.question,
-    answer: item.answer,
+    answer: sanitizeFaqAnswer(item),
   }
+}
+
+function sanitizeFaqAnswer(item: PublicFaqItem): string {
+  const question = item.question.trim()
+  const answer = item.answer.trim()
+  const unsafeAutoGuidance =
+    question.includes('어떤 운동') &&
+    (answer.includes('자동으로 추천') || answer.includes('운동 시작 버튼'))
+
+  return unsafeAutoGuidance ? SAFE_WORKOUT_GUIDANCE_ANSWER : answer
 }
 
 function buildFaqCategories(categories: PublicFaqCategory[]): FaqCategoryOption[] {

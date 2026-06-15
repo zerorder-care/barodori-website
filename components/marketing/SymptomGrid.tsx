@@ -17,7 +17,7 @@ export function SymptomGrid() {
           </p>
           <h2 className="mt-4 text-3xl font-bold sm:text-4xl">오늘 했는지, 얼마나 했는지, 어떻게 남길지</h2>
           <p className="mt-3 text-sm text-[var(--color-text-secondary)]">
-            홈케어는 거창한 계획보다 작은 기록이 쌓일 때 이어가기 쉬워집니다.
+            홈케어는 거창한 계획보다 작은 기록이 쌓일 때 이어가기 쉬워져요.
           </p>
         </div>
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">

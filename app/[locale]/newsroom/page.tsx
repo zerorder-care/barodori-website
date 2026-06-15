@@ -56,7 +56,7 @@ export default async function NewsroomPage({
           </p>
           <h1 className="mt-6 text-4xl font-bold leading-tight sm:text-5xl">바로도리 소식</h1>
           <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-[var(--color-text-secondary)]">
-            우리 아이 홈케어 운동 기록을 더 쉽게 이어가기 위한 서비스 업데이트와 공지, 제휴 소식을 모았습니다.
+            우리 아이 홈케어 운동 기록을 더 쉽게 이어가기 위한 서비스 업데이트와 공지, 제휴 소식을 모았어요.
           </p>
         </Container>
       </section>

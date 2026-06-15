@@ -76,7 +76,7 @@ export default async function CommunityDetailPage({
           </div>
         ) : (
           <p className="mt-8 rounded-[8px] bg-[var(--color-bg-muted)] p-5 text-sm text-[var(--color-text-secondary)]">
-            본문 내용은 바로도리 앱에서 확인할 수 있습니다.
+            본문 내용은 바로도리 앱에서 확인할 수 있어요.
           </p>
         )}
 
@@ -99,7 +99,7 @@ export default async function CommunityDetailPage({
           <h2 className="text-xl font-bold">댓글 {post.comments.length}</h2>
           {post.comments.length === 0 ? (
             <p className="mt-4 rounded-lg border border-[var(--color-border)] p-6 text-center text-[var(--color-text-secondary)]">
-              첫 댓글을 남겨보세요. 댓글 작성은 앱에서 가능합니다.
+              첫 댓글을 남겨보세요. 댓글 작성은 앱에서 가능해요.
             </p>
           ) : (
             <div className="mt-4 divide-y divide-[var(--color-border)] rounded-lg border border-[var(--color-border)] bg-white">
@@ -118,7 +118,7 @@ export default async function CommunityDetailPage({
             </div>
           )}
           <div className="mt-6 rounded-lg bg-[var(--color-primary-light)] p-5 text-sm leading-relaxed">
-            댓글 작성과 마음 누르기는 바로도리 앱에서 이용할 수 있습니다.
+            댓글 작성과 마음 누르기는 바로도리 앱에서 이용할 수 있어요.
           </div>
         </section>
       </article>

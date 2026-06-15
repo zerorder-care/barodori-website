@@ -37,7 +37,7 @@ export function QrInstallModal({ surface, locale, children }: Props) {
           <div>
             <h2 className="text-lg font-semibold">QR 코드로 설치</h2>
             <p className="mt-2 text-sm text-[var(--color-text-secondary)]">
-              모바일로 QR 코드를 스캔하면 앱스토어로 이동합니다.
+              모바일로 QR 코드를 스캔하면 앱스토어로 이동해요.
             </p>
             {/* 실제 QR 이미지는 스토어 링크 오픈 시 추가합니다. */}
             <div className="mx-auto mt-4 grid h-40 w-40 place-items-center rounded-lg border border-dashed border-[var(--color-border)] text-xs text-[var(--color-text-secondary)]">
@@ -48,7 +48,7 @@ export function QrInstallModal({ surface, locale, children }: Props) {
           <div>
             <h2 className="text-lg font-semibold">앱 오픈 준비 중</h2>
             <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-secondary)]">
-              바로도리는 병원에서 안내받은 홈케어 운동을 목표로 세우고, 기록과 리포트로 확인하는 앱입니다.
+              바로도리는 병원에서 안내받은 홈케어 운동을 목표로 세우고, 기록과 리포트로 확인하는 앱이에요.
               오픈 소식을 받아보거나 베타 참여 가능 여부를 확인해 주세요.
             </p>
             {beta && (

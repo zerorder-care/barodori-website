@@ -21,23 +21,6 @@ export function SecondaryPaths({ locale }: { locale: Locale }) {
   return (
     <section className="bg-white py-20" aria-labelledby="secondary-paths-title">
       <Container>
-        <div className="text-center">
-          <div>
-            <p className="text-sm font-bold text-[var(--color-primary-dark)]">보조 경로</p>
-            <h2 id="secondary-paths-title" className="mt-3 text-3xl font-bold leading-tight sm:text-4xl">
-              더 알아봐야 할 때는
-              <br />
-              필요한 곳으로 바로 이동하세요
-            </h2>
-          </div>
-          <Link
-            href="#home-features"
-            className="mt-6 inline-flex min-h-11 items-center rounded-[8px] border border-[var(--color-text-primary)] px-5 text-sm font-bold"
-          >
-            기능 흐름 보기 →
-          </Link>
-        </div>
-
         <div className="mt-10 grid gap-4 lg:grid-cols-2">
           {paths.map((path) => (
             <Link

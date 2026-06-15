@@ -50,8 +50,8 @@ export function HomePreviewSections({
         <Container>
           <SectionHeader
             eyebrow="서비스 방향 · 차별점"
-            title="기록이 쌓이면, 아이의 변화가 보입니다"
-            description="바로도리는 오늘의 작은 목표가 매일 이어지고, 그 변화를 함께 확인하도록 곁에서 돕습니다."
+            title="기록이 쌓이면, 아이의 변화가 보여요"
+            description="바로도리는 오늘의 작은 목표가 매일 이어지고, 그 변화를 함께 확인하도록 곁에서 도와요."
           />
           <div className="mt-10 rounded-[12px] border border-[var(--color-border)] bg-[#f7f7f7] p-10">
             <div className="grid gap-8 lg:grid-cols-[160px_1fr] lg:items-center">
@@ -68,7 +68,7 @@ export function HomePreviewSections({
                 <p className="text-4xl font-bold text-[#b9b9b9]">“</p>
                 <p className="mt-2 max-w-3xl leading-relaxed">
                   {expertRecommendations[0]?.quote ??
-                    '집에서 한 운동, 물리치료 방문, 아이 반응을 함께 남기면 다음 상담 전 상황을 조금 더 차분히 정리할 수 있습니다.'}
+                    '집에서 한 운동, 물리치료 방문, 아이 반응을 함께 남기면 다음 상담 전 상황을 조금 더 차분히 정리할 수 있어요.'}
                 </p>
                 <p className="mt-5 text-sm font-bold">
                   {expertRecommendations[0]?.name ?? '바로도리 팀'}
@@ -100,7 +100,7 @@ export function HomePreviewSections({
           <SectionHeader
             eyebrow="함께 이어가는 홈케어 기록"
             title="비슷한 하루를 보내는 보호자들의 이야기"
-            description="운동일지, 아이 반응, 작은 응원을 나눕니다. 운동 방법과 강도는 담당 전문의·치료사 상담을 기준으로 해주세요."
+            description="운동일지, 아이 반응, 작은 응원을 나눠요. 운동 방법과 강도는 담당 전문의·치료사 상담을 기준으로 해주세요."
             href={`/${locale}/community`}
             linkLabel="커뮤니티 둘러보기"
           />
@@ -125,7 +125,7 @@ export function HomePreviewSections({
             </div>
           ) : (
             <p className="mt-10 rounded-[8px] border border-[var(--color-border)] bg-white p-8 text-center text-sm text-[var(--color-text-secondary)]">
-              커뮤니티 게시글을 준비하고 있습니다.
+              커뮤니티 게시글을 준비하고 있어요.
             </p>
           )}
         </Container>
@@ -136,7 +136,7 @@ export function HomePreviewSections({
           <SectionHeader
             eyebrow="바로도리 소식"
             title="홈케어 기록을 더 쉽게 만드는 업데이트"
-            description="서비스 업데이트, 운영 소식, 콘텐츠 검토 기준을 알려드립니다."
+            description="서비스 업데이트, 운영 소식, 콘텐츠 검토 기준을 알려드려요."
             href={`/${locale}/newsroom`}
             linkLabel="소식 더 보기"
           />
@@ -148,7 +148,7 @@ export function HomePreviewSections({
             </div>
           ) : (
             <p className="mt-10 rounded-[8px] border border-[var(--color-border)] bg-white p-8 text-center text-sm text-[var(--color-text-secondary)]">
-              뉴스룸 소식을 준비하고 있습니다.
+              뉴스룸 소식을 준비하고 있어요.
             </p>
           )}
         </Container>

@@ -28,7 +28,7 @@ const CONTENT_ROOT = path.join(process.cwd(), 'content', 'articles')
 let cache: Map<Locale, Article[]> | null = null
 
 async function loadAll(): Promise<Map<Locale, Article[]>> {
-  if (cache) return cache
+  if (cache && process.env.NODE_ENV !== 'development') return cache
   const map = new Map<Locale, Article[]>()
   for (const locale of locales) {
     const dir = path.join(CONTENT_ROOT, locale)

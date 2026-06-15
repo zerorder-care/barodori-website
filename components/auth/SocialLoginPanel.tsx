@@ -45,11 +45,11 @@ const providers: Provider[] = [
 ]
 
 const loginErrorMessages: Record<string, string> = {
-  oauth_state: '로그인 요청을 확인하지 못했습니다. 다시 시도해주세요.',
-  kakao_config_missing: '카카오 로그인 설정이 아직 연결되지 않았습니다.',
-  naver_config_missing: '네이버 로그인 설정이 아직 연결되지 않았습니다.',
-  kakao_login_failed: '카카오 로그인에 실패했습니다. 다시 시도해주세요.',
-  naver_login_failed: '네이버 로그인에 실패했습니다. 다시 시도해주세요.',
+  oauth_state: '로그인 요청을 확인하지 못했어요. 다시 시도해 주세요.',
+  kakao_config_missing: '카카오 로그인 설정이 아직 연결되지 않았어요.',
+  naver_config_missing: '네이버 로그인 설정이 아직 연결되지 않았어요.',
+  kakao_login_failed: '카카오 로그인에 실패했어요. 다시 시도해 주세요.',
+  naver_login_failed: '네이버 로그인에 실패했어요. 다시 시도해 주세요.',
 }
 
 export function SocialLoginPanel({
@@ -160,12 +160,12 @@ function buildFirebaseProvider(providerId: 'google' | 'apple'): AuthProvider {
 }
 
 function toLoginErrorMessage(error: unknown) {
-  if (!(error instanceof Error)) return '로그인에 실패했습니다. 다시 시도해주세요.'
+  if (!(error instanceof Error)) return '로그인에 실패했어요. 다시 시도해 주세요.'
   if (error.message === 'firebase_auth_not_configured') {
-    return 'Firebase 로그인 설정이 아직 연결되지 않았습니다.'
+    return 'Firebase 로그인 설정이 아직 연결되지 않았어요.'
   }
   if (error.message.includes('popup-closed-by-user') || error.message.includes('cancelled-popup-request')) {
-    return '로그인이 취소되었습니다.'
+    return '로그인이 취소됐어요.'
   }
-  return '로그인에 실패했습니다. 다시 시도해주세요.'
+  return '로그인에 실패했어요. 다시 시도해 주세요.'
 }

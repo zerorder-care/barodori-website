@@ -62,7 +62,7 @@ export default async function ReviewsPage({ params }: { params: Promise<{ locale
             </p>
             <h2 className="mt-4 text-3xl font-bold sm:text-4xl">보호자 관점의 홈케어 기록</h2>
             <p className="mt-3 text-sm text-[var(--color-text-secondary)]">
-              보호자가 집에서 한 운동과 아이 반응을 더 차분하게 기록할 수 있도록 설계하고 있습니다.
+              보호자가 집에서 한 운동과 아이 반응을 더 차분하게 기록할 수 있도록 설계하고 있어요.
             </p>
           </div>
           <div className="mt-10 rounded-[12px] border border-[var(--color-border)] bg-white p-10">

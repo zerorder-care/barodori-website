@@ -20,7 +20,7 @@ export function mobileAppJsonLd() {
     name: '바로도리',
     operatingSystem: 'iOS, Android',
     applicationCategory: 'HealthApplication',
-    description: '병원에서 안내받은 아기·영유아 홈케어 운동을 목표로 세우고, 기록과 리포트로 꾸준히 확인할 수 있도록 돕는 앱입니다.',
+    description: '병원에서 안내받은 아기·영유아 홈케어 운동을 목표로 세우고, 기록과 리포트로 꾸준히 확인할 수 있도록 돕는 앱이에요.',
     url: `${SITE_URL}/ko/install`,
     audience: {
       '@type': 'PeopleAudience',

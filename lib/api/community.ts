@@ -116,8 +116,9 @@ export async function listCommunityPosts({
       `/api/v1/community/public/posts?${params}`,
       'community_api',
     )
+    const posts = data.posts.filter(isPublicCommunityPostSuitable).map(mapListItem)
     return {
-      posts: data.posts.map(mapListItem),
+      posts,
       nextOffset: data.nextOffset ?? null,
       hasMore: data.hasMore,
       source: 'api',
@@ -148,6 +149,8 @@ export async function getCommunityPostDetail(postId: string): Promise<CommunityP
         'community_api',
       ).catch(() => ({ comments: [], hasMore: false })),
     ])
+
+    if (!isPublicCommunityPostSuitable(post)) return null
 
     return {
       ...mapListItem(post),
@@ -205,11 +208,24 @@ function mapListItem(post: PublicPostListItem): CommunityPost {
   }
 }
 
+function isPublicCommunityPostSuitable(post: PublicPostListItem): boolean {
+  const title = post.title.trim()
+  const preview = post.contentPreview?.trim() ?? ''
+  const normalized = `${title} ${preview}`.toLowerCase()
+  const blockedExactTitles = new Set(['ㅁ', '공유', '안녕하세요', '테스트', 'test'])
+
+  if (blockedExactTitles.has(title.toLowerCase())) return false
+  if (/^[ㄱ-ㅎㅏ-ㅣ\s]+$/.test(title)) return false
+  if (normalized.includes('개발자입니다')) return false
+
+  return true
+}
+
 function mapComment(comment: PublicComment): CommunityComment {
   return {
     id: comment.id,
     author: comment.author.nickname,
-    content: comment.isDeleted ? '삭제된 댓글입니다.' : comment.content,
+    content: comment.isDeleted ? '삭제된 댓글이에요.' : comment.content,
     likeCount: comment.likeCount,
     createdAt: comment.createdAt,
     replies: comment.replies?.map(mapComment),

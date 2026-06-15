@@ -62,7 +62,7 @@ export const parentReviews: ParentReview[] = [
     condition: 'both',
     rating: 5,
     title: '눈대중이 아니라 기록으로 남는 점이 안심됐어요',
-    body: '매번 좋아지는지 헷갈렸는데 상태 기록과 리포트를 보면서 아이 상태를 더 차분하게 볼 수 있었습니다.',
+    body: '매번 좋아지는지 헷갈렸는데 상태 기록과 리포트를 보면서 아이 상태를 더 차분하게 볼 수 있었어요.',
     duration: '1개월 사용',
     writtenAt: '2026-04-25',
   },
@@ -86,7 +86,7 @@ export const expertRecommendations: ExpertRecommendation[] = [
     role: '서비스 기획',
     organization: '홈케어 운동 기록 서비스',
     quote:
-      '집에서 한 운동과 아이 반응을 꾸준히 기록하고, 다음 상담 전 보호자가 상황을 정리할 수 있도록 돕는 기록 도구를 지향합니다.',
+      '집에서 한 운동과 아이 반응을 꾸준히 기록하고, 다음 상담 전 보호자가 상황을 정리할 수 있도록 돕는 기록 도구를 지향해요.',
   },
 ]
 

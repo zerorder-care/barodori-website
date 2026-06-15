@@ -38,8 +38,8 @@ export default async function LoginPage({
           </p>
           <h1 className="mt-5 text-3xl font-bold">로그인 / 회원가입</h1>
           <p className="mt-3 text-sm leading-relaxed text-[var(--color-text-secondary)]">
-            홈페이지는 소셜 로그인만 지원합니다. 앱과 같은 계정으로 로그인하면 사용자님 정보를 이어서 사용할 수 있고,
-            앱에서는 필요한 온보딩을 다시 진행합니다.
+            홈페이지는 소셜 로그인만 지원해요. 앱과 같은 계정으로 로그인하면 사용자님 정보를 이어서 사용할 수 있고,
+            앱에서는 필요한 온보딩을 다시 진행해요.
           </p>
           <SocialLoginPanel locale={locale as Locale} nextPath={nextPath} initialError={search.error} />
           <p className="mt-5 text-xs leading-relaxed text-[var(--color-text-secondary)]">
@@ -51,7 +51,7 @@ export default async function LoginPage({
             <Link href={`/${locale}/legal/privacy`} className="font-semibold underline">
               개인정보처리방침
             </Link>
-            에 동의한 것으로 간주됩니다.
+            에 동의한 것으로 간주돼요.
           </p>
         </div>
       </Container>

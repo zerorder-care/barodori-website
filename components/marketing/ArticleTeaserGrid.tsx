@@ -17,7 +17,7 @@ export async function ArticleTeaserGrid({ locale }: { locale: Locale }) {
           </p>
           <h2 className="mt-4 text-2xl font-bold sm:text-3xl">아기 사경·터미타임이 걱정될 때 참고할 바로도리 노트</h2>
           <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-[var(--color-text-secondary)]">
-            목 관찰, 두상 비대칭, 터미타임처럼 보호자가 상담 전 정리해두면 좋은 기록 팁을 모았습니다.
+            목 관찰, 두상 비대칭, 터미타임처럼 보호자가 상담 전 정리해두면 좋은 기록 팁을 모았어요.
           </p>
         </div>
         <div className="mt-8 grid gap-4 sm:grid-cols-3">

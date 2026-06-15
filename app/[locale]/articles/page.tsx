@@ -63,7 +63,7 @@ export default async function ArticlesIndexPage({
           </p>
           <h1 className="mt-6 text-4xl font-bold leading-tight sm:text-5xl">아기 사경·터미타임이 걱정될 때 참고할 기록 노트</h1>
           <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-[var(--color-text-secondary)]">
-            진단이나 치료 판단을 대신하지 않고, 목 관찰, 두상 비대칭, 터미타임, 홈케어 운동 기록을 상담 전 정리하는 데 도움이 되는 글을 모았습니다.
+            진단이나 치료 판단을 대신하지 않고, 목 관찰, 두상 비대칭, 터미타임, 홈케어 운동 기록을 상담 전 정리하는 데 도움이 되는 글을 모았어요.
           </p>
         </Container>
       </section>
@@ -130,7 +130,7 @@ export default async function ArticlesIndexPage({
                     다음 노트 보기 +
                   </Link>
                 ) : (
-                  <span className="text-sm text-[var(--color-text-secondary)]">마지막 노트입니다</span>
+                  <span className="text-sm text-[var(--color-text-secondary)]">마지막 노트예요</span>
                 )}
               </div>
             </>

@@ -37,7 +37,7 @@ export async function GET(
 ) {
   const { provider } = await params
   if (!isAuthProviderId(provider) || (provider !== 'kakao' && provider !== 'naver')) {
-    return NextResponse.json({ message: '지원하지 않는 로그인 방식입니다.' }, { status: 404 })
+    return NextResponse.json({ message: '지원하지 않는 로그인 방식이에요.' }, { status: 404 })
   }
 
   const storedState = decodeOAuthState(request.cookies.get(`${OAUTH_STATE_COOKIE}_${provider}`)?.value)

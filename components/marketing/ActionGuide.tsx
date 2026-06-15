@@ -37,7 +37,7 @@ export function ActionGuide() {
             이용 방법
           </p>
           <h2 className="mt-4 text-3xl font-bold sm:text-4xl">오늘의 홈케어를 기록으로 남기는 방법</h2>
-          <p className="mt-3 text-sm text-[var(--color-text-secondary)]">큰 준비보다 오늘 한 일을 놓치지 않는 흐름이 먼저입니다.</p>
+          <p className="mt-3 text-sm text-[var(--color-text-secondary)]">큰 준비보다 오늘 한 일을 놓치지 않는 흐름이 먼저예요.</p>
         </div>
         <ol className="mt-12 grid gap-6 lg:grid-cols-4">
           {steps.map((step, i) => (

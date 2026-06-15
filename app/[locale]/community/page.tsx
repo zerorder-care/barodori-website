@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   if (!isLocale(locale)) return {}
   return buildMetadata({
     title: '보호자 커뮤니티 - 바로도리',
-    description: '아이 홈케어 운동 기록과 경험을 나누는 보호자 커뮤니티를 둘러보세요. 의료 판단은 담당 전문의·치료사 상담을 기준으로 합니다.',
+    description: '아이 홈케어 운동 기록과 경험을 나누는 보호자 커뮤니티를 둘러보세요. 의료 판단은 담당 전문의·치료사 상담을 기준으로 해요.',
     path: `/${locale}/community`,
     locale,
   })
@@ -54,7 +54,7 @@ export default async function CommunityPage({
           </p>
           <h1 className="mt-6 text-4xl font-bold leading-tight sm:text-5xl">홈케어를 이어가는 보호자들의 기록</h1>
           <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-[var(--color-text-secondary)]">
-            비회원도 커뮤니티 분위기를 미리 확인할 수 있습니다. 글 작성과 댓글은 바로도리 앱에서 가능하며, 의료 판단이 필요한 내용은 담당 전문의·치료사와 상담해 주세요.
+            비회원도 커뮤니티 분위기를 미리 확인할 수 있어요. 글 작성과 댓글은 바로도리 앱에서 가능하며, 의료 판단이 필요한 내용은 담당 전문의·치료사와 상담해 주세요.
           </p>
         </Container>
       </section>

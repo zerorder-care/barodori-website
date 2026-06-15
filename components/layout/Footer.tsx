@@ -83,7 +83,7 @@ export async function Footer({ locale }: { locale: Locale }) {
       </Container>
       <Container>
         <p className="mt-10 border-t border-white/10 pt-5 text-xs leading-relaxed text-white/45">
-          바로도리는 치료·진단을 대신하지 않는 홈케어 기록 도구입니다.
+          바로도리는 치료·진단을 대신하지 않는 홈케어 기록 도구예요.
         </p>
       </Container>
     </footer>

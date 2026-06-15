@@ -9,7 +9,7 @@ export async function POST(request: Request) {
   } | null
 
   if (!body?.provider || !isAuthProviderId(body.provider) || !body.idToken) {
-    return NextResponse.json({ message: '잘못된 로그인 요청입니다.' }, { status: 400 })
+    return NextResponse.json({ message: '잘못된 로그인 요청이에요.' }, { status: 400 })
   }
 
   try {
@@ -27,7 +27,7 @@ export async function POST(request: Request) {
   } catch (error) {
     return NextResponse.json(
       {
-        message: error instanceof Error ? error.message : '로그인에 실패했습니다.',
+        message: error instanceof Error ? error.message : '로그인에 실패했어요.',
       },
       { status: 502 },
     )

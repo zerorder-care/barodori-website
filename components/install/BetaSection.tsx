@@ -14,7 +14,7 @@ export function BetaSection({ locale }: { locale: Locale }) {
       <Container className="text-center">
         <h2 className="text-2xl font-bold sm:text-3xl">오픈 소식을 먼저 받아보세요</h2>
         <p className="mx-auto mt-3 max-w-xl text-[var(--color-text-secondary)]">
-          스토어 오픈 전까지 베타/알림 신청으로 바로도리 소식을 먼저 받아보세요. 운영팀이 직접 확인하고 안내드립니다.
+          스토어 오픈 전까지 베타/알림 신청으로 바로도리 소식을 먼저 받아보세요. 운영팀이 직접 확인하고 안내드릴게요.
         </p>
         <a
           href={url}

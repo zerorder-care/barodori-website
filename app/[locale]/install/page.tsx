@@ -45,7 +45,7 @@ export default async function InstallPage({ params }: { params: Promise<{ locale
               id="coming-soon"
               className="mx-auto mt-10 max-w-md rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-muted)] p-5 text-sm text-[var(--color-text-secondary)]"
             >
-              QR 코드와 스토어 링크는 앱 오픈 상태에 맞춰 제공됩니다.
+              QR 코드와 스토어 링크는 앱 오픈 상태에 맞춰 제공돼요.
             </div>
           )}
         </Container>

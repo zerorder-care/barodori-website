@@ -19,15 +19,15 @@ const week = [
 const highlights = [
   {
     title: '병원에서 받은 운동을 오늘 목표로',
-    desc: '보호자가 안내받은 운동을 하루 목표로 정해두고 시작합니다.',
+    desc: '보호자가 안내받은 운동을 하루 목표로 정해두고 시작해요.',
   },
   {
     title: '한 번 할 때마다 기록으로',
-    desc: '횟수와 시간, 아이 반응을 남겨 집에서 한 운동을 놓치지 않습니다.',
+    desc: '횟수와 시간, 아이 반응을 남겨 집에서 한 운동을 놓치지 않아요.',
   },
   {
     title: '리포트로 꾸준함 확인',
-    desc: '주간 달성률과 연속 기록을 보며 다음 상담 전 흐름을 정리합니다.',
+    desc: '주간 달성률과 연속 기록을 보며 다음 상담 전 흐름을 정리해요.',
   },
 ] as const
 
@@ -36,9 +36,9 @@ export function GoalAchievement() {
     <section className="bg-white py-24">
       <Container>
         <div className="text-center">
-          <h2 className="mt-4 text-3xl font-bold sm:text-4xl">기록이 쌓이면 리포트가 됩니다</h2>
+          <h2 className="mt-4 text-3xl font-bold sm:text-4xl">기록이 쌓이면 리포트가 돼요</h2>
           <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-[var(--color-text-secondary)]">
-            운동 목표, 오늘 기록, 주간 흐름을 한 화면에서 확인합니다.
+            운동 목표, 오늘 기록, 주간 흐름을 한 화면에서 확인해요.
           </p>
         </div>
 

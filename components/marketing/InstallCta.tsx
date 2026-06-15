@@ -16,10 +16,10 @@ export function InstallCta({ locale, surface }: { locale: Locale; surface: strin
           목표 · 기록 · 리포트
         </p>
         <h2 className="mt-8 max-w-2xl text-3xl font-bold leading-tight sm:text-4xl">
-          오늘 홈케어 목표부터 기록하세요
+          오늘의 홈케어 기록을 놓치지 않도록
         </h2>
         <p className="mt-5 max-w-xl text-sm leading-relaxed text-white/70">
-          병원에서 안내받은 운동을 집에서 이어가고, 리포트로 꾸준함을 확인하세요.
+          병원에서 안내받은 운동을 집에서 이어가고, 시간·횟수·아이 반응을 달력과 리포트로 다시 확인하세요.
         </p>
         <div className="mt-8">
           <StoreButtons surface={surface} locale={locale} />

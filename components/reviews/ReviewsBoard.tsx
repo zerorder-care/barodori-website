@@ -65,7 +65,7 @@ export function ReviewsBoard() {
       </div>
       {reviews.length === 0 ? (
         <p className="mt-8 rounded-lg border border-[var(--color-border)] p-8 text-center text-[var(--color-text-secondary)]">
-          곧 다양한 보호자들의 후기를 만나보실 수 있습니다.
+          곧 다양한 보호자들의 후기를 만나보실 수 있어요.
         </p>
       ) : (
         <div className="mt-10 grid gap-6 lg:grid-cols-3">

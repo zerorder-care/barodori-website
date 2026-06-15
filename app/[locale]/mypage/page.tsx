@@ -32,7 +32,7 @@ export default async function MyPage({ params }: { params: Promise<{ locale: str
           </p>
           <h1 className="mt-5 text-4xl font-bold leading-tight">내 정보와 아이의 진행 상태를 한눈에</h1>
           <p className="mt-4 max-w-2xl leading-relaxed text-[var(--color-text-secondary)]">
-            앱과 동일한 계정으로 로그인하면 내 정보, 아이 정보, 커뮤니티 활동을 확인할 수 있어요. 목표 달성과 연속 운동은 앱에서 실시간으로 이어집니다.
+            앱과 동일한 계정으로 로그인하면 내 정보, 아이 정보, 커뮤니티 활동을 확인할 수 있어요. 목표 달성과 연속 운동은 앱에서 실시간으로 이어져요.
           </p>
         </Container>
       </section>
@@ -47,7 +47,7 @@ export default async function MyPage({ params }: { params: Promise<{ locale: str
               </p>
               <h2 className="mt-4 text-2xl font-bold sm:text-3xl">목표 달성과 연속 운동을 앱에서 확인해요</h2>
               <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[var(--color-text-secondary)]">
-                아래는 앱에서 보는 예시 화면이에요. 앱에 로그인하면 우리 아이의 실제 기록으로 채워집니다.
+                아래는 앱에서 보는 예시 화면이에요. 앱에 로그인하면 우리 아이의 실제 기록으로 채워져요.
               </p>
             </div>
             <Link
@@ -84,7 +84,7 @@ export default async function MyPage({ params }: { params: Promise<{ locale: str
             </div>
             <h2 className="mt-5 text-2xl font-bold">사용자님</h2>
             <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-secondary)]">
-              {authenticated ? '앱과 동일한 계정으로 로그인되어 있습니다.' : '로그인 후 내 정보를 확인할 수 있습니다.'}
+              {authenticated ? '앱과 동일한 계정으로 로그인되어 있어요.' : '로그인 후 내 정보를 확인할 수 있어요.'}
             </p>
             {!authenticated && (
               <Link
@@ -112,26 +112,26 @@ export default async function MyPage({ params }: { params: Promise<{ locale: str
             <MypageSection
               id="mypage-0"
               title="내 정보"
-              description="홈페이지와 앱에서 함께 사용하는 보호자 정보입니다."
+              description="홈페이지와 앱에서 함께 사용하는 보호자 정보예요."
               items={['프로필 이미지', '닉네임', '생년월일', '성별', '휴대폰', '주소']}
             />
             <MypageSection
               id="mypage-1"
               title="아이 정보"
-              description="다자녀 등록과 기본 건강 상태 정보는 앱과 동일하게 관리됩니다."
+              description="다자녀 등록과 기본 건강 상태 정보는 앱과 동일하게 관리돼요."
               items={['아이 프로필', '이름', '생년월일', '성별', '목 가눔 여부', '사경 유형', '머리 모양']}
             />
             <MypageSection
               id="mypage-2"
               title="내 활동"
-              description="커뮤니티에서 작성하거나 반응한 활동을 확인합니다."
+              description="커뮤니티에서 작성하거나 반응한 활동을 확인해요."
               items={['내가 작성한 글', '내가 작성한 댓글', '좋아요한 글']}
             />
             <section id="mypage-3" className="rounded-[8px] bg-[#303030] p-6 text-sm leading-relaxed text-white/75">
               <h2 className="text-xl font-bold text-white">앱에서 이어지는 기능</h2>
               <p className="mt-3">
                 목표 달성, 연속 운동, 운동 기록은 앱에서 실시간으로 확인할 수 있어요. 홈페이지 마이페이지는 계정과 커뮤니티
-                활동을 함께 관리합니다.
+                활동을 함께 관리해요.
               </p>
             </section>
           </div>
