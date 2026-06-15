@@ -3,6 +3,7 @@ import { isLocale } from '@/lib/i18n/dictionary'
 import { buildMetadata } from '@/lib/seo/metadata'
 import { Container } from '@/components/ui/Container'
 import { ProductDetail } from '@/components/marketing/ProductDetail'
+import { GoalAchievement } from '@/components/marketing/GoalAchievement'
 import { InstallCta } from '@/components/marketing/InstallCta'
 import { SafetyNotice } from '@/components/marketing/SafetyNotice'
 import type { Locale } from '@/lib/i18n/config'
@@ -68,6 +69,7 @@ export default async function ProductPage({ params }: { params: Promise<{ locale
         </Container>
       </section>
       <ProductDetail />
+      <GoalAchievement />
       <SafetyNotice locale={loc} />
       <section className="bg-[var(--color-bg-muted)] py-24">
         <Container>
@@ -75,16 +77,16 @@ export default async function ProductPage({ params }: { params: Promise<{ locale
             <p className="inline-flex rounded-pill bg-[var(--color-primary-light)] px-3 py-1 text-xs font-semibold text-[var(--color-primary-dark)]">
               서비스 방향
             </p>
-            <h2 className="mt-4 text-3xl font-bold sm:text-4xl">기록이 있으면 다음 상담도, 다음 운동도 덜 막막해집니다</h2>
+            <h2 className="mt-4 text-3xl font-bold sm:text-4xl">오늘의 목표가 아이의 변화로 이어집니다</h2>
             <p className="mt-3 text-sm text-[var(--color-text-secondary)]">
-              바로도리는 판단을 대신하기보다 보호자가 아이의 홈케어 흐름을 차분히 정리하도록 돕는 기록 도구입니다.
+              바로도리는 오늘 할 운동을 목표로 정하고, 매일의 기록이 아이의 성장으로 이어지도록 곁에서 돕습니다.
             </p>
           </div>
           <div className="mt-10 grid gap-6 sm:grid-cols-3">
             {[
-              ['운동은 상담 후 진행', '운동 방법과 강도는 담당 전문의·치료사 상담을 기준으로 합니다.'],
-              ['기록은 참고 자료로 활용', '사진, 영상, 메모는 보호자가 상황을 정리하기 위한 참고 자료입니다.'],
-              ['꾸준함을 달력으로 확인', '운동한 날과 쉬어간 날을 한눈에 보며 홈케어 루틴을 돌아봅니다.'],
+              ['목표로 시작', '오늘 할 운동을 목표로 정해 매일의 시작을 가볍게 만들어요.'],
+              ['달성으로 이어가기', '연속 운동과 주간 달성을 확인하며 꾸준함을 이어가요.'],
+              ['기록으로 돌아보기', '운동한 날과 물리치료 방문, 아이 반응을 달력과 기록으로 다시 확인해요.'],
             ].map(([title, body], index) => (
               <article key={title} className="rounded-[8px] border border-[var(--color-border)] bg-white p-8">
                 <p className="text-2xl font-bold text-[#a5a5a5]">{String(index + 1).padStart(2, '0')}</p>

@@ -7,7 +7,7 @@
   },
   "nav": {
     "home": "홈",
-    "product": "기록 기능",
+    "product": "기능 소개",
     "reviews": "후기",
     "community": "커뮤니티",
     "articles": "홈케어 노트",
@@ -19,7 +19,7 @@
     "install": "앱 시작하기"
   },
   "footer": {
-    "tagline": "아기와 아이의 홈케어 운동을 매일 기록하고, 달력과 리포트로 확인하세요.",
+    "tagline": "매일의 홈케어 운동을 목표로 정하고, 달성과 꾸준함을 한눈에 확인하세요.",
     "support": "고객센터",
     "businessInfo": "사업자정보확인",
     "privacy": "개인정보처리방침",

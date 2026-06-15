@@ -7,7 +7,7 @@
   },
   "nav": {
     "home": "Home",
-    "product": "Recording features",
+    "product": "Features",
     "reviews": "Reviews",
     "community": "Community",
     "articles": "Home-care notes",
@@ -19,7 +19,7 @@
     "install": "Start the app"
   },
   "footer": {
-    "tagline": "Record your child's home-care exercises each day and review them in a calendar and reports.",
+    "tagline": "Set daily home-care exercise goals and keep your streak going.",
     "support": "Support",
     "businessInfo": "Business info",
     "privacy": "Privacy",

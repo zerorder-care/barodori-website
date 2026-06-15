@@ -1,9 +1,9 @@
 import { Container } from '@/components/ui/Container'
 
 const stats = [
-  { value: '기록', label: '아이 상태 변화 참고' },
-  { value: '루틴', label: '가정 운동 이어가기' },
-  { value: '리포트', label: '보호자 기록 정리' },
+  { value: '목표', label: '오늘 할 운동을 목표로 설정' },
+  { value: '달성', label: '연속 운동으로 꾸준함 확인' },
+  { value: '기록', label: '운동·물리치료를 한곳에' },
 ] as const
 
 export function StatStrip() {

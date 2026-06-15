@@ -23,7 +23,7 @@ export function Hero({ locale }: { locale: Locale }) {
             기록이 쌓이도록
           </h1>
           <p className="mt-6 max-w-xl text-base leading-relaxed text-[var(--color-text-secondary)]">
-            집에서 한 운동, 물리치료 다녀온 날, 아이의 반응까지 한곳에 남겨요. 바로도리는 막막한 홈케어가 매일의 작은 루틴이 되도록 곁에서 도와드립니다.
+            오늘의 목표 운동을 정하고, 집에서 한 운동과 아이의 반응을 기록하면 목표 달성과 꾸준함이 한눈에 보여요. 바로도리는 막막한 홈케어가 매일의 작은 루틴이 되도록 곁에서 도와드립니다.
           </p>
           <p className="mt-5 text-sm font-semibold text-[var(--color-primary-dark)]">일단 켜고, 오늘의 홈케어부터</p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -37,7 +37,7 @@ export function Hero({ locale }: { locale: Locale }) {
               href={`/${locale}/product`}
               className="inline-flex min-h-12 items-center justify-center rounded-[8px] border border-[var(--color-text-primary)] bg-white px-6 text-sm font-bold text-[var(--color-text-primary)]"
             >
-              기록 기능 둘러보기
+              진행 상태 둘러보기
             </Link>
           </div>
           <div className="mt-6">

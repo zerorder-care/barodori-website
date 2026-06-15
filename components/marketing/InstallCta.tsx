@@ -14,12 +14,12 @@ export function InstallCta({ locale, surface }: { locale: Locale; surface: strin
       <Container className="flex flex-col items-center text-center">
         <p className="rounded-pill bg-white/10 px-3 py-1 text-xs font-semibold text-white/80">일단 켜고, 오늘의 홈케어부터</p>
         <h2 className="mt-8 max-w-2xl text-3xl font-bold leading-tight sm:text-4xl">
-          집에서 한 운동과 아이 반응을
+          오늘의 목표 운동부터
           <br />
-          바로 남겨보세요
+          가볍게 시작해보세요
         </h2>
         <p className="mt-5 max-w-xl text-sm leading-relaxed text-white/70">
-          기록이 쌓이면 달력과 리포트로 다시 확인할 수 있습니다.
+          매일의 기록이 쌓이면 목표 달성과 연속 운동이 한눈에 보여요.
         </p>
         <div className="mt-8">
           <StoreButtons surface={surface} locale={locale} />

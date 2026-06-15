@@ -50,8 +50,8 @@ export function HomePreviewSections({
         <Container>
           <SectionHeader
             eyebrow="서비스 방향 · 차별점"
-            title="기록이 있으면 다음 상담도, 다음 운동도 덜 막막해집니다"
-            description="바로도리는 판단을 대신하기보다 보호자가 아이의 홈케어 흐름을 차분히 정리하도록 돕는 기록 도구입니다."
+            title="기록이 쌓이면, 아이의 변화가 보입니다"
+            description="바로도리는 오늘의 작은 목표가 매일 이어지고, 그 변화를 함께 확인하도록 곁에서 돕습니다."
           />
           <div className="mt-10 rounded-[12px] border border-[var(--color-border)] bg-[#f7f7f7] p-10">
             <div className="grid gap-8 lg:grid-cols-[160px_1fr] lg:items-center">
@@ -81,9 +81,9 @@ export function HomePreviewSections({
           </div>
           <div className="mt-10 grid gap-6 lg:grid-cols-3">
             {[
-              ['오늘의 루틴에서 출발', '상담 후 정한 운동을 오늘 얼마나 했는지 남기는 흐름을 우선합니다.'],
-              ['상담 전 정리 기준 마련', '사진, 영상, 메모를 참고 자료로 모아 보호자가 상황을 설명하기 쉽게 돕습니다.'],
-              ['달력과 리포트로 다시 보기', '운동한 날과 쉬어간 날을 한눈에 확인하며 홈케어 리듬을 살펴볼 수 있어요.'],
+              ['오늘의 목표에서 출발', '상담 후 정한 운동을 오늘의 목표로 정해두면 무엇부터 할지 헷갈리지 않아요.'],
+              ['달성과 연속으로 꾸준함 확인', '목표가 차오르고 연속 운동이 이어지면, 오늘도 한 번 더 힘이 나요.'],
+              ['꾸준함을 한눈에', '운동한 날과 쉬어간 날, 연속 운동을 달력으로 돌아보며 홈케어 리듬을 살펴봐요.'],
             ].map(([title, body], index) => (
               <article key={title} className="rounded-[8px] border border-[var(--color-border)] bg-white p-7">
                 <p className="text-2xl font-bold text-[#a5a5a5]">{String(index + 1).padStart(2, '0')}</p>
