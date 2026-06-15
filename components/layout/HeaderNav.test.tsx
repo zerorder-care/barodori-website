@@ -48,4 +48,15 @@ describe('HeaderNav', () => {
     expect(await screen.findByRole('link', { name: '커뮤니티' })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: '홈케어 노트' })).toBeInTheDocument()
   })
+
+  it('logged in: shows 마이페이지 and 로그아웃, not 시작하기', async () => {
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(() => Promise.resolve({ json: () => Promise.resolve({ authenticated: true }) })),
+    )
+    render(<HeaderNav locale="ko" appName="바로도리" labels={labels} />)
+    expect(await screen.findByRole('link', { name: '마이페이지' })).toHaveAttribute('href', '/ko/mypage')
+    expect(screen.getByRole('button', { name: '로그아웃' })).toBeInTheDocument()
+    expect(screen.queryByRole('link', { name: '시작하기' })).toBeNull()
+  })
 })

@@ -108,10 +108,10 @@ export function HeaderNav({
               <Link
                 key={item.key}
                 href={item.href}
-                className={`relative whitespace-nowrap py-1.5 font-medium ${
+                className={`relative whitespace-nowrap py-1.5 ${
                   active
                     ? 'font-semibold text-[var(--color-text-primary)]'
-                    : 'text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]'
+                    : 'font-medium text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]'
                 }`}
               >
                 {item.label}
