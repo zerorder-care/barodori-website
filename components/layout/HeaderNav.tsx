@@ -3,10 +3,8 @@
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { QrInstallModal } from '@/components/install/QrInstallModal'
+import { BarodoriMark } from '@/components/layout/BarodoriMark'
 import { LocaleSwitcher } from '@/components/layout/LocaleSwitcher'
-import { isAppLive } from '@/lib/install/storeLinks'
-import { getExternalLinks, launchCopy } from '@/lib/site/config'
 import type { Locale } from '@/lib/i18n/config'
 
 type NavLabels = {
@@ -21,6 +19,7 @@ type NavLabels = {
   logout: string
   mypage: string
   install: string
+  start: string
 }
 
 const navKeys = [
@@ -45,12 +44,11 @@ export function HeaderNav({
   const router = useRouter()
   const [open, setOpen] = useState(false)
   const [authenticated, setAuthenticated] = useState(false)
-  const live = isAppLive()
-  const links = getExternalLinks()
+  const [scrolled, setScrolled] = useState(false)
 
   const navItems = navKeys.map((key) => ({
     key,
-    href: `/${locale}/${key === 'product' ? 'product' : key}`,
+    href: `/${locale}/${key}`,
     label: labels[key],
   }))
 
@@ -70,6 +68,13 @@ export function HeaderNav({
     }
   }, [pathname])
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
   async function handleLogout() {
     await fetch('/api/auth/session', { method: 'DELETE' }).catch(() => null)
     setAuthenticated(false)
@@ -81,42 +86,56 @@ export function HeaderNav({
   }
 
   return (
-    <header className="sticky top-0 z-40 border-b border-[#e7e7e7] bg-white/95 backdrop-blur">
-      <div className="mx-auto flex h-[70px] w-full max-w-[1056px] items-center justify-between px-5 sm:px-6">
-        <Link
-          href={`/${locale}`}
-          className="inline-flex h-8 items-center rounded-sm border border-[#F2C94C] bg-[var(--color-primary-light)] px-4 text-sm font-bold tracking-normal text-[var(--color-text-primary)]"
-        >
-          {appName}
+    <header className="sticky top-0 z-40 px-4 pt-3 sm:px-6">
+      <div
+        className={`mx-auto flex h-[62px] w-full max-w-[1056px] items-center justify-between rounded-2xl border border-[var(--color-border)] bg-white/90 px-4 backdrop-blur transition-shadow sm:px-5 ${
+          scrolled
+            ? 'shadow-[0_10px_30px_rgba(17,24,39,0.10)]'
+            : 'shadow-[0_4px_16px_rgba(17,24,39,0.05)]'
+        }`}
+      >
+        <Link href={`/${locale}`} aria-label={appName} className="inline-flex items-center gap-2">
+          <BarodoriMark className="h-7 w-7" />
+          <span className="text-[17px] font-bold tracking-tight text-[var(--color-text-primary)]">
+            {appName}
+          </span>
         </Link>
+
         <nav className="hidden items-center gap-7 text-sm lg:flex">
-          {navItems.map((item) => (
-            <Link
-              key={item.key}
-              href={item.href}
-              className={`whitespace-nowrap font-medium ${
-                isActive(pathname, item.href)
-                  ? 'text-[var(--color-text-primary)]'
-                  : 'text-[#8a8a8a] hover:text-[var(--color-text-primary)]'
-              }`}
-            >
-              {item.label}
-            </Link>
-          ))}
+          {navItems.map((item) => {
+            const active = isActive(pathname, item.href)
+            return (
+              <Link
+                key={item.key}
+                href={item.href}
+                className={`relative whitespace-nowrap py-1.5 font-medium ${
+                  active
+                    ? 'font-semibold text-[var(--color-text-primary)]'
+                    : 'text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]'
+                }`}
+              >
+                {item.label}
+                {active && (
+                  <span className="absolute inset-x-0 -bottom-0.5 h-0.5 rounded-full bg-[var(--color-primary)]" />
+                )}
+              </Link>
+            )
+          })}
         </nav>
-        <div className="hidden items-center gap-3 lg:flex">
+
+        <div className="hidden items-center gap-4 lg:flex">
           <LocaleSwitcher current={locale} />
-          <AuthLinks
+          <AuthArea
             authenticated={authenticated}
             locale={locale}
             labels={labels}
             onLogout={handleLogout}
           />
-          <HeaderCta live={live} locale={locale} betaForm={links.betaForm} installLabel={labels.install} />
         </div>
+
         <button
           type="button"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-border)] text-xl lg:hidden"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-border)] bg-white text-xl lg:hidden"
           aria-label={open ? '메뉴 닫기' : '메뉴 열기'}
           aria-expanded={open}
           onClick={() => setOpen((value) => !value)}
@@ -124,100 +143,85 @@ export function HeaderNav({
           {open ? '×' : '≡'}
         </button>
       </div>
+
       {open && (
-        <div className="border-t border-[var(--color-border)] bg-white lg:hidden">
-          <nav className="mx-auto flex w-full max-w-[1056px] flex-col px-5 py-4">
-            {navItems.map((item) => (
-              <Link
-                key={item.key}
-                href={item.href}
-                onClick={() => setOpen(false)}
-                className={`rounded-sm px-2 py-3 text-base font-semibold ${
-                  isActive(pathname, item.href)
-                    ? 'bg-[var(--color-primary-light)] text-[var(--color-text-primary)]'
-                    : 'text-[var(--color-text-primary)]'
-                }`}
-              >
-                {item.label}
-              </Link>
-            ))}
-            <div className="mt-4 flex items-center justify-between border-t border-[var(--color-border)] pt-4">
-              <LocaleSwitcher current={locale} />
-              <AuthLinks
-                authenticated={authenticated}
-                locale={locale}
-                labels={labels}
-                onLogout={handleLogout}
-                onNavigate={() => setOpen(false)}
-              />
-            </div>
-            <div className="mt-4">
-              <HeaderCta live={live} locale={locale} betaForm={links.betaForm} installLabel={labels.install} />
-            </div>
+        <div className="mx-auto mt-2 w-full max-w-[1056px] rounded-2xl border border-[var(--color-border)] bg-white p-2 shadow-[0_12px_30px_rgba(17,24,39,0.10)] lg:hidden">
+          <nav className="flex flex-col">
+            {navItems.map((item) => {
+              const active = isActive(pathname, item.href)
+              return (
+                <Link
+                  key={item.key}
+                  href={item.href}
+                  onClick={() => setOpen(false)}
+                  className={`rounded-[10px] px-3.5 py-3 text-base font-semibold ${
+                    active
+                      ? 'bg-[var(--color-primary-light)] text-[var(--color-text-primary)]'
+                      : 'text-[var(--color-text-primary)]'
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              )
+            })}
           </nav>
+
+          <div className="my-2 h-px bg-[var(--color-border)]" />
+
+          <div className="flex items-center justify-between px-2 py-1">
+            <LocaleSwitcher current={locale} />
+            {authenticated && (
+              <button
+                type="button"
+                onClick={handleLogout}
+                className="text-sm font-semibold text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]"
+              >
+                {labels.logout}
+              </button>
+            )}
+          </div>
+
+          {authenticated ? (
+            <Link
+              href={`/${locale}/mypage`}
+              onClick={() => setOpen(false)}
+              className="mt-1 block rounded-xl border border-[var(--color-border)] px-4 py-3 text-center text-base font-semibold text-[var(--color-text-primary)]"
+            >
+              {labels.mypage}
+            </Link>
+          ) : (
+            <Link
+              href={`/${locale}/login`}
+              onClick={() => setOpen(false)}
+              className="mt-1 block rounded-xl bg-[var(--color-primary)] px-4 py-3 text-center text-base font-bold text-[var(--color-text-primary)]"
+            >
+              {labels.start}
+            </Link>
+          )}
         </div>
       )}
     </header>
   )
 }
 
-function HeaderCta({
-  live,
-  locale,
-  betaForm,
-  installLabel,
-}: {
-  live: boolean
-  locale: Locale
-  betaForm: string | null
-  installLabel: string
-}) {
-  if (live) {
-    return (
-      <QrInstallModal surface="header" locale={locale}>
-        {installLabel}
-      </QrInstallModal>
-    )
-  }
-
-  return (
-    <div className="flex shrink-0 flex-col gap-2 sm:flex-row sm:items-center">
-      <a
-        href={betaForm ?? `/${locale}/install`}
-        target={betaForm ? '_blank' : undefined}
-        rel={betaForm ? 'noopener noreferrer' : undefined}
-        className="inline-flex min-h-9 shrink-0 items-center justify-center rounded-[8px] bg-[var(--color-primary)] px-5 py-2 text-sm font-semibold text-[var(--color-text-primary)]"
-      >
-        {launchCopy.pendingCta}
-      </a>
-      <span className="inline-flex min-h-9 shrink-0 items-center justify-center rounded-[8px] bg-[#e9e9e9] px-5 py-2 text-center text-xs font-semibold leading-tight text-[var(--color-text-secondary)]">
-        {launchCopy.appStatusLabel}
-      </span>
-    </div>
-  )
-}
-
-function AuthLinks({
+function AuthArea({
   authenticated,
   locale,
   labels,
   onLogout,
-  onNavigate,
 }: {
   authenticated: boolean
   locale: Locale
-  labels: Pick<NavLabels, 'login' | 'logout' | 'mypage'>
+  labels: Pick<NavLabels, 'logout' | 'mypage' | 'start'>
   onLogout: () => void
-  onNavigate?: () => void
 }) {
   if (!authenticated) {
     return (
       <Link
         href={`/${locale}/login`}
-        onClick={onNavigate}
-        className="rounded-pill px-3 py-2 text-sm font-semibold text-[var(--color-text-primary)] hover:bg-[var(--color-bg-muted)]"
+        className="inline-flex h-[38px] items-center rounded-xl bg-[var(--color-primary)] px-4 text-sm font-semibold text-[var(--color-text-primary)]"
       >
-        {labels.login}
+        {labels.start}
       </Link>
     )
   }
@@ -226,7 +230,6 @@ function AuthLinks({
     <div className="flex items-center gap-2">
       <Link
         href={`/${locale}/mypage`}
-        onClick={onNavigate}
         className="rounded-pill px-3 py-2 text-sm font-semibold text-[var(--color-text-primary)] hover:bg-[var(--color-bg-muted)]"
       >
         {labels.mypage}
