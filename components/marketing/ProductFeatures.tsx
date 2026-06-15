@@ -7,37 +7,37 @@ const features = [
   {
     title: '오늘의 목표 운동',
     desc: '상담 후 정한 운동을 오늘의 목표로 확인하고, 무엇부터 할지 바로 알 수 있어요.',
-    icon: '/images/features/exercise.png',
+    icon: '/images/icons/exercise.png',
     iconAlt: '오늘의 목표 운동 아이콘',
   },
   {
     title: '시간·횟수 바로 기록',
     desc: '스톱워치와 횟수 기록으로 오늘 한 운동을 바로 남겨요.',
-    icon: '/images/steps/home-exercise.png',
+    icon: '/images/icons/record.png',
     iconAlt: '시간과 횟수 기록 아이콘',
   },
   {
     title: '목표 달성·연속 운동',
     desc: '운동별 목표가 차오르고, 연속 운동과 주간 달성으로 꾸준함이 한눈에 보여요.',
-    icon: '/images/steps/analyze.png',
+    icon: '/images/icons/calendar.png',
     iconAlt: '목표 달성과 연속 운동 아이콘',
   },
   {
     title: '보호자 컨디션 체크',
     desc: '보호자의 스트레스 상태를 참고용 컨디션 체크로 가볍게 돌아봐요.',
-    icon: '/images/features/support.png',
+    icon: '/images/icons/caregiver.png',
     iconAlt: '보호자 컨디션 체크 아이콘',
   },
   {
     title: '물리치료 방문 기록',
     desc: '병원에 다녀온 날, 받은 안내, 다음 예약을 함께 정리해요.',
-    icon: '/images/steps/install-profile.png',
+    icon: '/images/icons/schedule.png',
     iconAlt: '물리치료 방문 기록 아이콘',
   },
   {
     title: '사진·영상 리포트',
     desc: '아이 반응과 참고 자료를 모아 상담 전 흐름을 정리해요.',
-    icon: '/images/features/report.png',
+    icon: '/images/icons/report.png',
     iconAlt: '사진과 영상 리포트 아이콘',
   },
 ] as const

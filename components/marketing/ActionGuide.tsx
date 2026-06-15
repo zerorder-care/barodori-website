@@ -5,25 +5,25 @@ const steps = [
   {
     title: '오늘 홈케어 확인',
     desc: '담당 전문의·치료사와 상담 후 정한 오늘의 운동을 확인해요.',
-    image: '/images/steps/install-profile.png',
+    image: '/images/icons/schedule.png',
     imageAlt: '오늘 홈케어 확인 일러스트',
   },
   {
     title: '시간·횟수 바로 기록',
     desc: '스톱워치와 횟수 기록으로 오늘 한 운동을 남겨요.',
-    image: '/images/steps/home-exercise.png',
+    image: '/images/icons/record.png',
     imageAlt: '시간과 횟수 기록 일러스트',
   },
   {
     title: '아이 반응과 사진·영상 메모',
     desc: '운동 중 반응과 참고 자료를 짧게 정리해요.',
-    image: '/images/steps/measure.png',
+    image: '/images/icons/media-note.png',
     imageAlt: '아이 반응과 사진 영상 메모 일러스트',
   },
   {
     title: '달력·리포트로 다시 보기',
     desc: '운동한 날과 쉬어간 날, 상담 전 흐름을 차분히 확인해요.',
-    image: '/images/steps/analyze.png',
+    image: '/images/icons/calendar.png',
     imageAlt: '달력과 리포트 확인 일러스트',
   },
 ] as const
