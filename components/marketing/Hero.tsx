@@ -13,10 +13,10 @@ export function Hero({ locale }: { locale: Locale }) {
       <Container className="flex flex-col items-center text-center">
         <div className="w-full">
           <h1 className="mt-5 whitespace-nowrap text-3xl font-bold leading-[1.18] sm:text-4xl md:text-5xl lg:text-6xl xl:text-[4.25rem]">
-            우리 아이 오늘도 잘했어요
+            일단 바로도리, 켜는 순간 홈케어 시작
           </h1>
           <p className="mt-5 text-sm font-semibold text-[var(--color-primary-dark)] sm:text-lg">
-            아이와 꾸준히 집에서 재활운동을 함께할 수 있도록 도와드릴게요.
+            막막한 홈케어를 바로도리와 함께해요
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link

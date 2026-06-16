@@ -1,11 +1,13 @@
+import type { ReactNode } from 'react'
+
 import { Container } from '@/components/ui/Container'
 import { PhoneFrame } from '@/components/marketing/PhoneFrame'
 import { Reveal } from '@/components/marketing/Reveal'
 
 type StorySection = {
   id: string
-  title: string
-  body: string
+  title: ReactNode
+  body: ReactNode
   chips: readonly string[]
   screen: { src: string; alt: string; tall?: boolean }
   bg: string
@@ -14,8 +16,8 @@ type StorySection = {
 const sections: readonly StorySection[] = [
   {
     id: 'home',
-    title: '앱을 열면, 오늘 뭘 할지 바로 보여요',
-    body: '오늘 운동 기록과 이번 주 목표, 다른 보호자들의 이야기까지 한 화면에 담았어요. 복잡하게 헤매지 않아도 돼요.',
+    title: 'AI가 적정 운동량을 추천해줘요',
+    body: '한눈에 달성율을 확인하고, 적정 운동량을 진행할 수 있어요. 막막해하지 않아도 돼요.',
     chips: ['오늘의 운동기록', '이번 주 목표', '스트레스 체크'],
     screen: {
       src: '/images/app-screens/home.png',
@@ -25,8 +27,8 @@ const sections: readonly StorySection[] = [
   },
   {
     id: 'exercise',
-    title: '동요 틀고, 도리랑 같이 운동해요',
-    body: '시작 버튼을 누르면 시간이 흐르고 동요가 흘러나와요. 몇 번 했는지는 끝나고 바로 적으면 되니까, 운동하는 동안엔 아이만 봐요.',
+    title: '도리랑 같이 운동해요',
+    body: '운동하는 동안엔 아이만 봐요. 우리 아이에만 집중할 수 있어요.',
     chips: ['스톱워치', '동요 재생', '끝나고 횟수 기록'],
     screen: {
       src: '/images/app-screens/exercise-timer.png',
@@ -36,8 +38,20 @@ const sections: readonly StorySection[] = [
   },
   {
     id: 'record',
-    title: '방금 한 운동이, 좌우 횟수까지 그대로 남아요',
-    body: '도리도리 좌 12번·우 10번, 터미타임 4분 30초. 숫자만이 아니라 ‘오른쪽은 잘 따라왔어요’ 같은 메모와 사진도 같이 담겨요. 다음 진료 때 그대로 보여드리면 돼요.',
+    title: (
+      <>
+        상세 리포트로
+        <br />
+        운동을 더 알차게
+      </>
+    ),
+    body: (
+      <>
+        세심한 케어를 위한 가장 확실한 기록,
+        <br />
+        아이의 행복한 웃음으로 이어져요.
+      </>
+    ),
     chips: ['좌·우 횟수', '오늘의 메모', '사진·영상'],
     screen: {
       src: '/images/app-screens/session-report.png',
@@ -48,8 +62,21 @@ const sections: readonly StorySection[] = [
   },
   {
     id: 'flow',
-    title: '쌓인 기록이, 이번 주 흐름을 보여줘요',
-    body: '운동한 날, 물리치료 다녀온 날이 달력에 색으로 남아요. 이번 주 목표는 얼마나 채웠는지, 무슨 운동을 많이 했는지 한눈에 정리돼요.',
+    title: (
+      <>
+      쌓인 기록은
+        <br />
+        빠른 졸업으로 이어저요
+      </>
+    ),
+    body: (
+      <>
+        운동한 날, 물리치료 다녀온 날이 달력에 색으로 남아요.
+        <br />
+        이번 주 목표는 얼마나 채웠는지, 무슨 운동을 많이 했는지 한눈에
+        정리해드려요.
+      </>
+    ),
     chips: ['예약·운동 달력', '주간 목표 달성률', '운동별 비중'],
     screen: {
       src: '/images/app-screens/calendar-report.png',
@@ -61,7 +88,7 @@ const sections: readonly StorySection[] = [
   {
     id: 'community',
     title: '혼자가 아니라는 걸, 여기서 느껴요',
-    body: '터미타임을 어떻게 나눴는지, 고개 돌리기를 며칠 만에 따라왔는지. 먼저 지나온 보호자들의 진짜 이야기가 매일 올라와요.',
+    body: '같은 길을 가는 사람들의 진짜 이야기가 매일 올라와요.',
     chips: ['도리 이야기', '도리 운동일지', '댓글로 응원'],
     screen: {
       src: '/images/app-screens/community.png',
@@ -72,8 +99,14 @@ const sections: readonly StorySection[] = [
   },
   {
     id: 'parent',
-    title: '아이를 돌본 만큼, 보호자님도 살펴요',
-    body: '1분만 카메라를 보면 오늘 마음이 좋아요·괜찮아요·조금 지쳐있어요·힘들어요 중 어디쯤인지 알려드려요. 잘 돌보려면, 보호자님부터 괜찮아야 하니까요.',
+    title: '스트레스 측정을 통해 보호자님도 살펴볼게요',
+    body: (
+      <>
+        긴 싸움에서는 엄마가 지치지 않는 게 제일 중요해요.
+        <br />
+        스트레스 관리를 통해 바로도리는 늘 보호자님을 응원해요.
+      </>
+    ),
     chips: ['1분 셀프 체크', '4단계 안내', '기록으로 흐름 보기'],
     screen: {
       src: '/images/app-screens/parent-check.png',
