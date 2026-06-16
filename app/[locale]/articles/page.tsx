@@ -58,10 +58,7 @@ export default async function ArticlesIndexPage({
     <>
       <section className="bg-[var(--color-bg-muted)] py-20">
         <Container className="text-center">
-          <p className="inline-flex rounded-pill bg-[var(--color-primary-light)] px-3 py-1 text-xs font-semibold text-[var(--color-primary-dark)]">
-            바로도리 컨텐츠
-          </p>
-          <h1 className="mt-6 text-3xl font-bold leading-snug tracking-tight sm:text-[40px]">아기 사경이나 터미타임이 걱정될 때 참고하는 바로도리 컨텐츠</h1>
+          <h1 className="text-3xl font-bold leading-snug tracking-tight sm:text-[40px]">우리 아이 홈케어 운동 기록을 위한 바로도리 컨텐츠</h1>
           <p className="mx-auto mt-5 max-w-xl text-[15px] leading-loose text-[var(--color-text-secondary)] sm:text-base">
             진단이나 치료를 대신하진 않아요. 목 관찰이나 두상, 터미타임 같은 홈케어 기록을 상담 전에 정리해두도록 도와드려요.
           </p>
