@@ -212,7 +212,7 @@ function mergeArticles(primary: Article[], fallback: Article[]): Article[] {
 }
 
 function mapPostToArticle(post: PublicPostListItem, locale: Locale, body?: string): Article {
-  const excerpt = post.contentPreview?.trim() || `${post.title} 내용을 바로도리 콘텐츠에서 확인해보세요.`
+  const excerpt = post.contentPreview?.trim() || `${post.title} 내용을 바로도리 컨텐츠에서 확인해보세요.`
   const markdown = body ?? excerpt
   const category = mapArticleCategory(post.subCategory, `${post.title} ${excerpt}`)
   const updatedAt = 'updatedAt' in post && typeof post.updatedAt === 'string' ? post.updatedAt : post.createdAt

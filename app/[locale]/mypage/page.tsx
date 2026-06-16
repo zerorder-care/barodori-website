@@ -32,7 +32,7 @@ export default async function MyPage({ params }: { params: Promise<{ locale: str
           </p>
           <h1 className="mt-5 text-4xl font-bold leading-tight">내 정보와 아이의 진행 상태를 한눈에</h1>
           <p className="mt-4 max-w-2xl leading-relaxed text-[var(--color-text-secondary)]">
-            앱과 동일한 계정으로 로그인하면 내 정보, 아이 정보, 커뮤니티 활동을 확인할 수 있어요. 목표 달성과 연속 운동은 앱에서 실시간으로 이어져요.
+            앱과 동일한 계정으로 로그인하면 내 정보와 아이 정보를 확인할 수 있어요. 목표 달성과 연속 운동은 앱에서 실시간으로 이어져요.
           </p>
         </Container>
       </section>
@@ -64,7 +64,7 @@ export default async function MyPage({ params }: { params: Promise<{ locale: str
                 ['오늘의 목표 달성', '운동별 목표를 채우고, 모두 달성한 날에는 작은 축하를 만나요.'],
                 ['연속 운동', '며칠째 이어오고 있는지 한눈에 확인하며 꾸준함을 이어가요.'],
                 ['운동·물리치료 기록', '집에서 한 운동과 병원 방문, 아이 반응을 한곳에 남겨요.'],
-                ['커뮤니티 활동', '같은 고민을 나누는 보호자들과 경험과 응원을 주고받아요.'],
+                ['아이 정보 관리', '아이의 기본 정보와 기록 흐름을 앱과 함께 확인해요.'],
               ].map(([title, body]) => (
                 <li key={title} className="rounded-[8px] border border-[var(--color-border)] bg-white p-5">
                   <h3 className="text-base font-bold">{title}</h3>
@@ -124,14 +124,14 @@ export default async function MyPage({ params }: { params: Promise<{ locale: str
             <MypageSection
               id="mypage-2"
               title="내 활동"
-              description="커뮤니티에서 작성하거나 반응한 활동을 확인해요."
-              items={['내가 작성한 글', '내가 작성한 댓글', '좋아요한 글']}
+              description="바로도리 앱에서 이어지는 기록 활동을 확인해요."
+              items={['운동 기록', '목표 달성', '연속 운동']}
             />
             <section id="mypage-3" className="rounded-[8px] bg-[#303030] p-6 text-sm leading-relaxed text-white/75">
               <h2 className="text-xl font-bold text-white">앱에서 이어지는 기능</h2>
               <p className="mt-3">
-                목표 달성, 연속 운동, 운동 기록은 앱에서 실시간으로 확인할 수 있어요. 홈페이지 마이페이지는 계정과 커뮤니티
-                활동을 함께 관리해요.
+                목표 달성, 연속 운동, 운동 기록은 앱에서 실시간으로 확인할 수 있어요. 홈페이지 마이페이지는 계정과
+                아이 정보를 함께 관리해요.
               </p>
             </section>
           </div>

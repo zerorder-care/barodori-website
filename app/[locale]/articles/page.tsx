@@ -17,8 +17,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params
   if (!isLocale(locale)) return {}
   return buildMetadata({
-    title: '홈케어 노트 - 아기 사경과 터미타임 기록 참고',
-    description: '아기 사경이나 두상 비대칭이 걱정되고 터미타임을 막 시작했다면, 상담 전에 무엇을 기록해두면 좋을지 참고해보세요.',
+    title: '바로도리 컨텐츠 - 아기 사경과 터미타임 기록 참고',
+    description: '아기 사경이나 두상 비대칭이 걱정되고 터미타임을 막 시작했다면, 상담 전에 무엇을 기록해두면 좋을지 바로도리 컨텐츠에서 참고해보세요.',
     path: `/${locale}/articles`,
     locale,
   })
@@ -59,9 +59,9 @@ export default async function ArticlesIndexPage({
       <section className="bg-[var(--color-bg-muted)] py-20">
         <Container className="text-center">
           <p className="inline-flex rounded-pill bg-[var(--color-primary-light)] px-3 py-1 text-xs font-semibold text-[var(--color-primary-dark)]">
-            홈케어 노트
+            바로도리 컨텐츠
           </p>
-          <h1 className="mt-6 text-3xl font-bold leading-snug tracking-tight sm:text-[40px]">아기 사경이나 터미타임이 걱정될 때 펼쳐보는 기록 노트</h1>
+          <h1 className="mt-6 text-3xl font-bold leading-snug tracking-tight sm:text-[40px]">아기 사경이나 터미타임이 걱정될 때 참고하는 바로도리 컨텐츠</h1>
           <p className="mx-auto mt-5 max-w-xl text-[15px] leading-loose text-[var(--color-text-secondary)] sm:text-base">
             진단이나 치료를 대신하진 않아요. 목 관찰이나 두상, 터미타임 같은 홈케어 기록을 상담 전에 정리해두도록 도와드려요.
           </p>
@@ -80,7 +80,7 @@ export default async function ArticlesIndexPage({
             <input
               name="q"
               defaultValue={query}
-              placeholder="노트 검색"
+              placeholder="컨텐츠 검색"
               className="w-full bg-transparent text-sm outline-none"
             />
           </form>
@@ -104,15 +104,15 @@ export default async function ArticlesIndexPage({
         )}
 
         <section className="mt-16">
-          <h2 className="text-2xl font-bold">전체 노트</h2>
+          <h2 className="text-2xl font-bold">전체 컨텐츠</h2>
           {error && (
             <p className="mt-6 rounded-[8px] border border-[var(--color-border)] bg-[var(--color-bg-muted)] p-4 text-sm text-[var(--color-text-secondary)]">
-              노트를 불러오지 못했어요. 잠시 후 다시 시도해주세요.
+              컨텐츠를 불러오지 못했어요. 잠시 후 다시 시도해주세요.
             </p>
           )}
           {articles.length === 0 ? (
             <p className="mt-8 rounded-[8px] border border-[var(--color-border)] p-8 text-center text-[var(--color-text-secondary)]">
-              {query ? `'${query}'에 대한 결과가 없어요.` : '아직 등록된 노트가 없어요.'}
+              {query ? `'${query}'에 대한 결과가 없어요.` : '아직 등록된 컨텐츠가 없어요.'}
             </p>
           ) : (
             <>
@@ -127,10 +127,10 @@ export default async function ArticlesIndexPage({
                     href={moreHref}
                     className="inline-flex min-h-11 items-center justify-center rounded-[8px] border border-[var(--color-text-primary)] px-6 text-sm font-bold"
                   >
-                    노트 더 보기
+                    컨텐츠 더 보기
                   </Link>
                 ) : (
-                  <span className="text-sm text-[var(--color-text-secondary)]">마지막 노트예요</span>
+                  <span className="text-sm text-[var(--color-text-secondary)]">마지막 컨텐츠예요</span>
                 )}
               </div>
             </>

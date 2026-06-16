@@ -14,7 +14,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...(siteFeatures.reviews
       ? ([{ url: `${SITE_URL}/${defaultLocale}/reviews`, changeFrequency: 'monthly', priority: 0.7 }] as MetadataRoute.Sitemap)
       : []),
-    { url: `${SITE_URL}/${defaultLocale}/community`, changeFrequency: 'weekly', priority: 0.7 },
     { url: `${SITE_URL}/${defaultLocale}/articles`, changeFrequency: 'weekly', priority: 0.8 },
     { url: `${SITE_URL}/${defaultLocale}/newsroom`, changeFrequency: 'weekly', priority: 0.6 },
     { url: `${SITE_URL}/${defaultLocale}/faq`, changeFrequency: 'monthly', priority: 0.7 },

@@ -3,17 +3,14 @@ import Image from 'next/image'
 import { Container } from '@/components/ui/Container'
 import { expertRecommendations, parentReviews } from '@/lib/content/reviews'
 import { siteFeatures } from '@/lib/site/features'
-import type { CommunityPost } from '@/lib/content/community'
 import type { NewsroomPost } from '@/lib/content/newsroom'
 import type { Locale } from '@/lib/i18n/config'
 
 export function HomePreviewSections({
   locale,
-  communityPosts,
   newsroomPosts,
 }: {
   locale: Locale
-  communityPosts: CommunityPost[]
   newsroomPosts: NewsroomPost[]
 }) {
   return (
@@ -92,42 +89,6 @@ export function HomePreviewSections({
               </article>
             ))}
           </div>
-        </Container>
-      </section>
-
-      <section className="bg-[var(--color-bg-muted)] py-24">
-        <Container>
-          <SectionHeader
-            eyebrow="함께 이어가는 홈케어 기록"
-            title="비슷한 하루를 보내는 보호자들의 이야기"
-            description="운동일지, 아이 반응, 작은 응원을 나눠요. 운동 방법과 강도는 담당 전문의·치료사 상담을 기준으로 해주세요."
-            href={`/${locale}/community`}
-            linkLabel="커뮤니티 둘러보기"
-          />
-          {communityPosts.length > 0 ? (
-            <div className="mt-10 grid gap-6 lg:grid-cols-3">
-              {communityPosts.slice(0, 3).map((post) => (
-                <Link
-                  key={post.id}
-                  href={`/${locale}/community/${post.id}`}
-                  className="min-h-56 rounded-[8px] border border-[var(--color-border)] bg-white p-7 transition hover:shadow-md"
-                >
-                  <p className="inline-flex rounded-[4px] bg-[#efefef] px-2 py-1 text-xs font-semibold text-[var(--color-text-secondary)]">
-                    {post.author}
-                  </p>
-                  <h3 className="mt-4 text-lg font-bold">{post.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-[var(--color-text-secondary)]">{post.preview}</p>
-                  <p className="mt-8 text-xs font-semibold text-[var(--color-text-secondary)]">
-                    ♥ {post.likeCount} · 댓글 {post.commentCount}
-                  </p>
-                </Link>
-              ))}
-            </div>
-          ) : (
-            <p className="mt-10 rounded-[8px] border border-[var(--color-border)] bg-white p-8 text-center text-sm text-[var(--color-text-secondary)]">
-              커뮤니티 게시글을 준비하고 있어요.
-            </p>
-          )}
         </Container>
       </section>
 

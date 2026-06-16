@@ -51,7 +51,7 @@ export const newsroomPosts: NewsroomPost[] = [
     id: 'news-3',
     category: 'partnership',
     title: '정보 콘텐츠 검토 기준 준비',
-    excerpt: '홈케어 노트가 진단이나 치료 판단을 대신하지 않도록 참고 정보 검토 기준을 마련하고 있어요.',
+    excerpt: '바로도리 컨텐츠가 진단이나 치료 판단을 대신하지 않도록 참고 정보 검토 기준을 마련하고 있어요.',
     publishedAt: '2026-04-30',
   },
 ]

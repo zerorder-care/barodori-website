@@ -13,9 +13,9 @@ export async function ArticleTeaserGrid({ locale }: { locale: Locale }) {
       <Container>
         <div className="text-center">
           <p className="inline-flex rounded-pill bg-[var(--color-primary-light)] px-3 py-1 text-xs font-semibold text-[var(--color-primary-dark)]">
-            홈케어 노트
+            바로도리 컨텐츠
           </p>
-          <h2 className="mt-4 text-2xl font-bold sm:text-3xl">아기 사경·터미타임이 걱정될 때 참고할 바로도리 노트</h2>
+          <h2 className="mt-4 text-2xl font-bold sm:text-3xl">아기 사경·터미타임이 걱정될 때 참고할 바로도리 컨텐츠</h2>
           <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-[var(--color-text-secondary)]">
             목 관찰, 두상 비대칭, 터미타임처럼 보호자가 상담 전 정리해두면 좋은 기록 팁을 모았어요.
           </p>
@@ -45,7 +45,7 @@ export async function ArticleTeaserGrid({ locale }: { locale: Locale }) {
         </div>
         <div className="mt-6 text-center">
           <Link href={`/${locale}/articles`} className="text-sm font-semibold text-[var(--color-primary-dark)] underline">
-            노트 더 보기 →
+            컨텐츠 더 보기 →
           </Link>
         </div>
       </Container>

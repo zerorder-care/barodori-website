@@ -11,7 +11,7 @@ const labels = {
   home: '홈',
   reviews: '후기',
   community: '커뮤니티',
-  articles: '홈케어 노트',
+  articles: '바로도리 컨텐츠',
   newsroom: '소식',
   faq: '자주 묻는 질문',
   login: '로그인',
@@ -37,7 +37,7 @@ describe('HeaderNav', () => {
 
   it('does not render the outdated launch CTA or dead status label', async () => {
     render(<HeaderNav locale="ko" appName="바로도리" labels={labels} />)
-    await screen.findByRole('link', { name: '커뮤니티' })
+    await screen.findByRole('link', { name: '바로도리 컨텐츠' })
     expect(screen.queryByRole('link', { name: '기능 소개' })).toBeNull()
     expect(screen.queryByText('오픈 소식 받기')).toBeNull()
     expect(screen.queryByText('홈케어 운동 기록 앱')).toBeNull()
@@ -45,8 +45,10 @@ describe('HeaderNav', () => {
 
   it('renders the primary nav items', async () => {
     render(<HeaderNav locale="ko" appName="바로도리" labels={labels} />)
-    expect(await screen.findByRole('link', { name: '커뮤니티' })).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: '홈케어 노트' })).toBeInTheDocument()
+    expect(await screen.findByRole('link', { name: '바로도리 컨텐츠' })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: '소식' })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: '자주 묻는 질문' })).toBeInTheDocument()
+    expect(screen.queryByRole('link', { name: '커뮤니티' })).toBeNull()
   })
 
   it('logged in: shows 마이페이지 and 로그아웃, not 시작하기', async () => {

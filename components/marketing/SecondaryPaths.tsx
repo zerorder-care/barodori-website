@@ -4,16 +4,10 @@ import type { Locale } from '@/lib/i18n/config'
 
 const paths = [
   {
-    label: '홈케어 노트',
+    label: '바로도리 컨텐츠',
     title: '사경이 의심되거나 기록 팁이 필요하다면',
     desc: '운동 전후로 무엇을 남기면 좋은지, 상담 전 어떤 기록을 정리하면 좋은지 확인해요.',
     href: 'articles',
-  },
-  {
-    label: '커뮤니티',
-    title: '비슷한 홈케어 하루를 보내는 보호자들과',
-    desc: '운동 기록을 이어가며 생기는 질문과 경험을 나눌 수 있어요. 의료 판단은 전문의·치료사 상담을 기준으로 해주세요.',
-    href: 'community',
   },
 ] as const
 

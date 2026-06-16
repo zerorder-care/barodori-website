@@ -11,7 +11,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   if (!isLocale(locale)) return {}
   return buildMetadata({
     title: '로그인 - 바로도리',
-    description: '바로도리 계정으로 로그인하고 커뮤니티와 마이페이지를 이용하세요.',
+    description: '바로도리 계정으로 로그인하고 마이페이지를 이용하세요.',
     path: `/${locale}/login`,
     locale,
   })
