@@ -66,7 +66,7 @@ const sections: readonly StorySection[] = [
       <>
       쌓인 기록은
         <br />
-        빠른 졸업으로 이어저요
+        빠른 졸업으로 이어져요
       </>
     ),
     body: (
