@@ -17,8 +17,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params
   if (!isLocale(locale)) return {}
   return buildMetadata({
-    title: '홈케어 노트 - 아기 사경·터미타임 기록 참고',
-    description: '아기 사경이 걱정될 때, 터미타임을 시작할 때, 두상 비대칭을 기록할 때 상담 전 참고할 수 있는 안전 노트를 확인하세요.',
+    title: '홈케어 노트 - 아기 사경과 터미타임 기록 참고',
+    description: '아기 사경이나 두상 비대칭이 걱정되고 터미타임을 막 시작했다면, 상담 전에 무엇을 기록해두면 좋을지 참고해보세요.',
     path: `/${locale}/articles`,
     locale,
   })
@@ -61,9 +61,9 @@ export default async function ArticlesIndexPage({
           <p className="inline-flex rounded-pill bg-[var(--color-primary-light)] px-3 py-1 text-xs font-semibold text-[var(--color-primary-dark)]">
             홈케어 노트
           </p>
-          <h1 className="mt-6 text-4xl font-bold leading-tight sm:text-5xl">아기 사경·터미타임이 걱정될 때 참고할 기록 노트</h1>
-          <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-[var(--color-text-secondary)]">
-            진단이나 치료 판단을 대신하지 않고, 목 관찰, 두상 비대칭, 터미타임, 홈케어 운동 기록을 상담 전 정리하는 데 도움이 되는 글을 모았어요.
+          <h1 className="mt-6 text-3xl font-bold leading-snug tracking-tight sm:text-[40px]">아기 사경이나 터미타임이 걱정될 때 펼쳐보는 기록 노트</h1>
+          <p className="mx-auto mt-5 max-w-xl text-[15px] leading-loose text-[var(--color-text-secondary)] sm:text-base">
+            진단이나 치료를 대신하진 않아요. 목 관찰이나 두상, 터미타임 같은 홈케어 기록을 상담 전에 정리해두도록 도와드려요.
           </p>
         </Container>
       </section>
@@ -90,10 +90,10 @@ export default async function ArticlesIndexPage({
           <section className="mt-12">
             <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
               <div>
-                <p className="text-sm font-bold text-[var(--color-text-secondary)]">처음 읽는 가이드</p>
-                <h2 className="mt-2 text-2xl font-bold">상담 전 정리에 참고하세요</h2>
+                <p className="text-sm font-bold text-[var(--color-text-secondary)]">처음이라면 여기부터</p>
+                <h2 className="mt-2 text-2xl font-bold tracking-tight">상담 전에 한 번 읽어두면 좋아요</h2>
               </div>
-              <p className="text-sm text-[var(--color-text-secondary)]">아기 사경, 두상 비대칭, 터미타임 기록을 시작하는 보호자를 위한 추천 콘텐츠</p>
+              <p className="text-sm leading-relaxed text-[var(--color-text-secondary)]">사경이나 두상, 터미타임 기록을 막 시작한 보호자에게 권하는 글이에요.</p>
             </div>
             <div className="mt-6 grid gap-6 sm:grid-cols-3">
               {recommended.map((a) => (
@@ -127,7 +127,7 @@ export default async function ArticlesIndexPage({
                     href={moreHref}
                     className="inline-flex min-h-11 items-center justify-center rounded-[8px] border border-[var(--color-text-primary)] px-6 text-sm font-bold"
                   >
-                    다음 노트 보기 +
+                    노트 더 보기
                   </Link>
                 ) : (
                   <span className="text-sm text-[var(--color-text-secondary)]">마지막 노트예요</span>

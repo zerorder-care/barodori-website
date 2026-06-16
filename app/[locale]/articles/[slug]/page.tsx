@@ -93,14 +93,14 @@ export default async function ArticleDetailPage({
           </div>
           <aside className="my-8 rounded-lg border border-[var(--color-primary)] bg-[var(--color-primary-light)] p-5 text-sm leading-relaxed">
             <p>
-              바로도리 앱은 이 글에서 다룬 관찰 내용을 기록으로 남기고, 상담 전 참고 자료로 정리할 수 있게 도와요.{' '}
+              이 글에서 살펴본 내용을 바로도리 앱에 기록해두면, 다음 상담 전에 참고 자료로 정리하기 좋아요.{' '}
               <TrackedLink
                 href={`/${loc}#home-features`}
                 event="article_to_home_features_click"
                 eventProps={{ slug: article.slug, locale: loc }}
                 className="font-semibold text-[var(--color-primary-dark)] underline"
               >
-                기능 흐름 보기 →
+                기능 살펴보기 →
               </TrackedLink>
             </p>
           </aside>

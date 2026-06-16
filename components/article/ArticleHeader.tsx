@@ -6,8 +6,8 @@ export function ArticleHeader({ article }: { article: Article }) {
   return (
     <header className="mb-8">
       <Badge>{categoryLabels[article.category][article.locale]}</Badge>
-      <h1 className="mt-3 text-3xl font-bold leading-snug sm:text-4xl">{article.title}</h1>
-      <p className="mt-3 text-[var(--color-text-secondary)]">{article.excerpt}</p>
+      <h1 className="mt-3 text-3xl font-bold leading-snug tracking-tight sm:text-4xl">{article.title}</h1>
+      <p className="mt-4 text-base leading-relaxed text-[var(--color-text-secondary)] sm:text-lg">{article.excerpt}</p>
       <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-sm text-[var(--color-text-secondary)]">
         <span>{article.author}</span>
         {article.authorRole && <span className="text-[var(--color-primary-dark)]">· {article.authorRole}</span>}

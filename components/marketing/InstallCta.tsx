@@ -19,7 +19,7 @@ export function InstallCta({ locale, surface }: { locale: Locale; surface: strin
           오늘의 홈케어 기록을 놓치지 않도록
         </h2>
         <p className="mt-5 max-w-xl text-sm leading-relaxed text-white/70">
-          병원에서 안내받은 운동을 집에서 이어가고, 시간·횟수·아이 반응을 달력과 리포트로 다시 확인하세요.
+          병원에서 안내받은 운동을 집에서 이어가고, 시간과 횟수, 아이 반응을 달력과 리포트로 다시 확인하세요.
         </p>
         <div className="mt-8">
           <StoreButtons surface={surface} locale={locale} />

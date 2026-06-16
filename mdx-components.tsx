@@ -7,11 +7,11 @@ import { ExerciseCard } from '@/components/article/mdx/ExerciseCard'
 function buildMDXComponents(components: MDXComponents): MDXComponents {
   return {
     ...components,
-    h2: (props) => <h2 className="mt-10 mb-3 text-2xl font-bold" {...props} />,
-    h3: (props) => <h3 className="mt-8 mb-2 text-xl font-semibold" {...props} />,
-    p: (props) => <p className="my-4 leading-relaxed" {...props} />,
-    ul: (props) => <ul className="my-4 ml-6 list-disc leading-relaxed" {...props} />,
-    ol: (props) => <ol className="my-4 ml-6 list-decimal leading-relaxed" {...props} />,
+    h2: (props) => <h2 className="mt-12 mb-3 text-2xl font-bold tracking-tight" {...props} />,
+    h3: (props) => <h3 className="mt-8 mb-2 text-lg font-semibold tracking-tight" {...props} />,
+    p: (props) => <p className="my-5 leading-[1.9] text-[var(--color-text-primary)]" {...props} />,
+    ul: (props) => <ul className="my-5 ml-5 list-disc space-y-1.5 leading-[1.85] marker:text-[var(--color-primary)]" {...props} />,
+    ol: (props) => <ol className="my-5 ml-5 list-decimal space-y-1.5 leading-[1.85] marker:text-[var(--color-text-secondary)]" {...props} />,
     blockquote: (props) => (
       <blockquote
         className="my-4 border-l-4 border-[--color-border] pl-4 italic text-[--color-text-secondary]"
