@@ -18,6 +18,7 @@ export function Reveal({
   useEffect(() => {
     // 접근성/폴백: IntersectionObserver가 없으면 즉시 표시한다.
     if (typeof IntersectionObserver === 'undefined') {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setVisible(true)
       return
     }
@@ -33,6 +34,7 @@ export function Reveal({
           }
         }
       },
+      // 요소가 10%만 보여도 진입으로 보고, 뷰포트 하단 10% 못 미쳐 미리 트리거
       { rootMargin: '0px 0px -10% 0px', threshold: 0.1 },
     )
     observer.observe(el)

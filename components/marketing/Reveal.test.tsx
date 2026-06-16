@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen, act } from '@testing-library/react'
 import { describe, it, expect, afterEach, vi } from 'vitest'
 import { Reveal } from './Reveal'
 
@@ -23,6 +23,37 @@ describe('Reveal', () => {
         <p>폴백</p>
       </Reveal>,
     )
+    expect(container.firstChild).toHaveAttribute('data-visible', 'true')
+  })
+
+  it('becomes visible when the element scrolls into view', () => {
+    let callback: IntersectionObserverCallback | undefined
+    vi.stubGlobal(
+      'IntersectionObserver',
+      class {
+        constructor(cb: IntersectionObserverCallback) {
+          callback = cb
+        }
+        observe() {}
+        unobserve() {}
+        disconnect() {}
+        takeRecords() {
+          return []
+        }
+      },
+    )
+    const { container } = render(
+      <Reveal>
+        <p>등장</p>
+      </Reveal>,
+    )
+    expect(container.firstChild).toHaveAttribute('data-visible', 'false')
+    act(() => {
+      callback?.(
+        [{ isIntersecting: true } as IntersectionObserverEntry],
+        {} as IntersectionObserver,
+      )
+    })
     expect(container.firstChild).toHaveAttribute('data-visible', 'true')
   })
 })
