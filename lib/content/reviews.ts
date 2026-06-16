@@ -21,14 +21,6 @@ export type ExpertRecommendation = {
   quote: string
 }
 
-export type MediaMention = {
-  id: string
-  outlet: string
-  title: string
-  publishedAt: string
-  href: string
-}
-
 export const reviewAgeGroups = [
   { value: 'all', label: '전체' },
   { value: '0-6', label: '0~6개월' },
@@ -87,15 +79,5 @@ export const expertRecommendations: ExpertRecommendation[] = [
     organization: '홈케어 운동 기록 서비스',
     quote:
       '집에서 한 운동과 아이 반응을 꾸준히 기록하고, 다음 상담 전 보호자가 상황을 정리할 수 있도록 돕는 기록 도구를 지향해요.',
-  },
-]
-
-export const mediaMentions: MediaMention[] = [
-  {
-    id: 'media-1',
-    outlet: '바로도리 뉴스',
-    title: '우리 아이 홈케어 운동 기록 앱 바로도리 준비',
-    publishedAt: '2026-05-10',
-    href: '/ko/newsroom',
   },
 ]

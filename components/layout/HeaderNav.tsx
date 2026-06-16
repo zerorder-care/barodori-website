@@ -20,7 +20,6 @@ type NavLabels = {
 const navKeys = [
   // 'reviews', // 실제 후기 데이터 연동 전까지 숨김
   'articles',
-  'newsroom',
   'faq',
 ] as const
 

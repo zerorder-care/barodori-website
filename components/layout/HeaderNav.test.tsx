@@ -46,9 +46,9 @@ describe('HeaderNav', () => {
   it('renders the primary nav items', async () => {
     render(<HeaderNav locale="ko" appName="바로도리" labels={labels} />)
     expect(await screen.findByRole('link', { name: '바로도리 컨텐츠' })).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: '소식' })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: '자주 묻는 질문' })).toBeInTheDocument()
     expect(screen.queryByRole('link', { name: '커뮤니티' })).toBeNull()
+    expect(screen.queryByRole('link', { name: '소식' })).toBeNull()
   })
 
   it('logged in: shows 마이페이지 and 로그아웃, not 시작하기', async () => {

@@ -1,6 +1,5 @@
 import type { MetadataRoute } from 'next'
 import { listArticlePosts } from '@/lib/api/articles'
-import { listNewsroomPosts } from '@/lib/api/content'
 import { defaultLocale } from '@/lib/i18n/config'
 import { getSiteUrl } from '@/lib/seo/siteUrl'
 import { siteFeatures } from '@/lib/site/features'
@@ -15,14 +14,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       ? ([{ url: `${SITE_URL}/${defaultLocale}/reviews`, changeFrequency: 'monthly', priority: 0.7 }] as MetadataRoute.Sitemap)
       : []),
     { url: `${SITE_URL}/${defaultLocale}/articles`, changeFrequency: 'weekly', priority: 0.8 },
-    { url: `${SITE_URL}/${defaultLocale}/newsroom`, changeFrequency: 'weekly', priority: 0.6 },
     { url: `${SITE_URL}/${defaultLocale}/faq`, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${SITE_URL}/${defaultLocale}/install`, changeFrequency: 'monthly', priority: 0.7 },
   ]
   const articleResult = await listArticlePosts({ locale: defaultLocale, limit: 50 })
   const articles = articleResult.articles
-  const newsroomResult = await listNewsroomPosts({ pageSize: 50 })
-  const newsroomPosts = newsroomResult.posts.filter((post) => !post.href)
   const articleRoutes: MetadataRoute.Sitemap = articles.map((a) => ({
     url: `${SITE_URL}/${defaultLocale}/articles/${a.slug}`,
     lastModified: a.updatedAt,
@@ -32,14 +28,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       languages: { ko: `${SITE_URL}/ko/articles/${a.slug}` },
     },
   }))
-  const newsroomRoutes: MetadataRoute.Sitemap = newsroomPosts.map((post) => ({
-    url: `${SITE_URL}/${defaultLocale}/newsroom/${post.id}`,
-    lastModified: post.publishedAt,
-    changeFrequency: 'monthly',
-    priority: 0.5,
-    alternates: {
-      languages: { ko: `${SITE_URL}/ko/newsroom/${post.id}` },
-    },
-  }))
-  return [...staticRoutes, ...articleRoutes, ...newsroomRoutes]
+  return [...staticRoutes, ...articleRoutes]
 }

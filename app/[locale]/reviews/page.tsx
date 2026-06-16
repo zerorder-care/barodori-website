@@ -1,10 +1,9 @@
-import Link from 'next/link'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { Container } from '@/components/ui/Container'
 import { InstallCta } from '@/components/marketing/InstallCta'
 import { ReviewsBoard } from '@/components/reviews/ReviewsBoard'
-import { expertRecommendations, mediaMentions } from '@/lib/content/reviews'
+import { expertRecommendations } from '@/lib/content/reviews'
 import { isLocale } from '@/lib/i18n/dictionary'
 import { buildMetadata } from '@/lib/seo/metadata'
 import { siteFeatures } from '@/lib/site/features'
@@ -88,36 +87,6 @@ export default async function ReviewsPage({ params }: { params: Promise<{ locale
           </div>
         </Container>
       </section>
-
-      <Container className="py-24">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <p className="inline-flex rounded-pill bg-[var(--color-primary)] px-3 py-1 text-xs font-semibold text-[var(--color-text-primary)]">
-              미디어 보도
-            </p>
-            <h2 className="mt-4 text-3xl font-bold">바로도리, 언론에서 만나보세요</h2>
-          </div>
-          <Link
-            href={`/${loc}/newsroom`}
-            className="inline-flex min-h-11 items-center rounded-[8px] border border-[var(--color-text-primary)] px-5 text-sm font-bold"
-          >
-            뉴스룸에서 더 보기 →
-          </Link>
-        </div>
-        <div className="mt-10 grid gap-6 sm:grid-cols-3">
-          {mediaMentions.map((item) => (
-            <a key={item.id} href={item.href} className="rounded-[8px] border border-[var(--color-border)] bg-white p-7">
-              <p className="inline-flex rounded-[4px] bg-[#efefef] px-3 py-1 text-xs font-semibold text-[var(--color-text-secondary)]">
-                {item.outlet}
-              </p>
-              <h3 className="mt-5 text-lg font-bold leading-snug">{item.title}</h3>
-              <time className="mt-10 block text-xs text-[var(--color-text-secondary)]" dateTime={item.publishedAt}>
-                {item.publishedAt}
-              </time>
-            </a>
-          ))}
-        </div>
-      </Container>
 
       <InstallCta locale={loc} surface="reviews_footer" />
     </>

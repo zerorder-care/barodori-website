@@ -3,15 +3,12 @@ import Image from 'next/image'
 import { Container } from '@/components/ui/Container'
 import { expertRecommendations, parentReviews } from '@/lib/content/reviews'
 import { siteFeatures } from '@/lib/site/features'
-import type { NewsroomPost } from '@/lib/content/newsroom'
 import type { Locale } from '@/lib/i18n/config'
 
 export function HomePreviewSections({
   locale,
-  newsroomPosts,
 }: {
   locale: Locale
-  newsroomPosts: NewsroomPost[]
 }) {
   return (
     <>
@@ -91,76 +88,7 @@ export function HomePreviewSections({
           </div>
         </Container>
       </section>
-
-      <section className="bg-white py-24">
-        <Container>
-          <SectionHeader
-            eyebrow="바로도리 소식"
-            title="홈케어 기록을 더 쉽게 만드는 업데이트"
-            description="서비스 업데이트, 운영 소식, 콘텐츠 검토 기준을 알려드려요."
-            href={`/${locale}/newsroom`}
-            linkLabel="소식 더 보기"
-          />
-          {newsroomPosts.length > 0 ? (
-            <div className="mt-10 grid gap-6 sm:grid-cols-3">
-              {newsroomPosts.slice(0, 3).map((post) => (
-                <NewsroomPreviewCard key={post.id} locale={locale} post={post} />
-              ))}
-            </div>
-          ) : (
-            <p className="mt-10 rounded-[8px] border border-[var(--color-border)] bg-white p-8 text-center text-sm text-[var(--color-text-secondary)]">
-              뉴스룸 소식을 준비하고 있어요.
-            </p>
-          )}
-        </Container>
-      </section>
     </>
-  )
-}
-
-function NewsroomPreviewCard({ locale, post }: { locale: Locale; post: NewsroomPost }) {
-  const content = (
-    <>
-      {post.thumbnail ? (
-        <div
-          aria-hidden="true"
-          className="aspect-[16/9] w-full border-b border-[var(--color-border)] bg-cover bg-center"
-          style={{ backgroundImage: `url(${JSON.stringify(post.thumbnail)})` }}
-        />
-      ) : (
-        <div className="relative aspect-[16/9] w-full border-b border-[var(--color-border)]">
-          <Image
-            src="/images/newsroom-fallback.png"
-            alt=""
-            fill
-            sizes="(max-width: 640px) 100vw, 33vw"
-            className="object-cover"
-          />
-        </div>
-      )}
-      <div className="p-6">
-        {post.publishedAt && <p className="text-xs text-[var(--color-text-secondary)]">{post.publishedAt}</p>}
-        <h3 className="mt-3 text-lg font-bold leading-snug">{post.title}</h3>
-        <p className="mt-3 text-sm leading-relaxed text-[var(--color-text-secondary)]">{post.excerpt}</p>
-      </div>
-    </>
-  )
-
-  if (post.href) {
-    return (
-      <a href={post.href} target="_blank" rel="noopener noreferrer" className="overflow-hidden rounded-[8px] border border-[var(--color-border)] bg-white">
-        {content}
-      </a>
-    )
-  }
-
-  return (
-    <Link
-      href={`/${locale}/newsroom/${post.id}`}
-      className="overflow-hidden rounded-[8px] border border-[var(--color-border)] bg-white transition hover:shadow-md"
-    >
-      {content}
-    </Link>
   )
 }
 
