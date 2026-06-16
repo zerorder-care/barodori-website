@@ -85,3 +85,12 @@ body {
   background: #FFB700;
   color: #111827;
 }
+
+/* Reveal 등장 애니메이션: 스크립트가 없으면 콘텐츠를 영구히 숨기지 않는다.
+   JS가 켜진 경우엔 적용되지 않아 깜빡임이 없고, 지원하지 않는 브라우저는 규칙을 무시한다. */
+@media (scripting: none) {
+  [data-visible='false'] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
