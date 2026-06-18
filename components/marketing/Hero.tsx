@@ -12,8 +12,10 @@ export function Hero({ locale }: { locale: Locale }) {
     <section className="bg-[linear-gradient(180deg,var(--color-bg)_0%,var(--color-bg-muted)_48%,var(--color-primary-light)_78%,rgba(255,183,0,0.30)_100%)] py-8 sm:py-20">
       <Container className="flex flex-col items-center text-center">
         <div className="w-full">
-          <h1 className="mt-5 whitespace-nowrap text-3xl font-bold leading-[1.18] sm:text-4xl md:text-5xl lg:text-6xl xl:text-[4.25rem]">
-            일단 바로도리, 켜는 순간 홈케어 시작
+          <h1 className="mt-5 text-3xl font-bold leading-[1.18] sm:whitespace-nowrap sm:text-4xl md:text-5xl lg:text-6xl xl:text-[4.25rem]">
+            <span className="block sm:inline">일단 바로도리,</span>
+            {' '}
+            <span className="block sm:inline">켜는 순간 홈케어 시작</span>
           </h1>
           <p className="mt-5 text-sm font-semibold text-[var(--color-primary-dark)] sm:text-lg">
             막막한 홈케어를 바로도리와 함께해요
