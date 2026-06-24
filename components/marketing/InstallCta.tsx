@@ -1,5 +1,6 @@
 import { Container } from '@/components/ui/Container'
 import { StoreButtons } from '@/components/install/StoreButtons'
+import { StoreQrCodes } from '@/components/install/StoreQrCodes'
 import { isAppLive } from '@/lib/install/storeLinks'
 import { getExternalLinks, launchCopy } from '@/lib/site/config'
 import type { Locale } from '@/lib/i18n/config'
@@ -24,6 +25,11 @@ export function InstallCta({ locale, surface }: { locale: Locale; surface: strin
         <div className="mt-8">
           <StoreButtons surface={surface} locale={locale} />
         </div>
+        {live && (
+          <div className="mt-10 hidden justify-center sm:flex">
+            <StoreQrCodes surface={surface} locale={locale} tone="dark" />
+          </div>
+        )}
         {!live && (
           <a
             href={betaForm ?? `/${locale}/install`}

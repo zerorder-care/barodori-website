@@ -3,6 +3,7 @@ import { isLocale } from '@/lib/i18n/dictionary'
 import { buildMetadata } from '@/lib/seo/metadata'
 import { Container } from '@/components/ui/Container'
 import { StoreButtons } from '@/components/install/StoreButtons'
+import { StoreQrCodes } from '@/components/install/StoreQrCodes'
 import { BetaSection } from '@/components/install/BetaSection'
 import { isAppLive } from '@/lib/install/storeLinks'
 import { launchCopy } from '@/lib/site/config'
@@ -40,6 +41,11 @@ export default async function InstallPage({ params }: { params: Promise<{ locale
           <div className="mt-8 flex justify-center">
             <StoreButtons surface="install_page" locale={loc} />
           </div>
+          {live && (
+            <div className="mt-10 hidden justify-center sm:flex">
+              <StoreQrCodes surface="install_page" locale={loc} />
+            </div>
+          )}
           {!live && (
             <div
               id="coming-soon"

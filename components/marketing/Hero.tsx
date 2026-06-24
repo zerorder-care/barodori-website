@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Container } from '@/components/ui/Container'
 import { StoreButtons } from '@/components/install/StoreButtons'
+import { StoreQrCodes } from '@/components/install/StoreQrCodes'
 import { isAppLive } from '@/lib/install/storeLinks'
 import { launchCopy } from '@/lib/site/config'
 import type { Locale } from '@/lib/i18n/config'
@@ -28,6 +29,11 @@ export function Hero({ locale }: { locale: Locale }) {
               {live ? launchCopy.installCta : launchCopy.pendingCta}
             </Link>
           </div>
+          {live && (
+            <div className="mt-8 hidden justify-center sm:flex">
+              <StoreQrCodes surface="hero" locale={locale} />
+            </div>
+          )}
           <div className="mt-6 hidden justify-center sm:flex">
             <StoreButtons surface="hero" locale={locale} />
           </div>
