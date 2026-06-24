@@ -2,7 +2,7 @@ export const launchCopy = {
   appStatusLabel: '홈케어 운동 기록 앱',
   liveNotice: 'iOS와 Android에서 바로도리를 설치하고 오늘의 기록을 시작하세요.',
   pendingNotice: '스토어 오픈 전까지 알림 신청으로 바로도리 소식을 먼저 받아보세요.',
-  pendingCta: '오픈 소식 받기',
+  pendingCta: '다운로드 받기',
   installCta: '앱에서 기록 시작하기',
   appDownloadPending: '스토어 링크가 준비되면 이곳에서 바로 안내할게요.',
 } as const
