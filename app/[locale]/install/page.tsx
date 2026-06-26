@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import { isLocale } from '@/lib/i18n/dictionary'
-import { buildMetadata } from '@/lib/seo/metadata'
+import { buildMetadata, TORTICOLLIS_KEYWORDS } from '@/lib/seo/metadata'
 import { Container } from '@/components/ui/Container'
 import { StoreButtons } from '@/components/install/StoreButtons'
 import { StoreQrCodes } from '@/components/install/StoreQrCodes'
@@ -17,6 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     description: '바로도리 앱에서 오늘의 아기 운동 기록과 영유아 홈케어 루틴을 달력과 리포트로 다시 확인해보세요.',
     path: `/${locale}/install`,
     locale,
+    keywords: TORTICOLLIS_KEYWORDS,
   })
 }
 
