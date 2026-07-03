@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { isLocale } from '@/lib/i18n/dictionary'
-import { buildMetadata } from '@/lib/seo/metadata'
+import { buildMetadata, TORTICOLLIS_KEYWORDS } from '@/lib/seo/metadata'
 import { Container } from '@/components/ui/Container'
 import { CategoryFilter } from '@/components/article/CategoryFilter'
 import { ArticleCard } from '@/components/article/ArticleCard'
@@ -21,6 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     description: '아기 사경이나 두상 비대칭이 걱정되고 터미타임을 막 시작했다면, 상담 전에 무엇을 기록해두면 좋을지 바로도리 컨텐츠에서 참고해보세요.',
     path: `/${locale}/articles`,
     locale,
+    keywords: TORTICOLLIS_KEYWORDS,
   })
 }
 

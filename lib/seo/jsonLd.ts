@@ -21,6 +21,8 @@ export function mobileAppJsonLd() {
     operatingSystem: 'iOS, Android',
     applicationCategory: 'HealthApplication',
     description: '병원에서 안내받은 아기·영유아 홈케어 운동을 목표로 세우고, 기록과 리포트로 꾸준히 확인할 수 있도록 돕는 앱이에요.',
+    // 사경·사두 검색 유입을 구조화 데이터로만 유도한다(가시 본문에는 노출하지 않음).
+    keywords: '사경, 영아 사경, 아기 사경, 사두, 두상 비대칭, 터미타임, 홈케어 운동, 아기 운동 기록, 영유아 홈케어',
     url: `${SITE_URL}/ko/install`,
     audience: {
       '@type': 'PeopleAudience',
