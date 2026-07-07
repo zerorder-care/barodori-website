@@ -1,6 +1,8 @@
 export const categories = ['torticollis', 'head-shape', 'exercise', 'by-month'] as const
 export type Category = typeof categories[number]
 
+export const allCategoryLabels = { ko: '전체', en: 'All' } as const
+
 export const categoryLabels: Record<Category, { ko: string; en: string }> = {
   torticollis: { ko: '사경·목 관찰', en: 'Neck notes' },
   'head-shape': { ko: '사두·두상 참고', en: 'Head-shape notes' },

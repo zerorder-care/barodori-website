@@ -14,8 +14,7 @@ import type { Locale } from '@/lib/i18n/config'
 
 type Provider = {
   id: AuthProviderId
-  label: string
-  actionLabel: string
+  actionKey: 'kakao' | 'google' | 'naver'
   className: string
   mark: string
 }
@@ -23,47 +22,44 @@ type Provider = {
 const providers: Provider[] = [
   {
     id: 'kakao',
-    label: '카카오톡',
-    actionLabel: '카카오톡으로 계속하기',
+    actionKey: 'kakao',
     mark: 'K',
     className: 'border-[#f1d800] bg-[#FEE500] text-[#191919] hover:bg-[#f4dc00]',
   },
   {
     id: 'google',
-    label: 'Google',
-    actionLabel: 'Google로 계속하기',
+    actionKey: 'google',
     mark: 'G',
     className: 'border-[var(--color-border)] bg-white text-[var(--color-text-primary)] hover:bg-[var(--color-bg-muted)]',
   },
   {
     id: 'naver',
-    label: 'Naver',
-    actionLabel: 'Naver로 계속하기',
+    actionKey: 'naver',
     mark: 'N',
     className: 'border-[#03C75A] bg-[#03C75A] text-white hover:bg-[#02b852]',
   },
 ]
 
-const loginErrorMessages: Record<string, string> = {
-  oauth_state: '로그인 요청을 확인하지 못했어요. 다시 시도해 주세요.',
-  kakao_config_missing: '카카오 로그인 설정이 아직 연결되지 않았어요.',
-  naver_config_missing: '네이버 로그인 설정이 아직 연결되지 않았어요.',
-  kakao_login_failed: '카카오 로그인에 실패했어요. 다시 시도해 주세요.',
-  naver_login_failed: '네이버 로그인에 실패했어요. 다시 시도해 주세요.',
+type LoginLabels = {
+  pending: string
+  providers: Record<'kakao' | 'google' | 'naver', string>
+  errors: Record<string, string>
 }
 
 export function SocialLoginPanel({
   locale,
   nextPath,
   initialError,
+  labels,
 }: {
   locale: Locale
   nextPath: string
   initialError?: string
+  labels: LoginLabels
 }) {
   const router = useRouter()
   const [pendingProvider, setPendingProvider] = useState<AuthProviderId | null>(null)
-  const [error, setError] = useState(initialError ? loginErrorMessages[initialError] ?? initialError : null)
+  const [error, setError] = useState(initialError ? labels.errors[initialError] ?? initialError : null)
 
   async function handleLogin(provider: Provider) {
     setError(null)
@@ -80,7 +76,7 @@ export function SocialLoginPanel({
       router.refresh()
     } catch (loginError) {
       setPendingProvider(null)
-      setError(toLoginErrorMessage(loginError))
+      setError(toLoginErrorMessage(loginError, labels.errors))
     }
   }
 
@@ -133,7 +129,7 @@ export function SocialLoginPanel({
             <span className="grid h-6 w-6 place-items-center rounded-full bg-white/90 text-xs font-black text-[#242424]">
               {provider.mark}
             </span>
-            {isPending ? '로그인 중...' : provider.actionLabel}
+            {isPending ? labels.pending : labels.providers[provider.actionKey]}
           </button>
         )
       })}
@@ -159,13 +155,13 @@ function buildFirebaseProvider(providerId: 'google' | 'apple'): AuthProvider {
   return provider
 }
 
-function toLoginErrorMessage(error: unknown) {
-  if (!(error instanceof Error)) return '로그인에 실패했어요. 다시 시도해 주세요.'
+function toLoginErrorMessage(error: unknown, labels: LoginLabels['errors']) {
+  if (!(error instanceof Error)) return labels.default
   if (error.message === 'firebase_auth_not_configured') {
-    return 'Firebase 로그인 설정이 아직 연결되지 않았어요.'
+    return labels.firebase_auth_not_configured
   }
   if (error.message.includes('popup-closed-by-user') || error.message.includes('cancelled-popup-request')) {
-    return '로그인이 취소됐어요.'
+    return labels.cancelled
   }
-  return '로그인에 실패했어요. 다시 시도해 주세요.'
+  return labels.default
 }

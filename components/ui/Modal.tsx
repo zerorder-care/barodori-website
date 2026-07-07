@@ -7,11 +7,13 @@ export function Modal({
   onClose,
   children,
   ariaLabel,
+  closeLabel,
 }: {
   open: boolean
   onClose: () => void
   children: React.ReactNode
   ariaLabel: string
+  closeLabel?: string
 }) {
   useEffect(() => {
     if (!open) return
@@ -44,7 +46,7 @@ export function Modal({
           type="button"
           onClick={onClose}
           className="absolute right-4 top-4 text-2xl leading-none text-[var(--color-text-secondary)]"
-          aria-label="닫기"
+          aria-label={closeLabel ?? 'Close'}
         >
           ×
         </button>

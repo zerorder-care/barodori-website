@@ -8,6 +8,10 @@ import type { Locale } from '@/lib/i18n/config'
 type Props = {
   surface: string
   locale: Locale
+  labels: {
+    qrScan: string
+    qrAlt: string
+  }
   /** 배경에 맞춘 글자색. dark 섹션 위에 올릴 때 'dark'를 쓴다. */
   tone?: 'light' | 'dark'
   /** 래퍼에 추가할 클래스. 노출 분기(예: hidden sm:flex)는 호출부에서 지정한다. */
@@ -19,13 +23,13 @@ const QR_CODES = [
   { key: 'android', label: 'Google Play', src: '/images/store/qr-google-play.svg' },
 ] as const
 
-export function StoreQrCodes({ surface, locale, tone = 'light', className = '' }: Props) {
+export function StoreQrCodes({ surface, locale, labels, tone = 'light', className = '' }: Props) {
   const links = getStoreLinks()
   const textColor = tone === 'dark' ? 'text-white/70' : 'text-[var(--color-text-secondary)]'
 
   return (
     <div className={`flex flex-col items-center gap-3 ${className}`}>
-      <p className={`text-xs ${textColor}`}>휴대폰 카메라로 QR을 스캔해 설치하세요</p>
+      <p className={`text-xs ${textColor}`}>{labels.qrScan}</p>
       <div className="flex items-start justify-center gap-6">
         {QR_CODES.map((qr) => {
           const href = links[qr.key]
@@ -39,7 +43,7 @@ export function StoreQrCodes({ surface, locale, tone = 'light', className = '' }
               <span className="rounded-lg border border-[var(--color-border)] bg-white p-3">
                 <Image
                   src={qr.src}
-                  alt={`${qr.label} 다운로드 QR 코드`}
+                  alt={labels.qrAlt.replace('{store}', qr.label)}
                   width={112}
                   height={112}
                   className="h-28 w-28"

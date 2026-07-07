@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
-import { categories, categoryLabels, type Category } from '@/lib/content/categories'
+import { allCategoryLabels, categories, categoryLabels, type Category } from '@/lib/content/categories'
 import type { Locale } from '@/lib/i18n/config'
 
 export function CategoryFilter({ locale }: { locale: Locale }) {
@@ -18,7 +18,7 @@ export function CategoryFilter({ locale }: { locale: Locale }) {
             : 'border border-[var(--color-border)] bg-white text-[var(--color-text-secondary)]'
         }`}
       >
-        전체
+        {allCategoryLabels[locale]}
       </Link>
       {categories.map((c) => (
         <Link
