@@ -4,16 +4,25 @@ import { useState } from 'react'
 import { Modal } from '@/components/ui/Modal'
 import { isAppLive, getBetaFormUrl } from '@/lib/install/storeLinks'
 import { track } from '@/lib/analytics'
-import { launchCopy } from '@/lib/site/config'
 import type { Locale } from '@/lib/i18n/config'
 
 type Props = {
   surface: string
   locale: Locale
-  children: React.ReactNode // 트리거 버튼 텍스트
+  copy: {
+    installGuide: string
+    qrInstallTitle: string
+    qrInstallBody: string
+    qrPlaceholder: string
+    openingSoonTitle: string
+    openingSoonBody: string
+    pendingCta: string
+    close: string
+  }
+  children: React.ReactNode
 }
 
-export function QrInstallModal({ surface, locale, children }: Props) {
+export function QrInstallModal({ surface, locale, copy, children }: Props) {
   const [open, setOpen] = useState(false)
   const live = isAppLive()
   const beta = getBetaFormUrl()
@@ -32,24 +41,22 @@ export function QrInstallModal({ surface, locale, children }: Props) {
       >
         {children}
       </button>
-      <Modal open={open} onClose={() => setOpen(false)} ariaLabel="앱 설치 안내">
+      <Modal open={open} onClose={() => setOpen(false)} ariaLabel={copy.installGuide} closeLabel={copy.close}>
         {live ? (
           <div>
-            <h2 className="text-lg font-semibold">QR 코드로 설치</h2>
+            <h2 className="text-lg font-semibold">{copy.qrInstallTitle}</h2>
             <p className="mt-2 text-sm text-[var(--color-text-secondary)]">
-              모바일로 QR 코드를 스캔하면 앱스토어로 이동해요.
+              {copy.qrInstallBody}
             </p>
-            {/* 실제 QR 이미지는 스토어 링크 오픈 시 추가합니다. */}
             <div className="mx-auto mt-4 grid h-40 w-40 place-items-center rounded-lg border border-dashed border-[var(--color-border)] text-xs text-[var(--color-text-secondary)]">
-              QR 이미지 (오픈 시 업데이트)
+              {copy.qrPlaceholder}
             </div>
           </div>
         ) : (
           <div>
-            <h2 className="text-lg font-semibold">앱 오픈 준비 중</h2>
+            <h2 className="text-lg font-semibold">{copy.openingSoonTitle}</h2>
             <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-secondary)]">
-              바로도리는 병원에서 안내받은 홈케어 운동을 목표로 세우고, 기록과 리포트로 확인하는 앱이에요.
-              오픈 소식을 받아보거나 베타 참여 가능 여부를 확인해 주세요.
+              {copy.openingSoonBody}
             </p>
             {beta && (
               <a
@@ -59,7 +66,7 @@ export function QrInstallModal({ surface, locale, children }: Props) {
                 onClick={() => track('cta_beta_form_click', { surface: `${surface}:modal`, locale })}
                 className="mt-4 inline-flex w-full items-center justify-center rounded-pill bg-[var(--color-primary)] px-6 py-3 text-sm font-semibold text-[var(--color-text-primary)]"
               >
-                {launchCopy.pendingCta}
+                {copy.pendingCta}
               </a>
             )}
           </div>

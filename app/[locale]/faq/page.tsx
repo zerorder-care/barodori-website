@@ -3,7 +3,7 @@ import { FaqAccordion } from '@/components/faq/FaqAccordion'
 import { Container } from '@/components/ui/Container'
 import { getFaqContent } from '@/lib/api/content'
 import { getExternalLinks } from '@/lib/site/config'
-import { isLocale } from '@/lib/i18n/dictionary'
+import { getDictionary, isLocale } from '@/lib/i18n/dictionary'
 import type { Locale } from '@/lib/i18n/config'
 import { buildMetadata } from '@/lib/seo/metadata'
 
@@ -14,9 +14,10 @@ type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
   if (!isLocale(locale)) return {}
+  const dict = await getDictionary(locale)
   return buildMetadata({
-    title: '자주 묻는 질문 - 바로도리',
-    description: '바로도리 서비스, 기록, 결제, 개인정보, 기술 문제에 대한 답변을 확인하세요.',
+    title: dict.faq.seo.title,
+    description: dict.faq.seo.description,
     path: `/${locale}/faq`,
     locale,
   })
@@ -32,10 +33,12 @@ export default async function FaqPage({
   const { locale } = await params
   if (!isLocale(locale)) notFound()
   const loc = locale as Locale
+  const dict = await getDictionary(loc)
   const search = await searchParams
   const query = normalizeSearchParam(search.q)
   const category = normalizeSearchParam(search.category) || 'all'
   const faq = await getFaqContent({
+    locale: loc,
     category: category === 'all' ? undefined : category,
     q: query,
   })
@@ -46,11 +49,11 @@ export default async function FaqPage({
       <section className="bg-[var(--color-bg-muted)] py-20">
         <Container className="text-center">
           <p className="inline-flex rounded-pill bg-[var(--color-primary)] px-3 py-1 text-xs font-semibold text-[var(--color-text-primary)]">
-            FAQ
+            {dict.faq.eyebrow}
           </p>
-          <h1 className="mt-6 text-4xl font-bold leading-tight sm:text-5xl">자주 묻는 질문</h1>
+          <h1 className="mt-6 text-4xl font-bold leading-tight sm:text-5xl">{dict.faq.title}</h1>
           <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-[var(--color-text-secondary)]">
-            궁금한 내용을 검색하거나 카테고리별로 빠르게 확인해보세요.
+            {dict.faq.description}
           </p>
         </Container>
       </section>
@@ -63,10 +66,11 @@ export default async function FaqPage({
           category={category}
           query={query}
           error={faq.error}
+          labels={dict.faq}
         />
         <section className="mt-12 rounded-[8px] bg-[#303030] p-8 text-center text-white">
-          <h2 className="text-2xl font-bold">더 궁금한 점이 있으신가요?</h2>
-          <p className="mt-3 text-sm text-white/70">카카오톡 채널로 문의를 남겨주시면 운영 시간에 답변드릴게요.</p>
+          <h2 className="text-2xl font-bold">{dict.faq.contactTitle}</h2>
+          <p className="mt-3 text-sm text-white/70">{dict.faq.contactBody}</p>
           {kakao && (
             <a
               href={kakao}
@@ -74,7 +78,7 @@ export default async function FaqPage({
               rel="noopener noreferrer"
               className="mt-6 inline-flex min-h-12 items-center justify-center rounded-[8px] bg-[#FEE500] px-6 text-sm font-bold text-black"
             >
-              카카오톡 문의
+              {dict.faq.contactCta}
             </a>
           )}
         </section>

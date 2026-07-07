@@ -15,6 +15,8 @@ type NavLabels = {
   logout: string
   mypage: string
   start: string
+  openMenu: string
+  closeMenu: string
 }
 
 const navKeys = [
@@ -135,7 +137,7 @@ export function HeaderNav({
         <button
           type="button"
           className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-border)] bg-white text-xl lg:hidden"
-          aria-label={open ? '메뉴 닫기' : '메뉴 열기'}
+          aria-label={open ? labels.closeMenu : labels.openMenu}
           aria-expanded={open}
           onClick={() => setOpen((value) => !value)}
         >

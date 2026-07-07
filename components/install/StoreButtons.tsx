@@ -8,9 +8,14 @@ import type { Locale } from '@/lib/i18n/config'
 type Props = {
   surface: string
   locale: Locale
+  labels: {
+    appStoreDownload: string
+    googlePlayDownload: string
+    storeLinkPending: string
+  }
 }
 
-export function StoreButtons({ surface, locale }: Props) {
+export function StoreButtons({ surface, locale, labels }: Props) {
   const live = isAppLive()
   const { ios, android } = getStoreLinks()
 
@@ -24,7 +29,8 @@ export function StoreButtons({ surface, locale }: Props) {
         href={ios}
         disabled={!live}
         onClick={onClick('ios')}
-        label="App Store에서 다운로드"
+        label={labels.appStoreDownload}
+        pendingLabel={labels.storeLinkPending}
         src="/images/store/app-store.svg"
         width={120}
         height={40}
@@ -33,7 +39,8 @@ export function StoreButtons({ surface, locale }: Props) {
         href={android}
         disabled={!live}
         onClick={onClick('android')}
-        label="Google Play에서 다운로드"
+        label={labels.googlePlayDownload}
+        pendingLabel={labels.storeLinkPending}
         src="/images/store/google-play.png"
         width={155}
         height={60}
@@ -48,6 +55,7 @@ function StoreBadge({
   disabled,
   onClick,
   label,
+  pendingLabel,
   src,
   width,
   height,
@@ -57,6 +65,7 @@ function StoreBadge({
   disabled: boolean
   onClick: () => void
   label: string
+  pendingLabel: string
   src: string
   width: number
   height: number
@@ -77,7 +86,7 @@ function StoreBadge({
       <button
         type="button"
         disabled
-        aria-label={`${label} - 스토어 링크 준비 중`}
+        aria-label={`${label} - ${pendingLabel}`}
         className="inline-flex h-10 items-center justify-center overflow-hidden opacity-60"
       >
         {image}

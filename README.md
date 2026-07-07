@@ -1,6 +1,6 @@
 # 바로도리 제품 웹사이트
 
-영아 사경/사두 케어 앱 바로도리(BaroDori)의 제품 소개 + 사경 아티클 사이트. (https://barodori.com)
+영아 사경/사두 케어 앱 바로도리(Barodori)의 제품 소개 + 사경 아티클 사이트. (https://barodori.com)
 
 ## 스택
 - Next.js 16 (App Router, 풀-SSG)

@@ -3,7 +3,8 @@
     "appName": "바로도리",
     "install": "앱 시작하기",
     "comingSoon": "오픈 준비 중",
-    "betaSignup": "오픈 소식 받기"
+    "betaSignup": "오픈 소식 받기",
+    "home": "홈"
   },
   "nav": {
     "home": "홈",
@@ -16,7 +17,9 @@
     "logout": "로그아웃",
     "mypage": "마이페이지",
     "install": "앱 시작하기",
-    "start": "시작하기"
+    "start": "시작하기",
+    "openMenu": "메뉴 열기",
+    "closeMenu": "메뉴 닫기"
   },
   "footer": {
     "tagline": "병원 물리치료 이후 집에서 이어가는 홈케어 운동을 목표·기록·리포트로 확인하세요.",
@@ -24,7 +27,25 @@
     "businessInfo": "사업자정보확인",
     "privacy": "개인정보처리방침",
     "terms": "이용약관",
-    "copyright": "© {year} 제로더(Zerorder)"
+    "copyright": "© {year} 제로더(Zerorder)",
+    "companyName": "회사명",
+    "ceo": "대표자",
+    "businessNumber": "사업자등록번호",
+    "mailOrderNumber": "통신판매업신고번호",
+    "email": "이메일",
+    "address": "주소",
+    "companyValues": {
+      "name": "주식회사 제로더",
+      "ceo": "심예준",
+      "businessNumber": "764-88-02890",
+      "mailOrderNumber": "2024-서울동대문-2011",
+      "email": "contact@zerorder.kr",
+      "address": "서울 동대문구 회기로 117-3 서울바이오허브 산업지원동"
+    },
+    "supportBody": "문의는 카카오톡 채널로 남겨주세요.\n의료 상담이 필요한 내용은 담당 전문의·치료사에게 문의해 주세요.\n{supportHours}\n주말 및 공휴일 휴무",
+    "supportHours": "평일 10:00 - 17:00",
+    "kakaoInquiry": "카카오톡 문의",
+    "medicalDisclaimer": "바로도리는 치료나 진단을 대신하지 않아요. 병원에서 안내받은 운동을 보호자가 집에서 목표로 세우고, 기록하고, 리포트로 확인하도록 돕는 서비스예요."
   },
   "medical": {
     "title": "이용 안내",
@@ -32,6 +53,265 @@
     "body": "바로도리는 치료나 진단을 대신하지 않는 홈케어 기록 도구예요. 운동 방법과 강도는 담당 전문의나 치료사와 상담한 뒤 진행해 주세요. 기록과 리포트는 보호자가 상황을 정리할 때 참고하는 자료로 써 주세요.",
     "emergency": "통증, 강한 울음, 발열, 호흡 이상, 움직임의 급격한 제한, 신경학적 이상이 있으면 즉시 병원 진료를 받으세요.",
     "stress": "보호자 컨디션 체크 결과는 참고용이며, 진단이나 치료 판단 목적으로 사용할 수 없어요."
+  },
+  "structuredData": {
+    "organizationName": "제로더 (Zerorder)",
+    "mobileAppName": "바로도리",
+    "mobileAppDescription": "병원에서 안내받은 아기·영유아 홈케어 운동을 목표로 세우고, 기록과 리포트로 꾸준히 확인할 수 있도록 돕는 앱이에요.",
+    "mobileAppKeywords": "사경, 영아 사경, 아기 사경, 사두, 두상 비대칭, 터미타임, 홈케어 운동, 아기 운동 기록, 영유아 홈케어",
+    "mobileAppAudience": "아기와 영유아의 홈케어 운동을 기록하는 보호자"
+  },
+  "launch": {
+    "appStatusLabel": "홈케어 운동 기록 앱",
+    "liveNotice": "iOS와 Android에서 바로도리를 설치하고 오늘의 기록을 시작하세요.",
+    "pendingNotice": "스토어 오픈 전까지 알림 신청으로 바로도리 소식을 먼저 받아보세요.",
+    "pendingCta": "다운로드 받기",
+    "installCta": "앱에서 기록 시작하기",
+    "appDownloadPending": "스토어 링크가 준비되면 이곳에서 바로 안내할게요."
+  },
+  "store": {
+    "appStoreDownload": "App Store에서 다운로드",
+    "googlePlayDownload": "Google Play에서 다운로드",
+    "storeLinkPending": "스토어 링크 준비 중",
+    "qrScan": "휴대폰 카메라로 QR을 스캔해 설치하세요",
+    "qrAlt": "{store} 다운로드 QR 코드",
+    "installGuide": "앱 설치 안내",
+    "qrInstallTitle": "QR 코드로 설치",
+    "qrInstallBody": "모바일로 QR 코드를 스캔하면 앱스토어로 이동해요.",
+    "qrPlaceholder": "QR 이미지 (오픈 시 업데이트)",
+    "openingSoonTitle": "앱 오픈 준비 중",
+    "openingSoonBody": "바로도리는 병원에서 안내받은 홈케어 운동을 목표로 세우고, 기록과 리포트로 확인하는 앱이에요. 오픈 소식을 받아보거나 베타 참여 가능 여부를 확인해 주세요."
+  },
+  "home": {
+    "seo": {
+      "title": "바로도리 - 아기·영유아 홈케어 운동 기록 앱",
+      "description": "아기 사경·두상이 걱정되어 병원에서 안내받은 홈케어 운동을 오늘의 목표로 정하고, 시간·횟수·아이 반응을 달력과 리포트로 확인하세요."
+    },
+    "hero": {
+      "titlePrimary": "일단 바로도리,",
+      "titleSecondary": "켜는 순간 홈케어 시작",
+      "subtitle": "막막한 홈케어를 바로도리와 함께해요"
+    },
+    "storySections": [
+      {
+        "id": "home",
+        "title": "AI가 적정 운동량을 추천해줘요",
+        "body": "한눈에 달성율을 확인하고, 적정 운동량을 진행할 수 있어요. 막막해하지 않아도 돼요.",
+        "chips": ["오늘의 운동기록", "이번 주 목표", "스트레스 체크"],
+        "screenAlt": "바로도리 홈 화면 - 오늘의 운동 기록과 이번 주 목표를 한눈에 보여줘요"
+      },
+      {
+        "id": "exercise",
+        "title": "도리랑 같이 운동해요",
+        "body": "운동하는 동안엔 아이만 봐요. 우리 아이에만 집중할 수 있어요.",
+        "chips": ["스톱워치", "동요 재생", "끝나고 횟수 기록"],
+        "screenAlt": "바로도리 운동 화면 - 도리 캐릭터와 운동 타이머, 동요 재생"
+      },
+      {
+        "id": "record",
+        "title": "상세 리포트로\n운동을 더 알차게",
+        "body": "세심한 케어를 위한 가장 확실한 기록,\n아이의 행복한 웃음으로 이어져요.",
+        "chips": ["좌·우 횟수", "오늘의 메모", "사진·영상"],
+        "screenAlt": "바로도리 운동 리포트 - 운동별 좌우 횟수와 메모, 사진 기록"
+      },
+      {
+        "id": "flow",
+        "title": "쌓인 기록은\n빠른 졸업으로 이어져요",
+        "body": "운동한 날, 물리치료 다녀온 날이 달력에 색으로 남아요.\n이번 주 목표는 얼마나 채웠는지, 무슨 운동을 많이 했는지 한눈에 정리해드려요.",
+        "chips": ["예약·운동 달력", "주간 목표 달성률", "운동별 비중"],
+        "screenAlt": "바로도리 달력과 주간 리포트 - 운동·물리치료 기록과 목표 달성률"
+      },
+      {
+        "id": "community",
+        "title": "혼자가 아니라는 걸, 여기서 느껴요",
+        "body": "같은 길을 가는 사람들의 진짜 이야기가 매일 올라와요.",
+        "chips": ["도리 이야기", "도리 운동일지", "댓글로 응원"],
+        "screenAlt": "바로도리 커뮤니티 - 보호자들이 운동 기록과 경험을 나누는 피드"
+      },
+      {
+        "id": "parent",
+        "title": "스트레스 측정을 통해 보호자님도 살펴볼게요",
+        "body": "긴 싸움에서는 엄마가 지치지 않는 게 제일 중요해요.\n스트레스 관리를 통해 바로도리는 늘 보호자님을 응원해요.",
+        "chips": ["1분 셀프 체크", "4단계 안내", "기록으로 흐름 보기"],
+        "screenAlt": "바로도리 보호자 컨디션 셀프 체크 - 1분 카메라로 오늘 상태를 4단계로 안내"
+      }
+    ],
+    "installCta": {
+      "eyebrow": "목표 · 기록 · 리포트",
+      "title": "오늘의 홈케어 기록을 놓치지 않도록",
+      "body": "병원에서 안내받은 운동을 집에서 이어가고, 시간과 횟수, 아이 반응을 달력과 리포트로 다시 확인하세요."
+    }
+  },
+  "install": {
+    "seo": {
+      "title": "바로도리 앱 시작하기 - 아기 운동 기록",
+      "description": "바로도리 앱에서 오늘의 아기 운동 기록과 영유아 홈케어 루틴을 달력과 리포트로 다시 확인해보세요."
+    },
+    "title": "바로도리 앱 시작하기",
+    "liveBody": "스토어에서 바로도리를 설치하고 오늘의 홈케어 운동부터 기록해보세요.",
+    "pendingBody": "스토어 오픈 전까지 베타/알림 신청으로 바로도리 소식을 먼저 받아보세요.",
+    "pendingBox": "QR 코드와 스토어 링크는 앱 오픈 상태에 맞춰 제공돼요.",
+    "downloadTitle": "지금 바로도리를 다운로드하세요",
+    "downloadBody": "iOS와 Android에서 바로도리를 설치하고 오늘의 홈케어 기록을 시작하세요."
+  },
+  "login": {
+    "seo": {
+      "title": "로그인 - 바로도리",
+      "description": "바로도리 계정으로 로그인하고 마이페이지를 이용하세요."
+    },
+    "eyebrow": "Account",
+    "title": "로그인 / 회원가입",
+    "description": "홈페이지는 소셜 로그인만 지원해요. 앱과 같은 계정으로 로그인하면 사용자님 정보를 이어서 사용할 수 있고, 앱에서는 필요한 온보딩을 다시 진행해요.",
+    "agreementPrefix": "계속 진행하면",
+    "agreementMiddle": "과",
+    "agreementSuffix": "에 동의한 것으로 간주돼요.",
+    "pending": "로그인 중...",
+    "providers": {
+      "kakao": "카카오톡으로 계속하기",
+      "google": "Google로 계속하기",
+      "naver": "Naver로 계속하기"
+    },
+    "errors": {
+      "oauth_state": "로그인 요청을 확인하지 못했어요. 다시 시도해 주세요.",
+      "kakao_config_missing": "카카오 로그인 설정이 아직 연결되지 않았어요.",
+      "naver_config_missing": "네이버 로그인 설정이 아직 연결되지 않았어요.",
+      "kakao_login_failed": "카카오 로그인에 실패했어요. 다시 시도해 주세요.",
+      "naver_login_failed": "네이버 로그인에 실패했어요. 다시 시도해 주세요.",
+      "default": "로그인에 실패했어요. 다시 시도해 주세요.",
+      "firebase_auth_not_configured": "Firebase 로그인 설정이 아직 연결되지 않았어요.",
+      "cancelled": "로그인이 취소됐어요."
+    }
+  },
+  "mypage": {
+    "seo": {
+      "title": "마이페이지 - 바로도리",
+      "description": "내 정보, 아이 정보, 활동 내역을 확인하세요."
+    },
+    "eyebrow": "마이페이지",
+    "title": "내 정보와 아이의 진행 상태를 한눈에",
+    "description": "앱과 동일한 계정으로 로그인하면 내 정보와 아이 정보를 확인할 수 있어요. 목표 달성과 연속 운동은 앱에서 실시간으로 이어져요.",
+    "progressEyebrow": "우리 아이 진행 상태",
+    "exampleBadge": "예시",
+    "progressTitle": "목표 달성과 연속 운동을 앱에서 확인해요",
+    "progressBody": "아래는 앱에서 보는 예시 화면이에요. 앱에 로그인하면 우리 아이의 실제 기록으로 채워져요.",
+    "appViewCta": "앱에서 전체 보기 →",
+    "highlights": [
+      ["오늘의 목표 달성", "운동별 목표를 채우고, 모두 달성한 날에는 작은 축하를 만나요."],
+      ["연속 운동", "며칠째 이어오고 있는지 한눈에 확인하며 꾸준함을 이어가요."],
+      ["운동·물리치료 기록", "집에서 한 운동과 병원 방문, 아이 반응을 한곳에 남겨요."],
+      ["아이 정보 관리", "아이의 기본 정보와 기록 흐름을 앱과 함께 확인해요."]
+    ],
+    "profilePlaceholder": "프로필",
+    "userName": "사용자님",
+    "authenticatedBody": "앱과 동일한 계정으로 로그인되어 있어요.",
+    "unauthenticatedBody": "로그인 후 내 정보를 확인할 수 있어요.",
+    "loginCta": "로그인하기",
+    "navItems": ["내 정보", "아이 정보", "내 활동", "계정 관리"],
+    "sections": [
+      {
+        "title": "내 정보",
+        "description": "홈페이지와 앱에서 함께 사용하는 보호자 정보예요.",
+        "items": ["프로필 이미지", "닉네임", "생년월일", "성별", "휴대폰", "주소"]
+      },
+      {
+        "title": "아이 정보",
+        "description": "다자녀 등록과 기본 건강 상태 정보는 앱과 동일하게 관리돼요.",
+        "items": ["아이 프로필", "이름", "생년월일", "성별", "목 가눔 여부", "사경 유형", "머리 모양"]
+      },
+      {
+        "title": "내 활동",
+        "description": "바로도리 앱에서 이어지는 기록 활동을 확인해요.",
+        "items": ["운동 기록", "목표 달성", "연속 운동"]
+      }
+    ],
+    "appFeatureTitle": "앱에서 이어지는 기능",
+    "appFeatureBody": "목표 달성, 연속 운동, 운동 기록은 앱에서 실시간으로 확인할 수 있어요. 홈페이지 마이페이지는 계정과 아이 정보를 함께 관리해요.",
+    "edit": "수정",
+    "empty": "미입력",
+    "goalMockup": {
+      "goals": [
+        { "name": "고개 돌리기", "done": 60, "target": 60 },
+        { "name": "고개 기울이기", "done": 45, "target": 60 },
+        { "name": "터미타임", "done": 12, "target": 15 }
+      ],
+      "week": [
+        { "label": "월", "done": true },
+        { "label": "화", "done": true },
+        { "label": "수", "done": true },
+        { "label": "목", "done": true },
+        { "label": "금", "done": true },
+        { "label": "토", "done": true },
+        { "label": "일", "done": false, "today": true }
+      ],
+      "title": "오늘 목표",
+      "subtitle": "운동별 목표 대비 횟수",
+      "setting": "목표 설정",
+      "countUnit": "회",
+      "allDone": "오늘 운동 목표를 모두 달성했어요",
+      "partial": "운동별 목표 {total}개 중 {achieved}개 달성",
+      "weeklyTitle": "이번 주 운동",
+      "streak": "연속 운동 {days}일",
+      "weeklyRate": "주간 달성률",
+      "preConsultMemo": "상담 전 메모",
+      "memoCount": "4개"
+    }
+  },
+  "faq": {
+    "seo": {
+      "title": "자주 묻는 질문 - 바로도리",
+      "description": "바로도리 서비스, 기록, 결제, 개인정보, 기술 문제에 대한 답변을 확인하세요."
+    },
+    "eyebrow": "FAQ",
+    "title": "자주 묻는 질문",
+    "description": "궁금한 내용을 검색하거나 카테고리별로 빠르게 확인해보세요.",
+    "searchLabel": "검색",
+    "searchPlaceholder": "질문을 검색하세요",
+    "loadError": "FAQ 데이터를 불러오지 못했어요. 잠시 후 다시 시도해주세요.",
+    "empty": "등록된 질문이 없어요.",
+    "emptyWithQuery": "'{query}'에 대한 결과가 없어요. 카카오톡으로 문의해주세요.",
+    "contactTitle": "더 궁금한 점이 있으신가요?",
+    "contactBody": "카카오톡 채널로 문의를 남겨주시면 운영 시간에 답변드릴게요.",
+    "contactCta": "카카오톡 문의"
+  },
+  "article": {
+    "listSeo": {
+      "title": "바로도리 컨텐츠 - 아기 사경과 터미타임 기록 참고",
+      "description": "아기 사경이나 두상 비대칭이 걱정되고 터미타임을 막 시작했다면, 상담 전에 무엇을 기록해두면 좋을지 바로도리 컨텐츠에서 참고해보세요."
+    },
+    "title": "우리 아이 홈케어 운동 기록을 위한 바로도리 컨텐츠",
+    "description": "진단이나 치료를 대신하진 않아요. 목 관찰이나 두상, 터미타임 같은 홈케어 기록을 상담 전에 정리해두도록 도와드려요.",
+    "searchLabel": "검색",
+    "searchPlaceholder": "컨텐츠 검색",
+    "recommendedEyebrow": "처음이라면 여기부터",
+    "recommendedTitle": "상담 전에 한 번 읽어두면 좋아요",
+    "recommendedDescription": "사경이나 두상, 터미타임 기록을 막 시작한 보호자에게 권하는 글이에요.",
+    "allTitle": "전체 컨텐츠",
+    "loadError": "컨텐츠를 불러오지 못했어요. 잠시 후 다시 시도해주세요.",
+    "empty": "아직 등록된 컨텐츠가 없어요.",
+    "emptyWithQuery": "'{query}'에 대한 결과가 없어요.",
+    "more": "컨텐츠 더 보기",
+    "end": "마지막 컨텐츠예요.",
+    "detailCta": "이 글에서 살펴본 내용을 바로도리 앱에 기록해두면, 다음 상담 전에 참고 자료로 정리하기 좋아요.",
+    "detailCtaLink": "기능 살펴보기 →"
+  },
+  "errors": {
+    "notFoundTitle": "찾으시는 페이지를 찾을 수 없어요",
+    "notFoundBody": "주소가 잘못 입력되었거나 페이지가 이동되었을 수 있어요.",
+    "homeCta": "홈으로 가기",
+    "faqCta": "자주 묻는 질문",
+    "temporaryTitle": "일시적인 오류가 발생했어요",
+    "temporaryBody": "잠시 후 다시 시도해주세요. 문제가 계속될 경우 고객센터로 문의해주세요.",
+    "retry": "다시 시도",
+    "close": "닫기"
+  },
+  "legal": {
+    "privacyTitle": "개인정보처리방침",
+    "privacyDescription": "바로도리 개인정보처리방침",
+    "termsTitle": "이용약관",
+    "termsDescription": "바로도리 이용약관",
+    "effectiveDateDraft": "시행일: 작성 중",
+    "draftBody": "본 페이지는 준비 중이에요. 정식 본문은 법무 검토 후 업데이트돼요.",
+    "contact": "문의:"
   },
   "comingSoonNotice": "스토어 오픈 전까지 베타/알림 신청으로 바로도리 소식을 먼저 받아보세요."
 }

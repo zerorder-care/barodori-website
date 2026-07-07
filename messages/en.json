@@ -1,22 +1,25 @@
 {
   "common": {
-    "appName": "BaroDori",
+    "appName": "Barodori",
     "install": "Start the app",
     "comingSoon": "Opening soon",
-    "betaSignup": "Get launch updates"
+    "betaSignup": "Get launch updates",
+    "home": "Home"
   },
   "nav": {
     "home": "Home",
     "reviews": "Reviews",
     "community": "Community",
-    "articles": "BaroDori content",
+    "articles": "Barodori content",
     "newsroom": "Updates",
     "faq": "FAQ",
     "login": "Log in",
     "logout": "Log out",
     "mypage": "My page",
     "install": "Start the app",
-    "start": "Get started"
+    "start": "Get started",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
   },
   "footer": {
     "tagline": "After hospital therapy, keep home-care exercises on track with goals, records, and reports.",
@@ -24,14 +27,291 @@
     "businessInfo": "Business info",
     "privacy": "Privacy",
     "terms": "Terms",
-    "copyright": "© {year} Zerorder"
+    "copyright": "© {year} Zerorder",
+    "companyName": "Company",
+    "ceo": "CEO",
+    "businessNumber": "Business registration no.",
+    "mailOrderNumber": "E-commerce registration no.",
+    "email": "Email",
+    "address": "Address",
+    "companyValues": {
+      "name": "Zerorder Co., Ltd.",
+      "ceo": "Yejoon Sim",
+      "businessNumber": "764-88-02890",
+      "mailOrderNumber": "2024-Seoul Dongdaemun-2011",
+      "email": "contact@zerorder.kr",
+      "address": "Seoul Bio Hub Industrial Support Building, 117-3 Hoegi-ro, Dongdaemun-gu, Seoul, Republic of Korea"
+    },
+    "supportBody": "Please contact us through our KakaoTalk channel.\nFor medical advice, contact your clinician or therapist.\n{supportHours}\nClosed on weekends and public holidays",
+    "supportHours": "Weekdays 10:00-17:00 KST",
+    "kakaoInquiry": "KakaoTalk inquiry",
+    "medicalDisclaimer": "Barodori does not replace treatment or diagnosis. It helps caregivers set goals for clinician-guided home exercises, record them, and review progress through reports."
   },
   "medical": {
     "title": "Usage Notice",
-    "compactBody": "BaroDori does not replace treatment or diagnosis. It helps caregivers set goals, record exercises instructed by clinicians, and review progress through reports at home.",
-    "body": "BaroDori is a home-care recording tool and does not replace treatment or diagnosis. Exercise methods and intensity should be decided with your clinician or therapist. Records and reports are reference materials for organizing the situation.",
+    "compactBody": "Barodori does not replace treatment or diagnosis. It helps caregivers set goals, record exercises instructed by clinicians, and review progress through reports at home.",
+    "body": "Barodori is a home-care recording tool and does not replace treatment or diagnosis. Exercise methods and intensity should be decided with your clinician or therapist. Records and reports are reference materials for organizing the situation.",
     "emergency": "If your child shows pain, intense crying, fever, breathing issues, sudden movement restriction, or neurological symptoms, seek medical attention immediately.",
     "stress": "Caregiver condition-check results are for reference only and must not be used for diagnosis or treatment decisions."
   },
-  "comingSoonNotice": "Before store links open, sign up for beta or launch updates to hear from BaroDori first."
+  "structuredData": {
+    "organizationName": "Zerorder",
+    "mobileAppName": "Barodori",
+    "mobileAppDescription": "Set daily goals for clinician-guided home-care exercises, record time, counts, and your child's response, then review them in calendars and reports.",
+    "mobileAppKeywords": "baby home-care exercise, infant torticollis, tummy time, caregiver exercise log, baby exercise record",
+    "mobileAppAudience": "Caregivers recording home-care exercises for babies and young children"
+  },
+  "launch": {
+    "appStatusLabel": "Home-care exercise tracker",
+    "liveNotice": "Install Barodori on iOS or Android and start today's record.",
+    "pendingNotice": "Sign up for launch updates until the store links open.",
+    "pendingCta": "Get download updates",
+    "installCta": "Start recording in the app",
+    "appDownloadPending": "Store links will appear here when they are ready."
+  },
+  "store": {
+    "appStoreDownload": "Download on the App Store",
+    "googlePlayDownload": "Get it on Google Play",
+    "storeLinkPending": "Store link coming soon",
+    "qrScan": "Scan the QR code with your phone camera to install.",
+    "qrAlt": "{store} download QR code",
+    "installGuide": "App installation guide",
+    "qrInstallTitle": "Install with QR code",
+    "qrInstallBody": "Scan the QR code on mobile to open the app store.",
+    "qrPlaceholder": "QR image will be updated at launch",
+    "openingSoonTitle": "App opening soon",
+    "openingSoonBody": "Barodori helps caregivers set goals for clinician-guided home-care exercises and review records through reports. Get launch updates or check beta availability."
+  },
+  "home": {
+    "seo": {
+      "title": "Barodori - Baby Home-Care Exercise Tracker",
+      "description": "Set daily goals for clinician-guided home-care exercises, record time, counts, and your child's response, then review them in calendars and reports."
+    },
+    "hero": {
+      "titlePrimary": "Start with Barodori,",
+      "titleSecondary": "home care begins when you open it",
+      "subtitle": "Make uncertain home care easier with Barodori."
+    },
+    "storySections": [
+      {
+        "id": "home",
+        "title": "AI helps suggest a practical exercise amount",
+        "body": "See progress at a glance and keep exercises at a manageable level without feeling lost.",
+        "chips": ["Today's exercise record", "This week's goal", "Stress check"],
+        "screenAlt": "Barodori home screen showing today's exercise record and this week's goal"
+      },
+      {
+        "id": "exercise",
+        "title": "Exercise together with Dori",
+        "body": "During exercise time, focus only on your child. Barodori keeps the timer and records ready.",
+        "chips": ["Stopwatch", "Children's songs", "Count after finishing"],
+        "screenAlt": "Barodori exercise screen with Dori character, timer, and song playback"
+      },
+      {
+        "id": "record",
+        "title": "Detailed reports\nmake each session more useful",
+        "body": "A careful record can turn small home-care moments into a clearer view of progress.",
+        "chips": ["Left/right counts", "Today's memo", "Photos and videos"],
+        "screenAlt": "Barodori session report showing left and right counts, memos, and photo records"
+      },
+      {
+        "id": "flow",
+        "title": "Accumulated records\nhelp you see the path forward",
+        "body": "Exercise days and therapy visits stay visible on the calendar.\nWeekly goal progress and exercise mix are summarized at a glance.",
+        "chips": ["Appointment and exercise calendar", "Weekly goal progress", "Exercise mix"],
+        "screenAlt": "Barodori calendar and weekly report showing exercise records and goal progress"
+      },
+      {
+        "id": "community",
+        "title": "Feel that you are not doing this alone",
+        "body": "Read real stories from caregivers walking a similar path.",
+        "chips": ["Dori stories", "Exercise journals", "Encouraging comments"],
+        "screenAlt": "Barodori community feed where caregivers share exercise records and experiences"
+      },
+      {
+        "id": "parent",
+        "title": "Barodori also checks in on the caregiver",
+        "body": "Long home-care routines are easier when the caregiver is not exhausted.\nBarodori helps you notice your own condition, too.",
+        "chips": ["1-minute self check", "4-level guide", "Track changes over time"],
+        "screenAlt": "Barodori caregiver condition self-check screen with a 1-minute camera guide"
+      }
+    ],
+    "installCta": {
+      "eyebrow": "Goals · Records · Reports",
+      "title": "Keep today's home-care record from slipping away",
+      "body": "Continue clinician-guided exercises at home, then review time, counts, and your child's response in calendars and reports."
+    }
+  },
+  "install": {
+    "seo": {
+      "title": "Start Barodori - Baby Exercise Records",
+      "description": "Use Barodori to record today's baby exercises and home-care routines, then review them in calendars and reports."
+    },
+    "title": "Start Barodori",
+    "liveBody": "Install Barodori from the store and start recording today's home-care exercise.",
+    "pendingBody": "Sign up for beta or launch updates until the store links open.",
+    "pendingBox": "QR codes and store links will be provided based on app launch status.",
+    "downloadTitle": "Download Barodori now",
+    "downloadBody": "Install Barodori on iOS or Android and start today's home-care record."
+  },
+  "login": {
+    "seo": {
+      "title": "Log in - Barodori",
+      "description": "Log in with your Barodori account and use My Page."
+    },
+    "eyebrow": "Account",
+    "title": "Log in / Sign up",
+    "description": "The website supports social login only. Log in with the same account as the app to continue using your profile, then complete any required onboarding in the app.",
+    "agreementPrefix": "By continuing, you agree to the",
+    "agreementMiddle": "and",
+    "agreementSuffix": ".",
+    "pending": "Logging in...",
+    "providers": {
+      "kakao": "Continue with KakaoTalk",
+      "google": "Continue with Google",
+      "naver": "Continue with Naver"
+    },
+    "errors": {
+      "oauth_state": "We could not verify the login request. Please try again.",
+      "kakao_config_missing": "Kakao login is not configured yet.",
+      "naver_config_missing": "Naver login is not configured yet.",
+      "kakao_login_failed": "Kakao login failed. Please try again.",
+      "naver_login_failed": "Naver login failed. Please try again.",
+      "default": "Login failed. Please try again.",
+      "firebase_auth_not_configured": "Firebase login is not configured yet.",
+      "cancelled": "Login was cancelled."
+    }
+  },
+  "mypage": {
+    "seo": {
+      "title": "My Page - Barodori",
+      "description": "Check your profile, child information, and activity history."
+    },
+    "eyebrow": "My Page",
+    "title": "See your profile and your child's progress in one place",
+    "description": "Log in with the same account as the app to check caregiver and child information. Goal progress and exercise streaks continue in the app in real time.",
+    "progressEyebrow": "Child progress",
+    "exampleBadge": "Example",
+    "progressTitle": "Check goal progress and exercise streaks in the app",
+    "progressBody": "This is an example app screen. After logging in to the app, it will be filled with your child's actual records.",
+    "appViewCta": "Open in the app ->",
+    "highlights": [
+      ["Today's goal progress", "Fill each exercise goal and see a small celebration on fully completed days."],
+      ["Exercise streak", "See how many days you have continued and keep the routine going."],
+      ["Exercise and therapy records", "Keep home exercises, hospital visits, and child responses in one place."],
+      ["Child profile management", "Review your child's basic information and record flow with the app."]
+    ],
+    "profilePlaceholder": "Profile",
+    "userName": "User",
+    "authenticatedBody": "You are logged in with the same account as the app.",
+    "unauthenticatedBody": "Log in to check your information.",
+    "loginCta": "Log in",
+    "navItems": ["My info", "Child info", "My activity", "Account"],
+    "sections": [
+      {
+        "title": "My info",
+        "description": "Caregiver information used across the website and app.",
+        "items": ["Profile image", "Nickname", "Date of birth", "Gender", "Phone", "Address"]
+      },
+      {
+        "title": "Child info",
+        "description": "Multiple-child profiles and basic health information are managed with the app.",
+        "items": ["Child profile", "Name", "Date of birth", "Gender", "Head control", "Torticollis type", "Head shape"]
+      },
+      {
+        "title": "My activity",
+        "description": "Review record activity that continues in the Barodori app.",
+        "items": ["Exercise records", "Goal progress", "Exercise streak"]
+      }
+    ],
+    "appFeatureTitle": "Features continued in the app",
+    "appFeatureBody": "Goal progress, exercise streaks, and exercise records are checked in the app in real time. My Page on the website helps manage account and child information together.",
+    "edit": "Edit",
+    "empty": "Not entered",
+    "goalMockup": {
+      "goals": [
+        { "name": "Turn head", "done": 60, "target": 60 },
+        { "name": "Tilt head", "done": 45, "target": 60 },
+        { "name": "Tummy time", "done": 12, "target": 15 }
+      ],
+      "week": [
+        { "label": "Mon", "done": true },
+        { "label": "Tue", "done": true },
+        { "label": "Wed", "done": true },
+        { "label": "Thu", "done": true },
+        { "label": "Fri", "done": true },
+        { "label": "Sat", "done": true },
+        { "label": "Sun", "done": false, "today": true }
+      ],
+      "title": "Today's goal",
+      "subtitle": "Counts against each exercise goal",
+      "setting": "Set goal",
+      "countUnit": "times",
+      "allDone": "All exercise goals are complete today",
+      "partial": "{achieved} of {total} exercise goals completed",
+      "weeklyTitle": "This week's exercise",
+      "streak": "{days}-day streak",
+      "weeklyRate": "Weekly progress",
+      "preConsultMemo": "Pre-consult notes",
+      "memoCount": "4 notes"
+    }
+  },
+  "faq": {
+    "seo": {
+      "title": "FAQ - Barodori",
+      "description": "Find answers about Barodori service, records, payments, privacy, and technical issues."
+    },
+    "eyebrow": "FAQ",
+    "title": "Frequently Asked Questions",
+    "description": "Search questions or browse by category.",
+    "searchLabel": "Search",
+    "searchPlaceholder": "Search questions",
+    "loadError": "We could not load FAQ data. Please try again later.",
+    "empty": "No questions are available yet.",
+    "emptyWithQuery": "No results for '{query}'. Please contact us through KakaoTalk.",
+    "contactTitle": "Still have questions?",
+    "contactBody": "Leave a message on our KakaoTalk channel and we will reply during support hours.",
+    "contactCta": "KakaoTalk inquiry"
+  },
+  "article": {
+    "listSeo": {
+      "title": "Barodori Content - Baby Neck and Tummy-Time Record Tips",
+      "description": "If you are concerned about baby neck preference, head shape, or starting tummy time, Barodori content helps you organize what to record before consulting a clinician."
+    },
+    "title": "Barodori content for your child's home-care exercise records",
+    "description": "This does not replace diagnosis or treatment. It helps caregivers organize neck observations, head-shape notes, and tummy-time records before consultation.",
+    "searchLabel": "Search",
+    "searchPlaceholder": "Search content",
+    "recommendedEyebrow": "Start here",
+    "recommendedTitle": "Helpful reads before consultation",
+    "recommendedDescription": "Recommended for caregivers beginning records around neck observation, head shape, or tummy time.",
+    "allTitle": "All content",
+    "loadError": "We could not load content. Please try again later.",
+    "empty": "No content is available yet.",
+    "emptyWithQuery": "No results for '{query}'.",
+    "more": "View more content",
+    "end": "You have reached the last content item.",
+    "detailCta": "Recording the points from this article in Barodori can help you organize notes before the next consultation.",
+    "detailCtaLink": "Explore features →"
+  },
+  "errors": {
+    "notFoundTitle": "We could not find this page",
+    "notFoundBody": "The address may be incorrect or the page may have moved.",
+    "homeCta": "Go home",
+    "faqCta": "FAQ",
+    "temporaryTitle": "A temporary error occurred",
+    "temporaryBody": "Please try again later. If the problem continues, contact support.",
+    "retry": "Try again",
+    "close": "Close"
+  },
+  "legal": {
+    "privacyTitle": "Privacy Policy",
+    "privacyDescription": "Barodori Privacy Policy",
+    "termsTitle": "Terms of Service",
+    "termsDescription": "Barodori Terms of Service",
+    "effectiveDateDraft": "Effective date: In progress",
+    "draftBody": "This page is being prepared. The official text will be updated after legal review.",
+    "contact": "Contact:"
+  },
+  "comingSoonNotice": "Before store links open, sign up for beta or launch updates to hear from Barodori first."
 }

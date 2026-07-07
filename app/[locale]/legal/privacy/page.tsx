@@ -1,24 +1,35 @@
 import { notFound } from 'next/navigation'
-import { isLocale } from '@/lib/i18n/dictionary'
+import { getDictionary, isLocale } from '@/lib/i18n/dictionary'
 import { Container } from '@/components/ui/Container'
-import type { Metadata } from 'next'
+import { buildMetadata } from '@/lib/seo/metadata'
 
-export const metadata: Metadata = {
-  title: '개인정보처리방침',
-  description: '바로도리 개인정보처리방침',
-  robots: { index: false, follow: false },
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  if (!isLocale(locale)) return {}
+  const dict = await getDictionary(locale)
+  return {
+    ...buildMetadata({
+      title: dict.legal.privacyTitle,
+      description: dict.legal.privacyDescription,
+      path: `/${locale}/legal/privacy`,
+      locale,
+    }),
+    robots: { index: false, follow: false },
+  }
 }
 
 export default async function PrivacyPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
   if (!isLocale(locale)) notFound()
+  const dict = await getDictionary(locale)
   return (
     <Container className="py-16">
-      <h1 className="text-3xl font-bold">개인정보처리방침</h1>
-      <p className="mt-2 text-sm text-[var(--color-text-secondary)]">시행일: 작성 중</p>
+      <h1 className="text-3xl font-bold">{dict.legal.privacyTitle}</h1>
+      <p className="mt-2 text-sm text-[var(--color-text-secondary)]">{dict.legal.effectiveDateDraft}</p>
       <div className="mt-8 rounded-lg border border-dashed border-[var(--color-border)] bg-[var(--color-bg-muted)] p-6 text-sm leading-relaxed text-[var(--color-text-secondary)]">
-        본 페이지는 준비 중이에요. 정식 본문은 법무 검토 후 업데이트돼요.
-        문의: <a href="mailto:contact@barodori.com" className="underline">contact@barodori.com</a>
+        {dict.legal.draftBody}
+        {' '}
+        {dict.legal.contact} <a href="mailto:contact@barodori.com" className="underline">contact@barodori.com</a>
       </div>
     </Container>
   )

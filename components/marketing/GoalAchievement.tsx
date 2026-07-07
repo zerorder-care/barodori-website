@@ -1,20 +1,7 @@
 import { Container } from '@/components/ui/Container'
+import koMessages from '@/messages/ko.json'
 
-const goals = [
-  { name: '고개 돌리기', done: 60, target: 60 },
-  { name: '고개 기울이기', done: 45, target: 60 },
-  { name: '터미타임', done: 12, target: 15 },
-] as const
-
-const week = [
-  { label: '월', done: true },
-  { label: '화', done: true },
-  { label: '수', done: true },
-  { label: '목', done: true },
-  { label: '금', done: true },
-  { label: '토', done: true },
-  { label: '일', done: false, today: true },
-] as const
+type GoalCardCopy = typeof koMessages.mypage.goalMockup
 
 const highlights = [
   {
@@ -64,10 +51,10 @@ export function GoalAchievement() {
   )
 }
 
-export function GoalCardMockup() {
-  const allDone = goals.every((g) => g.done >= g.target)
-  const achievedCount = goals.filter((g) => g.done >= g.target).length
-  const streak = week.filter((d) => d.done).length
+export function GoalCardMockup({ copy = koMessages.mypage.goalMockup }: { copy?: GoalCardCopy }) {
+  const allDone = copy.goals.every((g) => g.done >= g.target)
+  const achievedCount = copy.goals.filter((g) => g.done >= g.target).length
+  const streak = copy.week.filter((d) => d.done).length
 
   return (
     <div
@@ -77,16 +64,16 @@ export function GoalCardMockup() {
       <div className="rounded-[16px] border border-[var(--color-border)] bg-white p-5">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-base font-bold">오늘 목표</p>
-            <p className="mt-0.5 text-xs text-[var(--color-text-secondary)]">운동별 목표 대비 횟수</p>
+            <p className="text-base font-bold">{copy.title}</p>
+            <p className="mt-0.5 text-xs text-[var(--color-text-secondary)]">{copy.subtitle}</p>
           </div>
           <span className="rounded-pill bg-[var(--color-primary-light)] px-3 py-1 text-xs font-semibold text-[var(--color-primary-dark)]">
-            목표 설정
+            {copy.setting}
           </span>
         </div>
 
         <div className="mt-5 space-y-4">
-          {goals.map((goal) => {
+          {copy.goals.map((goal) => {
             const ratio = Math.min(goal.done / goal.target, 1)
             const done = goal.done >= goal.target
             return (
@@ -97,7 +84,7 @@ export function GoalCardMockup() {
                     {goal.name}
                   </span>
                   <span className="tabular-nums text-[var(--color-text-secondary)]">
-                    {goal.done} / {goal.target}회
+                    {goal.done} / {goal.target}{copy.countUnit}
                   </span>
                 </div>
                 <div className="mt-2 h-2 overflow-hidden rounded-pill bg-[#f0f0f0]">
@@ -116,20 +103,22 @@ export function GoalCardMockup() {
 
         <p className="mt-5 rounded-[12px] bg-[var(--color-primary-light)] px-4 py-3 text-center text-sm font-bold text-[var(--color-primary-dark)]">
           {allDone
-            ? '오늘 운동 목표를 모두 달성했어요'
-            : `운동별 목표 ${goals.length}개 중 ${achievedCount}개 달성`}
+            ? copy.allDone
+            : copy.partial
+              .replace('{total}', String(copy.goals.length))
+              .replace('{achieved}', String(achievedCount))}
         </p>
       </div>
 
       <div className="mt-4 rounded-[16px] border border-[var(--color-border)] bg-white p-5">
         <div className="flex items-center justify-between">
-          <p className="text-sm font-bold">이번 주 운동</p>
+          <p className="text-sm font-bold">{copy.weeklyTitle}</p>
           <span className="flex items-center gap-1 text-sm font-bold text-[var(--color-primary-dark)]">
-            연속 운동 {streak}일
+            {copy.streak.replace('{days}', String(streak))}
           </span>
         </div>
         <div className="mt-4 flex justify-between">
-          {week.map((day) => (
+          {copy.week.map((day) => (
             <div key={day.label} className="flex flex-col items-center gap-1.5">
               <span
                 className={`grid h-8 w-8 place-items-center rounded-full text-xs font-bold ${
@@ -150,12 +139,12 @@ export function GoalCardMockup() {
 
       <div className="mt-4 grid gap-3 rounded-[16px] border border-[var(--color-border)] bg-white p-5 sm:grid-cols-2">
         <div>
-          <p className="text-xs font-semibold text-[var(--color-text-secondary)]">주간 달성률</p>
+          <p className="text-xs font-semibold text-[var(--color-text-secondary)]">{copy.weeklyRate}</p>
           <p className="mt-1 text-2xl font-bold text-[var(--color-primary-dark)]">86%</p>
         </div>
         <div>
-          <p className="text-xs font-semibold text-[var(--color-text-secondary)]">상담 전 메모</p>
-          <p className="mt-1 text-2xl font-bold text-[var(--color-primary-dark)]">4개</p>
+          <p className="text-xs font-semibold text-[var(--color-text-secondary)]">{copy.preConsultMemo}</p>
+          <p className="mt-1 text-2xl font-bold text-[var(--color-primary-dark)]">{copy.memoCount}</p>
         </div>
       </div>
     </div>

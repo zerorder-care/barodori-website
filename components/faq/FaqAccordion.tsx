@@ -10,6 +10,7 @@ export function FaqAccordion({
   category,
   query,
   error,
+  labels,
 }: {
   locale: Locale
   categories: FaqCategoryOption[]
@@ -17,6 +18,13 @@ export function FaqAccordion({
   category: string
   query: string
   error?: string
+  labels: {
+    searchLabel: string
+    searchPlaceholder: string
+    loadError: string
+    empty: string
+    emptyWithQuery: string
+  }
 }) {
   const categoryLabelByValue = new Map(categories.map((item) => [item.value, item.label]))
 
@@ -26,13 +34,13 @@ export function FaqAccordion({
         <form action={`/${locale}/faq`} className="flex min-h-14 items-center rounded-[8px] border border-[var(--color-border)] bg-[var(--color-bg-muted)] px-5">
           {category !== 'all' && <input type="hidden" name="category" value={category} />}
           <label htmlFor="faq-search" className="mr-3 text-sm font-semibold text-[var(--color-text-secondary)]">
-            검색
+            {labels.searchLabel}
           </label>
           <input
             id="faq-search"
             name="q"
             defaultValue={query}
-            placeholder="질문을 검색하세요"
+            placeholder={labels.searchPlaceholder}
             className="w-full bg-transparent text-sm outline-none"
           />
         </form>
@@ -46,12 +54,12 @@ export function FaqAccordion({
       </div>
       {error && (
         <p className="mt-5 rounded-[8px] border border-[var(--color-border)] bg-[var(--color-bg-muted)] p-4 text-sm text-[var(--color-text-secondary)]">
-          FAQ 데이터를 불러오지 못했어요. 잠시 후 다시 시도해주세요.
+          {labels.loadError}
         </p>
       )}
       {items.length === 0 ? (
         <p className="mt-8 rounded-lg border border-[var(--color-border)] p-8 text-center text-[var(--color-text-secondary)]">
-          {query ? `'${query}'에 대한 결과가 없어요. 카카오톡으로 문의해주세요.` : '등록된 질문이 없어요.'}
+          {query ? labels.emptyWithQuery.replace('{query}', query) : labels.empty}
         </p>
       ) : (
         <div className="mt-8 divide-y divide-[var(--color-border)] rounded-[8px] border border-[var(--color-border)] bg-white">

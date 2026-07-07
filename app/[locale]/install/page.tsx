@@ -1,23 +1,23 @@
 import { notFound } from 'next/navigation'
-import { isLocale } from '@/lib/i18n/dictionary'
+import { getDictionary, isLocale } from '@/lib/i18n/dictionary'
 import { buildMetadata, TORTICOLLIS_KEYWORDS } from '@/lib/seo/metadata'
 import { Container } from '@/components/ui/Container'
 import { StoreButtons } from '@/components/install/StoreButtons'
 import { StoreQrCodes } from '@/components/install/StoreQrCodes'
 import { BetaSection } from '@/components/install/BetaSection'
 import { isAppLive } from '@/lib/install/storeLinks'
-import { launchCopy } from '@/lib/site/config'
 import type { Locale } from '@/lib/i18n/config'
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
   if (!isLocale(locale)) return {}
+  const dict = await getDictionary(locale)
   return buildMetadata({
-    title: '바로도리 앱 시작하기 - 아기 운동 기록',
-    description: '바로도리 앱에서 오늘의 아기 운동 기록과 영유아 홈케어 루틴을 달력과 리포트로 다시 확인해보세요.',
+    title: dict.install.seo.title,
+    description: dict.install.seo.description,
     path: `/${locale}/install`,
     locale,
-    keywords: TORTICOLLIS_KEYWORDS,
+    keywords: locale === 'ko' ? TORTICOLLIS_KEYWORDS : undefined,
   })
 }
 
@@ -25,26 +25,25 @@ export default async function InstallPage({ params }: { params: Promise<{ locale
   const { locale } = await params
   if (!isLocale(locale)) notFound()
   const loc = locale as Locale
+  const dict = await getDictionary(loc)
   const live = isAppLive()
   return (
     <>
       <section className="py-16">
         <Container className="text-center">
           <p className="inline-flex rounded-pill bg-[var(--color-primary-light)] px-3 py-1 text-xs font-semibold text-[var(--color-primary-dark)]">
-            {launchCopy.appStatusLabel}
+            {dict.launch.appStatusLabel}
           </p>
-          <h1 className="mt-5 text-3xl font-bold sm:text-4xl">바로도리 앱 시작하기</h1>
+          <h1 className="mt-5 text-3xl font-bold sm:text-4xl">{dict.install.title}</h1>
           <p className="mt-3 text-[var(--color-text-secondary)]">
-            {live
-              ? '스토어에서 바로도리를 설치하고 오늘의 홈케어 운동부터 기록해보세요.'
-              : '스토어 오픈 전까지 베타/알림 신청으로 바로도리 소식을 먼저 받아보세요.'}
+            {live ? dict.install.liveBody : dict.install.pendingBody}
           </p>
           <div className="mt-8 flex justify-center">
-            <StoreButtons surface="install_page" locale={loc} />
+            <StoreButtons surface="install_page" locale={loc} labels={dict.store} />
           </div>
           {live && (
             <div className="mt-10 hidden justify-center sm:flex">
-              <StoreQrCodes surface="install_page" locale={loc} />
+              <StoreQrCodes surface="install_page" locale={loc} labels={dict.store} />
             </div>
           )}
           {!live && (
@@ -52,7 +51,7 @@ export default async function InstallPage({ params }: { params: Promise<{ locale
               id="coming-soon"
               className="mx-auto mt-10 max-w-md rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-muted)] p-5 text-sm text-[var(--color-text-secondary)]"
             >
-              QR 코드와 스토어 링크는 앱 오픈 상태에 맞춰 제공돼요.
+              {dict.install.pendingBox}
             </div>
           )}
         </Container>

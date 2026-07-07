@@ -1,9 +1,11 @@
 import { describe, it, expect } from 'vitest'
 import { organizationJsonLd, articleJsonLd, mobileAppJsonLd } from './jsonLd'
+import koMessages from '@/messages/ko.json'
+import enMessages from '@/messages/en.json'
 
 describe('JSON-LD generators', () => {
   it('organizationJsonLd has @context and @type', () => {
-    const out = organizationJsonLd()
+    const out = organizationJsonLd(koMessages)
     expect(out['@context']).toBe('https://schema.org')
     expect(out['@type']).toBe('Organization')
     expect(out.name).toBeDefined()
@@ -28,10 +30,18 @@ describe('JSON-LD generators', () => {
   })
 
   it('mobileAppJsonLd describes the home-care recording app', () => {
-    const ld = mobileAppJsonLd()
+    const ld = mobileAppJsonLd('ko', koMessages)
     expect(ld['@type']).toBe('MobileApplication')
     expect(ld.description).toContain('홈케어 운동')
     expect(ld.description).toContain('목표')
     expect(ld.description).toContain('기록과 리포트')
+  })
+
+  it('mobileAppJsonLd uses the requested locale', () => {
+    const ld = mobileAppJsonLd('en', enMessages)
+    expect(ld.name).toBe('Barodori')
+    expect(ld.description).toContain('home-care exercises')
+    expect(ld.url).toContain('/en/install')
+    expect(ld.inLanguage).toBe('en')
   })
 })

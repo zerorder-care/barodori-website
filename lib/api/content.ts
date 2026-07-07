@@ -1,7 +1,7 @@
 import { fetchBackendApi, getApiBaseUrl } from '@/lib/api/client'
 import {
-  faqCategories as fallbackFaqCategories,
-  faqItems as fallbackFaqItems,
+  getFaqCategories,
+  getFaqItems,
   type FaqItem,
 } from '@/lib/content/faq'
 import {
@@ -11,6 +11,7 @@ import {
   type NewsroomContentBlock,
   type NewsroomPost,
 } from '@/lib/content/newsroom'
+import { defaultLocale, type Locale } from '@/lib/i18n/config'
 
 export type NewsroomCategoryFilter = NewsroomCategory | 'all'
 
@@ -46,6 +47,7 @@ export type FaqCategoryOption = {
 }
 
 export type FaqContentParams = {
+  locale?: Locale
   category?: string
   q?: string
 }
@@ -115,11 +117,6 @@ const SAFE_WORKOUT_GUIDANCE_ANSWER =
   '바로도리는 운동을 진단하거나 자동 처방하지 않아요. 담당 전문의·치료사와 정한 운동을 보호자가 목표로 등록하고, 집에서 한 시간·횟수·아이 반응을 기록하도록 도와요.'
 
 const fallbackNewsroomCategories: NewsroomCategoryOption[] = newsroomCategories.map(({ value, label }) => ({
-  value,
-  label,
-}))
-
-const fallbackFaqCategoryOptions: FaqCategoryOption[] = fallbackFaqCategories.map(({ value, label }) => ({
   value,
   label,
 }))
@@ -198,11 +195,15 @@ export async function getNewsroomPost(postId: string): Promise<NewsroomPost | nu
   }
 }
 
-export async function getFaqContent({ category, q }: FaqContentParams = {}): Promise<FaqContentResult> {
+export async function getFaqContent({
+  locale = defaultLocale,
+  category,
+  q,
+}: FaqContentParams = {}): Promise<FaqContentResult> {
   const apiBaseUrl = getApiBaseUrl()
 
-  if (!apiBaseUrl) {
-    return buildFallbackFaqContent({ category, q })
+  if (!apiBaseUrl || locale !== defaultLocale) {
+    return buildFallbackFaqContent({ locale, category, q })
   }
 
   const params = new URLSearchParams()
@@ -223,7 +224,7 @@ export async function getFaqContent({ category, q }: FaqContentParams = {}): Pro
     }
   } catch (error) {
     return {
-      categories: fallbackFaqCategoryOptions,
+      categories: buildFallbackFaqCategoryOptions(locale),
       items: [],
       source: 'api',
       error: error instanceof Error ? error.message : 'content_faq_api_error',
@@ -260,9 +261,9 @@ function buildFallbackNewsroomList({
   }
 }
 
-function buildFallbackFaqContent({ category, q }: FaqContentParams): FaqContentResult {
+function buildFallbackFaqContent({ locale = defaultLocale, category, q }: FaqContentParams): FaqContentResult {
   const normalized = q?.trim().toLowerCase()
-  const items = fallbackFaqItems
+  const items = getFaqItems(locale)
     .filter((item) => !category || category === 'all' || item.category === category)
     .filter((item) => {
       if (!normalized) return true
@@ -270,10 +271,17 @@ function buildFallbackFaqContent({ category, q }: FaqContentParams): FaqContentR
     })
 
   return {
-    categories: fallbackFaqCategoryOptions,
+    categories: buildFallbackFaqCategoryOptions(locale),
     items,
     source: 'fallback',
   }
+}
+
+function buildFallbackFaqCategoryOptions(locale: Locale): FaqCategoryOption[] {
+  return getFaqCategories(locale).map(({ value, label }) => ({
+    value,
+    label,
+  }))
 }
 
 function mapNewsroomPost(post: PublicNewsroomPost): NewsroomPost {
