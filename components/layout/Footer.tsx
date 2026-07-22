@@ -2,10 +2,11 @@ import Link from 'next/link'
 import { Container } from '@/components/ui/Container'
 import type { Locale } from '@/lib/i18n/config'
 import { getDictionary } from '@/lib/i18n/dictionary'
-import { companyInfo, getExternalLinks } from '@/lib/site/config'
+import { getExternalLinks } from '@/lib/site/config'
 
 export async function Footer({ locale }: { locale: Locale }) {
   const dict = await getDictionary(locale)
+  const companyInfo = dict.footer.companyValues
   const year = new Date().getFullYear()
   const links = getExternalLinks()
   const sns = [
@@ -19,12 +20,12 @@ export async function Footer({ locale }: { locale: Locale }) {
       <Container className="grid gap-10 lg:grid-cols-[1.4fr_1fr]">
         <div>
           <dl className="mt-6 grid gap-2 text-xs sm:grid-cols-2">
-            <FooterInfo label="회사명" value={companyInfo.name} />
-            <FooterInfo label="대표자" value={companyInfo.ceo} />
-            <FooterInfo label="사업자등록번호" value={companyInfo.businessNumber} />
-            <FooterInfo label="통신판매업신고번호" value={companyInfo.mailOrderNumber} />
-            <FooterInfo label="이메일" value={companyInfo.email} />
-            <FooterInfo label="주소" value={companyInfo.address} />
+            <FooterInfo label={dict.footer.companyName} value={companyInfo.name} />
+            <FooterInfo label={dict.footer.ceo} value={companyInfo.ceo} />
+            <FooterInfo label={dict.footer.businessNumber} value={companyInfo.businessNumber} />
+            <FooterInfo label={dict.footer.mailOrderNumber} value={companyInfo.mailOrderNumber} />
+            <FooterInfo label={dict.footer.email} value={companyInfo.email} />
+            <FooterInfo label={dict.footer.address} value={companyInfo.address} />
           </dl>
           <nav className="mt-6 flex flex-wrap gap-4 text-xs font-semibold text-white/80">
             <Link href={`/${locale}/legal/privacy`}>{dict.footer.privacy}</Link>
@@ -42,13 +43,14 @@ export async function Footer({ locale }: { locale: Locale }) {
         <div>
           <h2 className="text-base font-bold text-white">{dict.footer.support}</h2>
           <p className="mt-3 leading-relaxed">
-            문의는 카카오톡 채널로 남겨주세요.
-            <br />
-            의료 상담이 필요한 내용은 담당 전문의·치료사에게 문의해 주세요.
-            <br />
-            {companyInfo.supportHours}
-            <br />
-            주말 및 공휴일 휴무
+            {dict.footer.supportBody
+              .replace('{supportHours}', dict.footer.supportHours)
+              .split('\n')
+              .map((line) => (
+                <span key={line} className="block">
+                  {line}
+                </span>
+              ))}
           </p>
           {links.kakaoChannel && (
             <a
@@ -57,7 +59,7 @@ export async function Footer({ locale }: { locale: Locale }) {
               rel="noopener noreferrer"
               className="mt-5 inline-flex items-center justify-center rounded-pill bg-white px-5 py-3 text-sm font-bold text-black"
             >
-              카카오톡 문의
+              {dict.footer.kakaoInquiry}
             </a>
           )}
           {sns.length > 0 && (
@@ -79,7 +81,7 @@ export async function Footer({ locale }: { locale: Locale }) {
       </Container>
       <Container>
         <p className="mt-10 border-t border-white/10 pt-5 text-xs leading-relaxed text-white/45">
-          바로도리는 치료나 진단을 대신하지 않아요. 병원에서 안내받은 운동을 보호자가 집에서 목표로 세우고, 기록하고, 리포트로 확인하도록 돕는 서비스예요.
+          {dict.footer.medicalDisclaimer}
         </p>
       </Container>
     </footer>

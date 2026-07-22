@@ -17,6 +17,10 @@ export async function getDictionary(locale: Locale): Promise<Dictionary> {
   return dictionaries[locale]
 }
 
+export function getStaticDictionary(locale: Locale): Dictionary {
+  return dictionaries[locale]
+}
+
 export function t(dict: Dictionary, key: string): string {
   const segments = key.split('.')
   let cur: unknown = dict

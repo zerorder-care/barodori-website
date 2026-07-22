@@ -6,7 +6,7 @@ import {
   type Article,
 } from '@/lib/content/articles'
 import { type Category, isCategory } from '@/lib/content/categories'
-import type { Locale } from '@/lib/i18n/config'
+import { defaultLocale, type Locale } from '@/lib/i18n/config'
 
 type PublicAuthor = {
   nickname: string
@@ -83,7 +83,7 @@ export async function listArticlePosts({
   limit = 20,
 }: ArticleListParams): Promise<ArticleListResult> {
   const apiBaseUrl = getApiBaseUrl()
-  if (!apiBaseUrl) {
+  if (!apiBaseUrl || locale !== defaultLocale) {
     return buildFallbackList({ locale, category, q, offset, limit })
   }
 
@@ -132,7 +132,7 @@ export async function getArticlePost({
   slug: string
 }): Promise<Article | null> {
   const apiBaseUrl = getApiBaseUrl()
-  if (!apiBaseUrl) {
+  if (!apiBaseUrl || locale !== defaultLocale) {
     return getFallbackArticle({ locale, slug })
   }
 
@@ -153,7 +153,7 @@ export async function getArticlePost({
 
 export async function getRelatedArticlePosts(article: Article, max = 2): Promise<Article[]> {
   const apiBaseUrl = getApiBaseUrl()
-  if (!apiBaseUrl) {
+  if (!apiBaseUrl || article.locale !== defaultLocale) {
     return getFallbackRelated(article, max)
   }
 

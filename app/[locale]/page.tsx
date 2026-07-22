@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
-import { isLocale } from '@/lib/i18n/dictionary'
-import { buildMetadata } from '@/lib/seo/metadata'
+import { getDictionary, isLocale } from '@/lib/i18n/dictionary'
+import { buildMetadata, TORTICOLLIS_KEYWORDS } from '@/lib/seo/metadata'
 import { Hero } from '@/components/marketing/Hero'
 import { HomeStorySections } from '@/components/marketing/HomeStorySections'
 import { SafetyNotice } from '@/components/marketing/SafetyNotice'
@@ -17,11 +17,13 @@ export async function generateMetadata({
 }) {
   const { locale } = await params
   if (!isLocale(locale)) return {}
+  const dict = await getDictionary(locale)
   return buildMetadata({
-    title: '바로도리 - 아기·영유아 홈케어 운동 기록 앱',
-    description: '병원에서 안내받은 홈케어 운동을 오늘의 목표로 정하고, 시간·횟수·아이 반응을 달력과 리포트로 확인하세요.',
+    title: dict.home.seo.title,
+    description: dict.home.seo.description,
     path: `/${locale}`,
     locale,
+    keywords: locale === 'ko' ? TORTICOLLIS_KEYWORDS : undefined,
   })
 }
 
@@ -33,19 +35,20 @@ export default async function HomePage({
   const { locale } = await params
   if (!isLocale(locale)) notFound()
   const loc = locale as Locale
+  const dict = await getDictionary(loc)
 
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: jsonLdScript(organizationJsonLd()) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(organizationJsonLd(dict)) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: jsonLdScript(mobileAppJsonLd()) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(mobileAppJsonLd(loc, dict)) }}
       />
       <Hero locale={loc} />
-      <HomeStorySections />
+      <HomeStorySections sections={dict.home.storySections} />
       <SafetyNotice locale={loc} />
       <InstallCta locale={loc} surface="home" />
     </>

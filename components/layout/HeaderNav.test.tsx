@@ -19,6 +19,8 @@ const labels = {
   mypage: '마이페이지',
   install: '앱 시작하기',
   start: '시작하기',
+  openMenu: '메뉴 열기',
+  closeMenu: '메뉴 닫기',
 }
 
 beforeEach(() => {

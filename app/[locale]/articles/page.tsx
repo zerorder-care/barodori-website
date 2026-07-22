@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { isLocale } from '@/lib/i18n/dictionary'
-import { buildMetadata } from '@/lib/seo/metadata'
+import { getDictionary, isLocale } from '@/lib/i18n/dictionary'
+import { buildMetadata, TORTICOLLIS_KEYWORDS } from '@/lib/seo/metadata'
 import { Container } from '@/components/ui/Container'
 import { CategoryFilter } from '@/components/article/CategoryFilter'
 import { ArticleCard } from '@/components/article/ArticleCard'
@@ -16,11 +16,13 @@ export const dynamic = 'force-dynamic'
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
   if (!isLocale(locale)) return {}
+  const dict = await getDictionary(locale)
   return buildMetadata({
-    title: '바로도리 컨텐츠 - 아기 사경과 터미타임 기록 참고',
-    description: '아기 사경이나 두상 비대칭이 걱정되고 터미타임을 막 시작했다면, 상담 전에 무엇을 기록해두면 좋을지 바로도리 컨텐츠에서 참고해보세요.',
+    title: dict.article.listSeo.title,
+    description: dict.article.listSeo.description,
     path: `/${locale}/articles`,
     locale,
+    keywords: locale === 'ko' ? TORTICOLLIS_KEYWORDS : undefined,
   })
 }
 
@@ -35,6 +37,7 @@ export default async function ArticlesIndexPage({
   const sp = await searchParams
   if (!isLocale(locale)) notFound()
   const loc = locale as Locale
+  const dict = await getDictionary(loc)
   const category: Category | undefined = sp.cat && isCategory(sp.cat) ? sp.cat : undefined
   const query = typeof sp.q === 'string' ? sp.q.trim() : ''
   const offset = parseOffset(sp.offset)
@@ -58,9 +61,9 @@ export default async function ArticlesIndexPage({
     <>
       <section className="bg-[var(--color-bg-muted)] py-20">
         <Container className="text-center">
-          <h1 className="text-3xl font-bold leading-snug tracking-tight sm:text-[40px]">우리 아이 홈케어 운동 기록을 위한 바로도리 컨텐츠</h1>
+          <h1 className="text-3xl font-bold leading-snug tracking-tight sm:text-[40px]">{dict.article.title}</h1>
           <p className="mx-auto mt-5 max-w-xl text-[15px] leading-loose text-[var(--color-text-secondary)] sm:text-base">
-            진단이나 치료를 대신하진 않아요. 목 관찰이나 두상, 터미타임 같은 홈케어 기록을 상담 전에 정리해두도록 도와드려요.
+            {dict.article.description}
           </p>
         </Container>
       </section>
@@ -73,11 +76,11 @@ export default async function ArticlesIndexPage({
             className="flex min-h-12 min-w-0 items-center rounded-[8px] border border-[var(--color-border)] bg-white px-4 lg:w-72"
           >
             {category && <input type="hidden" name="cat" value={category} />}
-            <span className="mr-3 text-sm font-semibold text-[var(--color-text-secondary)]">검색</span>
+            <span className="mr-3 text-sm font-semibold text-[var(--color-text-secondary)]">{dict.article.searchLabel}</span>
             <input
               name="q"
               defaultValue={query}
-              placeholder="컨텐츠 검색"
+              placeholder={dict.article.searchPlaceholder}
               className="w-full bg-transparent text-sm outline-none"
             />
           </form>
@@ -87,10 +90,10 @@ export default async function ArticlesIndexPage({
           <section className="mt-12">
             <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
               <div>
-                <p className="text-sm font-bold text-[var(--color-text-secondary)]">처음이라면 여기부터</p>
-                <h2 className="mt-2 text-2xl font-bold tracking-tight">상담 전에 한 번 읽어두면 좋아요</h2>
+                <p className="text-sm font-bold text-[var(--color-text-secondary)]">{dict.article.recommendedEyebrow}</p>
+                <h2 className="mt-2 text-2xl font-bold tracking-tight">{dict.article.recommendedTitle}</h2>
               </div>
-              <p className="text-sm leading-relaxed text-[var(--color-text-secondary)]">사경이나 두상, 터미타임 기록을 막 시작한 보호자에게 권하는 글이에요.</p>
+              <p className="text-sm leading-relaxed text-[var(--color-text-secondary)]">{dict.article.recommendedDescription}</p>
             </div>
             <div className="mt-6 grid gap-6 sm:grid-cols-3">
               {recommended.map((a) => (
@@ -101,15 +104,15 @@ export default async function ArticlesIndexPage({
         )}
 
         <section className="mt-16">
-          <h2 className="text-2xl font-bold">전체 컨텐츠</h2>
+          <h2 className="text-2xl font-bold">{dict.article.allTitle}</h2>
           {error && (
             <p className="mt-6 rounded-[8px] border border-[var(--color-border)] bg-[var(--color-bg-muted)] p-4 text-sm text-[var(--color-text-secondary)]">
-              컨텐츠를 불러오지 못했어요. 잠시 후 다시 시도해주세요.
+              {dict.article.loadError}
             </p>
           )}
           {articles.length === 0 ? (
             <p className="mt-8 rounded-[8px] border border-[var(--color-border)] p-8 text-center text-[var(--color-text-secondary)]">
-              {query ? `'${query}'에 대한 결과가 없어요.` : '아직 등록된 컨텐츠가 없어요.'}
+              {query ? dict.article.emptyWithQuery.replace('{query}', query) : dict.article.empty}
             </p>
           ) : (
             <>
@@ -124,10 +127,10 @@ export default async function ArticlesIndexPage({
                     href={moreHref}
                     className="inline-flex min-h-11 items-center justify-center rounded-[8px] border border-[var(--color-text-primary)] px-6 text-sm font-bold"
                   >
-                    컨텐츠 더 보기
+                    {dict.article.more}
                   </Link>
                 ) : (
-                  <span className="text-sm text-[var(--color-text-secondary)]">마지막 컨텐츠예요</span>
+                  <span className="text-sm text-[var(--color-text-secondary)]">{dict.article.end}</span>
                 )}
               </div>
             </>

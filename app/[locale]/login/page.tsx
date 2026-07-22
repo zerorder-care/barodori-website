@@ -2,16 +2,17 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { SocialLoginPanel } from '@/components/auth/SocialLoginPanel'
 import { Container } from '@/components/ui/Container'
-import { isLocale } from '@/lib/i18n/dictionary'
+import { getDictionary, isLocale } from '@/lib/i18n/dictionary'
 import type { Locale } from '@/lib/i18n/config'
 import { buildMetadata } from '@/lib/seo/metadata'
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
   if (!isLocale(locale)) return {}
+  const dict = await getDictionary(locale)
   return buildMetadata({
-    title: '로그인 - 바로도리',
-    description: '바로도리 계정으로 로그인하고 마이페이지를 이용하세요.',
+    title: dict.login.seo.title,
+    description: dict.login.seo.description,
     path: `/${locale}/login`,
     locale,
   })
@@ -26,6 +27,8 @@ export default async function LoginPage({
 }) {
   const { locale } = await params
   if (!isLocale(locale)) notFound()
+  const loc = locale as Locale
+  const dict = await getDictionary(loc)
   const search = await searchParams
   const nextPath = normalizeNextPath(search.next, locale)
 
@@ -34,24 +37,23 @@ export default async function LoginPage({
       <Container>
         <div className="mx-auto max-w-md rounded-[8px] border border-[var(--color-border)] bg-white p-8">
           <p className="inline-flex rounded-pill bg-[var(--color-primary)] px-3 py-1 text-xs font-semibold text-[var(--color-text-primary)]">
-            Account
+            {dict.login.eyebrow}
           </p>
-          <h1 className="mt-5 text-3xl font-bold">로그인 / 회원가입</h1>
+          <h1 className="mt-5 text-3xl font-bold">{dict.login.title}</h1>
           <p className="mt-3 text-sm leading-relaxed text-[var(--color-text-secondary)]">
-            홈페이지는 소셜 로그인만 지원해요. 앱과 같은 계정으로 로그인하면 사용자님 정보를 이어서 사용할 수 있고,
-            앱에서는 필요한 온보딩을 다시 진행해요.
+            {dict.login.description}
           </p>
-          <SocialLoginPanel locale={locale as Locale} nextPath={nextPath} initialError={search.error} />
+          <SocialLoginPanel locale={loc} nextPath={nextPath} initialError={search.error} labels={dict.login} />
           <p className="mt-5 text-xs leading-relaxed text-[var(--color-text-secondary)]">
-            계속 진행하면{' '}
+            {dict.login.agreementPrefix}{' '}
             <Link href={`/${locale}/legal/terms`} className="font-semibold underline">
-              이용약관
+              {dict.footer.terms}
             </Link>
-            과{' '}
+            {' '}{dict.login.agreementMiddle}{' '}
             <Link href={`/${locale}/legal/privacy`} className="font-semibold underline">
-              개인정보처리방침
+              {dict.footer.privacy}
             </Link>
-            에 동의한 것으로 간주돼요.
+            {dict.login.agreementSuffix}
           </p>
         </div>
       </Container>

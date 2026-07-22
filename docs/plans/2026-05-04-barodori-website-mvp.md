@@ -367,7 +367,7 @@ describe('i18n dictionary', () => {
 
   it('getDictionary returns en messages', async () => {
     const dict = await getDictionary('en')
-    expect(dict.common.appName).toBe('BaroDori')
+    expect(dict.common.appName).toBe('Barodori')
   })
 
   it('t looks up nested keys with dot notation', async () => {
@@ -441,7 +441,7 @@ export const indexableLocales: Locale[] = ['ko']
 ```json
 {
   "common": {
-    "appName": "BaroDori",
+    "appName": "Barodori",
     "install": "Install app",
     "comingSoon": "Coming soon",
     "betaSignup": "Join beta supporters"
@@ -453,14 +453,14 @@ export const indexableLocales: Locale[] = ['ko']
     "install": "Install"
   },
   "footer": {
-    "tagline": "Care for your baby's little neck, together with BaroDori",
+    "tagline": "Care for your baby's little neck, together with Barodori",
     "privacy": "Privacy",
     "terms": "Terms",
     "copyright": "© {year} Zerorder"
   },
   "medical": {
     "title": "Medical Notice",
-    "body": "BaroDori does not replace medical diagnosis. If your baby shows signs of pain, intense crying, fever, breathing issues, or neurological symptoms, seek medical attention immediately."
+    "body": "Barodori does not replace medical diagnosis. If your baby shows signs of pain, intense crying, fever, breathing issues, or neurological symptoms, seek medical attention immediately."
   },
   "comingSoonNotice": "Launching beta on 2026-05-20. Sign up as a supporter to get early access."
 }
@@ -3474,7 +3474,7 @@ ko 라우트만 + 아티클 2건 포함 확인.
 ```markdown
 # 바로도리 제품 웹사이트
 
-영아 사경/사두 케어 앱 바로도리(BaroDori)의 제품 소개 + 사경 아티클 사이트. (https://barodori.com)
+영아 사경/사두 케어 앱 바로도리(Barodori)의 제품 소개 + 사경 아티클 사이트. (https://barodori.com)
 
 ## 스택
 - Next.js 16 (App Router, 풀-SSG)

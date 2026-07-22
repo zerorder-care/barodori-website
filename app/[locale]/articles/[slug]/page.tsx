@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import remarkGfm from 'remark-gfm'
 import rehypeSlug from 'rehype-slug'
-import { isLocale } from '@/lib/i18n/dictionary'
+import { getDictionary, isLocale } from '@/lib/i18n/dictionary'
 import { buildMetadata } from '@/lib/seo/metadata'
 import { Container } from '@/components/ui/Container'
 import { ArticleHeader } from '@/components/article/ArticleHeader'
@@ -52,6 +52,7 @@ export default async function ArticleDetailPage({
   const loc = locale as Locale
   const article = await getArticlePost({ locale: loc, slug })
   if (!article) notFound()
+  const dict = await getDictionary(loc)
   const related = await getRelatedArticlePosts(article)
   const mdxComponents = getMDXComponents({})
 
@@ -93,14 +94,14 @@ export default async function ArticleDetailPage({
           </div>
           <aside className="my-8 rounded-lg border border-[var(--color-primary)] bg-[var(--color-primary-light)] p-5 text-sm leading-relaxed">
             <p>
-              이 글에서 살펴본 내용을 바로도리 앱에 기록해두면, 다음 상담 전에 참고 자료로 정리하기 좋아요.{' '}
+              {dict.article.detailCta}{' '}
               <TrackedLink
                 href={`/${loc}#home-features`}
                 event="article_to_home_features_click"
                 eventProps={{ slug: article.slug, locale: loc }}
                 className="font-semibold text-[var(--color-primary-dark)] underline"
               >
-                기능 살펴보기 →
+                {dict.article.detailCtaLink}
               </TrackedLink>
             </p>
           </aside>
