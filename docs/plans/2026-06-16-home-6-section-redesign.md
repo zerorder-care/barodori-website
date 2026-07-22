@@ -1,6 +1,6 @@
 # 홈 6섹션 재구성 Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **실행 안내:** 이 저장소의 작업 절차를 따르고 아래 체크리스트를 작업 단위로 수행한다.
 
 **Goal:** 앱 주요 화면 6장을 폰 목업으로 보여주는 6개 스크롤 섹션으로 홈을 재구성한다.
 
@@ -8,7 +8,7 @@
 
 **Tech Stack:** Next.js 16 App Router, React 19, Tailwind CSS v4(인라인 토큰), Pretendard, `next/image`, Vitest + @testing-library/react(jsdom).
 
-**설계 문서:** `docs/superpowers/specs/2026-06-16-home-6-section-redesign-design.md`
+**설계 문서:** `docs/specs/2026-06-16-home-6-section-redesign-design.md`
 
 **프로젝트 규칙(AGENTS.md):** "This is NOT the Next.js you know." 코드 작성 전 `node_modules/next/dist/docs/`의 관련 가이드를 읽을 것. 각 태스크에 해당 문서 경로를 명시했다.
 

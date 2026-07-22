@@ -311,7 +311,8 @@ barodori-website/
     articles/{slug}/...
   docs/
     start/                           # 기존 PRD/mockup
-    superpowers/{specs,plans}
+    specs/                           # 팀 공유 설계 문서
+    plans/                           # 팀 공유 구현 계획
   .env.example
   next.config.ts                     # MDX 플러그인
   package.json
