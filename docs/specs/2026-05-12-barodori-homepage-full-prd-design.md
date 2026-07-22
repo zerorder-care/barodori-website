@@ -3,7 +3,7 @@
 **작성일**: 2026-05-12  
 **대상 레포**: `barodori-website`  
 **관련 백엔드**: `../barodori-backend/app/modules/community/*`, `../barodori-backend/app/modules/content/*`, `../barodori-backend/app/modules/admin/*`  
-**상세 개발 문서**: `docs/superpowers/plans/2026-05-13-content-module-api-development.md`  
+**상세 개발 문서**: `docs/plans/2026-05-13-content-module-api-development.md`
 **범위**: PRD 기반 공식 홈페이지 IA, 화면 스캐폴딩, 추후 API 연동 계약
 
 ## 1. 목표

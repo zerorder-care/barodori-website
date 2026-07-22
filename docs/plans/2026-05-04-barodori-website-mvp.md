@@ -1,6 +1,6 @@
 # 바로도리 웹사이트 MVP 구현 플랜
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **실행 안내:** 이 저장소의 작업 절차를 따르고 아래 체크리스트를 작업 단위로 수행한다.
 
 **Goal:** 바로도리 제품 마케팅 사이트 MVP 구현 — 홈/제품/아티클(목록·상세)/설치/정책 페이지, 한국어 우선 i18n 셸, MDX 기반 아티클, GA4+Amplitude 분석, 외부 Google Form 베타 신청.
 
@@ -8,7 +8,7 @@
 
 **Tech Stack:** Next.js 16.2.4, React 19.2.4, TypeScript 5, Tailwind v4, `@next/mdx` + `gray-matter` + `remark-gfm` + `rehype-slug` + `rehype-autolink-headings`, vitest (lib 단위 테스트), Pretendard 셀프호스트, GA4 + Amplitude.
 
-**기준 spec:** `docs/superpowers/specs/2026-05-04-barodori-website-mvp-design.md`
+**기준 spec:** `docs/specs/2026-05-04-barodori-website-mvp-design.md`
 
 ---
 
@@ -3510,8 +3510,8 @@ http://localhost:3000 → /ko 로 리다이렉트.
 `.env.example` 참고. 모든 키는 미설정 가능하며, 그에 따라 동작이 달라집니다 (스토어 링크 미설정 시 "출시 예정" 상태 등).
 
 ## 설계 문서
-- 설계 spec: `docs/superpowers/specs/2026-05-04-barodori-website-mvp-design.md`
-- 구현 플랜: `docs/superpowers/plans/2026-05-04-barodori-website-mvp.md`
+- 설계 spec: `docs/specs/2026-05-04-barodori-website-mvp-design.md`
+- 구현 플랜: `docs/plans/2026-05-04-barodori-website-mvp.md`
 ```
 
 - [ ] **Step 8: Commit + 인수 기준 체크**

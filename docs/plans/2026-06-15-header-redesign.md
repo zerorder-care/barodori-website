@@ -1,6 +1,6 @@
 # 헤더 리디자인 Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **실행 안내:** 이 저장소의 작업 절차를 따르고 아래 체크리스트를 작업 단위로 수행한다.
 
 **Goal:** 헤더에서 낡은 출시전 CTA를 제거하고 우측 액션을 "시작하기" 단일 소셜 로그인 버튼으로 통합하며, 심볼+워드마크 로고와 A+C 플로팅 캡슐 비주얼로 재디자인한다.
 
@@ -8,7 +8,7 @@
 
 **Tech Stack:** Next.js(App Router) · React client component · Tailwind CSS v4(테마 토큰 CSS 변수) · vitest + @testing-library/react.
 
-**Spec:** `docs/superpowers/specs/2026-06-15-header-redesign-design.md`
+**Spec:** `docs/specs/2026-06-15-header-redesign-design.md`
 
 ---
 
@@ -537,7 +537,7 @@ Expected:
 
 - [ ] **Step 3: 마무리**
 
-`superpowers:finishing-a-development-branch` 스킬로 통합 방식(현재 `main`이므로 그대로 둘지, 별도 처리할지)을 결정한다.
+저장소의 Git/PR 규칙에 따라 통합 방식(현재 `main`이므로 그대로 둘지, 별도 처리할지)을 결정한다.
 
 ---
 

@@ -42,6 +42,3 @@ next-env.d.ts
 
 # IDE
 .idea/
-
-# Brainstorming visual companion
-.superpowers/
