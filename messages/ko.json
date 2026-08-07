@@ -332,6 +332,33 @@
       "progressLabel": "일곱 문항 중 {current}번째 문항",
       "judging": "두구두구… 우리 아기 유형을 찾고 있어요"
     },
+    "photo": {
+      "guide": "아기 머리가 위에서 보이게 맞춰 주세요",
+      "badge": "🔒 기기 안에서만 처리돼요",
+      "backLabel": "처음으로 돌아가기",
+      "shutterLabel": "촬영하기",
+      "galleryLabel": "갤러리에서 고르기",
+      "overlayToggleLabel": "조준선 가이드",
+      "overlayOnLabel": "조준선 켜짐",
+      "overlayOffLabel": "조준선 꺼짐",
+      "noseUp": "코가 위로",
+      "permissionTitle": "카메라를 쓸 수 없어요",
+      "permissionBody": "괜찮아요. 갤러리 사진이나 문항으로도 확인할 수 있어요.",
+      "useQuestions": "문항으로 하기",
+      "alignTitle": "코가 위를 향하게 돌려 주세요",
+      "alignPreviewAlt": "고른 사진 미리보기",
+      "rotateLabel": "90도 돌리기",
+      "analyzeCta": "이 방향으로 분석하기",
+      "analyzing": ["동글동글 재는 중…", "뒤통수 라인을 살펴보는 중…", "곧 만나요, 우리 아기 유형!"],
+      "qualityFailTitle": "사진으로는 판정이 어려웠어요",
+      "qualityFailBody": "조명이 밝고 머리가 화면에 꽉 차게 다시 찍으면 좋아요.",
+      "continueWithQuestions": "문항으로 이어하기",
+      "retake": "다시 찍기",
+      "barelyTitle": "가이드에 맞춰 다시 찍으면 더 정확해요",
+      "proceed": "그대로 진행",
+      "modelFailTitle": "이 기기에서는 사진 분석이 어려워요",
+      "modelFailBody": "문항으로 30초 만에 우리 아기 유형을 만나요."
+    },
     "questions": [
       {
         "text": "아기를 위에서 내려다보면 머리 모양이 어떤 느낌인가요?",

@@ -16,15 +16,16 @@ export type Personalization = {
 }
 
 export function savePersonalization(values: {
-  preferredSide: PreferredSide
-  ageBand: AgeBand
-  tummyReaction: TummyReaction
+  preferredSide?: PreferredSide
+  ageBand?: AgeBand
+  tummyReaction?: TummyReaction
 }): void {
   if (typeof window === 'undefined') return
   try {
-    window.sessionStorage.setItem(KEYS.preferredSide, values.preferredSide)
-    window.sessionStorage.setItem(KEYS.ageBand, values.ageBand)
-    window.sessionStorage.setItem(KEYS.tummyReaction, values.tummyReaction)
+    // 사진 경로는 엎드려 놀기 응답이 없는 식으로, 경로마다 아는 값만 남긴다.
+    if (values.preferredSide) window.sessionStorage.setItem(KEYS.preferredSide, values.preferredSide)
+    if (values.ageBand) window.sessionStorage.setItem(KEYS.ageBand, values.ageBand)
+    if (values.tummyReaction) window.sessionStorage.setItem(KEYS.tummyReaction, values.tummyReaction)
   } catch {
     /* 프라이빗 모드 등 저장 불가 환경에서는 개인화 없이 진행한다 */
   }

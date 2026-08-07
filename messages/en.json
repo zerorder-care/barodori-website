@@ -332,6 +332,33 @@
       "progressLabel": "Question {current} of 7",
       "judging": "Drumroll… finding your baby's type"
     },
+    "photo": {
+      "guide": "Frame your baby's head as seen from above",
+      "badge": "🔒 Processed only on your device",
+      "backLabel": "Back to the start",
+      "shutterLabel": "Take photo",
+      "galleryLabel": "Choose from gallery",
+      "overlayToggleLabel": "Aiming guide",
+      "overlayOnLabel": "Guide on",
+      "overlayOffLabel": "Guide off",
+      "noseUp": "Nose up",
+      "permissionTitle": "The camera is unavailable",
+      "permissionBody": "No problem. You can use a gallery photo or the questions instead.",
+      "useQuestions": "Use the questions",
+      "alignTitle": "Rotate until the nose points up",
+      "alignPreviewAlt": "Preview of the chosen photo",
+      "rotateLabel": "Rotate 90°",
+      "analyzeCta": "Analyze this orientation",
+      "analyzing": ["Measuring round and round…", "Tracing the back of the head…", "Almost there — meet your baby's type!"],
+      "qualityFailTitle": "This photo was hard to judge",
+      "qualityFailBody": "A retake in bright light, with the head filling the frame, works best.",
+      "continueWithQuestions": "Continue with the questions",
+      "retake": "Retake photo",
+      "barelyTitle": "A retake following the guide would be more accurate",
+      "proceed": "Continue anyway",
+      "modelFailTitle": "Photo analysis is not available on this device",
+      "modelFailBody": "The questions find your baby's type in about 30 seconds."
+    },
     "questions": [
       {
         "text": "Looking down at your baby from above, how does the head shape feel?",

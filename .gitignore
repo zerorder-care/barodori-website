@@ -24,6 +24,15 @@
 .DS_Store
 *.pem
 
+# 두상 세그멘테이션 모델 — 공개 저장소에 커밋하지 않는다.
+# 배포는 외부 스토리지(Vercel Blob) URL, 로컬 개발은 public/models/에 파일을 둔다.
+*.onnx
+*.tflite
+/public/models/
+
+# onnxruntime-web 런타임 — scripts/copy_ort_assets.mjs가 빌드 시 복사한다.
+/public/ort/
+
 # debug
 npm-debug.log*
 yarn-debug.log*

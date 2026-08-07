@@ -3,17 +3,31 @@
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
+import { AnalyzingGate, AnalyzingSpinner } from '@/components/head-test/AnalyzingGate'
 import { MiniHeader } from '@/components/head-test/MiniHeader'
+import { PhotoCapture } from '@/components/head-test/PhotoCapture'
+import { RotateAlign } from '@/components/head-test/RotateAlign'
+import { analyzeProbabilityMap, imageDataToTensor, type PhotoAnalysis } from '@/lib/head-test/analyze'
 import { questionIds, questionOptions, type OptionKey, type QuestionId } from '@/lib/head-test/constants'
+import { runSegmentation } from '@/lib/head-test/model'
 import { scoreAnswers, type Answers } from '@/lib/head-test/scoring'
 import { savePersonalization } from '@/lib/head-test/storage'
-import { headTypes } from '@/lib/head-test/types'
+import { headTypes, type AgeBand } from '@/lib/head-test/types'
 import type { Locale } from '@/lib/i18n/config'
 import type { Dictionary } from '@/lib/i18n/dictionary'
 
 type HeadTestCopy = Dictionary['headTest']
 
-type Step = 'intro' | 'questions' | 'judging'
+type Step =
+  | 'intro'
+  | 'questions'
+  | 'judging'
+  | 'photo'
+  | 'align'
+  | 'analyzing'
+  | 'barely'
+  | 'photo-fail'
+  | 'model-fail'
 
 export function HeadTestFlow({
   locale,
@@ -28,13 +42,43 @@ export function HeadTestFlow({
   const [step, setStep] = useState<Step>('intro')
   const [index, setIndex] = useState(0)
   const [answers, setAnswers] = useState<Partial<Answers>>({})
+  const [galleryFile, setGalleryFile] = useState<File | null>(null)
+  const [ageAnswered, setAgeAnswered] = useState(false)
+  const analysisRef = useRef<PhotoAnalysis | 'error' | null>(null)
+  const photoAgeRef = useRef<AgeBand | null>(null)
+  const guideOnAtCapture = useRef(true)
   const judgeTimer = useRef<number | null>(null)
+  const analysisRun = useRef(0)
 
   useEffect(() => {
+    const run = analysisRun
     return () => {
       if (judgeTimer.current !== null) window.clearTimeout(judgeTimer.current)
+      run.current += 1
     }
   }, [])
+
+  // 사진 경로의 전환 규칙 (UX 스펙 §4.4·§4.5):
+  // 실패 계열은 즉시 전환하고, 성공은 월령 응답까지 기다렸다가 결과(또는 재촬영 권유)로 간다.
+  // 분석 완료와 월령 응답 어느 쪽이 먼저 와도 되도록 두 이벤트 핸들러가 같은 판단을 거친다.
+  function advancePhotoFlow() {
+    const analysis = analysisRef.current
+    if (analysis === null) return
+    if (analysis === 'error') {
+      setStep('model-fail')
+      return
+    }
+    if (analysis.status === 'quality-fail') {
+      setStep('photo-fail')
+      return
+    }
+    if (photoAgeRef.current === null) return
+    if (analysis.quality === 'edge' && !guideOnAtCapture.current) {
+      setStep('barely')
+      return
+    }
+    goToPhotoResult(analysis)
+  }
 
   function selectOption(optionIndex: number) {
     const questionId = questionIds[index]
@@ -43,11 +87,11 @@ export function HeadTestFlow({
     if (index < questionIds.length - 1) {
       setIndex(index + 1)
     } else {
-      finish(next as Answers)
+      finishQuestions(next as Answers)
     }
   }
 
-  function finish(all: Answers) {
+  function finishQuestions(all: Answers) {
     setStep('judging')
     const result = scoreAnswers(all)
     savePersonalization({
@@ -63,6 +107,44 @@ export function HeadTestFlow({
     )
   }
 
+  function startAnalysis(image: ImageData, guideOn: boolean) {
+    guideOnAtCapture.current = guideOn
+    analysisRef.current = null
+    setStep('analyzing')
+    const run = ++analysisRun.current
+    const tensor = imageDataToTensor(image)
+    runSegmentation(tensor)
+      .then((probability) => {
+        if (analysisRun.current !== run) return
+        analysisRef.current = analyzeProbabilityMap(probability)
+        advancePhotoFlow()
+      })
+      .catch(() => {
+        if (analysisRun.current !== run) return
+        analysisRef.current = 'error'
+        advancePhotoFlow()
+      })
+  }
+
+  function answerPhotoAge(ageBand: AgeBand) {
+    photoAgeRef.current = ageBand
+    setAgeAnswered(true)
+    advancePhotoFlow()
+  }
+
+  function goToPhotoResult(result: Extract<PhotoAnalysis, { status: 'ok' }>) {
+    savePersonalization({
+      preferredSide: result.preferredSide,
+      ageBand: photoAgeRef.current ?? undefined,
+    })
+    router.push(`/${locale}/head-test/result/${result.type}`)
+  }
+
+  function startQuestions() {
+    setIndex(0)
+    setStep('questions')
+  }
+
   function goBack() {
     if (index === 0) {
       setStep('intro')
@@ -71,47 +153,107 @@ export function HeadTestFlow({
     }
   }
 
-  if (step === 'intro') {
-    return (
-      <Intro
-        locale={locale}
-        copy={copy}
-        homeLabel={homeLabel}
-        onStart={() => {
-          setIndex(0)
-          setStep('questions')
-        }}
-      />
-    )
+  switch (step) {
+    case 'intro':
+      return (
+        <Intro
+          locale={locale}
+          copy={copy}
+          homeLabel={homeLabel}
+          onPhoto={() => setStep('photo')}
+          onQuestions={startQuestions}
+        />
+      )
+    case 'photo':
+      return (
+        <PhotoCapture
+          copy={copy.photo}
+          onCaptured={startAnalysis}
+          onGallery={(file) => {
+            setGalleryFile(file)
+            setStep('align')
+          }}
+          onUseQuestions={startQuestions}
+          onBack={() => setStep('intro')}
+        />
+      )
+    case 'align':
+      return galleryFile ? (
+        <RotateAlign
+          copy={copy.photo}
+          file={galleryFile}
+          // 갤러리 사진은 촬영 조준선 없이 찍혔으므로 "간신히 통과" 시 재촬영 권유 분기를 탄다.
+          onConfirm={(image) => startAnalysis(image, false)}
+          onBack={() => setStep('photo')}
+        />
+      ) : null
+    case 'analyzing':
+      return <AnalyzingGate copy={copy} ageAnswered={ageAnswered} onAgeAnswer={answerPhotoAge} />
+    case 'barely':
+      return (
+        <FallbackScreen
+          title={copy.photo.barelyTitle}
+          primaryLabel={copy.photo.proceed}
+          onPrimary={() => {
+            const analysis = analysisRef.current
+            if (analysis !== null && analysis !== 'error' && analysis.status === 'ok') {
+              goToPhotoResult(analysis)
+            }
+          }}
+          secondaryLabel={copy.photo.retake}
+          onSecondary={() => setStep('photo')}
+        />
+      )
+    case 'photo-fail':
+      return (
+        <FallbackScreen
+          title={copy.photo.qualityFailTitle}
+          body={copy.photo.qualityFailBody}
+          primaryLabel={copy.photo.continueWithQuestions}
+          onPrimary={startQuestions}
+          secondaryLabel={copy.photo.retake}
+          onSecondary={() => setStep('photo')}
+        />
+      )
+    case 'model-fail':
+      return (
+        <FallbackScreen
+          title={copy.photo.modelFailTitle}
+          body={copy.photo.modelFailBody}
+          primaryLabel={copy.photo.useQuestions}
+          onPrimary={startQuestions}
+        />
+      )
+    case 'judging':
+      return <AnalyzingSpinner messages={[copy.flow.judging]} />
+    case 'questions': {
+      const questionId = questionIds[index]
+      return (
+        <Question
+          copy={copy}
+          index={index}
+          questionId={questionId}
+          selected={answers[questionId]}
+          onSelect={selectOption}
+          onBack={goBack}
+        />
+      )
+    }
   }
-
-  if (step === 'judging') {
-    return <Judging copy={copy} />
-  }
-
-  const questionId = questionIds[index]
-  return (
-    <Question
-      copy={copy}
-      index={index}
-      questionId={questionId}
-      selected={answers[questionId]}
-      onSelect={selectOption}
-      onBack={goBack}
-    />
-  )
 }
 
 function Intro({
   locale,
   copy,
   homeLabel,
-  onStart,
+  onPhoto,
+  onQuestions,
 }: {
   locale: Locale
   copy: HeadTestCopy
   homeLabel: string
-  onStart: () => void
+  onPhoto: () => void
+  onQuestions: () => void
 }) {
   return (
     <div className="flex flex-1 flex-col">
@@ -135,8 +277,15 @@ function Intro({
         <p className="mt-2 text-[var(--color-text-secondary)]">{copy.intro.subtitle}</p>
         <button
           type="button"
-          onClick={onStart}
+          onClick={onPhoto}
           className="mt-8 w-full rounded-pill bg-[var(--color-primary)] px-6 py-4 text-base font-bold text-[var(--color-text-primary)]"
+        >
+          {copy.intro.photoCta}
+        </button>
+        <button
+          type="button"
+          onClick={onQuestions}
+          className="mt-3 w-full rounded-pill border border-[var(--color-border)] px-6 py-4 text-base font-bold"
         >
           {copy.intro.questionCta}
         </button>
@@ -224,20 +373,41 @@ function Question({
   )
 }
 
-function Judging({ copy }: { copy: HeadTestCopy }) {
+function FallbackScreen({
+  title,
+  body,
+  primaryLabel,
+  onPrimary,
+  secondaryLabel,
+  onSecondary,
+}: {
+  title: string
+  body?: string
+  primaryLabel: string
+  onPrimary: () => void
+  secondaryLabel?: string
+  onSecondary?: () => void
+}) {
   return (
-    <div className="flex flex-1 flex-col items-center justify-center px-6 text-center">
-      <Image
-        src="/images/head-test/donggeuri.png"
-        alt=""
-        aria-hidden
-        width={140}
-        height={140}
-        className="motion-safe:animate-bounce"
-      />
-      <p aria-live="polite" className="mt-6 text-lg font-semibold">
-        {copy.flow.judging}
-      </p>
+    <div className="flex flex-1 flex-col items-center justify-center px-6 pb-10 text-center">
+      <h2 className="text-xl font-bold leading-snug">{title}</h2>
+      {body && <p className="mt-3 text-[var(--color-text-secondary)]">{body}</p>}
+      <button
+        type="button"
+        onClick={onPrimary}
+        className="mt-8 w-full rounded-pill bg-[var(--color-primary)] px-6 py-4 text-base font-bold"
+      >
+        {primaryLabel}
+      </button>
+      {secondaryLabel && onSecondary && (
+        <button
+          type="button"
+          onClick={onSecondary}
+          className="mt-3 w-full rounded-pill border border-[var(--color-border)] px-6 py-4 text-base font-bold"
+        >
+          {secondaryLabel}
+        </button>
+      )}
     </div>
   )
 }

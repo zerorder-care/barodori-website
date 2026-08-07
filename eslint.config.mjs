@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // copy_ort_assets.mjs가 복사해 두는 onnxruntime-web 런타임 산출물
+    "public/ort/**",
   ]),
 ]);
 
