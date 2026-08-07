@@ -313,5 +313,73 @@
     "draftBody": "This page is being prepared. The official text will be updated after legal review.",
     "contact": "Contact:"
   },
+  "headTest": {
+    "seo": {
+      "title": "Baby Head Shape Type Test",
+      "description": "Which type is your baby? One photo and 30 seconds is all it takes."
+    },
+    "intro": {
+      "title": "Which type is our baby?",
+      "subtitle": "One photo and 30 seconds is all it takes",
+      "photoCta": "30 seconds with a photo",
+      "questionCta": "Answer questions instead",
+      "privacyNote": "🔒 Photos are processed only on your device and never sent anywhere",
+      "disclaimerShort": "This is a just-for-fun type test",
+      "charactersAlt": "The five head-shape type characters"
+    },
+    "flow": {
+      "backLabel": "Back to the previous question",
+      "progressLabel": "Question {current} of 7",
+      "judging": "Drumroll… finding your baby's type"
+    },
+    "questions": [
+      {
+        "text": "Looking down at your baby from above, how does the head shape feel?",
+        "helper": "",
+        "options": ["Fairly round", "Long from front to back", "Wide from side to side", "Slightly tilted to one side", "I'm not sure"]
+      },
+      {
+        "text": "From the side, how does the back of the head look?",
+        "helper": "",
+        "options": ["Nicely rounded out", "Gently curved", "Rather flat", "I'm not sure"]
+      },
+      {
+        "text": "Facing your baby, how do the ears look?",
+        "helper": "",
+        "options": ["About the same", "One looks a little more forward", "I'm not sure"]
+      },
+      {
+        "text": "When sleeping, which way does the head usually turn?",
+        "helper": "Choose from your baby's point of view",
+        "options": ["Left", "Right", "Both sides evenly", "I'm not sure"]
+      },
+      {
+        "text": "How much of the day does your baby spend lying on their back?",
+        "helper": "",
+        "options": ["Mostly lying down", "Quite a lot of held or tummy-down time too", "I'm not sure"]
+      },
+      {
+        "text": "How does your baby take tummy-down playtime?",
+        "helper": "",
+        "options": ["Loves it and holds up well", "Gets tired after a little while", "We haven't tried yet"]
+      },
+      {
+        "text": "How old is your baby?",
+        "helper": "",
+        "options": ["Not yet 3 months", "Past 3 months"]
+      }
+    ],
+    "result": {
+      "titlePrefix": "Our baby is",
+      "retry": "Try again",
+      "types": {
+        "ttaomi": { "name": "Ttaomi", "oneLiner": "A curious one who sees the world at a gentle tilt" },
+        "banguri": { "name": "Banguri", "oneLiner": "A cozy one with a smile as generous as that broad head" },
+        "ppyojogi": { "name": "Ppyojogi", "oneLiner": "A slender one with a long, graceful silhouette" },
+        "jjanggu": { "name": "Jjanggu", "oneLiner": "A confident one proud of that nicely rounded crown" },
+        "donggeuri": { "name": "Donggeuri", "oneLiner": "A well-balanced sweetheart, round all around" }
+      }
+    }
+  },
   "comingSoonNotice": "Before store links open, sign up for beta or launch updates to hear from Barodori first."
 }
