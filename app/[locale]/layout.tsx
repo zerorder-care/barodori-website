@@ -5,8 +5,6 @@ import { isLocale, getDictionary } from '@/lib/i18n/dictionary'
 import { locales, indexableLocales, type Locale } from '@/lib/i18n/config'
 import { getSiteUrl } from '@/lib/seo/siteUrl'
 import { AnalyticsProvider } from '@/components/analytics/AnalyticsProvider'
-import { Header } from '@/components/layout/Header'
-import { Footer } from '@/components/layout/Footer'
 import '../globals.css'
 
 export async function generateStaticParams() {
@@ -61,9 +59,7 @@ export default async function LocaleLayout({
     <html lang={loc} className="h-full antialiased">
       <body className="min-h-full flex flex-col">
         <AnalyticsProvider />
-        <Header locale={loc} />
-        <main className="flex-1">{children}</main>
-        <Footer locale={loc} />
+        {children}
         <Analytics />
       </body>
     </html>
