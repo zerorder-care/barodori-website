@@ -1,0 +1,4399 @@
+{
+  "version": "2.14",
+  "children": [
+    {
+      "type": "frame",
+      "id": "ATkGS",
+      "x": 0,
+      "y": 1974,
+      "name": "Hero Phone",
+      "clip": true,
+      "width": 760,
+      "height": 1500,
+      "fill": "#1A1A1A",
+      "cornerRadius": 110,
+      "layout": "vertical",
+      "padding": 16,
+      "justifyContent": "center",
+      "alignItems": "center"
+    },
+    {
+      "type": "note",
+      "id": "ovoh9",
+      "x": 1320,
+      "y": 356,
+      "name": "WF 섹션 라벨",
+      "width": 700,
+      "height": 60,
+      "content": "두상 유형 테스트 와이어프레임 — docs/specs/2026-08-05-head-type-test-ux-design.md §6 (HT-01~HT-09, 데스크톱 D행)"
+    },
+    {
+      "type": "frame",
+      "id": "XoLsE",
+      "x": 1320,
+      "y": 436,
+      "name": "HT-01 인트로",
+      "clip": true,
+      "width": 375,
+      "fill": "#FFFFFF",
+      "stroke": "#D4D4D8",
+      "strokeWidth": 1,
+      "layout": "vertical",
+      "gap": 16,
+      "padding": [
+        24,
+        20
+      ],
+      "children": [
+        {
+          "type": "text",
+          "id": "jqRtK",
+          "name": "미니 로고",
+          "fill": "#71717A",
+          "content": "barodori",
+          "fontFamily": "Noto Sans KR",
+          "fontSize": 14,
+          "fontWeight": "700"
+        },
+        {
+          "type": "frame",
+          "id": "SRJf7",
+          "name": "캐릭터 일러스트 영역",
+          "width": "fill_container",
+          "height": 180,
+          "fill": "#F4F4F5",
+          "cornerRadius": 16,
+          "layout": "vertical",
+          "gap": 6,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "YAtbt",
+              "name": "이미지 플레이스홀더 라벨",
+              "fill": "#A1A1AA",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "캐릭터 5종 일러스트\n(head-type-characters/)",
+              "textAlign": "center",
+              "fontFamily": "Noto Sans KR",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "Q7rWrB",
+          "name": "훅 타이틀",
+          "fill": "#18181B",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "우리 아기는 어떤 유형일까?",
+          "textAlign": "center",
+          "fontFamily": "Noto Sans KR",
+          "fontSize": 24,
+          "fontWeight": "700"
+        },
+        {
+          "type": "text",
+          "id": "xjM8H",
+          "name": "서브 카피",
+          "fill": "#71717A",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "사진 한 장이면 30초 만에 끝나요",
+          "textAlign": "center",
+          "fontFamily": "Noto Sans KR",
+          "fontSize": 15,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "frame",
+          "id": "DpnC8",
+          "name": "Primary CTA",
+          "width": "fill_container",
+          "height": 52,
+          "fill": "#18181B",
+          "cornerRadius": 12,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "E6Ztb",
+              "name": "Primary 라벨",
+              "fill": "#FFFFFF",
+              "content": "사진으로 30초 만에",
+              "fontFamily": "Noto Sans KR",
+              "fontSize": 16,
+              "fontWeight": "600"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "YgnYa",
+          "name": "Secondary CTA",
+          "width": "fill_container",
+          "height": 52,
+          "fill": "#FFFFFF",
+          "cornerRadius": 12,
+          "stroke": "#D4D4D8",
+          "strokeWidth": 1,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "furCk",
+              "name": "Secondary 라벨",
+              "fill": "#18181B",
+              "content": "사진 없이 문항으로",
+              "fontFamily": "Noto Sans KR",
+              "fontSize": 16,
+              "fontWeight": "600"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "T1dw5",
+          "name": "개인정보 안내",
+          "fill": "#71717A",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "🔒 사진은 기기 안에서만 처리되고 어디에도 전송되지 않아요",
+          "textAlign": "center",
+          "fontFamily": "Noto Sans KR",
+          "fontSize": 12,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "text",
+          "id": "O78ji",
+          "name": "면피 한 줄",
+          "fill": "#A1A1AA",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "재미로 보는 유형 테스트예요",
+          "textAlign": "center",
+          "fontFamily": "Noto Sans KR",
+          "fontSize": 11,
+          "fontWeight": "normal"
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "id": "ITxai",
+      "x": 2080,
+      "y": 356,
+      "name": "HT-02 노트",
+      "width": 375,
+      "height": 60,
+      "content": "조준선 기본 ON(토글 OFF 가능) · 권한 거부 → HT-02b · 갤러리 → HT-03"
+    },
+    {
+      "type": "frame",
+      "id": "p274vh",
+      "x": 2080,
+      "y": 436,
+      "name": "HT-02 촬영 (조준선 ON)",
+      "clip": true,
+      "width": 375,
+      "fill": "#FFFFFF",
+      "stroke": "#D4D4D8",
+      "strokeWidth": 1,
+      "layout": "vertical",
+      "gap": 16,
+      "padding": [
+        24,
+        20
+      ],
+      "children": [
+        {
+          "type": "frame",
+          "id": "clvOf",
+          "name": "상단 바",
+          "width": "fill_container",
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon",
+              "id": "p21TOZ",
+              "name": "뒤로",
+              "width": 24,
+              "height": 24,
+              "icon": "arrow-left",
+              "library": "lucide",
+              "fill": "#18181B"
+            },
+            {
+              "type": "frame",
+              "id": "c4JBq0",
+              "name": "기기 내 처리 배지",
+              "fill": "#F4F4F5",
+              "cornerRadius": 999,
+              "padding": [
+                6,
+                12
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "SCTgc",
+                  "name": "배지 라벨",
+                  "fill": "#3F3F46",
+                  "content": "🔒 기기 안에서만 처리돼요",
+                  "fontFamily": "Noto Sans KR",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "W34qEx",
+              "name": "가이드 토글",
+              "fill": "#18181B",
+              "cornerRadius": 999,
+              "padding": [
+                6,
+                12
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "c6Hxy6",
+                  "name": "토글 라벨",
+                  "fill": "#FFFFFF",
+                  "content": "가이드 ON",
+                  "fontFamily": "Noto Sans KR",
+                  "fontSize": 12,
+                  "fontWeight": "600"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "N7pEkV",
+          "name": "카메라 프리뷰",
+          "clip": true,
+          "width": "fill_container",
+          "height": 440,
+          "fill": "#3F3F46",
+          "cornerRadius": 16,
+          "layout": "none",
+          "children": [
+            {
+              "type": "icon",
+              "id": "Q52r7",
+              "x": 155,
+              "y": 14,
+              "name": "코가 위로 화살표",
+              "width": 24,
+              "height": 24,
+              "icon": "arrow-up",
+              "library": "lucide",
+              "fill": "#FFFFFF"
+            },
+            {
+              "type": "text",
+              "id": "kyEpS",
+              "x": 0,
+              "y": 40,
+              "name": "코가 위로 라벨",
+              "fill": "#FFFFFF",
+              "textGrowth": "fixed-width",
+              "width": 335,
+              "content": "코가 위로",
+              "textAlign": "center",
+              "fontFamily": "Noto Sans KR",
+              "fontSize": 12,
+              "fontWeight": "600"
+            },
+            {
+              "type": "ellipse",
+              "id": "oRZsK",
+              "x": 62,
+              "y": 80,
+              "name": "머리 실루엣 타원",
+              "width": 210,
+              "height": 270,
+              "stroke": "#FFFFFF",
+              "strokeWidth": 2
+            },
+            {
+              "type": "rectangle",
+              "id": "XcbUf",
+              "x": 166,
+              "y": 60,
+              "name": "십자선 세로",
+              "fill": "#FFFFFF80",
+              "width": 2,
+              "height": 310
+            },
+            {
+              "type": "rectangle",
+              "id": "PSL5f",
+              "x": 32,
+              "y": 214,
+              "name": "십자선 가로",
+              "fill": "#FFFFFF80",
+              "width": 270,
+              "height": 2
+            },
+            {
+              "type": "text",
+              "id": "LUMrd",
+              "x": 0,
+              "y": 405,
+              "name": "구도 안내",
+              "fill": "#FFFFFF",
+              "textGrowth": "fixed-width",
+              "width": 335,
+              "content": "아기 머리가 위에서 보이게 맞춰 주세요",
+              "textAlign": "center",
+              "fontFamily": "Noto Sans KR",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "T47xM",
+          "name": "하단 컨트롤",
+          "width": "fill_container",
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "R0iq7",
+              "name": "갤러리 버튼",
+              "width": 48,
+              "height": 48,
+              "fill": "#F4F4F5",
+              "cornerRadius": 12,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "P7Gs1Q",
+                  "name": "갤러리 아이콘",
+                  "width": 22,
+                  "height": 22,
+                  "icon": "image",
+                  "library": "lucide",
+                  "fill": "#18181B"
+                }
+              ]
+            },
+            {
+              "type": "ellipse",
+              "id": "X2aoMl",
+              "name": "셔터",
+              "fill": "#FFFFFF",
+              "width": 72,
+              "height": 72,
+              "stroke": "#18181B",
+              "strokeWidth": 4
+            },
+            {
+              "type": "frame",
+              "id": "T6k8d",
+              "name": "우측 여백 슬롯",
+              "width": 48,
+              "height": 48
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "lvEpR",
+          "name": "갤러리 힌트",
+          "fill": "#71717A",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "갤러리에서 골라도 돼요",
+          "textAlign": "center",
+          "fontFamily": "Noto Sans KR",
+          "fontSize": 12,
+          "fontWeight": "normal"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "c0CaP7",
+      "x": 2515,
+      "y": 436,
+      "name": "HT-02b 촬영 — 권한 거부",
+      "clip": true,
+      "width": 375,
+      "fill": "#FFFFFF",
+      "stroke": "#D4D4D8",
+      "strokeWidth": 1,
+      "layout": "vertical",
+      "gap": 16,
+      "padding": [
+        24,
+        20
+      ],
+      "children": [
+        {
+          "type": "frame",
+          "id": "u2vlum",
+          "name": "상단 바",
+          "width": "fill_container",
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon",
+              "id": "v4RMo",
+              "name": "뒤로",
+              "width": 24,
+              "height": 24,
+              "icon": "arrow-left",
+              "library": "lucide",
+              "fill": "#18181B"
+            },
+            {
+              "type": "frame",
+              "id": "lbEmG",
+              "name": "기기 내 처리 배지",
+              "fill": "#F4F4F5",
+              "cornerRadius": 999,
+              "padding": [
+                6,
+                12
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "w54iV",
+                  "name": "배지 라벨",
+                  "fill": "#3F3F46",
+                  "content": "🔒 기기 안에서만 처리돼요",
+                  "fontFamily": "Noto Sans KR",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Ko3Gj",
+              "x": 257,
+              "y": 2,
+              "name": "가이드 토글",
+              "enabled": false,
+              "fill": "#18181B",
+              "cornerRadius": 999,
+              "padding": [
+                6,
+                12
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Q6QUw",
+                  "name": "토글 라벨",
+                  "fill": "#FFFFFF",
+                  "content": "가이드 ON",
+                  "fontFamily": "Noto Sans KR",
+                  "fontSize": 12,
+                  "fontWeight": "600"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "UliVE",
+          "name": "권한 거부 안내",
+          "width": "fill_container",
+          "height": 440,
+          "fill": "#F4F4F5",
+          "cornerRadius": 16,
+          "layout": "vertical",
+          "gap": 12,
+          "padding": 24,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon",
+              "id": "ylOay",
+              "name": "카메라 오프 아이콘",
+              "width": 32,
+              "height": 32,
+              "icon": "camera-off",
+              "library": "lucide",
+              "fill": "#71717A"
+            },
+            {
+              "type": "text",
+              "id": "H8HkjH",
+              "name": "안내 타이틀",
+              "fill": "#18181B",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "카메라를 사용할 수 없어요",
+              "textAlign": "center",
+              "fontFamily": "Noto Sans KR",
+              "fontSize": 16,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "ac8KC",
+              "name": "안내 서브",
+              "fill": "#71717A",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "브라우저 설정에서 카메라를 허용하거나,\n아래 방법으로 이어갈 수 있어요",
+              "textAlign": "center",
+              "fontFamily": "Noto Sans KR",
+              "fontSize": 13,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "XGMXK",
+              "name": "갤러리 대체 버튼",
+              "width": "fill_container",
+              "height": 48,
+              "fill": "#18181B",
+              "cornerRadius": 12,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "kZgGO",
+                  "name": "갤러리 대체 라벨",
+                  "fill": "#FFFFFF",
+                  "content": "갤러리에서 고르기",
+                  "fontFamily": "Noto Sans KR",
+                  "fontSize": 15,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Jq1sF",
+              "name": "문항 대체 버튼",
+              "width": "fill_container",
+              "height": 48,
+              "fill": "#FFFFFF",
+              "cornerRadius": 12,
+              "stroke": "#D4D4D8",
+              "strokeWidth": 1,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "PUdUW",
+                  "name": "문항 대체 라벨",
+                  "fill": "#18181B",
+                  "content": "문항으로 하기",
+                  "fontFamily": "Noto Sans KR",
+                  "fontSize": 15,
+                  "fontWeight": "600"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "NlMSU",
+      "x": 2950,
+      "y": 436,
+      "name": "HT-03 회전 정렬 (갤러리)",
+      "clip": true,
+      "width": 375,
+      "fill": "#FFFFFF",
+      "stroke": "#D4D4D8",
+      "strokeWidth": 1,
+      "layout": "vertical",
+      "gap": 16,
+      "padding": [
+        24,
+        20
+      ],
+      "children": [
+        {
+          "type": "frame",
+          "id": "p3RsLj",
+          "name": "상단 바",
+          "width": "fill_container",
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon",
+              "id": "WwLZb",
+              "name": "뒤로",
+              "width": 24,
+              "height": 24,
+              "icon": "arrow-left",
+              "library": "lucide",
+              "fill": "#18181B"
+            },
+            {
+              "type": "frame",
+              "id": "u7JxXe",
+              "name": "기기 내 처리 배지",
+              "fill": "#F4F4F5",
+              "cornerRadius": 999,
+              "padding": [
+                6,
+                12
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "CEIrt",
+                  "name": "배지 라벨",
+                  "fill": "#3F3F46",
+                  "content": "🔒 기기 안에서만 처리돼요",
+                  "fontFamily": "Noto Sans KR",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "c5iez",
+          "name": "타이틀",
+          "fill": "#18181B",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "코가 위를 향하게 돌려 주세요",
+          "textAlign": "center",
+          "fontFamily": "Noto Sans KR",
+          "fontSize": 18,
+          "fontWeight": "700"
+        },
+        {
+          "type": "frame",
+          "id": "uzC63",
+          "name": "업로드 미리보기",
+          "clip": true,
+          "width": "fill_container",
+          "height": 335,
+          "fill": "#3F3F46",
+          "cornerRadius": 16,
+          "layout": "none",
+          "children": [
+            {
+              "type": "text",
+              "id": "W3Gr8",
+              "x": 0,
+              "y": 160,
+              "name": "사진 플레이스홀더",
+              "fill": "#A1A1AA",
+              "textGrowth": "fixed-width",
+              "width": 335,
+              "content": "업로드한 사진",
+              "textAlign": "center",
+              "fontFamily": "Noto Sans KR",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "ellipse",
+              "id": "bIFxD",
+              "x": 92,
+              "y": 60,
+              "name": "참고 타원",
+              "width": 150,
+              "height": 210,
+              "stroke": "#FFFFFF80",
+              "strokeWidth": 2
+            },
+            {
+              "type": "icon",
+              "id": "jzOoi",
+              "x": 155,
+              "y": 12,
+              "name": "코가 위로 화살표",
+              "width": 24,
+              "height": 24,
+              "icon": "arrow-up",
+              "library": "lucide",
+              "fill": "#FFFFFF"
+            },
+            {
+              "type": "text",
+              "id": "lug5k",
+              "x": 0,
+              "y": 38,
+              "name": "코가 위로 라벨",
+              "fill": "#FFFFFF",
+              "textGrowth": "fixed-width",
+              "width": 335,
+              "content": "코가 위로",
+              "textAlign": "center",
+              "fontFamily": "Noto Sans KR",
+              "fontSize": 12,
+              "fontWeight": "600"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "DCcxo",
+          "name": "회전 버튼",
+          "width": "fill_container",
+          "height": 48,
+          "fill": "#F4F4F5",
+          "cornerRadius": 12,
+          "gap": 8,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon",
+              "id": "H92bW",
+              "name": "회전 아이콘",
+              "width": 20,
+              "height": 20,
+              "icon": "rotate-cw",
+              "library": "lucide",
+              "fill": "#18181B"
+            },
+            {
+              "type": "text",
+              "id": "IvwWW",
+              "name": "회전 라벨",
+              "fill": "#18181B",
+              "content": "90° 돌리기",
+              "fontFamily": "Noto Sans KR",
+              "fontSize": 15,
+              "fontWeight": "600"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "UohQy",
+          "name": "분석 CTA",
+          "width": "fill_container",
+          "height": 52,
+          "fill": "#18181B",
+          "cornerRadius": 12,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "C17f1",
+              "name": "분석 CTA 라벨",
+              "fill": "#FFFFFF",
+              "content": "이 방향으로 분석하기",
+              "fontFamily": "Noto Sans KR",
+              "fontSize": 16,
+              "fontWeight": "600"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "id": "Y08oN",
+      "x": 3385,
+      "y": 356,
+      "name": "HT-04 노트",
+      "width": 375,
+      "height": 60,
+      "content": "분석 대기 시간을 월령 질문이 흡수(§4.4). 응답+분석 완료 → 결과 전환. 사진·윤곽선 미표시."
+    },
+    {
+      "type": "frame",
+      "id": "kT1w1",
+      "x": 3385,
+      "y": 436,
+      "name": "HT-04 월령 질문 · 분석 중",
+      "clip": true,
+      "width": 375,
+      "fill": "#FFFFFF",
+      "stroke": "#D4D4D8",
+      "strokeWidth": 1,
+      "layout": "vertical",
+      "gap": 20,
+      "padding": [
+        24,
+        20
+      ],
+      "children": [
+        {
+          "type": "text",
+          "id": "w1RnaY",
+          "name": "미니 로고",
+          "fill": "#71717A",
+          "content": "barodori",
+          "fontFamily": "Noto Sans KR",
+          "fontSize": 14,
+          "fontWeight": "700"
+        },
+        {
+          "type": "frame",
+          "id": "D4253",
+          "name": "분석 애니메이션 영역",
+          "width": "fill_container",
+          "height": 180,
+          "fill": "#F4F4F5",
+          "cornerRadius": 16,
+          "layout": "vertical",
+          "gap": 10,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "ellipse",
+              "id": "nBO23",
+              "name": "캐릭터 자리",
+              "fill": "#D4D4D8",
+              "width": 80,
+              "height": 80
+            },
+            {
+              "type": "text",
+              "id": "m26ma3",
+              "name": "진행 문구",
+              "fill": "#3F3F46",
+              "content": "동글동글 재는 중…",
+              "fontFamily": "Noto Sans KR",
+              "fontSize": 14,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "wpCFt",
+              "name": "진행 점",
+              "gap": 6,
+              "children": [
+                {
+                  "type": "ellipse",
+                  "id": "S0KqHt",
+                  "name": "점1",
+                  "fill": "#18181B",
+                  "width": 8,
+                  "height": 8
+                },
+                {
+                  "type": "ellipse",
+                  "id": "xKuxA",
+                  "name": "점2",
+                  "fill": "#A1A1AA",
+                  "width": 8,
+                  "height": 8
+                },
+                {
+                  "type": "ellipse",
+                  "id": "BwzFa",
+                  "name": "점3",
+                  "fill": "#A1A1AA",
+                  "width": 8,
+                  "height": 8
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "K9VioZ",
+          "name": "질문 리드",
+          "fill": "#71717A",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "분석하는 동안 하나만 여쭤볼게요",
+          "textAlign": "center",
+          "fontFamily": "Noto Sans KR",
+          "fontSize": 13,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "text",
+          "id": "kCxgs",
+          "name": "월령 질문",
+          "fill": "#18181B",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "아기가 태어난 지\n얼마나 됐나요?",
+          "textAlign": "center",
+          "fontFamily": "Noto Sans KR",
+          "fontSize": 20,
+          "fontWeight": "700"
+        },
+        {
+          "type": "frame",
+          "id": "k7b3YE",
+          "name": "선택지 1",
+          "width": "fill_container",
+          "height": 56,
+          "fill": "#FFFFFF",
+          "cornerRadius": 12,
+          "stroke": "#D4D4D8",
+          "strokeWidth": 1,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "mf1G3",
+              "name": "선택지 1 라벨",
+              "fill": "#18181B",
+              "content": "아직 3개월이 안 됐어요",
+              "fontFamily": "Noto Sans KR",
+              "fontSize": 15,
+              "fontWeight": "600"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "uNZ7Z",
+          "name": "선택지 2",
+          "width": "fill_container",
+          "height": 56,
+          "fill": "#FFFFFF",
+          "cornerRadius": 12,
+          "stroke": "#D4D4D8",
+          "strokeWidth": 1,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "VjM95",
+              "name": "선택지 2 라벨",
+              "fill": "#18181B",
+              "content": "3개월이 지났어요",
+              "fontFamily": "Noto Sans KR",
+              "fontSize": 15,
+              "fontWeight": "600"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "g2jEq",
+          "name": "용도 캡션",
+          "fill": "#A1A1AA",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "놀이 팁을 월령에 맞춰 보여드리는 데만 써요",
+          "textAlign": "center",
+          "fontFamily": "Noto Sans KR",
+          "fontSize": 11,
+          "fontWeight": "normal"
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "id": "GzaOC",
+      "x": 3820,
+      "y": 356,
+      "name": "HT-05 노트",
+      "width": 375,
+      "height": 60,
+      "content": "모든 실패 상태는 문항 출구 보장(§1·§4.5). 조준선 OFF 경계 통과 시엔 '가이드에 맞춰 다시 찍으면 더 정확해요' 안내 변형."
+    },
+    {
+      "type": "frame",
+      "id": "bHQbl",
+      "x": 3820,
+      "y": 436,
+      "name": "HT-05 품질 실패 폴백",
+      "clip": true,
+      "width": 375,
+      "fill": "#FFFFFF",
+      "stroke": "#D4D4D8",
+      "strokeWidth": 1,
+      "layout": "vertical",
+      "gap": 16,
+      "padding": [
+        24,
+        20
+      ],
+      "justifyContent": "center",
+      "children": [
+        {
+          "type": "text",
+          "id": "UQ11r",
+          "name": "미니 로고",
+          "fill": "#71717A",
+          "content": "barodori",
+          "fontFamily": "Noto Sans KR",
+          "fontSize": 14,
+          "fontWeight": "700"
+        },
+        {
+          "type": "frame",
+          "id": "tr74i",
+          "name": "안내 일러스트 영역",
+          "width": "fill_container",
+          "height": 140,
+          "fill": "#F4F4F5",
+          "cornerRadius": 16,
+          "layout": "vertical",
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon",
+              "id": "k6vaG",
+              "name": "안내 아이콘",
+              "width": 36,
+              "height": 36,
+              "icon": "image-off",
+              "library": "lucide",
+              "fill": "#71717A"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "FIvpR",
+          "name": "실패 타이틀",
+          "fill": "#18181B",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "사진으로는 판정이 어려웠어요",
+          "textAlign": "center",
+          "fontFamily": "Noto Sans KR",
+          "fontSize": 20,
+          "fontWeight": "700"
+        },
+        {
+          "type": "text",
+          "id": "uNGzU",
+          "name": "실패 서브",
+          "fill": "#71717A",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "조명이 밝고 아기 머리가 화면에 꽉 차게\n다시 찍으면 더 잘 읽을 수 있어요",
+          "textAlign": "center",
+          "fontFamily": "Noto Sans KR",
+          "fontSize": 14,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "frame",
+          "id": "KicN5",
+          "name": "문항 유도 CTA",
+          "width": "fill_container",
+          "height": 52,
+          "fill": "#18181B",
+          "cornerRadius": 12,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "WK4UV",
+              "name": "문항 유도 라벨",
+              "fill": "#FFFFFF",
+              "content": "문항으로 이어하기",
+              "fontFamily": "Noto Sans KR",
+              "fontSize": 16,
+              "fontWeight": "600"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "WWgAO",
+          "name": "재촬영 버튼",
+          "width": "fill_container",
+          "height": 52,
+          "fill": "#FFFFFF",
+          "cornerRadius": 12,
+          "stroke": "#D4D4D8",
+          "strokeWidth": 1,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "N6Scc",
+              "name": "재촬영 라벨",
+              "fill": "#18181B",
+              "content": "다시 찍기",
+              "fontFamily": "Noto Sans KR",
+              "fontSize": 16,
+              "fontWeight": "600"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "id": "k8wEY",
+      "x": 4255,
+      "y": 356,
+      "name": "HT-06 노트",
+      "width": 375,
+      "height": 60,
+      "content": "한 화면 한 문항, 선택 즉시 자동 진행(§4.6). 예시는 문항 2. 배점은 경계값 조정 티켓 소관."
+    },
+    {
+      "type": "frame",
+      "id": "iGnBs",
+      "x": 4255,
+      "y": 436,
+      "name": "HT-06 문항 — 일반형 (Q2)",
+      "clip": true,
+      "width": 375,
+      "fill": "#FFFFFF",
+      "stroke": "#D4D4D8",
+      "strokeWidth": 1,
+      "layout": "vertical",
+      "gap": 20,
+      "padding": [
+        24,
+        20
+      ],
+      "children": [
+        {
+          "type": "frame",
+          "id": "o6nzMI",
+          "name": "헤더",
+          "width": "fill_container",
+          "gap": 12,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon",
+              "id": "NVsX7",
+              "name": "뒤로",
+              "width": 24,
+              "height": 24,
+              "icon": "arrow-left",
+              "library": "lucide",
+              "fill": "#18181B"
+            },
+            {
+              "type": "frame",
+              "id": "Gnan7",
+              "name": "진행바",
+              "width": "fill_container",
+              "gap": 4,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 2,
+                  "id": "hol2M",
+                  "name": "진행 칸 1",
+                  "fill": "#18181B",
+                  "width": "fill_container",
+                  "height": 4
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 2,
+                  "id": "OFPhR",
+                  "name": "진행 칸 2",
+                  "fill": "#18181B",
+                  "width": "fill_container",
+                  "height": 4
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 2,
+                  "id": "pCbLt",
+                  "name": "진행 칸 3",
+                  "fill": "#E4E4E7",
+                  "width": "fill_container",
+                  "height": 4
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 2,
+                  "id": "Wr5EE",
+                  "name": "진행 칸 4",
+                  "fill": "#E4E4E7",
+                  "width": "fill_container",
+                  "height": 4
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 2,
+                  "id": "O5nmu",
+                  "name": "진행 칸 5",
+                  "fill": "#E4E4E7",
+                  "width": "fill_container",
+                  "height": 4
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 2,
+                  "id": "PYe8t",
+                  "name": "진행 칸 6",
+                  "fill": "#E4E4E7",
+                  "width": "fill_container",
+                  "height": 4
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 2,
+                  "id": "H0whC",
+                  "name": "진행 칸 7",
+                  "fill": "#E4E4E7",
+                  "width": "fill_container",
+                  "height": 4
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "lkEdA",
+          "name": "문항 번호",
+          "fill": "#A1A1AA",
+          "content": "Q2",
+          "fontFamily": "Noto Sans KR",
+          "fontSize": 13,
+          "fontWeight": "600"
+        },
+        {
+          "type": "text",
+          "id": "Fn8jZ",
+          "name": "질문",
+          "fill": "#18181B",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "옆에서 봤을 때\n뒤통수 라인은 어떤가요?",
+          "fontFamily": "Noto Sans KR",
+          "fontSize": 20,
+          "fontWeight": "700"
+        },
+        {
+          "type": "frame",
+          "id": "B4qDV",
+          "name": "선택지 목록",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 10,
+          "children": [
+            {
+              "type": "frame",
+              "id": "AcFIy",
+              "name": "선택지 — 봉긋하게 나온 편",
+              "width": "fill_container",
+              "height": 56,
+              "fill": "#FFFFFF",
+              "cornerRadius": 12,
+              "stroke": "#D4D4D8",
+              "strokeWidth": 1,
+              "padding": [
+                0,
+                16
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "n03PJ",
+                  "name": "라벨 — 봉긋하게 나온 편",
+                  "fill": "#18181B",
+                  "content": "봉긋하게 나온 편",
+                  "fontFamily": "Noto Sans KR",
+                  "fontSize": 15,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "FAAUF",
+              "name": "선택지 — 완만하게 둥근 편",
+              "width": "fill_container",
+              "height": 56,
+              "fill": "#FFFFFF",
+              "cornerRadius": 12,
+              "stroke": "#D4D4D8",
+              "strokeWidth": 1,
+              "padding": [
+                0,
+                16
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "yZEb6",
+                  "name": "라벨 — 완만하게 둥근 편",
+                  "fill": "#18181B",
+                  "content": "완만하게 둥근 편",
+                  "fontFamily": "Noto Sans KR",
+                  "fontSize": 15,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "UBPUk",
+              "name": "선택지 — 납작한 편",
+              "width": "fill_container",
+              "height": 56,
+              "fill": "#FFFFFF",
+              "cornerRadius": 12,
+              "stroke": "#D4D4D8",
+              "strokeWidth": 1,
+              "padding": [
+                0,
+                16
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "KYRAH",
+                  "name": "라벨 — 납작한 편",
+                  "fill": "#18181B",
+                  "content": "납작한 편",
+                  "fontFamily": "Noto Sans KR",
+                  "fontSize": 15,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "C63lU",
+              "name": "선택지 — 잘 모르겠어요",
+              "width": "fill_container",
+              "height": 56,
+              "fill": "#FFFFFF",
+              "cornerRadius": 12,
+              "stroke": "#D4D4D8",
+              "strokeWidth": 1,
+              "padding": [
+                0,
+                16
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "lxGHq",
+                  "name": "라벨 — 잘 모르겠어요",
+                  "fill": "#18181B",
+                  "content": "잘 모르겠어요",
+                  "fontFamily": "Noto Sans KR",
+                  "fontSize": 15,
+                  "fontWeight": "600"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "Nit8E",
+          "name": "자동 진행 캡션",
+          "fill": "#A1A1AA",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "선택하면 바로 다음으로 넘어가요",
+          "textAlign": "center",
+          "fontFamily": "Noto Sans KR",
+          "fontSize": 12,
+          "fontWeight": "normal"
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "id": "TsyaG",
+      "x": 4690,
+      "y": 356,
+      "name": "HT-07 노트",
+      "width": 375,
+      "height": 60,
+      "content": "보조 안내 문구형(문항 4). 좌/우 응답은 따옴이 방향 정보로 기기 내 저장(§4.6)."
+    },
+    {
+      "type": "frame",
+      "id": "ZERST",
+      "x": 4690,
+      "y": 436,
+      "name": "HT-07 문항 — 안내형 (Q4)",
+      "clip": true,
+      "width": 375,
+      "fill": "#FFFFFF",
+      "stroke": "#D4D4D8",
+      "strokeWidth": 1,
+      "layout": "vertical",
+      "gap": 20,
+      "padding": [
+        24,
+        20
+      ],
+      "children": [
+        {
+          "type": "frame",
+          "id": "voV76",
+          "name": "헤더",
+          "width": "fill_container",
+          "gap": 12,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon",
+              "id": "lbAYn",
+              "name": "뒤로",
+              "width": 24,
+              "height": 24,
+              "icon": "arrow-left",
+              "library": "lucide",
+              "fill": "#18181B"
+            },
+            {
+              "type": "frame",
+              "id": "riKa6",
+              "name": "진행바",
+              "width": "fill_container",
+              "gap": 4,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 2,
+                  "id": "sUfXs",
+                  "name": "진행 칸 1",
+                  "fill": "#18181B",
+                  "width": "fill_container",
+                  "height": 4
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 2,
+                  "id": "h3ZT2",
+                  "name": "진행 칸 2",
+                  "fill": "#18181B",
+                  "width": "fill_container",
+                  "height": 4
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 2,
+                  "id": "G1J5f",
+                  "name": "진행 칸 3",
+                  "fill": "#18181B",
+                  "width": "fill_container",
+                  "height": 4
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 2,
+                  "id": "YUtNY",
+                  "name": "진행 칸 4",
+                  "fill": "#18181B",
+                  "width": "fill_container",
+                  "height": 4
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 2,
+                  "id": "WOZRa",
+                  "name": "진행 칸 5",
+                  "fill": "#E4E4E7",
+                  "width": "fill_container",
+                  "height": 4
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 2,
+                  "id": "x9aBPh",
+                  "name": "진행 칸 6",
+                  "fill": "#E4E4E7",
+                  "width": "fill_container",
+                  "height": 4
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 2,
+                  "id": "N58M6d",
+                  "name": "진행 칸 7",
+                  "fill": "#E4E4E7",
+                  "width": "fill_container",
+                  "height": 4
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "xff3w",
+          "name": "문항 번호",
+          "fill": "#A1A1AA",
+          "content": "Q4",
+          "fontFamily": "Noto Sans KR",
+          "fontSize": 13,
+          "fontWeight": "600"
+        },
+        {
+          "type": "text",
+          "id": "t1uZus",
+          "name": "질문",
+          "fill": "#18181B",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "잘 때 고개가 주로\n어느 쪽을 향해 있나요?",
+          "fontFamily": "Noto Sans KR",
+          "fontSize": 20,
+          "fontWeight": "700"
+        },
+        {
+          "type": "frame",
+          "id": "sYOn4",
+          "name": "보조 안내",
+          "width": "fill_container",
+          "fill": "#F4F4F5",
+          "cornerRadius": 10,
+          "gap": 8,
+          "padding": [
+            10,
+            12
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon",
+              "id": "WX28a",
+              "name": "안내 아이콘",
+              "width": 16,
+              "height": 16,
+              "icon": "info",
+              "library": "lucide",
+              "fill": "#71717A"
+            },
+            {
+              "type": "text",
+              "id": "mafBp",
+              "name": "안내 문구",
+              "fill": "#3F3F46",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "아기 입장 기준으로 골라 주세요",
+              "fontFamily": "Noto Sans KR",
+              "fontSize": 13,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "zk5Pf",
+          "name": "선택지 목록",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 10,
+          "children": [
+            {
+              "type": "frame",
+              "id": "a897K",
+              "name": "선택지 — 왼쪽",
+              "width": "fill_container",
+              "height": 56,
+              "fill": "#FFFFFF",
+              "cornerRadius": 12,
+              "stroke": "#D4D4D8",
+              "strokeWidth": 1,
+              "padding": [
+                0,
+                16
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "rmr0v",
+                  "name": "라벨 — 왼쪽",
+                  "fill": "#18181B",
+                  "content": "왼쪽",
+                  "fontFamily": "Noto Sans KR",
+                  "fontSize": 15,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "w8FFh",
+              "name": "선택지 — 오른쪽",
+              "width": "fill_container",
+              "height": 56,
+              "fill": "#FFFFFF",
+              "cornerRadius": 12,
+              "stroke": "#D4D4D8",
+              "strokeWidth": 1,
+              "padding": [
+                0,
+                16
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "UlDeA",
+                  "name": "라벨 — 오른쪽",
+                  "fill": "#18181B",
+                  "content": "오른쪽",
+                  "fontFamily": "Noto Sans KR",
+                  "fontSize": 15,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "LZnRL",
+              "name": "선택지 — 양쪽 골고루",
+              "width": "fill_container",
+              "height": 56,
+              "fill": "#FFFFFF",
+              "cornerRadius": 12,
+              "stroke": "#D4D4D8",
+              "strokeWidth": 1,
+              "padding": [
+                0,
+                16
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Q2RDJ",
+                  "name": "라벨 — 양쪽 골고루",
+                  "fill": "#18181B",
+                  "content": "양쪽 골고루",
+                  "fontFamily": "Noto Sans KR",
+                  "fontSize": 15,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "du13q",
+              "name": "선택지 — 잘 모르겠어요",
+              "width": "fill_container",
+              "height": 56,
+              "fill": "#FFFFFF",
+              "cornerRadius": 12,
+              "stroke": "#D4D4D8",
+              "strokeWidth": 1,
+              "padding": [
+                0,
+                16
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Te4Q8",
+                  "name": "라벨 — 잘 모르겠어요",
+                  "fill": "#18181B",
+                  "content": "잘 모르겠어요",
+                  "fontFamily": "Noto Sans KR",
+                  "fontSize": 15,
+                  "fontWeight": "600"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "HIGQL",
+          "name": "자동 진행 캡션",
+          "fill": "#A1A1AA",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "선택하면 바로 다음으로 넘어가요",
+          "textAlign": "center",
+          "fontFamily": "Noto Sans KR",
+          "fontSize": 12,
+          "fontWeight": "normal"
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "id": "vd0KJ",
+      "x": 5125,
+      "y": 356,
+      "name": "HT-08 노트",
+      "width": 375,
+      "height": 60,
+      "content": "결과 노출 순서 1~4(§4.7). 월령 토글: 테스트 완료 시 응답값 선택, 공유 진입 시 '3개월 이후' 기본. 동글이 예시."
+    },
+    {
+      "type": "frame",
+      "id": "Hmc8z",
+      "x": 5125,
+      "y": 436,
+      "name": "HT-08 결과 — 상단",
+      "clip": true,
+      "width": 375,
+      "fill": "#FFFFFF",
+      "stroke": "#D4D4D8",
+      "strokeWidth": 1,
+      "layout": "vertical",
+      "gap": 20,
+      "padding": [
+        24,
+        20
+      ],
+      "children": [
+        {
+          "type": "text",
+          "id": "f9QCSz",
+          "name": "미니 로고",
+          "fill": "#71717A",
+          "content": "barodori",
+          "fontFamily": "Noto Sans KR",
+          "fontSize": 14,
+          "fontWeight": "700"
+        },
+        {
+          "type": "frame",
+          "id": "v8sT75",
+          "name": "유형 카드",
+          "width": "fill_container",
+          "fill": "#F4F4F5",
+          "cornerRadius": 16,
+          "layout": "vertical",
+          "gap": 10,
+          "padding": [
+            24,
+            16
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "ellipse",
+              "id": "Qp5vS",
+              "name": "캐릭터 일러스트 자리",
+              "fill": "#D4D4D8",
+              "width": 120,
+              "height": 120
+            },
+            {
+              "type": "text",
+              "id": "G5dxI",
+              "name": "유형명",
+              "fill": "#18181B",
+              "content": "우리 아기는 동글이",
+              "fontFamily": "Noto Sans KR",
+              "fontSize": 22,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "t06Sy",
+              "name": "한 줄 카피",
+              "fill": "#3F3F46",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "동글동글 균형 잡힌 사랑둥이",
+              "textAlign": "center",
+              "fontFamily": "Noto Sans KR",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "HBCLk",
+          "name": "통계 한 줄",
+          "fill": "#71717A",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "지금까지 테스트한 아기 중 42%가 동글이였어요",
+          "textAlign": "center",
+          "fontFamily": "Noto Sans KR",
+          "fontSize": 13,
+          "fontWeight": "600"
+        },
+        {
+          "type": "text",
+          "id": "Y5HPVm",
+          "name": "특성 본문",
+          "fill": "#3F3F46",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "동글동글 균형 잡힌 우리 동글이.\n울다가도 눈이 마주치면 금세 방긋,\n마음도 성격도 둥글둥글해요.\n온 가족 웃음을 독차지하는 사랑둥이랍니다.",
+          "lineHeight": 1.7,
+          "textAlign": "center",
+          "fontFamily": "Noto Sans KR",
+          "fontSize": 14,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "frame",
+          "id": "n4Stp",
+          "name": "놀이 팁 섹션",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 12,
+          "children": [
+            {
+              "type": "frame",
+              "id": "QfJJ8",
+              "name": "팁 헤더",
+              "width": "fill_container",
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "ZCoGR",
+                  "name": "팁 타이틀",
+                  "fill": "#18181B",
+                  "content": "동글이가 좋아하는 놀이",
+                  "fontFamily": "Noto Sans KR",
+                  "fontSize": 16,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "frame",
+                  "id": "Ziibv",
+                  "name": "월령 토글",
+                  "fill": "#E4E4E7",
+                  "cornerRadius": 999,
+                  "gap": 2,
+                  "padding": 2,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "QjL1z",
+                      "name": "토글 — 3개월 전",
+                      "cornerRadius": 999,
+                      "padding": [
+                        4,
+                        10
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "d2Efey",
+                          "name": "토글 전 라벨",
+                          "fill": "#71717A",
+                          "content": "3개월 전",
+                          "fontFamily": "Noto Sans KR",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "LWUJZ",
+                      "name": "토글 — 3개월 후",
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 999,
+                      "padding": [
+                        4,
+                        10
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "z5l2Ok",
+                          "name": "토글 후 라벨",
+                          "fill": "#18181B",
+                          "content": "3개월 후",
+                          "fontFamily": "Noto Sans KR",
+                          "fontSize": 12,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "HPMGD",
+              "name": "팁 카드 — 까꿍 숨바꼭질",
+              "width": "fill_container",
+              "fill": "#FAFAFA",
+              "cornerRadius": 12,
+              "stroke": "#E4E4E7",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 6,
+              "padding": 14,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "N3Y6mp",
+                  "name": "팁 제목 — 까꿍 숨바꼭질",
+                  "fill": "#18181B",
+                  "content": "까꿍 숨바꼭질",
+                  "fontFamily": "Noto Sans KR",
+                  "fontSize": 15,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "b6hKJS",
+                  "name": "팁 본문 — 까꿍 숨바꼭질",
+                  "fill": "#71717A",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "손수건 뒤에 숨었다가 까꿍! 웃음이 데굴데굴 굴러가요.",
+                  "lineHeight": 1.6,
+                  "fontFamily": "Noto Sans KR",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "KUtq8",
+              "name": "팁 카드 — 잼잼 곤지곤지",
+              "width": "fill_container",
+              "fill": "#FAFAFA",
+              "cornerRadius": 12,
+              "stroke": "#E4E4E7",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 6,
+              "padding": 14,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "m6IOYQ",
+                  "name": "팁 제목 — 잼잼 곤지곤지",
+                  "fill": "#18181B",
+                  "content": "잼잼 곤지곤지",
+                  "fontFamily": "Noto Sans KR",
+                  "fontSize": 15,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "eiocA",
+                  "name": "팁 본문 — 잼잼 곤지곤지",
+                  "fill": "#71717A",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "손 놀이 노래로 함께 놀아 주세요. 균형 잡힌 몸놀림이 쑥쑥 자라요.",
+                  "lineHeight": 1.6,
+                  "fontFamily": "Noto Sans KR",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "zlNVY",
+              "name": "안전 문구",
+              "fill": "#A1A1AA",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "놀이는 아기가 깨어 있을 때, 어른이 지켜보는 곳에서 함께해요",
+              "textAlign": "center",
+              "fontFamily": "Noto Sans KR",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "id": "dTYsX",
+      "x": 5560,
+      "y": 356,
+      "name": "HT-09 노트",
+      "width": 375,
+      "height": 60,
+      "content": "결과 노출 순서 5~8(§4.7). 공유가 앱 CTA보다 위(바이럴 루프 우선). 공유 훅 문구는 공유 시트 텍스트로. 면피·병원 안내는 접지 않고 상시 노출."
+    },
+    {
+      "type": "frame",
+      "id": "mpdTI",
+      "x": 5560,
+      "y": 436,
+      "name": "HT-09 결과 — 하단",
+      "clip": true,
+      "width": 375,
+      "fill": "#FFFFFF",
+      "stroke": "#D4D4D8",
+      "strokeWidth": 1,
+      "layout": "vertical",
+      "gap": 20,
+      "padding": [
+        24,
+        20
+      ],
+      "children": [
+        {
+          "type": "frame",
+          "id": "Tz5lE",
+          "name": "공유 버튼",
+          "width": "fill_container",
+          "height": 56,
+          "fill": "#18181B",
+          "cornerRadius": 12,
+          "gap": 8,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon",
+              "id": "LPDrH",
+              "name": "공유 아이콘",
+              "width": 20,
+              "height": 20,
+              "icon": "share-2",
+              "library": "lucide",
+              "fill": "#FFFFFF"
+            },
+            {
+              "type": "text",
+              "id": "mKfCd",
+              "name": "공유 라벨",
+              "fill": "#FFFFFF",
+              "content": "결과 카드 공유하기",
+              "fontFamily": "Noto Sans KR",
+              "fontSize": 16,
+              "fontWeight": "600"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "kjiIZ",
+          "name": "공유 캡션",
+          "fill": "#A1A1AA",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "유형별 공유 문구·카드는 카피 스펙 §6, 스토리형 카드 첨부",
+          "textAlign": "center",
+          "fontFamily": "Noto Sans KR",
+          "fontSize": 12,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "frame",
+          "id": "tp5HY",
+          "name": "앱 CTA 박스",
+          "width": "fill_container",
+          "fill": "#F4F4F5",
+          "cornerRadius": 16,
+          "layout": "vertical",
+          "gap": 8,
+          "padding": 18,
+          "children": [
+            {
+              "type": "text",
+              "id": "It2TS",
+              "name": "CTA 헤드",
+              "fill": "#18181B",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "오늘 놀이가 재밌었다면,\n내일은 뭐 하고 놀까요?",
+              "fontFamily": "Noto Sans KR",
+              "fontSize": 17,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "Ccleq",
+              "name": "CTA 서브",
+              "fill": "#71717A",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "이런 놀이, 앱에서는 우리 아기 월령에 맞춰 차근차근 이어가요.",
+              "lineHeight": 1.6,
+              "fontFamily": "Noto Sans KR",
+              "fontSize": 13,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "v7BQKj",
+              "name": "CTA 버튼",
+              "width": "fill_container",
+              "height": 48,
+              "fill": "#18181B",
+              "cornerRadius": 12,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "SRLO8",
+                  "name": "CTA 버튼 라벨",
+                  "fill": "#FFFFFF",
+                  "content": "앱에서 놀이 이어가기",
+                  "fontFamily": "Noto Sans KR",
+                  "fontSize": 15,
+                  "fontWeight": "600"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "YnxL1",
+          "name": "병원 안내·면피",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 6,
+          "children": [
+            {
+              "type": "text",
+              "id": "F6X9bT",
+              "name": "면피 문구",
+              "fill": "#A1A1AA",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "이 테스트는 재미로 보는 유형 테스트예요. 의학적 진단·측정이 아니며, 결과는 아기의 건강 상태에 대한 정보가 아니에요.",
+              "lineHeight": 1.6,
+              "fontFamily": "Noto Sans KR",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "jZ6yg",
+              "name": "병원 안내",
+              "fill": "#A1A1AA",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "아기 머리 모양에 대해 궁금한 점이 있다면, 소아청소년과 방문 때 편하게 물어보세요. 정확한 확인은 전문의와 함께하는 것이 가장 좋아요.",
+              "lineHeight": 1.6,
+              "fontFamily": "Noto Sans KR",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "hu3PQ",
+          "name": "다시 해보기",
+          "width": "fill_container",
+          "gap": 6,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon",
+              "id": "P13QSd",
+              "name": "다시 아이콘",
+              "width": 16,
+              "height": 16,
+              "icon": "refresh-cw",
+              "library": "lucide",
+              "fill": "#3F3F46"
+            },
+            {
+              "type": "text",
+              "id": "H4u5YP",
+              "name": "다시 라벨",
+              "fill": "#3F3F46",
+              "content": "다시 해보기",
+              "fontFamily": "Noto Sans KR",
+              "fontSize": 14,
+              "fontWeight": "600"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "qUn37",
+          "name": "다른 유형 구경",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 10,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "cp7Bh",
+              "name": "다른 유형 타이틀",
+              "fill": "#71717A",
+              "content": "다른 유형도 구경해 보세요",
+              "fontFamily": "Noto Sans KR",
+              "fontSize": 13,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "coU3C",
+              "name": "유형 리스트",
+              "gap": 12,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "J208OA",
+                  "name": "유형 셀 — 따옴이",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "OEM0J",
+                      "name": "유형 아이콘 — 따옴이",
+                      "fill": "#E4E4E7",
+                      "width": 44,
+                      "height": 44
+                    },
+                    {
+                      "type": "text",
+                      "id": "o6Tnwp",
+                      "name": "유형 라벨 — 따옴이",
+                      "fill": "#71717A",
+                      "content": "따옴이",
+                      "fontFamily": "Noto Sans KR",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "MDJtG",
+                  "name": "유형 셀 — 방울이",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "zcCKR",
+                      "name": "유형 아이콘 — 방울이",
+                      "fill": "#E4E4E7",
+                      "width": 44,
+                      "height": 44
+                    },
+                    {
+                      "type": "text",
+                      "id": "N2nbo",
+                      "name": "유형 라벨 — 방울이",
+                      "fill": "#71717A",
+                      "content": "방울이",
+                      "fontFamily": "Noto Sans KR",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Ylvj1",
+                  "name": "유형 셀 — 뾰족이",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "KR36R",
+                      "name": "유형 아이콘 — 뾰족이",
+                      "fill": "#E4E4E7",
+                      "width": 44,
+                      "height": 44
+                    },
+                    {
+                      "type": "text",
+                      "id": "VjBkq",
+                      "name": "유형 라벨 — 뾰족이",
+                      "fill": "#71717A",
+                      "content": "뾰족이",
+                      "fontFamily": "Noto Sans KR",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "kKIzr",
+                  "name": "유형 셀 — 짱구",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "z66jCc",
+                      "name": "유형 아이콘 — 짱구",
+                      "fill": "#E4E4E7",
+                      "width": 44,
+                      "height": 44
+                    },
+                    {
+                      "type": "text",
+                      "id": "WRfyB",
+                      "name": "유형 라벨 — 짱구",
+                      "fill": "#71717A",
+                      "content": "짱구",
+                      "fontFamily": "Noto Sans KR",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "JCbfq",
+                  "name": "유형 셀 — 동글이",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "R4mik6",
+                      "name": "유형 아이콘 — 동글이",
+                      "fill": "#A1A1AA",
+                      "width": 44,
+                      "height": 44
+                    },
+                    {
+                      "type": "text",
+                      "id": "ysTiZ",
+                      "name": "유형 라벨 — 동글이",
+                      "fill": "#71717A",
+                      "content": "동글이",
+                      "fontFamily": "Noto Sans KR",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "VT76b",
+      "x": 1320,
+      "y": 1134,
+      "name": "HT-01D 인트로 — 데스크톱",
+      "clip": true,
+      "width": 1280,
+      "fill": "#E9E9EC",
+      "stroke": "#D4D4D8",
+      "strokeWidth": 1,
+      "padding": [
+        48,
+        0
+      ],
+      "justifyContent": "center",
+      "children": [
+        {
+          "type": "frame",
+          "id": "Njvbv",
+          "name": "중앙 컬럼",
+          "clip": true,
+          "width": 480,
+          "fill": "#FFFFFF",
+          "cornerRadius": 20,
+          "stroke": "#D4D4D8",
+          "strokeWidth": 1,
+          "layout": "vertical",
+          "gap": 16,
+          "padding": [
+            24,
+            20
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "GI7Jz",
+              "name": "미니 로고",
+              "fill": "#71717A",
+              "content": "barodori",
+              "fontFamily": "Noto Sans KR",
+              "fontSize": 14,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "w8re8",
+              "name": "캐릭터 일러스트 영역",
+              "width": "fill_container",
+              "height": 180,
+              "fill": "#F4F4F5",
+              "cornerRadius": 16,
+              "layout": "vertical",
+              "gap": 6,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "l2XBUw",
+                  "name": "이미지 플레이스홀더 라벨",
+                  "fill": "#A1A1AA",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "캐릭터 5종 일러스트\n(head-type-characters/)",
+                  "textAlign": "center",
+                  "fontFamily": "Noto Sans KR",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "OaTyZ",
+              "name": "훅 타이틀",
+              "fill": "#18181B",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "우리 아기는 어떤 유형일까?",
+              "textAlign": "center",
+              "fontFamily": "Noto Sans KR",
+              "fontSize": 24,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "xAq5P",
+              "name": "서브 카피",
+              "fill": "#71717A",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "사진 한 장이면 30초 만에 끝나요",
+              "textAlign": "center",
+              "fontFamily": "Noto Sans KR",
+              "fontSize": 15,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "LsIFZ",
+              "name": "Primary CTA",
+              "width": "fill_container",
+              "height": 52,
+              "fill": "#18181B",
+              "cornerRadius": 12,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "sWVIl",
+                  "name": "Primary 라벨",
+                  "fill": "#FFFFFF",
+                  "content": "사진으로 30초 만에",
+                  "fontFamily": "Noto Sans KR",
+                  "fontSize": 16,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "e63mFP",
+              "name": "Secondary CTA",
+              "width": "fill_container",
+              "height": 52,
+              "fill": "#FFFFFF",
+              "cornerRadius": 12,
+              "stroke": "#D4D4D8",
+              "strokeWidth": 1,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "tFWRB",
+                  "name": "Secondary 라벨",
+                  "fill": "#18181B",
+                  "content": "사진 없이 문항으로",
+                  "fontFamily": "Noto Sans KR",
+                  "fontSize": 16,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "XCvVI",
+              "name": "개인정보 안내",
+              "fill": "#71717A",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "🔒 사진은 기기 안에서만 처리되고 어디에도 전송되지 않아요",
+              "textAlign": "center",
+              "fontFamily": "Noto Sans KR",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "SW10K",
+              "name": "면피 한 줄",
+              "fill": "#A1A1AA",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "재미로 보는 유형 테스트예요",
+              "textAlign": "center",
+              "fontFamily": "Noto Sans KR",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "lwx7K",
+      "x": 2660,
+      "y": 1134,
+      "name": "HT-02D 촬영 — 데스크톱",
+      "clip": true,
+      "width": 1280,
+      "fill": "#E9E9EC",
+      "stroke": "#D4D4D8",
+      "strokeWidth": 1,
+      "padding": [
+        48,
+        0
+      ],
+      "justifyContent": "center",
+      "children": [
+        {
+          "type": "frame",
+          "id": "szXF0",
+          "name": "중앙 컬럼",
+          "clip": true,
+          "width": 480,
+          "fill": "#FFFFFF",
+          "cornerRadius": 20,
+          "stroke": "#D4D4D8",
+          "strokeWidth": 1,
+          "layout": "vertical",
+          "gap": 16,
+          "padding": [
+            24,
+            20
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "IgiNR",
+              "name": "상단 바",
+              "width": "fill_container",
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "udMrM",
+                  "name": "뒤로",
+                  "width": 24,
+                  "height": 24,
+                  "icon": "arrow-left",
+                  "library": "lucide",
+                  "fill": "#18181B"
+                },
+                {
+                  "type": "frame",
+                  "id": "VVLcY",
+                  "name": "기기 내 처리 배지",
+                  "fill": "#F4F4F5",
+                  "cornerRadius": 999,
+                  "padding": [
+                    6,
+                    12
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "UUWgR",
+                      "name": "배지 라벨",
+                      "fill": "#3F3F46",
+                      "content": "🔒 기기 안에서만 처리돼요",
+                      "fontFamily": "Noto Sans KR",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "qKHwb",
+                  "name": "가이드 토글",
+                  "fill": "#18181B",
+                  "cornerRadius": 999,
+                  "padding": [
+                    6,
+                    12
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "JXhgT",
+                      "name": "토글 라벨",
+                      "fill": "#FFFFFF",
+                      "content": "가이드 ON",
+                      "fontFamily": "Noto Sans KR",
+                      "fontSize": 12,
+                      "fontWeight": "600"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "p8Cf6",
+              "name": "카메라 프리뷰",
+              "clip": true,
+              "width": "fill_container",
+              "height": 440,
+              "fill": "#3F3F46",
+              "cornerRadius": 16,
+              "layout": "none",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "txls5",
+                  "x": 208,
+                  "y": 14,
+                  "name": "코가 위로 화살표",
+                  "width": 24,
+                  "height": 24,
+                  "icon": "arrow-up",
+                  "library": "lucide",
+                  "fill": "#FFFFFF"
+                },
+                {
+                  "type": "text",
+                  "id": "s9HwH",
+                  "x": 0,
+                  "y": 40,
+                  "name": "코가 위로 라벨",
+                  "fill": "#FFFFFF",
+                  "textGrowth": "fixed-width",
+                  "width": 440,
+                  "content": "코가 위로",
+                  "textAlign": "center",
+                  "fontFamily": "Noto Sans KR",
+                  "fontSize": 12,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "ellipse",
+                  "id": "aK0lF",
+                  "x": 115,
+                  "y": 80,
+                  "name": "머리 실루엣 타원",
+                  "width": 210,
+                  "height": 270,
+                  "stroke": "#FFFFFF",
+                  "strokeWidth": 2
+                },
+                {
+                  "type": "rectangle",
+                  "id": "S1ZzeC",
+                  "x": 219,
+                  "y": 60,
+                  "name": "십자선 세로",
+                  "fill": "#FFFFFF80",
+                  "width": 2,
+                  "height": 310
+                },
+                {
+                  "type": "rectangle",
+                  "id": "bxRIP",
+                  "x": 85,
+                  "y": 214,
+                  "name": "십자선 가로",
+                  "fill": "#FFFFFF80",
+                  "width": 270,
+                  "height": 2
+                },
+                {
+                  "type": "text",
+                  "id": "lYZPx",
+                  "x": 0,
+                  "y": 405,
+                  "name": "구도 안내",
+                  "fill": "#FFFFFF",
+                  "textGrowth": "fixed-width",
+                  "width": 440,
+                  "content": "아기 머리가 위에서 보이게 맞춰 주세요",
+                  "textAlign": "center",
+                  "fontFamily": "Noto Sans KR",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "U5veSB",
+              "name": "하단 컨트롤",
+              "width": "fill_container",
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "Yc6aI",
+                  "name": "갤러리 버튼",
+                  "width": 48,
+                  "height": 48,
+                  "fill": "#F4F4F5",
+                  "cornerRadius": 12,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "db2ec",
+                      "name": "갤러리 아이콘",
+                      "width": 22,
+                      "height": 22,
+                      "icon": "image",
+                      "library": "lucide",
+                      "fill": "#18181B"
+                    }
+                  ]
+                },
+                {
+                  "type": "ellipse",
+                  "id": "LNxST",
+                  "name": "셔터",
+                  "fill": "#FFFFFF",
+                  "width": 72,
+                  "height": 72,
+                  "stroke": "#18181B",
+                  "strokeWidth": 4
+                },
+                {
+                  "type": "frame",
+                  "id": "clgTG",
+                  "name": "우측 여백 슬롯",
+                  "width": 48,
+                  "height": 48
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "S5ns6",
+              "name": "갤러리 힌트",
+              "fill": "#71717A",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "갤러리에서 골라도 돼요",
+              "textAlign": "center",
+              "fontFamily": "Noto Sans KR",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "Ayudb",
+      "x": 5560,
+      "y": 1134,
+      "name": "HT-03D 회전 정렬 — 데스크톱",
+      "clip": true,
+      "width": 1280,
+      "fill": "#E9E9EC",
+      "stroke": "#D4D4D8",
+      "strokeWidth": 1,
+      "padding": [
+        48,
+        0
+      ],
+      "justifyContent": "center",
+      "children": [
+        {
+          "type": "frame",
+          "id": "EfegN",
+          "name": "중앙 컬럼",
+          "clip": true,
+          "width": 480,
+          "fill": "#FFFFFF",
+          "cornerRadius": 20,
+          "stroke": "#D4D4D8",
+          "strokeWidth": 1,
+          "layout": "vertical",
+          "gap": 16,
+          "padding": [
+            24,
+            20
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "r5v4Vt",
+              "name": "상단 바",
+              "width": "fill_container",
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "wpujp",
+                  "name": "뒤로",
+                  "width": 24,
+                  "height": 24,
+                  "icon": "arrow-left",
+                  "library": "lucide",
+                  "fill": "#18181B"
+                },
+                {
+                  "type": "frame",
+                  "id": "yzmXW",
+                  "name": "기기 내 처리 배지",
+                  "fill": "#F4F4F5",
+                  "cornerRadius": 999,
+                  "padding": [
+                    6,
+                    12
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "mvB7C",
+                      "name": "배지 라벨",
+                      "fill": "#3F3F46",
+                      "content": "🔒 기기 안에서만 처리돼요",
+                      "fontFamily": "Noto Sans KR",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "EY7Ro",
+              "name": "타이틀",
+              "fill": "#18181B",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "코가 위를 향하게 돌려 주세요",
+              "textAlign": "center",
+              "fontFamily": "Noto Sans KR",
+              "fontSize": 18,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "sPsC8",
+              "name": "업로드 미리보기",
+              "clip": true,
+              "width": "fill_container",
+              "height": 335,
+              "fill": "#3F3F46",
+              "cornerRadius": 16,
+              "layout": "none",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "PcaRG",
+                  "x": 0,
+                  "y": 160,
+                  "name": "사진 플레이스홀더",
+                  "fill": "#A1A1AA",
+                  "textGrowth": "fixed-width",
+                  "width": 440,
+                  "content": "업로드한 사진",
+                  "textAlign": "center",
+                  "fontFamily": "Noto Sans KR",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "ellipse",
+                  "id": "NH527",
+                  "x": 145,
+                  "y": 60,
+                  "name": "참고 타원",
+                  "width": 150,
+                  "height": 210,
+                  "stroke": "#FFFFFF80",
+                  "strokeWidth": 2
+                },
+                {
+                  "type": "icon",
+                  "id": "vAkQC",
+                  "x": 208,
+                  "y": 12,
+                  "name": "코가 위로 화살표",
+                  "width": 24,
+                  "height": 24,
+                  "icon": "arrow-up",
+                  "library": "lucide",
+                  "fill": "#FFFFFF"
+                },
+                {
+                  "type": "text",
+                  "id": "p0pdz",
+                  "x": 0,
+                  "y": 38,
+                  "name": "코가 위로 라벨",
+                  "fill": "#FFFFFF",
+                  "textGrowth": "fixed-width",
+                  "width": 440,
+                  "content": "코가 위로",
+                  "textAlign": "center",
+                  "fontFamily": "Noto Sans KR",
+                  "fontSize": 12,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "wJx8O",
+              "name": "회전 버튼",
+              "width": "fill_container",
+              "height": 48,
+              "fill": "#F4F4F5",
+              "cornerRadius": 12,
+              "gap": 8,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "ybplQ",
+                  "name": "회전 아이콘",
+                  "width": 20,
+                  "height": 20,
+                  "icon": "rotate-cw",
+                  "library": "lucide",
+                  "fill": "#18181B"
+                },
+                {
+                  "type": "text",
+                  "id": "yjVpN",
+                  "name": "회전 라벨",
+                  "fill": "#18181B",
+                  "content": "90° 돌리기",
+                  "fontFamily": "Noto Sans KR",
+                  "fontSize": 15,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "z5wzU",
+              "name": "분석 CTA",
+              "width": "fill_container",
+              "height": 52,
+              "fill": "#18181B",
+              "cornerRadius": 12,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "FmtYd",
+                  "name": "분석 CTA 라벨",
+                  "fill": "#FFFFFF",
+                  "content": "이 방향으로 분석하기",
+                  "fontFamily": "Noto Sans KR",
+                  "fontSize": 16,
+                  "fontWeight": "600"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "cvIaY",
+      "x": 6900,
+      "y": 1134,
+      "name": "HT-04D 월령 질문·분석 중 — 데스크톱",
+      "clip": true,
+      "width": 1280,
+      "fill": "#E9E9EC",
+      "stroke": "#D4D4D8",
+      "strokeWidth": 1,
+      "padding": [
+        48,
+        0
+      ],
+      "justifyContent": "center",
+      "children": [
+        {
+          "type": "frame",
+          "id": "VFB9H",
+          "name": "중앙 컬럼",
+          "clip": true,
+          "width": 480,
+          "fill": "#FFFFFF",
+          "cornerRadius": 20,
+          "stroke": "#D4D4D8",
+          "strokeWidth": 1,
+          "layout": "vertical",
+          "gap": 20,
+          "padding": [
+            24,
+            20
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "l2xwuJ",
+              "name": "미니 로고",
+              "fill": "#71717A",
+              "content": "barodori",
+              "fontFamily": "Noto Sans KR",
+              "fontSize": 14,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "PtY6Y",
+              "name": "분석 애니메이션 영역",
+              "width": "fill_container",
+              "height": 180,
+              "fill": "#F4F4F5",
+              "cornerRadius": 16,
+              "layout": "vertical",
+              "gap": 10,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "ellipse",
+                  "id": "SzssV",
+                  "name": "캐릭터 자리",
+                  "fill": "#D4D4D8",
+                  "width": 80,
+                  "height": 80
+                },
+                {
+                  "type": "text",
+                  "id": "v64ajV",
+                  "name": "진행 문구",
+                  "fill": "#3F3F46",
+                  "content": "동글동글 재는 중…",
+                  "fontFamily": "Noto Sans KR",
+                  "fontSize": 14,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "xPFvo",
+                  "name": "진행 점",
+                  "gap": 6,
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "UplqC",
+                      "name": "점1",
+                      "fill": "#18181B",
+                      "width": 8,
+                      "height": 8
+                    },
+                    {
+                      "type": "ellipse",
+                      "id": "diJNd",
+                      "name": "점2",
+                      "fill": "#A1A1AA",
+                      "width": 8,
+                      "height": 8
+                    },
+                    {
+                      "type": "ellipse",
+                      "id": "J1WqxJ",
+                      "name": "점3",
+                      "fill": "#A1A1AA",
+                      "width": 8,
+                      "height": 8
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "B7mXcM",
+              "name": "질문 리드",
+              "fill": "#71717A",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "분석하는 동안 하나만 여쭤볼게요",
+              "textAlign": "center",
+              "fontFamily": "Noto Sans KR",
+              "fontSize": 13,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "ZXg3A",
+              "name": "월령 질문",
+              "fill": "#18181B",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "아기가 태어난 지\n얼마나 됐나요?",
+              "textAlign": "center",
+              "fontFamily": "Noto Sans KR",
+              "fontSize": 20,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "XW9a4",
+              "name": "선택지 1",
+              "width": "fill_container",
+              "height": 56,
+              "fill": "#FFFFFF",
+              "cornerRadius": 12,
+              "stroke": "#D4D4D8",
+              "strokeWidth": 1,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "SpkQH",
+                  "name": "선택지 1 라벨",
+                  "fill": "#18181B",
+                  "content": "아직 3개월이 안 됐어요",
+                  "fontFamily": "Noto Sans KR",
+                  "fontSize": 15,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "iSr6j",
+              "name": "선택지 2",
+              "width": "fill_container",
+              "height": 56,
+              "fill": "#FFFFFF",
+              "cornerRadius": 12,
+              "stroke": "#D4D4D8",
+              "strokeWidth": 1,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "RGHG4",
+                  "name": "선택지 2 라벨",
+                  "fill": "#18181B",
+                  "content": "3개월이 지났어요",
+                  "fontFamily": "Noto Sans KR",
+                  "fontSize": 15,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "bK8aK",
+              "name": "용도 캡션",
+              "fill": "#A1A1AA",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "놀이 팁을 월령에 맞춰 보여드리는 데만 써요",
+              "textAlign": "center",
+              "fontFamily": "Noto Sans KR",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "NyL0K",
+      "x": 8240,
+      "y": 1134,
+      "name": "HT-05D 품질 실패 폴백 — 데스크톱",
+      "clip": true,
+      "width": 1280,
+      "fill": "#E9E9EC",
+      "stroke": "#D4D4D8",
+      "strokeWidth": 1,
+      "padding": [
+        48,
+        0
+      ],
+      "justifyContent": "center",
+      "children": [
+        {
+          "type": "frame",
+          "id": "oCkmt",
+          "name": "중앙 컬럼",
+          "clip": true,
+          "width": 480,
+          "fill": "#FFFFFF",
+          "cornerRadius": 20,
+          "stroke": "#D4D4D8",
+          "strokeWidth": 1,
+          "layout": "vertical",
+          "gap": 16,
+          "padding": [
+            24,
+            20
+          ],
+          "justifyContent": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "A1vP0T",
+              "name": "미니 로고",
+              "fill": "#71717A",
+              "content": "barodori",
+              "fontFamily": "Noto Sans KR",
+              "fontSize": 14,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "UIKaz",
+              "name": "안내 일러스트 영역",
+              "width": "fill_container",
+              "height": 140,
+              "fill": "#F4F4F5",
+              "cornerRadius": 16,
+              "layout": "vertical",
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "v5hZee",
+                  "name": "안내 아이콘",
+                  "width": 36,
+                  "height": 36,
+                  "icon": "image-off",
+                  "library": "lucide",
+                  "fill": "#71717A"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "KPBS2",
+              "name": "실패 타이틀",
+              "fill": "#18181B",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "사진으로는 판정이 어려웠어요",
+              "textAlign": "center",
+              "fontFamily": "Noto Sans KR",
+              "fontSize": 20,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "RYGoa",
+              "name": "실패 서브",
+              "fill": "#71717A",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "조명이 밝고 아기 머리가 화면에 꽉 차게\n다시 찍으면 더 잘 읽을 수 있어요",
+              "textAlign": "center",
+              "fontFamily": "Noto Sans KR",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "cI7kz",
+              "name": "문항 유도 CTA",
+              "width": "fill_container",
+              "height": 52,
+              "fill": "#18181B",
+              "cornerRadius": 12,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "ptIPC",
+                  "name": "문항 유도 라벨",
+                  "fill": "#FFFFFF",
+                  "content": "문항으로 이어하기",
+                  "fontFamily": "Noto Sans KR",
+                  "fontSize": 16,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "V0CIJ",
+              "name": "재촬영 버튼",
+              "width": "fill_container",
+              "height": 52,
+              "fill": "#FFFFFF",
+              "cornerRadius": 12,
+              "stroke": "#D4D4D8",
+              "strokeWidth": 1,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "wTxkK",
+                  "name": "재촬영 라벨",
+                  "fill": "#18181B",
+                  "content": "다시 찍기",
+                  "fontFamily": "Noto Sans KR",
+                  "fontSize": 16,
+                  "fontWeight": "600"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "ofZZz",
+      "x": 9580,
+      "y": 1134,
+      "name": "HT-06D 문항 — 데스크톱",
+      "clip": true,
+      "width": 1280,
+      "fill": "#E9E9EC",
+      "stroke": "#D4D4D8",
+      "strokeWidth": 1,
+      "padding": [
+        48,
+        0
+      ],
+      "justifyContent": "center",
+      "children": [
+        {
+          "type": "frame",
+          "id": "QDi73",
+          "name": "중앙 컬럼",
+          "clip": true,
+          "width": 480,
+          "fill": "#FFFFFF",
+          "cornerRadius": 20,
+          "stroke": "#D4D4D8",
+          "strokeWidth": 1,
+          "layout": "vertical",
+          "gap": 20,
+          "padding": [
+            24,
+            20
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "KfeXc",
+              "name": "헤더",
+              "width": "fill_container",
+              "gap": 12,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "YPH2e",
+                  "name": "뒤로",
+                  "width": 24,
+                  "height": 24,
+                  "icon": "arrow-left",
+                  "library": "lucide",
+                  "fill": "#18181B"
+                },
+                {
+                  "type": "frame",
+                  "id": "e235AD",
+                  "name": "진행바",
+                  "width": "fill_container",
+                  "gap": 4,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 2,
+                      "id": "RmoQg",
+                      "name": "진행 칸 1",
+                      "fill": "#18181B",
+                      "width": "fill_container",
+                      "height": 4
+                    },
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 2,
+                      "id": "F6GMW",
+                      "name": "진행 칸 2",
+                      "fill": "#18181B",
+                      "width": "fill_container",
+                      "height": 4
+                    },
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 2,
+                      "id": "q4htRV",
+                      "name": "진행 칸 3",
+                      "fill": "#E4E4E7",
+                      "width": "fill_container",
+                      "height": 4
+                    },
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 2,
+                      "id": "zWWuk",
+                      "name": "진행 칸 4",
+                      "fill": "#E4E4E7",
+                      "width": "fill_container",
+                      "height": 4
+                    },
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 2,
+                      "id": "zIAQq",
+                      "name": "진행 칸 5",
+                      "fill": "#E4E4E7",
+                      "width": "fill_container",
+                      "height": 4
+                    },
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 2,
+                      "id": "TD6WW",
+                      "name": "진행 칸 6",
+                      "fill": "#E4E4E7",
+                      "width": "fill_container",
+                      "height": 4
+                    },
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 2,
+                      "id": "VGxG9",
+                      "name": "진행 칸 7",
+                      "fill": "#E4E4E7",
+                      "width": "fill_container",
+                      "height": 4
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "TszHF",
+              "name": "문항 번호",
+              "fill": "#A1A1AA",
+              "content": "Q2",
+              "fontFamily": "Noto Sans KR",
+              "fontSize": 13,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "GL8Hv",
+              "name": "질문",
+              "fill": "#18181B",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "옆에서 봤을 때\n뒤통수 라인은 어떤가요?",
+              "fontFamily": "Noto Sans KR",
+              "fontSize": 20,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "yZk45",
+              "name": "선택지 목록",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 10,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "rS8kw",
+                  "name": "선택지 — 봉긋하게 나온 편",
+                  "width": "fill_container",
+                  "height": 56,
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 12,
+                  "stroke": "#D4D4D8",
+                  "strokeWidth": 1,
+                  "padding": [
+                    0,
+                    16
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "ruEbn",
+                      "name": "라벨 — 봉긋하게 나온 편",
+                      "fill": "#18181B",
+                      "content": "봉긋하게 나온 편",
+                      "fontFamily": "Noto Sans KR",
+                      "fontSize": 15,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "ZiTHP",
+                  "name": "선택지 — 완만하게 둥근 편",
+                  "width": "fill_container",
+                  "height": 56,
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 12,
+                  "stroke": "#D4D4D8",
+                  "strokeWidth": 1,
+                  "padding": [
+                    0,
+                    16
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "w9aA0",
+                      "name": "라벨 — 완만하게 둥근 편",
+                      "fill": "#18181B",
+                      "content": "완만하게 둥근 편",
+                      "fontFamily": "Noto Sans KR",
+                      "fontSize": 15,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "lNDe1",
+                  "name": "선택지 — 납작한 편",
+                  "width": "fill_container",
+                  "height": 56,
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 12,
+                  "stroke": "#D4D4D8",
+                  "strokeWidth": 1,
+                  "padding": [
+                    0,
+                    16
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "BLWtc",
+                      "name": "라벨 — 납작한 편",
+                      "fill": "#18181B",
+                      "content": "납작한 편",
+                      "fontFamily": "Noto Sans KR",
+                      "fontSize": 15,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "s8kc4S",
+                  "name": "선택지 — 잘 모르겠어요",
+                  "width": "fill_container",
+                  "height": 56,
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 12,
+                  "stroke": "#D4D4D8",
+                  "strokeWidth": 1,
+                  "padding": [
+                    0,
+                    16
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "HhpVU",
+                      "name": "라벨 — 잘 모르겠어요",
+                      "fill": "#18181B",
+                      "content": "잘 모르겠어요",
+                      "fontFamily": "Noto Sans KR",
+                      "fontSize": 15,
+                      "fontWeight": "600"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "GM3rY",
+              "name": "자동 진행 캡션",
+              "fill": "#A1A1AA",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "선택하면 바로 다음으로 넘어가요",
+              "textAlign": "center",
+              "fontFamily": "Noto Sans KR",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "igcOC",
+      "x": 10920,
+      "y": 1134,
+      "name": "HT-08D 결과 상단 — 데스크톱",
+      "clip": true,
+      "width": 1280,
+      "fill": "#E9E9EC",
+      "stroke": "#D4D4D8",
+      "strokeWidth": 1,
+      "padding": [
+        48,
+        0
+      ],
+      "justifyContent": "center",
+      "children": [
+        {
+          "type": "frame",
+          "id": "nIcqv",
+          "name": "중앙 컬럼",
+          "clip": true,
+          "width": 480,
+          "fill": "#FFFFFF",
+          "cornerRadius": 20,
+          "stroke": "#D4D4D8",
+          "strokeWidth": 1,
+          "layout": "vertical",
+          "gap": 20,
+          "padding": [
+            24,
+            20
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "SZhpO",
+              "name": "미니 로고",
+              "fill": "#71717A",
+              "content": "barodori",
+              "fontFamily": "Noto Sans KR",
+              "fontSize": 14,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "In9Ui",
+              "name": "유형 카드",
+              "width": "fill_container",
+              "fill": "#F4F4F5",
+              "cornerRadius": 16,
+              "layout": "vertical",
+              "gap": 10,
+              "padding": [
+                24,
+                16
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "ellipse",
+                  "id": "vPlvT",
+                  "name": "캐릭터 일러스트 자리",
+                  "fill": "#D4D4D8",
+                  "width": 120,
+                  "height": 120
+                },
+                {
+                  "type": "text",
+                  "id": "OAgf5",
+                  "name": "유형명",
+                  "fill": "#18181B",
+                  "content": "우리 아기는 동글이",
+                  "fontFamily": "Noto Sans KR",
+                  "fontSize": 22,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "ifHQt",
+                  "name": "한 줄 카피",
+                  "fill": "#3F3F46",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "동글동글 균형 잡힌 사랑둥이",
+                  "textAlign": "center",
+                  "fontFamily": "Noto Sans KR",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "ZKbCd",
+              "name": "통계 한 줄",
+              "fill": "#71717A",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "지금까지 테스트한 아기 중 42%가 동글이였어요",
+              "textAlign": "center",
+              "fontFamily": "Noto Sans KR",
+              "fontSize": 13,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "pwC8i",
+              "name": "특성 본문",
+              "fill": "#3F3F46",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "동글동글 균형 잡힌 우리 동글이.\n울다가도 눈이 마주치면 금세 방긋,\n마음도 성격도 둥글둥글해요.\n온 가족 웃음을 독차지하는 사랑둥이랍니다.",
+              "lineHeight": 1.7,
+              "textAlign": "center",
+              "fontFamily": "Noto Sans KR",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "XGgXe",
+              "name": "놀이 팁 섹션",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 12,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "X4DCc",
+                  "name": "팁 헤더",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "G6L383",
+                      "name": "팁 타이틀",
+                      "fill": "#18181B",
+                      "content": "동글이가 좋아하는 놀이",
+                      "fontFamily": "Noto Sans KR",
+                      "fontSize": 16,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "t726f",
+                      "name": "월령 토글",
+                      "fill": "#E4E4E7",
+                      "cornerRadius": 999,
+                      "gap": 2,
+                      "padding": 2,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "JF7HB",
+                          "name": "토글 — 3개월 전",
+                          "cornerRadius": 999,
+                          "padding": [
+                            4,
+                            10
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "lmiMK",
+                              "name": "토글 전 라벨",
+                              "fill": "#71717A",
+                              "content": "3개월 전",
+                              "fontFamily": "Noto Sans KR",
+                              "fontSize": 12,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "h1AauU",
+                          "name": "토글 — 3개월 후",
+                          "fill": "#FFFFFF",
+                          "cornerRadius": 999,
+                          "padding": [
+                            4,
+                            10
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "kgljl",
+                              "name": "토글 후 라벨",
+                              "fill": "#18181B",
+                              "content": "3개월 후",
+                              "fontFamily": "Noto Sans KR",
+                              "fontSize": 12,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "qXqle",
+                  "name": "팁 카드 — 까꿍 숨바꼭질",
+                  "width": "fill_container",
+                  "fill": "#FAFAFA",
+                  "cornerRadius": 12,
+                  "stroke": "#E4E4E7",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "gap": 6,
+                  "padding": 14,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "y4ILeA",
+                      "name": "팁 제목 — 까꿍 숨바꼭질",
+                      "fill": "#18181B",
+                      "content": "까꿍 숨바꼭질",
+                      "fontFamily": "Noto Sans KR",
+                      "fontSize": 15,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "QRSpy",
+                      "name": "팁 본문 — 까꿍 숨바꼭질",
+                      "fill": "#71717A",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "손수건 뒤에 숨었다가 까꿍! 웃음이 데굴데굴 굴러가요.",
+                      "lineHeight": 1.6,
+                      "fontFamily": "Noto Sans KR",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "CwWz6",
+                  "name": "팁 카드 — 잼잼 곤지곤지",
+                  "width": "fill_container",
+                  "fill": "#FAFAFA",
+                  "cornerRadius": 12,
+                  "stroke": "#E4E4E7",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "gap": 6,
+                  "padding": 14,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "kK6cH",
+                      "name": "팁 제목 — 잼잼 곤지곤지",
+                      "fill": "#18181B",
+                      "content": "잼잼 곤지곤지",
+                      "fontFamily": "Noto Sans KR",
+                      "fontSize": 15,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "RtNG2",
+                      "name": "팁 본문 — 잼잼 곤지곤지",
+                      "fill": "#71717A",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "손 놀이 노래로 함께 놀아 주세요. 균형 잡힌 몸놀림이 쑥쑥 자라요.",
+                      "lineHeight": 1.6,
+                      "fontFamily": "Noto Sans KR",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "V7IXa2",
+                  "name": "안전 문구",
+                  "fill": "#A1A1AA",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "놀이는 아기가 깨어 있을 때, 어른이 지켜보는 곳에서 함께해요",
+                  "textAlign": "center",
+                  "fontFamily": "Noto Sans KR",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "e14Rat",
+      "x": 12260,
+      "y": 1134,
+      "name": "HT-09D 결과 하단 — 데스크톱",
+      "clip": true,
+      "width": 1280,
+      "fill": "#E9E9EC",
+      "stroke": "#D4D4D8",
+      "strokeWidth": 1,
+      "padding": [
+        48,
+        0
+      ],
+      "justifyContent": "center",
+      "children": [
+        {
+          "type": "frame",
+          "id": "bJ4vU",
+          "name": "중앙 컬럼",
+          "clip": true,
+          "width": 480,
+          "fill": "#FFFFFF",
+          "cornerRadius": 20,
+          "stroke": "#D4D4D8",
+          "strokeWidth": 1,
+          "layout": "vertical",
+          "gap": 20,
+          "padding": [
+            24,
+            20
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "ssyoo",
+              "name": "공유 버튼",
+              "width": "fill_container",
+              "height": 56,
+              "fill": "#18181B",
+              "cornerRadius": 12,
+              "gap": 8,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "wg368",
+                  "name": "공유 아이콘",
+                  "width": 20,
+                  "height": 20,
+                  "icon": "share-2",
+                  "library": "lucide",
+                  "fill": "#FFFFFF"
+                },
+                {
+                  "type": "text",
+                  "id": "EwUxx",
+                  "name": "공유 라벨",
+                  "fill": "#FFFFFF",
+                  "content": "결과 카드 공유하기",
+                  "fontFamily": "Noto Sans KR",
+                  "fontSize": 16,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "vAGmr",
+              "name": "공유 캡션",
+              "fill": "#A1A1AA",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "유형별 공유 문구·카드는 카피 스펙 §6, 스토리형 카드 첨부",
+              "textAlign": "center",
+              "fontFamily": "Noto Sans KR",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "LdXCM",
+              "name": "앱 CTA 박스",
+              "width": "fill_container",
+              "fill": "#F4F4F5",
+              "cornerRadius": 16,
+              "layout": "vertical",
+              "gap": 8,
+              "padding": 18,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "RWVLx",
+                  "name": "CTA 헤드",
+                  "fill": "#18181B",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "오늘 놀이가 재밌었다면,\n내일은 뭐 하고 놀까요?",
+                  "fontFamily": "Noto Sans KR",
+                  "fontSize": 17,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "O0g3z",
+                  "name": "CTA 서브",
+                  "fill": "#71717A",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "이런 놀이, 앱에서는 우리 아기 월령에 맞춰 차근차근 이어가요.",
+                  "lineHeight": 1.6,
+                  "fontFamily": "Noto Sans KR",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "oGaxv",
+                  "name": "CTA 버튼",
+                  "width": "fill_container",
+                  "height": 48,
+                  "fill": "#18181B",
+                  "cornerRadius": 12,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "tgYNd",
+                      "name": "CTA 버튼 라벨",
+                      "fill": "#FFFFFF",
+                      "content": "앱에서 놀이 이어가기",
+                      "fontFamily": "Noto Sans KR",
+                      "fontSize": 15,
+                      "fontWeight": "600"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "bkwi5",
+              "name": "병원 안내·면피",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 6,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "d2HaM3",
+                  "name": "면피 문구",
+                  "fill": "#A1A1AA",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "이 테스트는 재미로 보는 유형 테스트예요. 의학적 진단·측정이 아니며, 결과는 아기의 건강 상태에 대한 정보가 아니에요.",
+                  "lineHeight": 1.6,
+                  "fontFamily": "Noto Sans KR",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "s5PKCs",
+                  "name": "병원 안내",
+                  "fill": "#A1A1AA",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "아기 머리 모양에 대해 궁금한 점이 있다면, 소아청소년과 방문 때 편하게 물어보세요. 정확한 확인은 전문의와 함께하는 것이 가장 좋아요.",
+                  "lineHeight": 1.6,
+                  "fontFamily": "Noto Sans KR",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "XKbjk",
+              "name": "다시 해보기",
+              "width": "fill_container",
+              "gap": 6,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "p1Tsj",
+                  "name": "다시 아이콘",
+                  "width": 16,
+                  "height": 16,
+                  "icon": "refresh-cw",
+                  "library": "lucide",
+                  "fill": "#3F3F46"
+                },
+                {
+                  "type": "text",
+                  "id": "u6YFzg",
+                  "name": "다시 라벨",
+                  "fill": "#3F3F46",
+                  "content": "다시 해보기",
+                  "fontFamily": "Noto Sans KR",
+                  "fontSize": 14,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "u5rRcf",
+              "name": "다른 유형 구경",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 10,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "QePMQ",
+                  "name": "다른 유형 타이틀",
+                  "fill": "#71717A",
+                  "content": "다른 유형도 구경해 보세요",
+                  "fontFamily": "Noto Sans KR",
+                  "fontSize": 13,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "Ta4lL",
+                  "name": "유형 리스트",
+                  "gap": 12,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "uCTgk",
+                      "name": "유형 셀 — 따옴이",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "cvuJy",
+                          "name": "유형 아이콘 — 따옴이",
+                          "fill": "#E4E4E7",
+                          "width": 44,
+                          "height": 44
+                        },
+                        {
+                          "type": "text",
+                          "id": "vh7C7",
+                          "name": "유형 라벨 — 따옴이",
+                          "fill": "#71717A",
+                          "content": "따옴이",
+                          "fontFamily": "Noto Sans KR",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Psdxq",
+                      "name": "유형 셀 — 방울이",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "l5Za0",
+                          "name": "유형 아이콘 — 방울이",
+                          "fill": "#E4E4E7",
+                          "width": 44,
+                          "height": 44
+                        },
+                        {
+                          "type": "text",
+                          "id": "pT9R2",
+                          "name": "유형 라벨 — 방울이",
+                          "fill": "#71717A",
+                          "content": "방울이",
+                          "fontFamily": "Noto Sans KR",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "vlJ5Z",
+                      "name": "유형 셀 — 뾰족이",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "OVXd2",
+                          "name": "유형 아이콘 — 뾰족이",
+                          "fill": "#E4E4E7",
+                          "width": 44,
+                          "height": 44
+                        },
+                        {
+                          "type": "text",
+                          "id": "UA2tC",
+                          "name": "유형 라벨 — 뾰족이",
+                          "fill": "#71717A",
+                          "content": "뾰족이",
+                          "fontFamily": "Noto Sans KR",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "HQQl5",
+                      "name": "유형 셀 — 짱구",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "shdel",
+                          "name": "유형 아이콘 — 짱구",
+                          "fill": "#E4E4E7",
+                          "width": 44,
+                          "height": 44
+                        },
+                        {
+                          "type": "text",
+                          "id": "LBCUo",
+                          "name": "유형 라벨 — 짱구",
+                          "fill": "#71717A",
+                          "content": "짱구",
+                          "fontFamily": "Noto Sans KR",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Zbobv",
+                      "name": "유형 셀 — 동글이",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "hCdeV",
+                          "name": "유형 아이콘 — 동글이",
+                          "fill": "#A1A1AA",
+                          "width": 44,
+                          "height": 44
+                        },
+                        {
+                          "type": "text",
+                          "id": "I3RVOj",
+                          "name": "유형 라벨 — 동글이",
+                          "fill": "#71717A",
+                          "content": "동글이",
+                          "fontFamily": "Noto Sans KR",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "id": "af0f7",
+      "x": 1320,
+      "y": 1054,
+      "name": "데스크톱 변형 노트",
+      "width": 640,
+      "height": 60,
+      "content": "데스크톱(1280): 중앙 고정 컬럼(480px) + 브랜드 톤 배경(§1). 상태 변형(권한 거부·문항 안내형)은 모바일과 동일 규칙으로 컬럼 내부만 교체."
+    }
+  ],
+  "fileToken": "cb419f66-dcde-459a-894c-f4303bf1a173"
+}
