@@ -22,7 +22,7 @@
     "closeMenu": "Close menu"
   },
   "footer": {
-    "tagline": "After hospital therapy, keep home-care exercises on track with goals, records, and reports.",
+    "tagline": "Worried about your baby's head tilt or head shape? After hospital therapy, keep home-care exercises on track with goals, records, and reports.",
     "support": "Support",
     "businessInfo": "Business info",
     "privacy": "Privacy",
@@ -90,7 +90,7 @@
     "hero": {
       "titlePrimary": "Start with Barodori,",
       "titleSecondary": "home care begins when you open it",
-      "subtitle": "Make uncertain home care easier with Barodori."
+      "subtitle": "Make head-tilt and head-shape home care less overwhelming with Barodori."
     },
     "storySections": [
       {
@@ -139,7 +139,7 @@
     "installCta": {
       "eyebrow": "Goals · Records · Reports",
       "title": "Keep today's home-care record from slipping away",
-      "body": "Continue clinician-guided exercises at home, then review time, counts, and your child's response in calendars and reports."
+      "body": "Continue clinician-guided exercises and tummy time at home, then review time, counts, and your child's response in calendars and reports."
     }
   },
   "install": {
