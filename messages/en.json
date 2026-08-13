@@ -399,12 +399,126 @@
     "result": {
       "titlePrefix": "Our baby is",
       "retry": "Try again",
+      "statsFallback": "New {type} friends are gathering one by one.",
+      "tipsTitle": "Playtime ideas to try together",
+      "tipsAgeToggleLabel": "Choose an age range",
+      "tipsAgeUnder3m": "Before 3 months",
+      "tipsAgeFrom3m": "After 3 months",
+      "tipsSafety": "Play while your baby is awake, with an adult watching nearby.",
+      "shareCta": "Share the result",
+      "shareCopied": "Link copied",
+      "appCtaHead": "If today's play was fun, what should we play tomorrow?",
+      "appCtaSub": "In the app, play like this continues step by step, matched to your baby's age.",
+      "appCtaButton": "Keep playing in the app",
+      "disclaimer": "This is a just-for-fun type test. It is not a medical diagnosis or measurement, and the result says nothing about your baby's health.",
+      "hospital": "If you are curious about your baby's head shape, feel free to ask at your next pediatric visit. An accurate check is always best done with a doctor.",
+      "othersTitle": "Meet the other types",
+      "side": {
+        "token": "{side}",
+        "left": "left",
+        "right": "right",
+        "fallbacks": [
+          ["on the {side} side", "on both sides in turn"],
+          ["toward the {side} side", "toward both sides in turn"],
+          ["from the {side} side", "from both sides in turn"]
+        ]
+      },
       "types": {
-        "ttaomi": { "name": "Ttaomi", "oneLiner": "A curious one who sees the world at a gentle tilt" },
-        "banguri": { "name": "Banguri", "oneLiner": "A cozy one with a smile as generous as that broad head" },
-        "ppyojogi": { "name": "Ppyojogi", "oneLiner": "A slender one with a long, graceful silhouette" },
-        "jjanggu": { "name": "Jjanggu", "oneLiner": "A confident one proud of that nicely rounded crown" },
-        "donggeuri": { "name": "Donggeuri", "oneLiner": "A well-balanced sweetheart, round all around" }
+        "ttaomi": {
+          "name": "Ttaomi",
+          "oneLiner": "A curious one who sees the world at a gentle tilt",
+          "traits": [
+            "Our Ttaomi tilts that little head because the world is just so interesting.",
+            "With a clear favorite side, nothing loved ever escapes those watchful eyes.",
+            "A curious one discovering the world from an angle all their own."
+          ],
+          "tips": {
+            "under3m": [
+              { "title": "Twinkle rattle chase", "body": "Gently shake a rattle on the {side} side, the one your baby rarely watches. The new half of the world gets interesting too." },
+              { "title": "Follow that face", "body": "Hold your baby, lock eyes, and drift slowly toward the {side} side together. Mom and dad's face is the best toy there is." }
+            ],
+            "from3m": [
+              { "title": "Toy fishing", "body": "Place a favorite toy on the {side} side and let those little hands reach. A fun way to practice using the whole body evenly." },
+              { "title": "Mirror peekaboo", "body": "Peekaboo with a mirror on the {side} side! Finding that face in the mirror makes the new direction a fast friend." }
+            ]
+          }
+        },
+        "banguri": {
+          "name": "Banguri",
+          "oneLiner": "A cozy one with a smile as generous as that broad head",
+          "traits": [
+            "Our Banguri has a heart as generous as that broad little head.",
+            "Comfortable anywhere in no time, and one smile warms the whole house.",
+            "A cozy one who loves mom and dad's faces more than any view in the world."
+          ],
+          "tips": {
+            "under3m": [
+              { "title": "Chest-time snuggle", "body": "Let your baby lie tummy-down on your chest, eyes locked with yours. A few short moments a day is plenty." },
+              { "title": "Side-by-side chat", "body": "Lie on your sides face to face and chat away. A whole new angle on the world." }
+            ],
+            "from3m": [
+              { "title": "Airplane whoosh", "body": "Tummy-down on your arm, then whoosh! The wide-open view brings giggles tumbling out." },
+              { "title": "Tummy treasure hunt", "body": "Place a toy just ahead during tummy-down play and let those hands reach. Playtime doubles as exercise time." }
+            ]
+          }
+        },
+        "ppyojogi": {
+          "name": "Ppyojogi",
+          "oneLiner": "A slender one with a long, graceful silhouette",
+          "traits": [
+            "Our Ppyojogi charms everyone with that long, graceful silhouette.",
+            "Along those long lines, dreams and height both seem ready to shoot up.",
+            "A special, slender one you will not easily meet anywhere else."
+          ],
+          "tips": {
+            "under3m": [
+              { "title": "Lap concert", "body": "Lay your baby on your lap face to face and sing. Mom and dad's expressions are the best show in town." },
+              { "title": "Mobile sightseeing", "body": "Move the mobile to a new spot often, so your baby gets an even view of the world from every direction." }
+            ],
+            "from3m": [
+              { "title": "Roly-poly rolling", "body": "Roll your baby gently across a soft blanket. Every sense wakes up delighted." },
+              { "title": "House tour in arms", "body": "Carry your baby around the house naming everything you see. The slender one's world grows wider." }
+            ]
+          }
+        },
+        "jjanggu": {
+          "name": "Jjanggu",
+          "oneLiner": "A confident one proud of that nicely rounded crown",
+          "traits": [
+            "Our Jjanggu is proud of that nicely rounded crown.",
+            "A happy mood means both arms shoot straight up — a little hooray fairy.",
+            "A confident one, brimming with spirit right up to the top of that head."
+          ],
+          "tips": {
+            "under3m": [
+              { "title": "Hooray stretch", "body": "Hold those little arms gently and stretch them up — hooray! Jjanggu's favorite pose wakes the whole body." },
+              { "title": "Black-and-white gallery", "body": "Show a book with bold contrast. Those confident eyes will sparkle." }
+            ],
+            "from3m": [
+              { "title": "Drum it out", "body": "Hand over a safe container to bang on. A confident sense of rhythm grows." },
+              { "title": "Rollover cheer squad", "body": "Place a toy to the side and cheer on the rollover. A big round of applause when it lands!" }
+            ]
+          }
+        },
+        "donggeuri": {
+          "name": "Donggeuri",
+          "oneLiner": "A well-balanced sweetheart, round all around",
+          "traits": [
+            "Our Donggeuri is beautifully balanced, round all around.",
+            "Even mid-cry, one shared glance brings back the smile — a soft, easygoing soul.",
+            "A sweetheart who has the whole family's laughter all to themselves."
+          ],
+          "tips": {
+            "under3m": [
+              { "title": "Babble conversations", "body": "Answer every coo and babble. Donggeuri loves a back-and-forth chat most of all." },
+              { "title": "Soft-touch play", "body": "Place cloths of different textures in those little hands. Round little fingertips learn the world." }
+            ],
+            "from3m": [
+              { "title": "Peekaboo hide-and-seek", "body": "Hide behind a handkerchief, then peekaboo! The laughter rolls and rolls." },
+              { "title": "Clap and pat songs", "body": "Play hand-game songs together. Balanced little moves grow stronger every day." }
+            ]
+          }
+        }
       }
     }
   },

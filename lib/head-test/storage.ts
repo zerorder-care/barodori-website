@@ -15,12 +15,28 @@ export type Personalization = {
   tummyReaction: TummyReaction | null
 }
 
+export const EMPTY_PERSONALIZATION: Personalization = {
+  preferredSide: null,
+  ageBand: null,
+  tummyReaction: null,
+}
+
+// useSyncExternalStore의 getSnapshot은 같은 값이면 같은 참조를 돌려줘야 하므로
+// 읽기 결과를 캐시하고, 새 값이 저장될 때만 비운다.
+let snapshot: Personalization | null = null
+
+export function readPersonalizationSnapshot(): Personalization {
+  if (snapshot === null) snapshot = readPersonalization()
+  return snapshot
+}
+
 export function savePersonalization(values: {
   preferredSide?: PreferredSide
   ageBand?: AgeBand
   tummyReaction?: TummyReaction
 }): void {
   if (typeof window === 'undefined') return
+  snapshot = null
   try {
     // 사진 경로는 엎드려 놀기 응답이 없는 식으로, 경로마다 아는 값만 남긴다.
     if (values.preferredSide) window.sessionStorage.setItem(KEYS.preferredSide, values.preferredSide)
