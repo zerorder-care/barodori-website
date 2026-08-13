@@ -313,5 +313,100 @@
     "draftBody": "본 페이지는 준비 중이에요. 정식 본문은 법무 검토 후 업데이트돼요.",
     "contact": "문의:"
   },
+  "headTest": {
+    "seo": {
+      "title": "아기 두상 유형 테스트",
+      "description": "우리 아기는 어떤 유형일까? 사진 한 장이면 30초 만에 끝나요."
+    },
+    "intro": {
+      "title": "우리 아기는 어떤 유형일까?",
+      "subtitle": "사진 한 장이면 30초 만에 끝나요",
+      "photoCta": "사진으로 30초 만에",
+      "questionCta": "사진 없이 문항으로",
+      "privacyNote": "🔒 사진은 기기 안에서만 처리되고 어디에도 전송되지 않아요",
+      "disclaimerShort": "재미로 보는 유형 테스트예요",
+      "charactersAlt": "두상 유형 캐릭터 다섯 친구"
+    },
+    "flow": {
+      "backLabel": "이전 문항으로",
+      "progressLabel": "일곱 문항 중 {current}번째 문항",
+      "judging": "두구두구… 우리 아기 유형을 찾고 있어요"
+    },
+    "photo": {
+      "guide": "아기 머리가 위에서 보이게 맞춰 주세요",
+      "badge": "🔒 기기 안에서만 처리돼요",
+      "backLabel": "처음으로 돌아가기",
+      "shutterLabel": "촬영하기",
+      "galleryLabel": "갤러리에서 고르기",
+      "overlayToggleLabel": "조준선 가이드",
+      "overlayOnLabel": "조준선 켜짐",
+      "overlayOffLabel": "조준선 꺼짐",
+      "noseUp": "코가 위로",
+      "permissionTitle": "카메라를 쓸 수 없어요",
+      "permissionBody": "괜찮아요. 갤러리 사진이나 문항으로도 확인할 수 있어요.",
+      "useQuestions": "문항으로 하기",
+      "alignTitle": "코가 위를 향하게 돌려 주세요",
+      "alignPreviewAlt": "고른 사진 미리보기",
+      "rotateLabel": "90도 돌리기",
+      "analyzeCta": "이 방향으로 분석하기",
+      "analyzing": ["동글동글 재는 중…", "뒤통수 라인을 살펴보는 중…", "곧 만나요, 우리 아기 유형!"],
+      "qualityFailTitle": "사진으로는 판정이 어려웠어요",
+      "qualityFailBody": "조명이 밝고 머리가 화면에 꽉 차게 다시 찍으면 좋아요.",
+      "continueWithQuestions": "문항으로 이어하기",
+      "retake": "다시 찍기",
+      "barelyTitle": "가이드에 맞춰 다시 찍으면 더 정확해요",
+      "proceed": "그대로 진행",
+      "modelFailTitle": "이 기기에서는 사진 분석이 어려워요",
+      "modelFailBody": "문항으로 30초 만에 우리 아기 유형을 만나요."
+    },
+    "questions": [
+      {
+        "text": "아기를 위에서 내려다보면 머리 모양이 어떤 느낌인가요?",
+        "helper": "",
+        "options": ["동그란 편", "앞뒤로 길쭉한 편", "좌우로 넓적한 편", "한쪽이 살짝 기울어진 느낌", "잘 모르겠어요"]
+      },
+      {
+        "text": "옆에서 봤을 때 뒤통수 라인은 어떤가요?",
+        "helper": "",
+        "options": ["봉긋하게 나온 편", "완만하게 둥근 편", "납작한 편", "잘 모르겠어요"]
+      },
+      {
+        "text": "정면에서 마주 봤을 때 양쪽 귀 위치는 어때 보이나요?",
+        "helper": "",
+        "options": ["비슷해 보여요", "한쪽이 조금 앞으로 나와 보여요", "잘 모르겠어요"]
+      },
+      {
+        "text": "잘 때 고개가 주로 어느 쪽을 향해 있나요?",
+        "helper": "아기 입장 기준으로 골라 주세요",
+        "options": ["왼쪽", "오른쪽", "양쪽 골고루", "잘 모르겠어요"]
+      },
+      {
+        "text": "하루 중 등을 대고 누워 있는 시간은 어느 정도인가요?",
+        "helper": "",
+        "options": ["대부분 누워 있어요", "안겨 있거나 엎드리는 시간도 꽤 있어요", "잘 모르겠어요"]
+      },
+      {
+        "text": "엎드려 노는 시간을 아기가 어떻게 받아들이나요?",
+        "helper": "",
+        "options": ["좋아하고 잘 버텨요", "조금 하다 힘들어해요", "아직 안 해봤어요"]
+      },
+      {
+        "text": "아기가 태어난 지 얼마나 됐나요?",
+        "helper": "",
+        "options": ["아직 3개월이 안 됐어요", "3개월이 지났어요"]
+      }
+    ],
+    "result": {
+      "titlePrefix": "우리 아기는",
+      "retry": "다시 해보기",
+      "types": {
+        "ttaomi": { "name": "따옴이", "oneLiner": "세상을 살짝 기울여 보는 호기심쟁이" },
+        "banguri": { "name": "방울이", "oneLiner": "넓적한 만큼 웃음도 넉넉한 포근쟁이" },
+        "ppyojogi": { "name": "뾰족이", "oneLiner": "갸름하고 길쭉한 늘씬쟁이" },
+        "jjanggu": { "name": "짱구", "oneLiner": "봉긋한 정수리가 자랑인 당당쟁이" },
+        "donggeuri": { "name": "동글이", "oneLiner": "동글동글 균형 잡힌 사랑둥이" }
+      }
+    }
+  },
   "comingSoonNotice": "스토어 오픈 전까지 베타/알림 신청으로 바로도리 소식을 먼저 받아보세요."
 }
