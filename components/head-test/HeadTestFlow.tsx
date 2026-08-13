@@ -7,11 +7,13 @@ import { AnalyzingGate, AnalyzingSpinner } from '@/components/head-test/Analyzin
 import { MiniHeader } from '@/components/head-test/MiniHeader'
 import { PhotoCapture } from '@/components/head-test/PhotoCapture'
 import { RotateAlign } from '@/components/head-test/RotateAlign'
+import { track } from '@/lib/analytics'
 import { analyzeProbabilityMap, imageDataToTensor, type PhotoAnalysis } from '@/lib/head-test/analyze'
 import { questionIds, questionOptions, type OptionKey, type QuestionId } from '@/lib/head-test/constants'
 import { runSegmentation } from '@/lib/head-test/model'
 import { scoreAnswers, type Answers } from '@/lib/head-test/scoring'
-import { savePersonalization } from '@/lib/head-test/storage'
+import { resolveViewSource } from '@/lib/head-test/share'
+import { saveCompletedType, savePersonalization } from '@/lib/head-test/storage'
 import { headTypes, type AgeBand } from '@/lib/head-test/types'
 import type { Locale } from '@/lib/i18n/config'
 import type { Dictionary } from '@/lib/i18n/dictionary'
@@ -51,12 +53,13 @@ export function HeadTestFlow({
   const analysisRun = useRef(0)
 
   useEffect(() => {
+    track('head_test_view', { locale, source: resolveViewSource(window.location.search) })
     const run = analysisRun
     return () => {
       if (judgeTimer.current !== null) window.clearTimeout(judgeTimer.current)
       run.current += 1
     }
-  }, [])
+  }, [locale])
 
   // 사진 경로의 전환 규칙 (UX 스펙 §4.4·§4.5):
   // 실패 계열은 즉시 전환하고, 성공은 월령 응답까지 기다렸다가 결과(또는 재촬영 권유)로 간다.
@@ -65,10 +68,12 @@ export function HeadTestFlow({
     const analysis = analysisRef.current
     if (analysis === null) return
     if (analysis === 'error') {
+      track('head_test_photo_fallback', { locale, reason: 'model' })
       setStep('model-fail')
       return
     }
     if (analysis.status === 'quality-fail') {
+      track('head_test_photo_fallback', { locale, reason: 'quality' })
       setStep('photo-fail')
       return
     }
@@ -94,6 +99,8 @@ export function HeadTestFlow({
   function finishQuestions(all: Answers) {
     setStep('judging')
     const result = scoreAnswers(all)
+    track('head_test_complete', { locale, type: result.type, path: 'questions' })
+    saveCompletedType(result.type)
     savePersonalization({
       preferredSide: result.preferredSide,
       ageBand: result.ageBand,
@@ -133,6 +140,13 @@ export function HeadTestFlow({
   }
 
   function goToPhotoResult(result: Extract<PhotoAnalysis, { status: 'ok' }>) {
+    track('head_test_complete', {
+      locale,
+      type: result.type,
+      path: 'photo',
+      quality: result.quality,
+    })
+    saveCompletedType(result.type)
     savePersonalization({
       preferredSide: result.preferredSide,
       ageBand: photoAgeRef.current ?? undefined,
@@ -160,8 +174,14 @@ export function HeadTestFlow({
           locale={locale}
           copy={copy}
           homeLabel={homeLabel}
-          onPhoto={() => setStep('photo')}
-          onQuestions={startQuestions}
+          onPhoto={() => {
+            track('head_test_start', { locale, path: 'photo' })
+            setStep('photo')
+          }}
+          onQuestions={() => {
+            track('head_test_start', { locale, path: 'questions' })
+            startQuestions()
+          }}
         />
       )
     case 'photo':
@@ -174,6 +194,7 @@ export function HeadTestFlow({
             setStep('align')
           }}
           onUseQuestions={startQuestions}
+          onPermissionDenied={() => track('head_test_photo_fallback', { locale, reason: 'permission' })}
           onBack={() => setStep('intro')}
         />
       )
@@ -201,7 +222,10 @@ export function HeadTestFlow({
             }
           }}
           secondaryLabel={copy.photo.retake}
-          onSecondary={() => setStep('photo')}
+          onSecondary={() => {
+            track('head_test_photo_fallback', { locale, reason: 'barely_retake' })
+            setStep('photo')
+          }}
         />
       )
     case 'photo-fail':
