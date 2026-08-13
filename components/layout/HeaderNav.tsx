@@ -6,12 +6,14 @@ import { useEffect, useState } from 'react'
 import { BarodoriMark } from '@/components/layout/BarodoriMark'
 import { LocaleSwitcher } from '@/components/layout/LocaleSwitcher'
 import type { Locale } from '@/lib/i18n/config'
+import { siteFeatures } from '@/lib/site/features'
 
 type NavLabels = {
   community: string
   articles: string
   newsroom: string
   faq: string
+  headTest: string
   logout: string
   mypage: string
   start: string
@@ -40,11 +42,17 @@ export function HeaderNav({
   const [authenticated, setAuthenticated] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
-  const navItems = navKeys.map((key) => ({
-    key,
-    href: `/${locale}/${key}`,
-    label: labels[key],
-  }))
+  const navItems = [
+    // 두상 테스트 탭 — 노출 조건(공유 플로우 스펙 §7)이 갖춰지면 플래그로 켠다.
+    ...(siteFeatures.headTestTab
+      ? [{ key: 'headTest', href: `/${locale}/head-test`, label: labels.headTest }]
+      : []),
+    ...navKeys.map((key) => ({
+      key,
+      href: `/${locale}/${key}`,
+      label: labels[key],
+    })),
+  ]
 
   useEffect(() => {
     let mounted = true

@@ -1,11 +1,13 @@
 import Image from 'next/image'
-import Link from 'next/link'
 import { notFound, redirect } from 'next/navigation'
 import { getDictionary, isLocale } from '@/lib/i18n/dictionary'
 import { buildMetadata } from '@/lib/seo/metadata'
+import { TrackedLink } from '@/components/analytics/TrackedLink'
 import { MiniHeader } from '@/components/head-test/MiniHeader'
 import { ResultTips } from '@/components/head-test/ResultTips'
+import { ResultViewTracker } from '@/components/head-test/ResultViewTracker'
 import { ShareButton } from '@/components/head-test/ShareButton'
+import { APP_CTA_UTM } from '@/lib/head-test/share'
 import { headTypes, isHeadType } from '@/lib/head-test/types'
 import type { Locale } from '@/lib/i18n/config'
 
@@ -51,6 +53,7 @@ export default async function HeadTestResultPage({
 
   return (
     <div className="flex flex-1 flex-col">
+      <ResultViewTracker locale={loc} type={type} />
       <MiniHeader locale={loc} homeLabel={dict.common.home} />
       <div className="flex flex-1 flex-col items-center gap-8 px-6 pb-12 pt-4 text-center">
         {/* 1. 유형 카드 */}
@@ -85,19 +88,27 @@ export default async function HeadTestResultPage({
         {/* 4. 놀이 팁 (월령 토글 + 방향 분기) */}
         <ResultTips type={type} copy={copy.result} />
 
-        {/* 5. 공유 */}
-        <ShareButton label={copy.result.shareCta} copiedLabel={copy.result.shareCopied} />
+        {/* 5. 공유 — 유형별 훅 + 공통 꼬리 문구 (공유 플로우 스펙 §2) */}
+        <ShareButton
+          locale={loc}
+          type={type}
+          label={copy.result.shareCta}
+          copiedLabel={copy.result.shareCopied}
+          shareText={`${copy.result.share.hooks[type]}\n${copy.result.share.tail}`}
+        />
 
         {/* 6. 앱 CTA */}
         <section className="w-full rounded-2xl bg-[var(--color-bg-muted)] p-6">
           <h2 className="text-lg font-bold leading-snug">{copy.result.appCtaHead}</h2>
           <p className="mt-2 text-sm text-[var(--color-text-secondary)]">{copy.result.appCtaSub}</p>
-          <Link
-            href={`/${loc}/install`}
+          <TrackedLink
+            href={`/${loc}/install?${APP_CTA_UTM}`}
+            event="head_test_app_cta_click"
+            eventProps={{ locale: loc, type }}
             className="mt-4 inline-flex rounded-pill border border-[var(--color-border)] bg-white px-6 py-3 text-sm font-bold"
           >
             {copy.result.appCtaButton}
-          </Link>
+          </TrackedLink>
         </section>
 
         {/* 7. 병원 안내 + 면피 — 접지 않고 항상 노출 */}
@@ -108,21 +119,24 @@ export default async function HeadTestResultPage({
 
         {/* 8. 다시 해보기 + 다른 유형 구경 */}
         <section className="w-full">
-          <Link
+          <TrackedLink
             href={`/${loc}/head-test`}
+            event="head_test_retry_click"
+            eventProps={{ locale: loc, from: type }}
             className="text-sm font-semibold text-[var(--color-text-secondary)] underline underline-offset-4 hover:text-[var(--color-text-primary)]"
           >
             {copy.result.retry}
-          </Link>
+          </TrackedLink>
           <h2 className="mt-8 text-sm font-bold text-[var(--color-text-secondary)]">
             {copy.result.othersTitle}
           </h2>
           <ul className="mt-3 flex justify-center gap-1">
             {headTypes.map((other) => (
               <li key={other}>
-                <Link
+                <TrackedLink
                   href={`/${loc}/head-test/result/${other}`}
-                  aria-current={other === type ? 'page' : undefined}
+                  event="head_test_other_type_click"
+                  eventProps={{ locale: loc, from: type, to: other }}
                   className={`flex flex-col items-center gap-1 rounded-2xl p-2 ${
                     other === type ? 'bg-[var(--color-primary-light)]' : 'hover:bg-[var(--color-bg-muted)]'
                   }`}
@@ -135,7 +149,7 @@ export default async function HeadTestResultPage({
                     height={52}
                   />
                   <span className="text-xs font-semibold">{copy.result.types[other].name}</span>
-                </Link>
+                </TrackedLink>
               </li>
             ))}
           </ul>

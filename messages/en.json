@@ -13,6 +13,7 @@
     "articles": "Barodori content",
     "newsroom": "Updates",
     "faq": "FAQ",
+    "headTest": "Head Shape Test",
     "login": "Log in",
     "logout": "Log out",
     "mypage": "My page",
@@ -413,6 +414,16 @@
       "disclaimer": "This is a just-for-fun type test. It is not a medical diagnosis or measurement, and the result says nothing about your baby's health.",
       "hospital": "If you are curious about your baby's head shape, feel free to ask at your next pediatric visit. An accurate check is always best done with a doctor.",
       "othersTitle": "Meet the other types",
+      "share": {
+        "tail": "Which type is your baby? 30 seconds at barodori.com!",
+        "hooks": {
+          "ttaomi": "A curious one who sees the world at a tilt 🟣 It's not just our baby, right?",
+          "banguri": "Cozy smiley Banguri 💙 No one can resist this smile!",
+          "ppyojogi": "The rarely-seen slender Ppyojogi 🌱 Our baby is an uncommon type!",
+          "jjanggu": "Confident round-crowned Jjanggu has arrived ✌️ Which type is your baby?",
+          "donggeuri": "Certified well-balanced sweetheart 💛 Who could scroll past Donggeuri!"
+        }
+      },
       "side": {
         "token": "{side}",
         "left": "left",

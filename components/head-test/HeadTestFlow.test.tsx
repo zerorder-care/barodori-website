@@ -9,6 +9,12 @@ vi.mock('next/navigation', () => ({
   useRouter: () => ({ push }),
 }))
 
+const trackSpy = vi.fn()
+
+vi.mock('@/lib/analytics', () => ({
+  track: (event: string, props?: Record<string, unknown>) => trackSpy(event, props),
+}))
+
 const copy = koMessages.headTest
 
 function renderFlow() {
@@ -22,6 +28,7 @@ function answer(label: string) {
 beforeEach(() => {
   vi.useFakeTimers()
   push.mockClear()
+  trackSpy.mockClear()
   window.sessionStorage.clear()
   window.matchMedia = vi.fn().mockReturnValue({ matches: false })
 })
@@ -87,5 +94,28 @@ describe('HeadTestFlow', () => {
     expect(window.sessionStorage.getItem('headTest.preferredSide')).toBe('left')
     expect(window.sessionStorage.getItem('headTest.ageBand')).toBe('under3m')
     expect(window.sessionStorage.getItem('headTest.tummyReaction')).toBe('notYet')
+  })
+
+  it('퍼널 이벤트를 스펙 스키마대로 남기고 완료 유형을 기록한다', () => {
+    renderFlow()
+    expect(trackSpy).toHaveBeenCalledWith('head_test_view', { locale: 'ko', source: 'direct' })
+
+    answer(copy.intro.questionCta)
+    expect(trackSpy).toHaveBeenCalledWith('head_test_start', { locale: 'ko', path: 'questions' })
+
+    answer('앞뒤로 길쭉한 편')
+    answer('완만하게 둥근 편')
+    answer('비슷해 보여요')
+    answer('양쪽 골고루')
+    answer('잘 모르겠어요')
+    answer('아직 안 해봤어요')
+    answer('3개월이 지났어요')
+
+    expect(trackSpy).toHaveBeenCalledWith('head_test_complete', {
+      locale: 'ko',
+      type: 'ppyojogi',
+      path: 'questions',
+    })
+    expect(window.sessionStorage.getItem('headTest.completedType')).toBe('ppyojogi')
   })
 })

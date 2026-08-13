@@ -7,7 +7,27 @@ const KEYS = {
   preferredSide: 'headTest.preferredSide',
   ageBand: 'headTest.ageBand',
   tummyReaction: 'headTest.tummyReaction',
+  completedType: 'headTest.completedType',
 } as const
+
+/** 이 기기에서 테스트를 마친 유형 — 결과 화면의 own/share/direct 진입 구분에만 쓴다. */
+export function saveCompletedType(type: string): void {
+  if (typeof window === 'undefined') return
+  try {
+    window.sessionStorage.setItem(KEYS.completedType, type)
+  } catch {
+    /* 저장 불가 환경에서는 진입 구분이 direct로 잡힐 뿐이다 */
+  }
+}
+
+export function readCompletedType(): string | null {
+  if (typeof window === 'undefined') return null
+  try {
+    return window.sessionStorage.getItem(KEYS.completedType)
+  } catch {
+    return null
+  }
+}
 
 export type Personalization = {
   preferredSide: PreferredSide | null

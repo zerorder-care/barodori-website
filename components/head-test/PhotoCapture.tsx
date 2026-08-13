@@ -14,12 +14,14 @@ export function PhotoCapture({
   onCaptured,
   onGallery,
   onUseQuestions,
+  onPermissionDenied,
   onBack,
 }: {
   copy: PhotoCopy
   onCaptured: (image: ImageData, guideOn: boolean) => void
   onGallery: (file: File) => void
   onUseQuestions: () => void
+  onPermissionDenied?: () => void
   onBack: () => void
 }) {
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -46,7 +48,10 @@ export function PhotoCapture({
         }
         setPermission('granted')
       } catch {
-        if (!cancelled) setPermission('denied')
+        if (!cancelled) {
+          setPermission('denied')
+          onPermissionDenied?.()
+        }
       }
     }
     start()
@@ -54,6 +59,8 @@ export function PhotoCapture({
       cancelled = true
       stream?.getTracks().forEach((track) => track.stop())
     }
+    // onPermissionDenied는 계측 콜백이라 재구독 사유가 아니다.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   function capture() {

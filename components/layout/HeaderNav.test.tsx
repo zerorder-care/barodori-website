@@ -14,6 +14,7 @@ const labels = {
   articles: '바로도리 컨텐츠',
   newsroom: '소식',
   faq: '자주 묻는 질문',
+  headTest: '두상 테스트',
   login: '로그인',
   logout: '로그아웃',
   mypage: '마이페이지',
