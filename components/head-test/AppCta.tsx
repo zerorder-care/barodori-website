@@ -46,7 +46,8 @@ export function AppCta({
         {buttonLabel}
       </a>
 
-      {/* 데스크톱: 같은 링크의 QR — 스캔하면 폰에서 이어진다 */}
+      {/* 데스크톱: 같은 링크의 QR — 스캔하면 폰에서 이어진다.
+          모니터 스캔은 모아레·반사에 취약해서 에러 정정 H 고해상도 PNG를 160px로 크게 보여준다. */}
       <div className="mt-6 hidden flex-col items-center gap-3 sm:flex">
         <p className="text-xs text-[var(--color-text-secondary)]">{qrScanLabel}</p>
         <a
@@ -54,14 +55,16 @@ export function AppCta({
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => track('head_test_app_cta_click', { locale, type, method: 'qr' })}
-          className="rounded-lg border border-[var(--color-border)] bg-white p-3"
+          className="rounded-lg border border-[var(--color-border)] bg-white p-4"
         >
           <Image
-            src="/images/head-test/qr-app-link.svg"
+            src="/images/head-test/qr-app-link.png"
             alt={qrAlt}
-            width={112}
-            height={112}
-            className="h-28 w-28"
+            width={160}
+            height={160}
+            className="h-40 w-40"
+            // 손실 변환 없이 원본 픽셀을 그대로 내려 스캔 대비를 지킨다
+            unoptimized
           />
         </a>
       </div>
