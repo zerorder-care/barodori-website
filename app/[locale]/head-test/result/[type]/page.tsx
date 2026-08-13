@@ -3,11 +3,11 @@ import { notFound, redirect } from 'next/navigation'
 import { getDictionary, isLocale } from '@/lib/i18n/dictionary'
 import { buildMetadata } from '@/lib/seo/metadata'
 import { TrackedLink } from '@/components/analytics/TrackedLink'
+import { AppCta } from '@/components/head-test/AppCta'
 import { MiniHeader } from '@/components/head-test/MiniHeader'
 import { ResultTips } from '@/components/head-test/ResultTips'
 import { ResultViewTracker } from '@/components/head-test/ResultViewTracker'
 import { ShareButton } from '@/components/head-test/ShareButton'
-import { APP_CTA_UTM } from '@/lib/head-test/share'
 import { headTypes, isHeadType } from '@/lib/head-test/types'
 import type { Locale } from '@/lib/i18n/config'
 
@@ -97,19 +97,16 @@ export default async function HeadTestResultPage({
           shareText={`${copy.result.share.hooks[type]}\n${copy.result.share.tail}`}
         />
 
-        {/* 6. 앱 CTA */}
-        <section className="w-full rounded-2xl bg-[var(--color-bg-muted)] p-6">
-          <h2 className="text-lg font-bold leading-snug">{copy.result.appCtaHead}</h2>
-          <p className="mt-2 text-sm text-[var(--color-text-secondary)]">{copy.result.appCtaSub}</p>
-          <TrackedLink
-            href={`/${loc}/install?${APP_CTA_UTM}`}
-            event="head_test_app_cta_click"
-            eventProps={{ locale: loc, type }}
-            className="mt-4 inline-flex rounded-pill border border-[var(--color-border)] bg-white px-6 py-3 text-sm font-bold"
-          >
-            {copy.result.appCtaButton}
-          </TrackedLink>
-        </section>
+        {/* 6. 앱 CTA — 모바일은 스토어 직행 버튼, 데스크톱은 QR */}
+        <AppCta
+          locale={loc}
+          type={type}
+          head={copy.result.appCtaHead}
+          sub={copy.result.appCtaSub}
+          buttonLabel={copy.result.appCtaButton}
+          qrScanLabel={dict.store.qrScan}
+          qrAlt={dict.store.qrAlt.replace('{store}', dict.common.appName)}
+        />
 
         {/* 7. 병원 안내 + 면피 — 접지 않고 항상 노출 */}
         <section className="w-full text-left text-xs leading-relaxed text-[var(--color-text-secondary)]">
