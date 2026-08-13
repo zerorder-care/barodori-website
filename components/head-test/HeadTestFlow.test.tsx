@@ -31,6 +31,16 @@ afterEach(() => {
 })
 
 describe('HeadTestFlow', () => {
+  it('카메라를 쓸 수 없으면 갤러리·문항 출구를 보여준다', async () => {
+    vi.useRealTimers()
+    renderFlow()
+    answer(copy.intro.photoCta)
+    expect(await screen.findByText(copy.photo.permissionTitle)).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: copy.photo.galleryLabel })).toBeInTheDocument()
+    answer(copy.photo.useQuestions)
+    expect(screen.getByRole('heading', { name: copy.questions[0].text })).toBeInTheDocument()
+  })
+
   it('인트로에서 문항 시작 버튼을 누르면 첫 문항이 보인다', () => {
     renderFlow()
     expect(screen.getByRole('heading', { name: copy.intro.title })).toBeInTheDocument()
