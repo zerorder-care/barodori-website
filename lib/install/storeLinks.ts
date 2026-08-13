@@ -19,12 +19,3 @@ export function isAppLive(): boolean {
 export function getBetaFormUrl(): string | null {
   return process.env.NEXT_PUBLIC_BETA_FORM_URL || null
 }
-
-export type StorePlatform = 'ios' | 'android' | 'unknown'
-
-/** userAgent로 이동할 스토어를 고른다. 판별 불가면 설치 페이지로 보내는 폴백을 쓴다. */
-export function resolveStorePlatform(userAgent: string): StorePlatform {
-  if (/iphone|ipad|ipod/i.test(userAgent)) return 'ios'
-  if (/android/i.test(userAgent)) return 'android'
-  return 'unknown'
-}

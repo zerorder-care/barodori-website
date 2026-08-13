@@ -7,6 +7,15 @@ import type { Locale } from '@/lib/i18n/config'
 export const SHARE_UTM = 'utm_source=head_test&utm_medium=share'
 export const APP_CTA_UTM = 'utm_source=head_test&utm_medium=result_cta'
 
+// 결과 화면의 앱 진입은 MMP(에어브리지) 트래킹 링크를 쓴다. 링크가 기기별 스토어
+// 라우팅과 설치 어트리뷰션을 대신하므로 클라이언트에서 플랫폼을 가르지 않는다.
+// 본사이트(홈·설치 페이지)의 스토어 링크는 이 링크를 쓰지 않는다.
+const DEFAULT_APP_LINK = 'https://abr.ge/76hjm6'
+
+export function appLinkUrl(): string {
+  return process.env.NEXT_PUBLIC_HEAD_TEST_APP_LINK ?? DEFAULT_APP_LINK
+}
+
 export function sharePathFor(locale: Locale, type: HeadType): string {
   return `/${locale}/head-test/result/${type}?${SHARE_UTM}`
 }

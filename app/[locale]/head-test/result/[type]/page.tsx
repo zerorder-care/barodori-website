@@ -104,7 +104,8 @@ export default async function HeadTestResultPage({
           head={copy.result.appCtaHead}
           sub={copy.result.appCtaSub}
           buttonLabel={copy.result.appCtaButton}
-          storeLabels={dict.store}
+          qrScanLabel={dict.store.qrScan}
+          qrAlt={dict.store.qrAlt.replace('{store}', dict.common.appName)}
         />
 
         {/* 7. 병원 안내 + 면피 — 접지 않고 항상 노출 */}

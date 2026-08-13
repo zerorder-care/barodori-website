@@ -28,14 +28,4 @@ describe('storeLinks', () => {
     })
     expect(isAppLive()).toBe(true)
   })
-
-  it('userAgent로 스토어 플랫폼을 판별하고, 모르면 unknown이다', async () => {
-    const { resolveStorePlatform } = await import('./storeLinks')
-    expect(
-      resolveStorePlatform('Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X)'),
-    ).toBe('ios')
-    expect(resolveStorePlatform('Mozilla/5.0 (iPad; CPU OS 16_0 like Mac OS X)')).toBe('ios')
-    expect(resolveStorePlatform('Mozilla/5.0 (Linux; Android 14; SM-S921N)')).toBe('android')
-    expect(resolveStorePlatform('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)')).toBe('unknown')
-  })
 })
