@@ -10,6 +10,11 @@ declare global {
   }
 }
 
+// 앰플리튜드 SDK는 비동기로 로드되므로, 준비 전에 발생한 이벤트(첫 page_view 등)를
+// 잠깐 버퍼에 담았다가 초기화 직후 flushAmplitude()로 내보낸다.
+const PENDING_LIMIT = 50
+let pending: Array<[string, Record<string, unknown> | undefined]> = []
+
 export function track(event: string, props?: Record<string, unknown>): void {
   if (typeof window === 'undefined') return
   try {
@@ -18,7 +23,11 @@ export function track(event: string, props?: Record<string, unknown>): void {
     /* swallow */
   }
   try {
-    window.amplitude?.track(event, props)
+    if (window.amplitude) {
+      window.amplitude.track(event, props)
+    } else if (pending.length < PENDING_LIMIT) {
+      pending.push([event, props])
+    }
   } catch {
     /* swallow */
   }
@@ -28,6 +37,20 @@ export function track(event: string, props?: Record<string, unknown>): void {
   }
 }
 
+/** SDK 초기화 직후 버퍼에 쌓인 이벤트를 순서대로 내보낸다. */
+export function flushAmplitude(): void {
+  if (typeof window === 'undefined' || !window.amplitude) return
+  const queued = pending
+  pending = []
+  for (const [event, props] of queued) {
+    try {
+      window.amplitude.track(event, props)
+    } catch {
+      /* swallow */
+    }
+  }
+}
+
 export function __resetForTest(): void {
-  /* placeholder; 모듈 상태 없음 */
+  pending = []
 }
