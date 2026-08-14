@@ -4,7 +4,7 @@
 //
 // - Vercel 빌드: 연결된 스토어의 BLOB_READ_WRITE_TOKEN이 자동 주입되어 다운로드가 실행된다.
 // - 로컬 개발: 토큰이 없으면 건너뛴다. public/models/에 파일을 직접 둔 경우 그대로 쓴다.
-import { list } from '@vercel/blob'
+import { get, list } from '@vercel/blob'
 import { existsSync, mkdirSync, statSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -40,12 +40,14 @@ if (!blob) {
   process.exit(1)
 }
 
-const response = await fetch(blob.downloadUrl ?? blob.url)
-if (!response.ok) {
-  console.error(`fetch_model: download failed with ${response.status}`)
+// private 스토어의 블롭은 list()가 주는 URL로 직접 받을 수 없고(403),
+// 토큰 인증이 붙는 get()으로 내려받아야 한다.
+const result = await get(blob.pathname, { token, access: 'private' })
+if (!result || result.statusCode !== 200 || !result.stream) {
+  console.error(`fetch_model: download failed (status ${result?.statusCode ?? 'null'})`)
   process.exit(1)
 }
 
 mkdirSync(dirname(dest), { recursive: true })
-writeFileSync(dest, Buffer.from(await response.arrayBuffer()))
+writeFileSync(dest, Buffer.from(await new Response(result.stream).arrayBuffer()))
 console.log(`fetch_model: downloaded ${MODEL_FILENAME} (${statSync(dest).size} bytes)`)
