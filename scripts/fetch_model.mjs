@@ -15,6 +15,14 @@ const dest = join(root, 'public', 'models', MODEL_FILENAME)
 const token = process.env.BLOB_READ_WRITE_TOKEN
 
 if (!token) {
+  // Vercel 빌드에서 토큰이 없다는 건 스토어 연결이 풀렸다는 뜻이다.
+  // 모델 없는 배포가 조용히 나가지 않도록 빌드를 실패시킨다.
+  if (process.env.VERCEL) {
+    console.error(
+      'fetch_model: BLOB_READ_WRITE_TOKEN is missing in this Vercel build — connect the blob store to the project (Storage → Connect Project) and redeploy',
+    )
+    process.exit(1)
+  }
   if (existsSync(dest)) {
     console.log(`fetch_model: no blob token; using local ${MODEL_FILENAME}`)
   } else {
