@@ -1,0 +1,27 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.zerorder.barodori",
+      "sha256_cert_fingerprints": [
+        "48:8E:C7:EB:72:E4:39:BE:D5:86:7D:6D:09:C2:4C:C2:96:2D:1E:84:81:C8:B1:1D:A8:A7:AC:60:40:45:CE:E9"
+      ]
+    }
+  },
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls",
+      "delegate_permission/common.get_login_creds"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.zerorder.barodori.stg",
+      "sha256_cert_fingerprints": [
+        "AB:39:AB:03:0D:D7:16:19:39:12:54:7F:C6:3B:47:D4:16:1A:EE:FD:6E:95:3A:87:BF:2C:72:39:B2:59:EC:0E"
+      ]
+    }
+  }
+]
