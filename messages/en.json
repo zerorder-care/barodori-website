@@ -18,7 +18,6 @@
     "logout": "Log out",
     "mypage": "My page",
     "install": "Get the app",
-    "start": "Get started",
     "openMenu": "Open menu",
     "closeMenu": "Close menu"
   },
@@ -52,8 +51,7 @@
     "title": "Usage Notice",
     "compactBody": "Barodori does not replace treatment or diagnosis. It helps caregivers set goals, record exercises instructed by clinicians, and review progress through reports at home.",
     "body": "Barodori is a home-care recording tool and does not replace treatment or diagnosis. Exercise methods and intensity should be decided with your clinician or therapist. Records and reports are reference materials for organizing the situation.",
-    "emergency": "If your child shows pain, intense crying, fever, breathing issues, sudden movement restriction, or neurological symptoms, seek medical attention immediately.",
-    "stress": "Caregiver condition-check results are for reference only and must not be used for diagnosis or treatment decisions."
+    "emergency": "If your child shows pain, intense crying, fever, breathing issues, sudden movement restriction, or neurological symptoms, seek medical attention immediately."
   },
   "structuredData": {
     "organizationName": "Zerorder",
@@ -89,9 +87,6 @@
       "description": "Worried about your baby's head tilt or head shape? Record exercises, sleep, posture, feeding, and play, then review weekly reports and head shape changes. 3-day free trial, no automatic billing when it ends."
     },
     "hero": {
-      "titlePrimary": "Start with Barodori,",
-      "titleSecondary": "home care begins when you open it",
-      "subtitle": "Make head-tilt and head-shape home care less overwhelming with Barodori.",
       "eyebrow": "3-day free trial, no automatic billing when it ends",
       "titleLead": "Personalized home care for your baby,",
       "titleTail": "starting today with",
@@ -106,50 +101,6 @@
         "headReport": "Barodori head shape report screen"
       }
     },
-    "storySections": [
-      {
-        "id": "home",
-        "title": "AI helps suggest a practical exercise amount",
-        "body": "See progress at a glance and keep exercises at a manageable level without feeling lost.",
-        "chips": ["Today's exercise record", "This week's goal", "Stress check"],
-        "screenAlt": "Barodori home screen showing today's exercise record and this week's goal"
-      },
-      {
-        "id": "exercise",
-        "title": "Exercise together with Dori",
-        "body": "During exercise time, focus only on your child. Barodori keeps the timer and records ready.",
-        "chips": ["Stopwatch", "Children's songs", "Count after finishing"],
-        "screenAlt": "Barodori exercise screen with Dori character, timer, and song playback"
-      },
-      {
-        "id": "record",
-        "title": "Detailed reports\nmake each session more useful",
-        "body": "A careful record can turn small home-care moments into a clearer view of progress.",
-        "chips": ["Left/right counts", "Today's memo", "Photos and videos"],
-        "screenAlt": "Barodori session report showing left and right counts, memos, and photo records"
-      },
-      {
-        "id": "flow",
-        "title": "Accumulated records\nhelp you see the path forward",
-        "body": "Exercise days and therapy visits stay visible on the calendar.\nWeekly goal progress and exercise mix are summarized at a glance.",
-        "chips": ["Appointment and exercise calendar", "Weekly goal progress", "Exercise mix"],
-        "screenAlt": "Barodori calendar and weekly report showing exercise records and goal progress"
-      },
-      {
-        "id": "community",
-        "title": "Feel that you are not doing this alone",
-        "body": "Read real stories from caregivers walking a similar path.",
-        "chips": ["Dori stories", "Exercise journals", "Encouraging comments"],
-        "screenAlt": "Barodori community feed where caregivers share exercise records and experiences"
-      },
-      {
-        "id": "parent",
-        "title": "Barodori also checks in on the caregiver",
-        "body": "Long home-care routines are easier when the caregiver is not exhausted.\nBarodori helps you notice your own condition, too.",
-        "chips": ["1-minute self check", "4-level guide", "Track changes over time"],
-        "screenAlt": "Barodori caregiver condition self-check screen with a 1-minute camera guide"
-      }
-    ],
     "features": [
       { "id": "record", "label": "Home care log", "title": "Record every kind of home care in one place", "body": "From exercises to sleep, posture, feeding, and play.", "note": "Group the questions you answer often into a quick record.", "link": "", "screenAlt": "Barodori home care screen, choose exercise, sleep, posture, feeding, or play to record" },
       { "id": "exercise", "label": "Exercise", "title": "Follow exercises that fit your baby, step by step", "body": "Check the method while you record.", "note": "", "link": "", "screenAlt": "Barodori exercise screen, head tilt 1 of 10 reps" },
@@ -174,7 +125,6 @@
       "cta": "Get the app"
     },
     "installCta": {
-      "eyebrow": "Goals · Records · Reports",
       "title": "Keep today's home care record from slipping away",
       "body": "Record exercises, sleep, posture, feeding, and play, then review weekly reports and head shape changes."
     }
