@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 import koMessages from '@/messages/ko.json'
 import { FeatureSections } from './FeatureSections'
 
@@ -31,5 +31,14 @@ describe('FeatureSections', () => {
     render(<FeatureSections locale="ko" features={features} />)
     expect(screen.getByText(features[0].note)).toBeInTheDocument()
     expect(screen.getByText(features[2].note)).toBeInTheDocument()
+  })
+
+  it('throws when a feature id has no layout', () => {
+    const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {})
+    const broken = [{ ...features[0], id: 'unknown' }]
+    expect(() => render(<FeatureSections locale="ko" features={broken} />)).toThrow(
+      'FeatureSections: no layout for feature id "unknown"',
+    )
+    errorSpy.mockRestore()
   })
 })

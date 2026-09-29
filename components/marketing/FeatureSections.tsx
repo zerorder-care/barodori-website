@@ -68,20 +68,17 @@ export function FeatureSections({
 }) {
   return (
     <>
-      {features.map((feature, index) => {
-        const meta = META.find((m) => m.id === feature.id) ?? META[index] ?? META[0]
+      {features.map((feature) => {
+        const meta = META.find((m) => m.id === feature.id)
+        if (!meta) throw new Error(`FeatureSections: no layout for feature id "${feature.id}"`)
         const titleId = `feature-${feature.id}-title`
         // 섹션 바탕이 주황이면 라벨은 흰색으로 띄워 대비를 지킨다.
         const pillBg = meta.bg === 'bg-white' ? 'bg-[var(--color-orange-50)]' : 'bg-white'
         return (
           <section key={feature.id} aria-labelledby={titleId} className={`${meta.bg} py-20 sm:py-28`}>
             <Container>
-              <div
-                className={`grid items-center gap-10 lg:grid-cols-2 ${
-                  meta.reverse ? 'lg:[&>*:first-child]:order-2' : ''
-                }`}
-              >
-                <Reveal>
+              <div className="grid items-center gap-10 lg:grid-cols-2">
+                <Reveal className={meta.reverse ? 'lg:order-2' : ''}>
                   <p
                     className={`inline-flex rounded-pill ${pillBg} px-3 py-1.5 text-[13px] font-semibold leading-[1.3] text-[var(--color-hero-fg)]`}
                   >
@@ -110,7 +107,7 @@ export function FeatureSections({
                     </TrackedLink>
                   )}
                 </Reveal>
-                <Reveal delayMs={120} className="relative">
+                <Reveal delayMs={120} className={`relative ${meta.reverse ? 'lg:order-1' : ''}`}>
                   {meta.playmat && (
                     <>
                       <Image
