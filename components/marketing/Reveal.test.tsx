@@ -26,7 +26,27 @@ describe('Reveal', () => {
     expect(container.firstChild).toHaveAttribute('data-visible', 'true')
   })
 
-  it('becomes visible when the element scrolls into view', () => {
+  it('stays visible when it is already inside the viewport at mount', () => {
+    vi.stubGlobal(
+      'IntersectionObserver',
+      class {
+        observe() {}
+        unobserve() {}
+        disconnect() {}
+        takeRecords() {
+          return []
+        }
+      },
+    )
+    const { container } = render(
+      <Reveal>
+        <p>첫 화면</p>
+      </Reveal>,
+    )
+    expect(container.firstChild).toHaveAttribute('data-visible', 'true')
+  })
+
+  it('hides a below-the-fold element until it scrolls into view', () => {
     let callback: IntersectionObserverCallback | undefined
     vi.stubGlobal(
       'IntersectionObserver',
@@ -42,6 +62,9 @@ describe('Reveal', () => {
         }
       },
     )
+    const spy = vi
+      .spyOn(Element.prototype, 'getBoundingClientRect')
+      .mockReturnValue({ top: 5000, bottom: 5200 } as DOMRect)
     const { container } = render(
       <Reveal>
         <p>등장</p>
@@ -55,5 +78,6 @@ describe('Reveal', () => {
       )
     })
     expect(container.firstChild).toHaveAttribute('data-visible', 'true')
+    spy.mockRestore()
   })
 })

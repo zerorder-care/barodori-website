@@ -13,17 +13,17 @@ export function Reveal({
   delayMs?: number
 }) {
   const ref = useRef<HTMLDivElement>(null)
-  const [visible, setVisible] = useState(false)
+  // 정지 상태에서 보인다. 관찰자가 붙은 뒤 뷰포트 아래에 있는 요소만 숨겼다가 올린다.
+  const [visible, setVisible] = useState(true)
 
   useEffect(() => {
-    // 접근성/폴백: IntersectionObserver가 없으면 즉시 표시한다.
-    if (typeof IntersectionObserver === 'undefined') {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setVisible(true)
-      return
-    }
+    if (typeof IntersectionObserver === 'undefined') return
     const el = ref.current
     if (!el) return
+    const rect = el.getBoundingClientRect()
+    if (rect.top < window.innerHeight) return
+
+    setVisible(false)
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
@@ -34,7 +34,6 @@ export function Reveal({
           }
         }
       },
-      // 요소가 10%만 보여도 진입으로 보고, 뷰포트 하단 10% 못 미쳐 미리 트리거
       { rootMargin: '0px 0px -10% 0px', threshold: 0.1 },
     )
     observer.observe(el)
@@ -46,7 +45,7 @@ export function Reveal({
       ref={ref}
       data-visible={visible}
       style={delayMs ? { transitionDelay: `${delayMs}ms` } : undefined}
-      className={`transition duration-700 ease-out motion-safe:translate-y-3 motion-safe:opacity-0 motion-safe:data-[visible=true]:translate-y-0 motion-safe:data-[visible=true]:opacity-100 ${className}`}
+      className={`transition duration-700 ease-out motion-safe:data-[visible=false]:translate-y-3 motion-safe:data-[visible=false]:opacity-0 ${className}`}
     >
       {children}
     </div>
