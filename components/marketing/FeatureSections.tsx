@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { Container } from '@/components/ui/Container'
 import { PhoneFrame } from '@/components/marketing/PhoneFrame'
 import { Reveal } from '@/components/marketing/Reveal'
+import { SectionHeading } from '@/components/marketing/SectionHeading'
 import { TrackedLink } from '@/components/analytics/TrackedLink'
 import type { Dictionary } from '@/lib/i18n/dictionary'
 import type { Locale } from '@/lib/i18n/config'
@@ -72,24 +73,13 @@ export function FeatureSections({
         const meta = META.find((m) => m.id === feature.id)
         if (!meta) throw new Error(`FeatureSections: no layout for feature id "${feature.id}"`)
         const titleId = `feature-${feature.id}-title`
-        // 섹션 바탕이 주황이면 라벨은 흰색으로 띄워 대비를 지킨다.
-        const pillBg = meta.bg === 'bg-white' ? 'bg-[var(--color-orange-50)]' : 'bg-white'
+        const pill = meta.bg === 'bg-white' ? 'orange' : 'white'
         return (
           <section key={feature.id} aria-labelledby={titleId} className={`${meta.bg} py-20 sm:py-28`}>
             <Container>
               <div className="grid items-center gap-10 lg:grid-cols-2">
                 <Reveal className={meta.reverse ? 'lg:order-2' : ''}>
-                  <p
-                    className={`inline-flex rounded-pill ${pillBg} px-3 py-1.5 text-[13px] font-semibold leading-[1.3] text-[var(--color-hero-fg)]`}
-                  >
-                    {feature.label}
-                  </p>
-                  <h2
-                    id={titleId}
-                    className="mt-4 text-[28px] font-bold leading-[1.2] tracking-[-0.5px] text-[var(--color-gray-900)] sm:text-4xl lg:text-[40px]"
-                  >
-                    {feature.title}
-                  </h2>
+                  <SectionHeading id={titleId} label={feature.label} title={feature.title} pill={pill} />
                   <p className="mt-5 text-base font-medium leading-[1.55] text-[var(--color-gray-600)] sm:text-lg lg:text-[19px]">
                     {feature.body}
                   </p>

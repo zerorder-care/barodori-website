@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import { Container } from '@/components/ui/Container'
 import { Reveal } from '@/components/marketing/Reveal'
+import { SectionHeading } from '@/components/marketing/SectionHeading'
 import type { Dictionary } from '@/lib/i18n/dictionary'
 
 type TogetherCopy = Dictionary['home']['together']
@@ -49,15 +50,7 @@ export function TogetherCards({ copy }: { copy: TogetherCopy }) {
     <section aria-labelledby="together-title" className="bg-white py-20 sm:py-28">
       <Container>
         <Reveal>
-          <p className="inline-flex rounded-pill bg-[var(--color-orange-50)] px-3 py-1.5 text-[13px] font-semibold leading-[1.3] text-[var(--color-hero-fg)]">
-            {copy.label}
-          </p>
-          <h2
-            id="together-title"
-            className="mt-4 text-[28px] font-bold leading-[1.2] tracking-[-0.5px] text-[var(--color-gray-900)] sm:text-4xl lg:text-[40px]"
-          >
-            {copy.title}
-          </h2>
+          <SectionHeading id="together-title" label={copy.label} title={copy.title} pill="orange" />
         </Reveal>
         <div className="mt-10 grid gap-5 md:grid-cols-2">
           {copy.cards.map((card, index) => (
