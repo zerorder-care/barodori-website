@@ -15,4 +15,9 @@ describe('PhoneFrame', () => {
     rerender(<PhoneFrame src="/x.png" alt="a" tall />)
     expect(queryByTestId('screen-fade')).not.toBeNull()
   })
+
+  it('forwards className to the outer frame', () => {
+    const { container } = render(<PhoneFrame src="/x.png" alt="a" className="rotate-6" />)
+    expect(container.firstChild).toHaveClass('rotate-6')
+  })
 })
