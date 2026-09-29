@@ -14,7 +14,7 @@ export function HeroV2({ locale, copy }: { locale: Locale; copy: HeroCopy }) {
       className="relative overflow-hidden bg-[linear-gradient(180deg,var(--color-cream-top)_0%,#FFF9EB_55%,var(--color-bg)_100%)]"
     >
       <Container className="relative z-10 flex flex-col items-center pt-14 text-center sm:pt-20">
-        <p className="rounded-pill bg-white px-3 py-1.5 text-[13px] font-semibold text-[var(--color-hero-fg)] shadow-[0_0_5px_rgba(0,0,0,0.05)]">
+        <p className="rounded-pill bg-white px-3 py-1.5 text-[13px] font-semibold leading-[1.3] text-[var(--color-hero-fg)] shadow-[0_0_5px_rgba(0,0,0,0.05)]">
           {copy.eyebrow}
         </p>
         <h1
@@ -47,10 +47,10 @@ export function HeroV2({ locale, copy }: { locale: Locale; copy: HeroCopy }) {
             {copy.ctaSecondary}
           </TrackedLink>
         </div>
-        <p className="mt-4 text-[13px] font-medium text-[var(--color-gray-500)]">{copy.trust}</p>
+        <p className="mt-4 text-[13px] font-medium leading-[1.3] text-[var(--color-gray-500)]">{copy.trust}</p>
       </Container>
 
-      <div className="relative mx-auto mt-8 h-[300px] w-full max-w-[1056px] sm:h-[360px]">
+      <div className="relative mx-auto mt-12 h-[300px] w-full max-w-[1056px] sm:mt-16 sm:h-[360px]">
         <PhoneFrame
           src="/images/home-v2/screen-weekly.png"
           alt={copy.screens.weekly}
