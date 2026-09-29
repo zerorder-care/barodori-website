@@ -120,7 +120,7 @@ export function FeatureSections({
                       />
                     </>
                   )}
-                  <PhoneFrame src={meta.screen} alt={feature.screenAlt} tall={meta.tall} className="relative" />
+                  <PhoneFrame src={meta.screen} alt={feature.screenAlt} tall={meta.tall} className="relative w-full max-w-[300px]" />
                 </Reveal>
               </div>
             </Container>
