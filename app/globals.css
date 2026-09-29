@@ -42,7 +42,9 @@
   --radius-lg: 20px;
   --radius-pill: 9999px;
   --font-sans: 'Pretendard', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  /* 앱 2.0.0 Figma Foundations. 기존 토큰은 다른 페이지가 계속 쓴다. */
+  /* 앱 2.0.0 Figma Foundations. 기존 토큰은 다른 페이지가 계속 쓴다.
+     orange와 gray는 앱이 정의한 단계만 재정의하므로 Tailwind 기본 팔레트의 나머지 단계(orange-600, gray-700 등)와 섞이지 않게
+     컴포넌트에서는 bg-[var(--color-orange-500)]처럼 변수로만 참조한다. */
   --color-orange-50: #FFF7E0;
   --color-orange-100: #FFEAB2;
   --color-orange-300: #FFD04C;
