@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { BarodoriMark } from '@/components/layout/BarodoriMark'
+import { BarodoriLogo } from '@/components/layout/BarodoriLogo'
 import { LocaleSwitcher } from '@/components/layout/LocaleSwitcher'
 import type { Locale } from '@/lib/i18n/config'
 import { siteFeatures } from '@/lib/site/features'
@@ -16,7 +16,7 @@ type NavLabels = {
   headTest: string
   logout: string
   mypage: string
-  start: string
+  install: string
   openMenu: string
   closeMenu: string
 }
@@ -43,7 +43,7 @@ export function HeaderNav({
   const [scrolled, setScrolled] = useState(false)
 
   const navItems = [
-    // 두상 테스트 탭 — 노출 조건(공유 플로우 스펙 §7)이 갖춰지면 플래그로 켠다.
+    // 두상 테스트 탭. 노출 조건(공유 플로우 스펙 7절)이 갖춰지면 플래그로 켠다.
     ...(siteFeatures.headTestTab
       ? [{ key: 'headTest', href: `/${locale}/head-test`, label: labels.headTest }]
       : []),
@@ -103,11 +103,8 @@ export function HeaderNav({
             : 'shadow-[0_4px_16px_rgba(17,24,39,0.05)]'
         }`}
       >
-        <Link href={`/${locale}`} className="inline-flex items-center gap-2">
-          <BarodoriMark className="h-7 w-7" />
-          <span className="text-[17px] font-bold tracking-tight text-[var(--color-text-primary)]">
-            {appName}
-          </span>
+        <Link href={`/${locale}`} className="inline-flex items-center">
+          <BarodoriLogo locale={locale} label={appName} className="h-7 w-auto" />
         </Link>
 
         <nav className="hidden items-center gap-7 text-sm lg:flex">
@@ -200,11 +197,11 @@ export function HeaderNav({
             </Link>
           ) : (
             <Link
-              href={`/${locale}/login`}
+              href={`/${locale}/install`}
               onClick={() => setOpen(false)}
-              className="mt-1 block rounded-xl bg-[var(--color-primary)] px-4 py-3 text-center text-base font-bold text-[var(--color-text-primary)]"
+              className="mt-1 block rounded-xl bg-[var(--color-orange-500)] px-4 py-3 text-center text-base font-bold text-[var(--color-gray-900)]"
             >
-              {labels.start}
+              {labels.install}
             </Link>
           )}
         </div>
@@ -221,16 +218,16 @@ function AuthArea({
 }: {
   authenticated: boolean
   locale: Locale
-  labels: Pick<NavLabels, 'logout' | 'mypage' | 'start'>
+  labels: Pick<NavLabels, 'logout' | 'mypage' | 'install'>
   onLogout: () => void
 }) {
   if (!authenticated) {
     return (
       <Link
-        href={`/${locale}/login`}
-        className="inline-flex h-[38px] items-center rounded-xl bg-[var(--color-primary)] px-4 text-sm font-semibold text-[var(--color-text-primary)]"
+        href={`/${locale}/install`}
+        className="inline-flex h-[38px] items-center rounded-xl bg-[var(--color-orange-500)] px-4 text-sm font-semibold text-[var(--color-gray-900)]"
       >
-        {labels.start}
+        {labels.install}
       </Link>
     )
   }
