@@ -62,11 +62,7 @@
   },
   "launch": {
     "appStatusLabel": "Home-care exercise tracker",
-    "liveNotice": "Install Barodori on iOS or Android and start today's record.",
-    "pendingNotice": "Sign up for launch updates until the store links open.",
-    "pendingCta": "Get download updates",
-    "installCta": "Start recording in the app",
-    "appDownloadPending": "Store links will appear here when they are ready."
+    "liveNotice": "Install Barodori on iOS or Android and start today's record."
   },
   "store": {
     "appStoreDownload": "Download on the App Store",

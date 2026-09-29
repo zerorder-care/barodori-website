@@ -9,9 +9,18 @@ export type PhoneFrameProps = {
   className?: string
   /** 첫 화면에 보이는 폰은 true로 두어 LCP를 앞당긴다. */
   preload?: boolean
+  /** 호출부가 정한 폭에 맞춰 내려받을 이미지 크기를 알려준다. */
+  sizes?: string
 }
 
-export function PhoneFrame({ src, alt, tall = false, className = '', preload = false }: PhoneFrameProps) {
+export function PhoneFrame({
+  src,
+  alt,
+  tall = false,
+  className = '',
+  preload = false,
+  sizes = '(max-width: 640px) 70vw, 300px',
+}: PhoneFrameProps) {
   return (
     <div
       className={`mx-auto rounded-[34px] bg-[#1C1C1E] p-2 shadow-[0_30px_60px_-24px_rgba(80,50,0,0.35)] ${className}`}
@@ -22,7 +31,7 @@ export function PhoneFrame({ src, alt, tall = false, className = '', preload = f
           alt={alt}
           fill
           preload={preload}
-          sizes="(max-width: 640px) 70vw, 300px"
+          sizes={sizes}
           className="object-cover object-top"
         />
         {tall && (

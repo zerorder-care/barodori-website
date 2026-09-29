@@ -16,9 +16,12 @@ type FeatureMeta = {
   /** 폰을 왼쪽에 두고 글을 오른쪽에 둔다. */
   reverse: boolean
   bg: string
+  /** 섹션 바탕과 대비되도록 라벨 알약의 색을 고른다. */
+  pill: 'orange' | 'white'
   /** 운동 섹션에만 놀이매트와 아기 캐릭터 장식을 깐다. */
   playmat: boolean
-  linkSurface: string
+  /** 링크가 있는 섹션만 계측 표면을 갖는다. */
+  linkSurface?: string
 }
 
 const META: readonly FeatureMeta[] = [
@@ -28,8 +31,8 @@ const META: readonly FeatureMeta[] = [
     tall: false,
     reverse: false,
     bg: 'bg-white',
+    pill: 'orange',
     playmat: false,
-    linkSurface: '',
   },
   {
     id: 'exercise',
@@ -37,8 +40,8 @@ const META: readonly FeatureMeta[] = [
     tall: false,
     reverse: true,
     bg: 'bg-[var(--color-orange-50)]',
+    pill: 'white',
     playmat: true,
-    linkSurface: '',
   },
   {
     id: 'weekly',
@@ -46,8 +49,8 @@ const META: readonly FeatureMeta[] = [
     tall: true,
     reverse: false,
     bg: 'bg-white',
+    pill: 'orange',
     playmat: false,
-    linkSurface: '',
   },
   {
     id: 'headReport',
@@ -55,6 +58,7 @@ const META: readonly FeatureMeta[] = [
     tall: false,
     reverse: true,
     bg: 'bg-[var(--color-orange-50)]',
+    pill: 'white',
     playmat: false,
     linkSurface: 'feature_head_report',
   },
@@ -73,20 +77,19 @@ export function FeatureSections({
         const meta = META.find((m) => m.id === feature.id)
         if (!meta) throw new Error(`FeatureSections: no layout for feature id "${feature.id}"`)
         const titleId = `feature-${feature.id}-title`
-        const pill = meta.bg === 'bg-white' ? 'orange' : 'white'
         return (
           <section key={feature.id} aria-labelledby={titleId} className={`${meta.bg} py-20 sm:py-28`}>
             <Container>
               <div className="grid items-center gap-10 lg:grid-cols-2">
                 <Reveal className={meta.reverse ? 'lg:order-2' : ''}>
-                  <SectionHeading id={titleId} label={feature.label} title={feature.title} pill={pill} />
+                  <SectionHeading id={titleId} label={feature.label} title={feature.title} pill={meta.pill} />
                   <p className="mt-5 text-base font-medium leading-[1.55] text-[var(--color-gray-600)] sm:text-lg lg:text-[19px]">
                     {feature.body}
                   </p>
                   {feature.note && (
                     <p className="mt-3 text-[15px] leading-relaxed text-[var(--color-gray-500)]">{feature.note}</p>
                   )}
-                  {feature.link && (
+                  {feature.link && meta.linkSurface && (
                     <TrackedLink
                       href={`/${locale}/head-test`}
                       event="head_test_entry_click"

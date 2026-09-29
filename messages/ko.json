@@ -42,7 +42,7 @@
       "email": "contact@zerorder.kr",
       "address": "서울 동대문구 회기로 117-3 서울바이오허브 산업지원동"
     },
-    "supportBody": "문의는 카카오톡 채널로 남겨주세요.\n의료 상담이 필요한 내용은 담당 전문의·치료사에게 문의해 주세요.\n{supportHours}\n주말 및 공휴일 휴무",
+    "supportBody": "문의는 카카오톡 채널로 남겨주세요.\n의료 상담이 필요한 내용은 담당 전문의나 치료사에게 문의해 주세요.\n{supportHours}\n주말 및 공휴일 휴무",
     "supportHours": "평일 10:00 - 17:00",
     "kakaoInquiry": "카카오톡 문의",
     "medicalDisclaimer": "바로도리는 치료나 진단을 대신하지 않아요. 병원에서 안내받은 운동을 보호자가 집에서 목표로 세우고, 기록하고, 리포트로 확인하도록 돕는 서비스예요."
@@ -56,17 +56,13 @@
   "structuredData": {
     "organizationName": "제로더 (Zerorder)",
     "mobileAppName": "바로도리",
-    "mobileAppDescription": "병원에서 안내받은 아기·영유아 홈케어 운동을 목표로 세우고, 기록과 리포트로 꾸준히 확인할 수 있도록 돕는 앱이에요.",
+    "mobileAppDescription": "병원에서 안내받은 아기와 영유아 홈케어 운동을 목표로 세우고, 기록과 리포트로 꾸준히 확인할 수 있도록 돕는 앱이에요.",
     "mobileAppKeywords": "사경, 영아 사경, 아기 사경, 사두, 두상 비대칭, 터미타임, 홈케어 운동, 아기 운동 기록, 영유아 홈케어",
     "mobileAppAudience": "아기와 영유아의 홈케어 운동을 기록하는 보호자"
   },
   "launch": {
     "appStatusLabel": "홈케어 운동 기록 앱",
-    "liveNotice": "iOS와 Android에서 바로도리를 설치하고 오늘의 기록을 시작하세요.",
-    "pendingNotice": "스토어 오픈 전까지 알림 신청으로 바로도리 소식을 먼저 받아보세요.",
-    "pendingCta": "다운로드 받기",
-    "installCta": "앱에서 기록 시작하기",
-    "appDownloadPending": "스토어 링크가 준비되면 이곳에서 바로 안내할게요."
+    "liveNotice": "iOS와 Android에서 바로도리를 설치하고 오늘의 기록을 시작하세요."
   },
   "store": {
     "appStoreDownload": "App Store에서 다운로드",

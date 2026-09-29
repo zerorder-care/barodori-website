@@ -33,7 +33,7 @@ export function HeroV2({ locale, copy }: { locale: Locale; copy: HeroCopy }) {
           <TrackedLink
             href={`/${locale}/install`}
             event="cta_install_click"
-            eventProps={{ surface: 'hero', platform: 'install_page', locale }}
+            eventProps={{ surface: 'hero', locale, live: true }}
             className="inline-flex h-14 items-center justify-center rounded-[14px] bg-[var(--color-orange-500)] px-7 text-[17px] font-bold text-[var(--color-gray-900)]"
           >
             {copy.ctaPrimary}
@@ -55,17 +55,20 @@ export function HeroV2({ locale, copy }: { locale: Locale; copy: HeroCopy }) {
           src="/images/home-v2/screen-weekly.png"
           alt={copy.screens.weekly}
           tall
+          sizes="230px"
           className="absolute bottom-[-190px] left-[calc(50%-330px)] hidden w-[230px] -rotate-[7deg] sm:block"
         />
         <PhoneFrame
           src="/images/home-v2/screen-home.png"
           alt={copy.screens.home}
           preload
+          sizes="(max-width: 640px) 200px, 250px"
           className="absolute bottom-[-150px] left-1/2 z-10 w-[200px] -translate-x-1/2 sm:bottom-[-140px] sm:w-[250px]"
         />
         <PhoneFrame
           src="/images/home-v2/screen-head-report.png"
           alt={copy.screens.headReport}
+          sizes="230px"
           className="absolute bottom-[-190px] left-[calc(50%+100px)] hidden w-[230px] rotate-[7deg] sm:block"
         />
         <Image

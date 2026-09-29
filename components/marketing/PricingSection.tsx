@@ -25,7 +25,7 @@ export function PricingSection({ locale, copy }: { locale: Locale; copy: Pricing
           </p>
 
           {hasAmounts && (
-            <ul aria-label={copy.label} className="mt-8 grid gap-4 sm:grid-cols-2">
+            <ul className="mt-8 grid gap-4 sm:grid-cols-2">
               <li className="relative rounded-[16px] border-2 border-[var(--color-orange-500)] bg-[var(--color-orange-50)] p-5">
                 <p className="text-sm font-semibold text-[var(--color-gray-900)]">{copy.yearly.name}</p>
                 {/* 읽어 주는 차례를 요금제 이름 다음으로 두고, 보이는 자리만 카드 위쪽으로 띄운다. */}
@@ -56,7 +56,7 @@ export function PricingSection({ locale, copy }: { locale: Locale; copy: Pricing
           <TrackedLink
             href={`/${locale}/install`}
             event="cta_install_click"
-            eventProps={{ surface: 'pricing', platform: 'install_page', locale }}
+            eventProps={{ surface: 'pricing', locale, live: true }}
             className="mt-8 inline-flex h-12 items-center justify-center rounded-[12px] bg-[var(--color-orange-500)] px-6 text-[15px] font-bold text-[var(--color-gray-900)]"
           >
             {copy.cta}

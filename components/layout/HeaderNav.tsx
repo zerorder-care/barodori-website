@@ -5,6 +5,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { BarodoriLogo } from '@/components/layout/BarodoriLogo'
 import { LocaleSwitcher } from '@/components/layout/LocaleSwitcher'
+import { TrackedLink } from '@/components/analytics/TrackedLink'
 import type { Locale } from '@/lib/i18n/config'
 import { siteFeatures } from '@/lib/site/features'
 
@@ -196,13 +197,15 @@ export function HeaderNav({
               {labels.mypage}
             </Link>
           ) : (
-            <Link
+            <TrackedLink
               href={`/${locale}/install`}
+              event="cta_install_click"
+              eventProps={{ surface: 'header_mobile', locale, live: true }}
               onClick={() => setOpen(false)}
               className="mt-1 block rounded-xl bg-[var(--color-orange-500)] px-4 py-3 text-center text-base font-bold text-[var(--color-gray-900)]"
             >
               {labels.install}
-            </Link>
+            </TrackedLink>
           )}
         </div>
       )}
@@ -223,12 +226,14 @@ function AuthArea({
 }) {
   if (!authenticated) {
     return (
-      <Link
+      <TrackedLink
         href={`/${locale}/install`}
+        event="cta_install_click"
+        eventProps={{ surface: 'header', locale, live: true }}
         className="inline-flex h-[38px] items-center rounded-xl bg-[var(--color-orange-500)] px-4 text-sm font-semibold text-[var(--color-gray-900)]"
       >
         {labels.install}
-      </Link>
+      </TrackedLink>
     )
   }
 
