@@ -42,6 +42,20 @@
   --radius-lg: 20px;
   --radius-pill: 9999px;
   --font-sans: 'Pretendard', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  /* 앱 2.0.0 Figma Foundations. 기존 토큰은 다른 페이지가 계속 쓴다. */
+  --color-orange-50: #FFF7E0;
+  --color-orange-100: #FFEAB2;
+  --color-orange-300: #FFD04C;
+  --color-orange-500: #FFBB00;
+  --color-orange-700: #FE9A00;
+  --color-orange-900: #FD6806;
+  --color-hero-fg: #903E00;
+  --color-gray-900: #262626;
+  --color-gray-600: #7B7B7B;
+  --color-gray-500: #9D9D9D;
+  --color-gray-200: #E9E9E9;
+  --color-gray-50: #FAFAFA;
+  --color-cream-top: #FFF3D2;
 }
 
 @theme inline {
@@ -61,6 +75,19 @@
   --radius-md: var(--radius-md);
   --radius-lg: var(--radius-lg);
   --radius-pill: var(--radius-pill);
+  --color-orange-50: var(--color-orange-50);
+  --color-orange-100: var(--color-orange-100);
+  --color-orange-300: var(--color-orange-300);
+  --color-orange-500: var(--color-orange-500);
+  --color-orange-700: var(--color-orange-700);
+  --color-orange-900: var(--color-orange-900);
+  --color-hero-fg: var(--color-hero-fg);
+  --color-gray-900: var(--color-gray-900);
+  --color-gray-600: var(--color-gray-600);
+  --color-gray-500: var(--color-gray-500);
+  --color-gray-200: var(--color-gray-200);
+  --color-gray-50: var(--color-gray-50);
+  --color-cream-top: var(--color-cream-top);
 }
 
 html, body {
