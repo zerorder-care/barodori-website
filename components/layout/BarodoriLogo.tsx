@@ -23,6 +23,7 @@ export function BarodoriLogo({
       alt={label}
       width={lockup.width}
       height={lockup.height}
+      sizes="130px"
       loading="eager"
       className={className}
     />

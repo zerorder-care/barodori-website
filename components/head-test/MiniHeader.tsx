@@ -7,6 +7,7 @@ export function MiniHeader({ locale, homeLabel }: { locale: Locale; homeLabel: s
   return (
     <div className="flex h-14 items-center px-5">
       <Link href={`/${locale}`} aria-label={homeLabel} className="inline-flex items-center">
+        {/* Link의 aria-label이 이미 이름을 주므로 이미지 alt는 일부러 비워 중복 읽기를 막는다. */}
         <BarodoriLogo locale={locale} label="" className="h-6 w-auto" />
       </Link>
     </div>
