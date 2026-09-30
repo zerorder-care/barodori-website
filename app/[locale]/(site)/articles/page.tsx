@@ -1,17 +1,18 @@
 import { notFound } from 'next/navigation'
-import Link from 'next/link'
 import { getDictionary, isLocale } from '@/lib/i18n/dictionary'
 import { buildMetadata, TORTICOLLIS_KEYWORDS } from '@/lib/seo/metadata'
 import { Container } from '@/components/ui/Container'
 import { CategoryFilter } from '@/components/article/CategoryFilter'
-import { ArticleCard } from '@/components/article/ArticleCard'
+import { LabArticleCard } from '@/components/article/LabArticleCard'
+import { MonthlyTrackList } from '@/components/article/MonthlyTrackList'
 import { InstallCta } from '@/components/marketing/InstallCta'
 import { SafetyNotice } from '@/components/marketing/SafetyNotice'
-import { listArticlePosts } from '@/lib/api/articles'
-import { isCategory, type Category } from '@/lib/content/categories'
+import { listLabContents } from '@/lib/api/knowledgeLab'
+import { articleCategoryLabels, isArticleCategory, type ArticleCategory } from '@/lib/content/categories'
+import { matchesQuery, toLabArticleCard } from '@/lib/content/labArticle'
 import type { Locale } from '@/lib/i18n/config'
 
-export const dynamic = 'force-dynamic'
+const RECOMMENDED_COUNT = 3
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
@@ -31,31 +32,49 @@ export default async function ArticlesIndexPage({
   searchParams,
 }: {
   params: Promise<{ locale: string }>
-  searchParams: Promise<{ cat?: string; q?: string; offset?: string }>
+  searchParams: Promise<{ cat?: string; q?: string }>
 }) {
   const { locale } = await params
   const sp = await searchParams
   if (!isLocale(locale)) notFound()
   const loc = locale as Locale
   const dict = await getDictionary(loc)
-  const category: Category | undefined = sp.cat && isCategory(sp.cat) ? sp.cat : undefined
-  const query = typeof sp.q === 'string' ? sp.q.trim() : ''
-  const offset = parseOffset(sp.offset)
-  const [recommendedResult, articleResult] = await Promise.all([
-    listArticlePosts({ locale: loc, limit: 3 }),
-    listArticlePosts({ locale: loc, category, q: query, offset, limit: 20 }),
-  ])
-  const recommended = recommendedResult.articles
-  const articles = articleResult.articles
-  const error = articleResult.error ?? recommendedResult.error
-  const nextOffset = articleResult.nextOffset
-  const hasMore = articleResult.hasMore
 
-  const moreHref = buildArticlesHref(loc, {
-    category,
-    q: query,
-    offset: nextOffset ?? undefined,
-  })
+  const category: ArticleCategory | undefined = sp.cat && isArticleCategory(sp.cat) ? sp.cat : undefined
+  const query = typeof sp.q === 'string' ? sp.q.trim() : ''
+
+  const [labResult, monthlyResult] = await Promise.all([
+    listLabContents({ locale: loc, collection: 'head_shape_lab' }),
+    listLabContents({ locale: loc, collection: 'home_monthly_information' }),
+  ])
+  const error = labResult.error ?? monthlyResult.error
+
+  const labCards = labResult.items.map((item) =>
+    toLabArticleCard(item, { collection: 'head_shape_lab', locale: loc }),
+  )
+  const monthlyCards = monthlyResult.items.map((item) =>
+    toLabArticleCard(item, { collection: 'home_monthly_information', locale: loc }),
+  )
+
+  // 백엔드 정렬이 배치 순서를 먼저 보므로 앞 3편이 노션에서 상단 노출로 지정한 글이다.
+  const showRecommended = !category && query.length === 0
+  const recommended = showRecommended ? labCards.slice(0, RECOMMENDED_COUNT) : []
+
+  const gridCards =
+    category === 'monthly'
+      ? []
+      : labCards.filter((card) => !category || card.category === category).filter((card) => matchesQuery(card, query))
+  const monthlyRows =
+    category && category !== 'monthly' ? [] : monthlyCards.filter((card) => matchesQuery(card, query))
+  const isEmpty = gridCards.length === 0 && monthlyRows.length === 0
+
+  const monthLabels = {
+    trackTorticollis: dict.article.trackTorticollis,
+    trackHeadShape: dict.article.trackHeadShape,
+    monthRange: dict.article.monthRange,
+    monthRangeSpan: dict.article.monthRangeSpan,
+    monthPlus: dict.article.monthPlus,
+  }
 
   return (
     <>
@@ -76,8 +95,11 @@ export default async function ArticlesIndexPage({
             className="flex min-h-12 min-w-0 items-center rounded-[8px] border border-[var(--color-border)] bg-white px-4 lg:w-72"
           >
             {category && <input type="hidden" name="cat" value={category} />}
-            <span className="mr-3 text-sm font-semibold text-[var(--color-text-secondary)]">{dict.article.searchLabel}</span>
+            <label htmlFor="article-search" className="mr-3 text-sm font-semibold text-[var(--color-text-secondary)]">
+              {dict.article.searchLabel}
+            </label>
             <input
+              id="article-search"
               name="q"
               defaultValue={query}
               placeholder={dict.article.searchPlaceholder}
@@ -93,11 +115,13 @@ export default async function ArticlesIndexPage({
                 <p className="text-sm font-bold text-[var(--color-text-secondary)]">{dict.article.recommendedEyebrow}</p>
                 <h2 className="mt-2 text-2xl font-bold tracking-tight">{dict.article.recommendedTitle}</h2>
               </div>
-              <p className="text-sm leading-relaxed text-[var(--color-text-secondary)]">{dict.article.recommendedDescription}</p>
+              <p className="text-sm leading-relaxed text-[var(--color-text-secondary)]">
+                {dict.article.recommendedDescription}
+              </p>
             </div>
             <div className="mt-6 grid gap-6 sm:grid-cols-3">
-              {recommended.map((a) => (
-                <ArticleCard key={a.slug} article={a} />
+              {recommended.map((card) => (
+                <LabArticleCard key={card.id} card={card} readingTimeLabel={dict.article.readingTime} />
               ))}
             </div>
           </section>
@@ -110,29 +134,27 @@ export default async function ArticlesIndexPage({
               {dict.article.loadError}
             </p>
           )}
-          {articles.length === 0 ? (
+          {isEmpty ? (
             <p className="mt-8 rounded-[8px] border border-[var(--color-border)] p-8 text-center text-[var(--color-text-secondary)]">
               {query ? dict.article.emptyWithQuery.replace('{query}', query) : dict.article.empty}
             </p>
           ) : (
             <>
-              <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {articles.map((a) => (
-                  <ArticleCard key={a.slug} article={a} />
-                ))}
-              </div>
-              <div className="mt-10 flex justify-center">
-                {hasMore && nextOffset !== null ? (
-                  <Link
-                    href={moreHref}
-                    className="inline-flex min-h-11 items-center justify-center rounded-[8px] border border-[var(--color-text-primary)] px-6 text-sm font-bold"
-                  >
-                    {dict.article.more}
-                  </Link>
-                ) : (
-                  <span className="text-sm text-[var(--color-text-secondary)]">{dict.article.end}</span>
-                )}
-              </div>
+              {gridCards.length > 0 && (
+                <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                  {gridCards.map((card) => (
+                    <LabArticleCard key={card.id} card={card} readingTimeLabel={dict.article.readingTime} />
+                  ))}
+                </div>
+              )}
+              {monthlyRows.length > 0 && (
+                <section className="mt-14">
+                  <h2 className="text-xl font-bold">{articleCategoryLabels.monthly[loc]}</h2>
+                  <div className="mt-6">
+                    <MonthlyTrackList cards={monthlyRows} labels={monthLabels} />
+                  </div>
+                </section>
+              )}
             </>
           )}
         </section>
@@ -142,25 +164,4 @@ export default async function ArticlesIndexPage({
       <InstallCta locale={loc} surface="articles_footer" />
     </>
   )
-}
-
-function buildArticlesHref(
-  locale: Locale,
-  params: {
-    category?: Category
-    q?: string
-    offset?: number
-  },
-) {
-  const search = new URLSearchParams()
-  if (params.category) search.set('cat', params.category)
-  if (params.q?.trim()) search.set('q', params.q.trim())
-  if (params.offset) search.set('offset', String(params.offset))
-  const queryString = search.toString()
-  return queryString ? `/${locale}/articles?${queryString}` : `/${locale}/articles`
-}
-
-function parseOffset(value: string | undefined): number {
-  const parsed = Number.parseInt(value ?? '0', 10)
-  return Number.isFinite(parsed) && parsed > 0 ? parsed : 0
 }
