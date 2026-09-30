@@ -1,17 +1,11 @@
 import { fetchBackendApi, getApiBaseUrl } from '@/lib/api/client'
 import {
-  getFaqCategories,
-  getFaqItems,
-  type FaqItem,
-} from '@/lib/content/faq'
-import {
   newsroomCategories,
   newsroomPosts as fallbackNewsroomPosts,
   type NewsroomCategory,
   type NewsroomContentBlock,
   type NewsroomPost,
 } from '@/lib/content/newsroom'
-import { defaultLocale, type Locale } from '@/lib/i18n/config'
 
 export type NewsroomCategoryFilter = NewsroomCategory | 'all'
 
@@ -35,26 +29,6 @@ export type NewsroomListResult = {
   total: number
   hasMore: boolean
   nextPage: number | null
-  source: 'api' | 'fallback'
-  error?: string
-}
-
-export type FaqCategoryOption = {
-  value: string
-  label: string
-  id?: string
-  sortOrder?: number
-}
-
-export type FaqContentParams = {
-  locale?: Locale
-  category?: string
-  q?: string
-}
-
-export type FaqContentResult = {
-  categories: FaqCategoryOption[]
-  items: FaqItem[]
   source: 'api' | 'fallback'
   error?: string
 }
@@ -86,35 +60,8 @@ type PublicNewsroomListResponse = {
   page_size?: number
 }
 
-type PublicFaqCategory = {
-  id: string
-  slug: string
-  label: string
-  sortOrder?: number
-  sort_order?: number
-}
-
-type PublicFaqCategoryListResponse = {
-  categories: PublicFaqCategory[]
-}
-
-type PublicFaqItem = {
-  id: string
-  category: PublicFaqCategory
-  question: string
-  answer: string
-  sortOrder?: number
-  sort_order?: number
-}
-
-type PublicFaqListResponse = {
-  faqs: PublicFaqItem[]
-}
-
 const NEWSROOM_DEFAULT_PAGE_SIZE = 9
 const NEWSROOM_MAX_PAGE_SIZE = 50
-const SAFE_WORKOUT_GUIDANCE_ANSWER =
-  '바로도리는 운동을 진단하거나 자동 처방하지 않아요. 담당 전문의·치료사와 정한 운동을 보호자가 목표로 등록하고, 집에서 한 시간·횟수·아이 반응을 기록하도록 도와요.'
 
 const fallbackNewsroomCategories: NewsroomCategoryOption[] = newsroomCategories.map(({ value, label }) => ({
   value,
@@ -195,43 +142,6 @@ export async function getNewsroomPost(postId: string): Promise<NewsroomPost | nu
   }
 }
 
-export async function getFaqContent({
-  locale = defaultLocale,
-  category,
-  q,
-}: FaqContentParams = {}): Promise<FaqContentResult> {
-  const apiBaseUrl = getApiBaseUrl()
-
-  if (!apiBaseUrl || locale !== defaultLocale) {
-    return buildFallbackFaqContent({ locale, category, q })
-  }
-
-  const params = new URLSearchParams()
-  if (category && category !== 'all') params.set('category', category)
-  if (q?.trim()) params.set('q', q.trim())
-  const faqPath = params.size > 0 ? `/api/v1/content/faqs?${params}` : '/api/v1/content/faqs'
-
-  try {
-    const [categoryData, faqData] = await Promise.all([
-      fetchBackendApi<PublicFaqCategoryListResponse>(apiBaseUrl, '/api/v1/content/faq-categories', 'content_faq_api'),
-      fetchBackendApi<PublicFaqListResponse>(apiBaseUrl, faqPath, 'content_faq_api'),
-    ])
-
-    return {
-      categories: buildFaqCategories(categoryData.categories),
-      items: faqData.faqs.map(mapFaqItem),
-      source: 'api',
-    }
-  } catch (error) {
-    return {
-      categories: buildFallbackFaqCategoryOptions(locale),
-      items: [],
-      source: 'api',
-      error: error instanceof Error ? error.message : 'content_faq_api_error',
-    }
-  }
-}
-
 function buildFallbackNewsroomList({
   category,
   q,
@@ -261,29 +171,6 @@ function buildFallbackNewsroomList({
   }
 }
 
-function buildFallbackFaqContent({ locale = defaultLocale, category, q }: FaqContentParams): FaqContentResult {
-  const normalized = q?.trim().toLowerCase()
-  const items = getFaqItems(locale)
-    .filter((item) => !category || category === 'all' || item.category === category)
-    .filter((item) => {
-      if (!normalized) return true
-      return `${item.question} ${item.answer}`.toLowerCase().includes(normalized)
-    })
-
-  return {
-    categories: buildFallbackFaqCategoryOptions(locale),
-    items,
-    source: 'fallback',
-  }
-}
-
-function buildFallbackFaqCategoryOptions(locale: Locale): FaqCategoryOption[] {
-  return getFaqCategories(locale).map(({ value, label }) => ({
-    value,
-    label,
-  }))
-}
-
 function mapNewsroomPost(post: PublicNewsroomPost): NewsroomPost {
   return {
     id: post.id,
@@ -295,43 +182,6 @@ function mapNewsroomPost(post: PublicNewsroomPost): NewsroomPost {
     thumbnail: post.thumbnailImage ?? post.thumbnail_image ?? undefined,
     content: post.content ?? undefined,
   }
-}
-
-function mapFaqItem(item: PublicFaqItem): FaqItem {
-  return {
-    id: item.id,
-    category: item.category.slug,
-    question: item.question,
-    answer: sanitizeFaqAnswer(item),
-  }
-}
-
-function sanitizeFaqAnswer(item: PublicFaqItem): string {
-  const question = item.question.trim()
-  const answer = item.answer.trim()
-  const unsafeAutoGuidance =
-    question.includes('어떤 운동') &&
-    (answer.includes('자동으로 추천') || answer.includes('운동 시작 버튼'))
-
-  return unsafeAutoGuidance ? SAFE_WORKOUT_GUIDANCE_ANSWER : answer
-}
-
-function buildFaqCategories(categories: PublicFaqCategory[]): FaqCategoryOption[] {
-  const activeCategories = categories
-    .slice()
-    .sort((a, b) => getSortOrder(a) - getSortOrder(b))
-    .map((category) => ({
-      value: category.slug,
-      label: category.label,
-      id: category.id,
-      sortOrder: getSortOrder(category),
-    }))
-
-  return [{ value: 'all', label: '전체' }, ...activeCategories]
-}
-
-function getSortOrder(category: PublicFaqCategory): number {
-  return category.sortOrder ?? category.sort_order ?? 0
 }
 
 function normalizePositiveInteger(value: number | undefined, fallback: number): number {
