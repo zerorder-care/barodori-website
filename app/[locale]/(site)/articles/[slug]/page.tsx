@@ -7,7 +7,6 @@ import { buildMetadata } from '@/lib/seo/metadata'
 import { Container } from '@/components/ui/Container'
 import { ArticleHeader } from '@/components/article/ArticleHeader'
 import { ArticleViewTracker } from '@/components/article/ArticleViewTracker'
-import { Toc } from '@/components/article/Toc'
 import { RelatedArticles } from '@/components/article/RelatedArticles'
 import { MedicalNotice } from '@/components/article/mdx/MedicalNotice'
 import { InstallCta } from '@/components/marketing/InstallCta'
@@ -79,7 +78,6 @@ export default async function ArticleDetailPage({
         <article className="mx-auto max-w-3xl">
           <ArticleViewTracker slug={article.slug} category={article.category} locale={loc} />
           <ArticleHeader article={article} />
-          <Toc markdown={article.body} />
           <div className="prose prose-neutral max-w-none">
             <MDXRemote
               source={article.body}
