@@ -1,3 +1,4 @@
+import { timingSafeEqual } from 'node:crypto'
 import { LAB_CACHE_TAG } from '@/lib/api/knowledgeLab'
 
 const ALLOWED_TAGS: readonly string[] = [LAB_CACHE_TAG]
@@ -14,9 +15,19 @@ export function decideRevalidate(input: {
 }): RevalidateDecision {
   const token = input.token?.trim()
   if (!token) return { status: 503, body: { error: 'revalidate_token_not_configured' } }
-  if (input.authorization !== `Bearer ${token}`) return { status: 401, body: { error: 'unauthorized' } }
+  if (!matchesToken(input.authorization, `Bearer ${token}`)) return { status: 401, body: { error: 'unauthorized' } }
 
   return { status: 200, body: { revalidated: true, tags: allowedTagsFrom(input.body) } }
+}
+
+// 길이가 같은 틀린 토큰을 앞자리부터 맞춰 보는 공격을 막으려고 바이트 수와 무관하게
+// 같은 시간이 걸리는 비교를 쓴다. 길이가 다르면 timingSafeEqual이 던지므로 먼저 거른다.
+function matchesToken(authorization: string | null, expected: string): boolean {
+  if (authorization === null) return false
+  const received = Buffer.from(authorization, 'utf8')
+  const wanted = Buffer.from(expected, 'utf8')
+  if (received.length !== wanted.length) return false
+  return timingSafeEqual(received, wanted)
 }
 
 function allowedTagsFrom(body: unknown): string[] {

@@ -23,6 +23,15 @@ describe('decideRevalidate', () => {
     expect(decideRevalidate({ authorization: TOKEN, token: TOKEN, body: null })).toMatchObject({ status: 401 })
   })
 
+  it('rejects a wrong token of the same length with 401', () => {
+    const wrong = `Bearer ${'x'.repeat(TOKEN.length)}`
+    expect(wrong).toHaveLength(`Bearer ${TOKEN}`.length)
+    expect(decideRevalidate({ authorization: wrong, token: TOKEN, body: null })).toEqual({
+      status: 401,
+      body: { error: 'unauthorized' },
+    })
+  })
+
   it('accepts the lab content tag', () => {
     expect(
       decideRevalidate({
