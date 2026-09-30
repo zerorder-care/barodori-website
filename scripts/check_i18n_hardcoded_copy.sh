@@ -44,6 +44,7 @@ is_ignored_file() {
   [[ "$file" == messages/* ]] ||
     [[ "$file" == content/articles/* ]] ||
     [[ "$file" == lib/content/* ]] ||
+    [[ "$file" == lib/api/__fixtures__/* ]] ||
     [[ "$file" == *.test.ts ]] ||
     [[ "$file" == *.test.tsx ]]
 }
