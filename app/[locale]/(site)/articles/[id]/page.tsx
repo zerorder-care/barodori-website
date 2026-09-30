@@ -22,6 +22,8 @@ import type { Locale } from '@/lib/i18n/config'
 
 const RELATED_COUNT = 2
 
+// 조회에 실패하면 빈 객체를 돌려 레이아웃 기본 메타데이터를 그대로 쓴다. 404가 아닌 실패는
+// 아래 페이지 본체가 던져서 500으로 끝내므로, 여기서 같은 실패를 한 번 더 판정하지 않는다.
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; id: string }> }) {
   const { locale, id } = await params
   if (!isLocale(locale)) return {}
@@ -68,9 +70,9 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
     notFound()
   }
 
-  const dict = await getDictionary(loc)
   const article = toLabArticle(item, { collection: null, locale: loc })
-  const related = await loadRelated(article, loc)
+  // 사전과 관련 글은 서로를 기다릴 이유가 없어 함께 읽는다.
+  const [dict, related] = await Promise.all([getDictionary(loc), loadRelated(article, loc)])
 
   return (
     <>
@@ -85,6 +87,7 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
               locale: loc,
               author: dict.article.author,
               publishedAt: article.publishedAt,
+              // 백엔드 웹 응답에 수정 시각이 없어 dateModified를 게시 시각과 같게 둔다.
               updatedAt: article.publishedAt,
               heroImage: article.heroImage,
             }),
