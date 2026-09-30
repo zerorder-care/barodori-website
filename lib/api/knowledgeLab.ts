@@ -87,6 +87,11 @@ export type LabListResult = {
   error?: string
 }
 
+export type LabContentResult = {
+  item: LabContent | null
+  error?: string
+}
+
 /** 웹은 지금 한국 시장만 읽는다. 시장을 바꿀 일이 생기면 locale과 함께 인자로 올린다. */
 const LAB_MARKET: LabMarket = 'KR'
 const LAB_PATH_PREFIX = '/api/v2/knowledge-lab/web'
@@ -119,8 +124,9 @@ async function fetchLabApi<T>(path: string): Promise<LabFetchResult<T>> {
     }
     if (payload.data === undefined || payload.data === null) return { error: 'lab_api_empty_data' }
     return { data: payload.data }
-  } catch (error) {
-    return { error: error instanceof Error ? error.message : 'lab_api_error' }
+  } catch {
+    // 원인 메시지는 그대로 내보내지 않는다. 호출부는 안내 문구만 고르면 된다.
+    return { error: 'lab_api_network_error' }
   }
 }
 
@@ -141,13 +147,20 @@ export async function listLabContents(params: {
   return { items: result.data.items ?? [] }
 }
 
-export async function getLabContent(params: { locale: Locale; id: string }): Promise<LabContent | null> {
-  if (!isLabContentId(params.id)) return null
+export async function getLabContent(params: { locale: Locale; id: string }): Promise<LabContentResult> {
+  // UUID가 아니면 백엔드에 물어볼 것도 없이 없는 글이다. 오류가 아니므로 error를 붙이지 않는다.
+  if (!isLabContentId(params.id)) return { item: null }
 
   const search = new URLSearchParams({ market: LAB_MARKET, locale: params.locale })
   const result = await fetchLabApi<LabContent>(`${LAB_PATH_PREFIX}/contents/${params.id}?${search}`)
-  if ('error' in result) return null
-  return result.data
+  if ('error' in result) return { item: null, error: result.error }
+  return { item: result.data }
+}
+
+// 세 값은 모두 백엔드가 준 식별자다. 형식이 어긋나면 경로를 만들지 않고 즉시 멈춘다.
+function requireLabId(value: string): string {
+  if (!isLabContentId(value)) throw new Error('invalid lab asset id')
+  return encodeURIComponent(value)
 }
 
 export function labAssetUrl(params: {
@@ -156,12 +169,16 @@ export function labAssetUrl(params: {
   assetVersionId: string
   locale: Locale
 }): string {
+  const contentId = requireLabId(params.contentId)
+  const revisionId = requireLabId(params.revisionId)
+  const assetVersionId = requireLabId(params.assetVersionId)
+
   const apiBaseUrl = getApiBaseUrl()
   if (!apiBaseUrl) return ''
 
   const search = new URLSearchParams({ market: LAB_MARKET, locale: params.locale })
   return (
-    `${apiBaseUrl}${LAB_PATH_PREFIX}/contents/${params.contentId}` +
-    `/revisions/${params.revisionId}/assets/${params.assetVersionId}?${search}`
+    `${apiBaseUrl}${LAB_PATH_PREFIX}/contents/${contentId}` +
+    `/revisions/${revisionId}/assets/${assetVersionId}?${search}`
   )
 }

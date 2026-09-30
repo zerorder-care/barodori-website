@@ -92,11 +92,14 @@
 
 ## Task 1: 픽스처, 목 서버, Knowledge Lab 클라이언트
 
+**계획 보정(코드 리뷰 반영):** `getLabContent`는 설계 5.1이 정한 대로 `{ item, error? }`를 돌려준다. `fetchLabApi`의 catch는 원인 메시지 대신 `lab_api_network_error` 하나만 돌려준다. `labAssetUrl`은 세 식별자를 UUID로 검사하고 어긋나면 던진다. JSON 픽스처가 TypeScript 픽스처와 갈라지지 않도록 `lib/api/__fixtures__/knowledgeLab.test.ts`를 더했다. 아래 코드 블록은 이 보정을 반영한 것이고, 새로 더한 테스트(네트워크 예외, 깨진 JSON, 자산 식별자 검사, 픽스처 대조)는 저장소의 테스트 파일이 원본이다.
+
 **Files:**
 - Create: `lib/api/__fixtures__/knowledgeLab.ts`
 - Create: `scripts/mock-lab-api.mjs`
 - Create: `lib/api/knowledgeLab.ts`
 - Create: `lib/api/knowledgeLab.test.ts`
+- Create: `lib/api/__fixtures__/knowledgeLab.test.ts`
 - Modify: `scripts/check_i18n_hardcoded_copy.sh`
 
 - [ ] **Step 1: i18n 가드가 픽스처를 건너뛰게 한다**
@@ -527,9 +530,10 @@ describe('knowledge lab client', () => {
     const fetchMock = vi.fn(async () => jsonResponse(labFixtureEnvelope(exerciseContent)))
     vi.stubGlobal('fetch', fetchMock)
 
-    const content = await getLabContent({ locale: 'ko', id: EXERCISE_CONTENT_ID })
+    const { item, error } = await getLabContent({ locale: 'ko', id: EXERCISE_CONTENT_ID })
 
-    expect(content?.title).toBe(exerciseContent.title)
+    expect(error).toBeUndefined()
+    expect(item?.title).toBe(exerciseContent.title)
     expect(String(fetchMock.mock.calls[0][0])).toBe(
       `https://api.test/api/v2/knowledge-lab/web/contents/${EXERCISE_CONTENT_ID}?market=KR&locale=ko`,
     )
@@ -540,15 +544,18 @@ describe('knowledge lab client', () => {
     const fetchMock = vi.fn()
     vi.stubGlobal('fetch', fetchMock)
 
-    expect(await getLabContent({ locale: 'ko', id: 'tummy-time-guide' })).toBeNull()
+    expect(await getLabContent({ locale: 'ko', id: 'tummy-time-guide' })).toEqual({ item: null })
     expect(fetchMock).not.toHaveBeenCalled()
   })
 
-  it('returns null when the detail request fails', async () => {
+  it('returns the http 404 error code when the content is missing', async () => {
     withApiBase()
     vi.stubGlobal('fetch', vi.fn(async () => jsonResponse({ code: 1040, message: 'content_not_found' }, 404)))
 
-    expect(await getLabContent({ locale: 'ko', id: EXERCISE_CONTENT_ID })).toBeNull()
+    expect(await getLabContent({ locale: 'ko', id: EXERCISE_CONTENT_ID })).toEqual({
+      item: null,
+      error: 'lab_api_http_404',
+    })
   })
 
   it('builds an asset url', () => {
@@ -679,6 +686,11 @@ export type LabListResult = {
   error?: string
 }
 
+export type LabContentResult = {
+  item: LabContent | null
+  error?: string
+}
+
 /** 웹은 지금 한국 시장만 읽는다. 시장을 바꿀 일이 생기면 locale과 함께 인자로 올린다. */
 const LAB_MARKET: LabMarket = 'KR'
 const LAB_PATH_PREFIX = '/api/v2/knowledge-lab/web'
@@ -711,8 +723,9 @@ async function fetchLabApi<T>(path: string): Promise<LabFetchResult<T>> {
     }
     if (payload.data === undefined || payload.data === null) return { error: 'lab_api_empty_data' }
     return { data: payload.data }
-  } catch (error) {
-    return { error: error instanceof Error ? error.message : 'lab_api_error' }
+  } catch {
+    // 원인 메시지는 그대로 내보내지 않는다. 호출부는 안내 문구만 고르면 된다.
+    return { error: 'lab_api_network_error' }
   }
 }
 
@@ -733,13 +746,20 @@ export async function listLabContents(params: {
   return { items: result.data.items ?? [] }
 }
 
-export async function getLabContent(params: { locale: Locale; id: string }): Promise<LabContent | null> {
-  if (!isLabContentId(params.id)) return null
+export async function getLabContent(params: { locale: Locale; id: string }): Promise<LabContentResult> {
+  // UUID가 아니면 백엔드에 물어볼 것도 없이 없는 글이다. 오류가 아니므로 error를 붙이지 않는다.
+  if (!isLabContentId(params.id)) return { item: null }
 
   const search = new URLSearchParams({ market: LAB_MARKET, locale: params.locale })
   const result = await fetchLabApi<LabContent>(`${LAB_PATH_PREFIX}/contents/${params.id}?${search}`)
-  if ('error' in result) return null
-  return result.data
+  if ('error' in result) return { item: null, error: result.error }
+  return { item: result.data }
+}
+
+// 세 값은 모두 백엔드가 준 식별자다. 형식이 어긋나면 경로를 만들지 않고 즉시 멈춘다.
+function requireLabId(value: string): string {
+  if (!isLabContentId(value)) throw new Error('invalid lab asset id')
+  return encodeURIComponent(value)
 }
 
 export function labAssetUrl(params: {
@@ -748,13 +768,17 @@ export function labAssetUrl(params: {
   assetVersionId: string
   locale: Locale
 }): string {
+  const contentId = requireLabId(params.contentId)
+  const revisionId = requireLabId(params.revisionId)
+  const assetVersionId = requireLabId(params.assetVersionId)
+
   const apiBaseUrl = getApiBaseUrl()
   if (!apiBaseUrl) return ''
 
   const search = new URLSearchParams({ market: LAB_MARKET, locale: params.locale })
   return (
-    `${apiBaseUrl}${LAB_PATH_PREFIX}/contents/${params.contentId}` +
-    `/revisions/${params.revisionId}/assets/${params.assetVersionId}?${search}`
+    `${apiBaseUrl}${LAB_PATH_PREFIX}/contents/${contentId}` +
+    `/revisions/${revisionId}/assets/${assetVersionId}?${search}`
   )
 }
 ```
@@ -763,8 +787,8 @@ export function labAssetUrl(params: {
 
 - [ ] **Step 6: 테스트를 통과시킨다**
 
-명령: `npx vitest run lib/api/knowledgeLab.test.ts`
-기대 결과: 8개 테스트 모두 통과.
+명령: `npx vitest run lib/api`
+기대 결과: `knowledgeLab.test.ts` 12개와 `__fixtures__/knowledgeLab.test.ts` 3개를 포함해 모두 통과.
 
 명령: `npm run typecheck`
 기대 결과: 에러 없음.
@@ -2779,6 +2803,8 @@ EOF
 
 ## Task 9: 아티클 상세 페이지 `[id]`
 
+**계획 보정(코드 리뷰 반영):** Task 1에서 `getLabContent`가 `{ item, error? }`를 돌려주도록 바뀌었다. 아래 코드는 그 결과를 분해해 쓰고, 상세 페이지는 404일 때만 `notFound()`를 부르며 그 밖의 실패는 던진다.
+
 설계 7.2절이다. 폴더를 `[slug]`에서 `[id]`로 옮기고 `generateStaticParams`를 없앤다. 하단 홈 기능 링크는 홈에 `#home-features` 앵커가 없으므로 설치 페이지 링크로 바꾸고 이벤트를 `cta_install_click`에 `surface: 'article_body'`로 통일한다.
 
 메타데이터와 JSON-LD가 백엔드 자산의 절대 URL을 받게 되므로 `lib/seo/metadata.ts`와 `lib/seo/jsonLd.ts`가 절대 URL 앞에 사이트 주소를 덧붙이지 않도록 먼저 고친다.
@@ -3006,9 +3032,9 @@ const RELATED_COUNT = 2
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; id: string }> }) {
   const { locale, id } = await params
   if (!isLocale(locale)) return {}
-  const content = await getLabContent({ locale, id })
-  if (!content) return {}
-  const article = toLabArticle(content, { collection: null, locale })
+  const { item } = await getLabContent({ locale, id })
+  if (!item) return {}
+  const article = toLabArticle(item, { collection: null, locale })
   return buildMetadata({
     title: article.title,
     description: article.excerpt,
@@ -3042,11 +3068,15 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
   const { locale, id } = await params
   if (!isLocale(locale)) notFound()
   const loc = locale as Locale
-  const content = await getLabContent({ locale: loc, id })
-  if (!content) notFound()
+  const { item, error } = await getLabContent({ locale: loc, id })
+  if (!item) {
+    // 404는 정말로 없는 글이다. 그 밖의 실패는 캐시에 빈 페이지가 굳지 않도록 던진다.
+    if (error && error !== 'lab_api_http_404') throw new Error(error)
+    notFound()
+  }
 
   const dict = await getDictionary(loc)
-  const article = toLabArticle(content, { collection: null, locale: loc })
+  const article = toLabArticle(item, { collection: null, locale: loc })
   const related = await loadRelated(article, loc)
 
   return (

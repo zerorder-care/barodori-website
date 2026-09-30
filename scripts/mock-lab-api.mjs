@@ -95,6 +95,15 @@ const server = createServer((req, res) => {
   sendNotFound(res, 'not_found')
 })
 
+server.on('error', (error) => {
+  if (error.code === 'EADDRINUSE') {
+    console.error(`mock lab api: port ${PORT} is already in use. Set MOCK_LAB_PORT to another port.`)
+  } else {
+    console.error(`mock lab api: ${error.message}`)
+  }
+  process.exit(1)
+})
+
 server.listen(PORT, '127.0.0.1', () => {
   console.log(`mock lab api listening on http://127.0.0.1:${PORT}${PREFIX}`)
 })
