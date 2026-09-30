@@ -4,7 +4,7 @@ import remarkGfm from 'remark-gfm'
 import rehypeSlug from 'rehype-slug'
 import { TrackedLink } from '@/components/analytics/TrackedLink'
 import { LabCallout } from '@/components/article/LabCallout'
-import { labAssetUrl, type LabAsset, type LabRenderNode } from '@/lib/api/knowledgeLab'
+import { isLabContentId, labAssetUrl, type LabAsset, type LabRenderNode } from '@/lib/api/knowledgeLab'
 import type { Locale } from '@/lib/i18n/config'
 
 export type LabDocumentLabels = {
@@ -45,17 +45,22 @@ export function isFeatureLinkText(text: string): boolean {
 }
 
 /**
- * react-markdown의 기본 정화기는 아는 스킴만 남기고 나머지 URL을 지운다. lab-asset은 백엔드 자산을
- * 가리키는 내부 스킴이라 그대로 통과시키고, 나머지 주소는 기본 규칙을 그대로 따른다.
+ * 자산 식별자는 백엔드가 준 UUID다. 어긋난 참조를 그대로 넘기면 labAssetUrl이 예외를 던져 상세
+ * 페이지 전체가 죽으므로, 형식을 여기서 확인하고 아니면 자산이 아닌 것으로 본다.
  */
-function labUrlTransform(url: string): string {
-  return url.startsWith(LAB_ASSET_SCHEME) ? url : defaultUrlTransform(url)
-}
-
 function labAssetIdFrom(value: string | undefined): string | null {
   if (!value || !value.startsWith(LAB_ASSET_SCHEME)) return null
   const id = value.slice(LAB_ASSET_SCHEME.length).trim()
-  return id.length > 0 ? id : null
+  return isLabContentId(id) ? id : null
+}
+
+/**
+ * react-markdown의 기본 정화기는 아는 스킴만 남기고 나머지 URL을 지운다. 형식이 맞는 lab-asset은
+ * 백엔드 자산을 가리키는 내부 스킴이라 그대로 통과시키고, 나머지 주소는 기본 규칙을 따른다.
+ * 형식이 어긋난 lab-asset은 기본 규칙에 걸려 빈 문자열이 되고, 아래 img와 a가 그것을 걷어낸다.
+ */
+function labUrlTransform(url: string): string {
+  return labAssetIdFrom(url) ? url : defaultUrlTransform(url)
 }
 
 function toPlainText(node: ReactNode): string {
@@ -75,6 +80,9 @@ function buildComponents(props: LabDocumentProps): Components {
     // 상세 페이지의 h1은 본제목 하나뿐이므로 본문의 #는 ##로 올린다.
     // 제목이 가진 속성 중 목차가 쓰는 것은 rehype-slug가 붙인 id뿐이라 id만 넘긴다.
     // props를 통째로 펼치면 react-markdown이 함께 넘기는 hast 노드가 DOM으로 새어 나간다.
+    // id는 마크다운 노드 하나 안에서만 유일하다. 노드마다 ReactMarkdown을 새로 부르므로
+    // rehype-slug의 중복 처리도 노드 단위로 다시 시작한다. Toc.collectHeadings가 노드마다
+    // 슬러거를 새로 만들어 같은 규칙을 따르므로 목차 링크와 본문 id가 서로 맞는다.
     h1: ({ children, id }) => (
       <h2 id={id} className="mt-12 mb-3 text-2xl font-bold tracking-tight">
         {children}
@@ -142,9 +150,12 @@ function buildComponents(props: LabDocumentProps): Components {
       const assetId = labAssetIdFrom(href)
       if (assetId) {
         const asset = assets.find((item) => item.assetVersionId === assetId)
+        const assetUrl = assetHref(assetId)
+        // API 주소를 모르면 받을 곳이 없다. 빈 곳으로 가는 링크 대신 글자만 남긴다.
+        if (!assetUrl) return <span>{children}</span>
         return (
           <a
-            href={assetHref(assetId)}
+            href={assetUrl}
             className="my-4 inline-flex flex-wrap items-center gap-2 rounded-[8px] border border-[var(--color-border)] px-4 py-3 text-sm font-semibold text-[var(--color-text-primary)]"
           >
             <span>{children}</span>
@@ -166,8 +177,9 @@ function buildComponents(props: LabDocumentProps): Components {
           </a>
         )
       }
+      // 정화기가 지운 주소는 빈 문자열로 온다. 같은 페이지를 다시 부르는 링크가 되지 않게 비워 둔다.
       return (
-        <a href={href} className="font-medium text-[var(--color-primary-dark)] underline">
+        <a href={href || undefined} className="font-medium text-[var(--color-primary-dark)] underline">
           {children}
         </a>
       )
@@ -204,8 +216,7 @@ function buildComponents(props: LabDocumentProps): Components {
   }
 }
 
-function renderNodes(nodes: LabRenderNode[], props: LabDocumentProps, keyPrefix: string): ReactNode[] {
-  const components = buildComponents(props)
+function renderNodes(nodes: LabRenderNode[], components: Components, keyPrefix: string): ReactNode[] {
   return nodes.map((node, index) => {
     const key = `${keyPrefix}${node.type}-${index}`
     if (node.type === 'markdown') {
@@ -224,19 +235,20 @@ function renderNodes(nodes: LabRenderNode[], props: LabDocumentProps, keyPrefix:
     if (node.type === 'callout') {
       return (
         <LabCallout key={key} icon={node.icon}>
-          {renderNodes(node.children, props, `${key}-`)}
+          {renderNodes(node.children, components, `${key}-`)}
         </LabCallout>
       )
     }
     return (
       <details key={key} className="my-6 rounded-lg border border-[var(--color-border)] px-4 py-3">
         <summary className="cursor-pointer font-semibold">{node.title}</summary>
-        <div className="mt-2">{renderNodes(node.children, props, `${key}-`)}</div>
+        <div className="mt-2">{renderNodes(node.children, components, `${key}-`)}</div>
       </details>
     )
   })
 }
 
 export function LabDocument(props: LabDocumentProps) {
-  return <div className="text-[15px] sm:text-base">{renderNodes(props.document, props, '')}</div>
+  const components = buildComponents(props)
+  return <div className="text-[15px] sm:text-base">{renderNodes(props.document, components, '')}</div>
 }

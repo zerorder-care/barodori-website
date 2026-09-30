@@ -105,6 +105,47 @@ describe('LabDocument', () => {
     expect(screen.getByRole('cell', { name: '놀이매트' })).toBeInTheDocument()
   })
 
+  it('renders the markdown nested inside a disclosure body', () => {
+    renderExercise()
+    expect(screen.getByRole('heading', { level: 3, name: '너무 세게 누르기' })).toBeInTheDocument()
+    expect(screen.getByText('손끝에 힘을 주지 않습니다.')).toBeInTheDocument()
+  })
+
+  it('drops an image whose lab-asset id is not a uuid instead of throwing', () => {
+    const { container } = render(
+      <LabDocument
+        document={[{ type: 'markdown', markdown: '![깨진 이미지](lab-asset:not-a-uuid)' }]}
+        assets={[]}
+        contentId={EXERCISE_CONTENT_ID}
+        revisionId={EXERCISE_REVISION_ID}
+        locale="ko"
+        title="잘못된 자산 참조"
+        labels={labels}
+      />,
+    )
+    expect(container.querySelectorAll('img')).toHaveLength(0)
+  })
+
+  it('gives each markdown node its own heading ids so the toc can mirror them per node', () => {
+    render(
+      <LabDocument
+        document={[
+          { type: 'markdown', markdown: '## 준비물\n\n첫째 조각입니다.' },
+          { type: 'markdown', markdown: '## 준비물\n\n둘째 조각입니다.' },
+        ]}
+        assets={[]}
+        contentId={EXERCISE_CONTENT_ID}
+        revisionId={EXERCISE_REVISION_ID}
+        locale="ko"
+        title="조각마다 다시 세는 제목"
+        labels={labels}
+      />,
+    )
+    const headings = screen.getAllByRole('heading', { level: 2, name: '준비물' })
+    expect(headings).toHaveLength(2)
+    expect(headings.map((heading) => heading.id)).toEqual(['준비물', '준비물'])
+  })
+
   it('falls back to the article title when the image alt is empty', () => {
     render(
       <LabDocument
