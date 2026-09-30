@@ -2,12 +2,17 @@
 
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
-import { allCategoryLabels, categories, categoryLabels, type Category } from '@/lib/content/categories'
+import {
+  allCategoryLabels,
+  articleCategories,
+  articleCategoryLabels,
+  type ArticleCategory,
+} from '@/lib/content/categories'
 import type { Locale } from '@/lib/i18n/config'
 
 export function CategoryFilter({ locale }: { locale: Locale }) {
   const params = useSearchParams()
-  const current = params.get('cat') as Category | null
+  const current = params.get('cat') as ArticleCategory | null
   return (
     <nav className="flex flex-wrap gap-2">
       <Link
@@ -20,7 +25,7 @@ export function CategoryFilter({ locale }: { locale: Locale }) {
       >
         {allCategoryLabels[locale]}
       </Link>
-      {categories.map((c) => (
+      {articleCategories.map((c) => (
         <Link
           key={c}
           href={`/${locale}/articles?cat=${c}`}
@@ -30,7 +35,7 @@ export function CategoryFilter({ locale }: { locale: Locale }) {
               : 'border border-[var(--color-border)] bg-white text-[var(--color-text-secondary)]'
           }`}
         >
-          {categoryLabels[c][locale]}
+          {articleCategoryLabels[c][locale]}
         </Link>
       ))}
     </nav>
