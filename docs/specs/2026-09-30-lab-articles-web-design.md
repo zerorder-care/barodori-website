@@ -59,14 +59,15 @@ export type LabKind = 'exercise_guide' | 'disease_info' | 'faq'
 export type LabCollection = 'head_shape_lab' | 'home_monthly_information'
 export type LabTrack = 'head_shape' | 'torticollis'
 
-export async function listLabContents(params: { locale: Locale; collection: LabCollection; kind?: LabKind }): Promise<LabCard[]>
-export async function getLabContent(params: { locale: Locale; id: string }): Promise<LabContent | null>
+export async function listLabContents(params: { locale: Locale; collection: LabCollection; kind?: LabKind }): Promise<{ items: LabCard[]; error?: string }>
+export async function getLabContent(params: { locale: Locale; id: string }): Promise<{ item: LabContent | null; error?: string }>
 export function labAssetUrl(params: { contentId: string; revisionId: string; assetVersionId: string; locale: Locale }): string
 ```
 
 - 모든 fetch는 `{ next: { revalidate: 86400, tags: ['lab-content'] } }`로 부른다.
+- 아티클 목록, 상세, FAQ 페이지의 `export const dynamic = 'force-dynamic'`은 지운다. 이 Next 16에서는 그 설정이 페이지 안의 모든 fetch를 `no-store`로 바꾸어 하루 캐시와 태그 무효화를 무력화한다(`node_modules/next/dist/docs/01-app/02-guides/caching-without-cache-components.md`). 목록과 FAQ는 `searchParams`를 읽으므로 요청 시점 렌더가 유지되고, 상세는 첫 요청에 렌더되어 태그와 함께 캐시된다.
 - 시장은 `KR` 상수다. 시장을 바꿀 일이 생기면 locale과 함께 인자로 올린다.
-- 목록과 상세가 실패하면 예외를 던지지 않고 빈 배열이나 null을 돌려주며, 호출부가 `error` 문자열을 받아 안내 문구를 보여준다. 지금 `listArticlePosts`가 하는 방식과 같다.
+- 목록과 상세가 실패하면 예외를 던지지 않고 빈 배열이나 null과 함께 `error` 문자열을 돌려주며, 호출부가 그 값으로 안내 문구를 보여준다. 지금 `listArticlePosts`가 하는 방식과 같다.
 - ID는 UUID 형식만 백엔드에 넘긴다. 형식이 아니면 백엔드를 부르지 않고 null을 돌려준다.
 
 ### 5.2 도메인 모델 `lib/content/labArticle.ts`
