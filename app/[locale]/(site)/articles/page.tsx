@@ -14,6 +14,11 @@ import type { Locale } from '@/lib/i18n/config'
 
 const RECOMMENDED_COUNT = 3
 
+// 목록 fetch는 revalidate 86400과 lab-content 태그를 달고 있다. 기본값 auto는
+// searchParams 같은 요청 시점 API 뒤에 발견된 fetch를 캐시하지 않는다고 문서에 적혀 있다.
+// 실측으로는 그 경우에도 캐시가 동작했지만, 경계에 기대지 않도록 여기서 못을 박는다.
+export const fetchCache = 'default-cache'
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
   if (!isLocale(locale)) return {}
@@ -35,19 +40,22 @@ export default async function ArticlesIndexPage({
   searchParams: Promise<{ cat?: string; q?: string }>
 }) {
   const { locale } = await params
-  const sp = await searchParams
   if (!isLocale(locale)) notFound()
   const loc = locale as Locale
-  const dict = await getDictionary(loc)
 
-  const category: ArticleCategory | undefined = sp.cat && isArticleCategory(sp.cat) ? sp.cat : undefined
-  const query = typeof sp.q === 'string' ? sp.q.trim() : ''
-
+  // 두 요청은 locale만 있으면 되므로 searchParams를 읽기 전에 시작한다.
+  // 분류와 검색어는 내려받은 목록을 서버에서 거르는 데만 쓴다.
   const [labResult, monthlyResult] = await Promise.all([
     listLabContents({ locale: loc, collection: 'head_shape_lab' }),
     listLabContents({ locale: loc, collection: 'home_monthly_information' }),
   ])
   const error = labResult.error ?? monthlyResult.error
+
+  const sp = await searchParams
+  const dict = await getDictionary(loc)
+
+  const category: ArticleCategory | undefined = sp.cat && isArticleCategory(sp.cat) ? sp.cat : undefined
+  const query = typeof sp.q === 'string' ? sp.q.trim() : ''
 
   const labCards = labResult.items.map((item) =>
     toLabArticleCard(item, { collection: 'head_shape_lab', locale: loc }),

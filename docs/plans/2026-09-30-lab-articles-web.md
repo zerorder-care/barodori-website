@@ -29,7 +29,18 @@
 - `revalidateTag`의 한 인자 형태는 폐기 예정이다. 반드시 `revalidateTag('lab-content', 'max')`처럼 두 번째 인자를 준다(`revalidateTag.md`, "The single-argument form `revalidateTag(tag)` is deprecated").
 - `next/image`의 `priority`는 Next.js 16부터 폐기되고 `preload`로 대체되었다(`image.md`, "#### `priority`"). 이 계획은 본문 이미지를 `next/image` 없이 그리지만, 다른 곳에서 이미지를 손볼 일이 생기면 `priority` 대신 `preload`를 쓴다.
 
-**`dynamic = 'force-dynamic'` 결정:** 유지하지 않고 **제거한다.** `caching-without-cache-components.md`의 `dynamic` 절이 `'force-dynamic'`은 "Setting the option of every `fetch()` request in a layout or page to `{ cache: 'no-store', next: { revalidate: 0 } }`"와 "Setting the segment config to `export const fetchCache = 'force-no-store'`"와 같다고 명시한다. 즉 지금처럼 두면 5.1절이 요구하는 `revalidate: 86400`과 `tags: ['lab-content']`가 전부 무시되고 웹훅 재검증도 동작하지 않는다. 설계 문서 2절의 "캐시는 웹 한 곳에서 하루 단위로 잡는다"와 정면으로 어긋나므로 세 페이지에서 `export const dynamic = 'force-dynamic'` 줄을 지운다. 목록과 FAQ는 `searchParams`를 읽으므로 요청 시점 렌더가 유지되고, 상세는 `generateStaticParams` 없는 동적 세그먼트라 첫 요청에 렌더되어 태그와 함께 캐시된다. `cacheComponents`는 `next.config.ts`에 켜져 있지 않으므로 기존 캐시 모델이 그대로 적용된다.
+**`dynamic = 'force-dynamic'` 결정:** 유지하지 않고 **제거한다.** `caching-without-cache-components.md`의 `dynamic` 절이 `'force-dynamic'`은 "Setting the option of every `fetch()` request in a layout or page to `{ cache: 'no-store', next: { revalidate: 0 } }`"와 "Setting the segment config to `export const fetchCache = 'force-no-store'`"와 같다고 명시한다. 즉 지금처럼 두면 5.1절이 요구하는 `revalidate: 86400`과 `tags: ['lab-content']`가 전부 무시되고 웹훅 재검증도 동작하지 않는다. 설계 문서 2절의 "캐시는 웹 한 곳에서 하루 단위로 잡는다"와 정면으로 어긋나므로 세 페이지에서 `export const dynamic = 'force-dynamic'` 줄을 지운다. `cacheComponents`는 `next.config.ts`에 켜져 있지 않으므로 기존 캐시 모델이 그대로 적용된다.
+
+**계획 보정(Task 8 실측 반영) 요청 시점 API와 fetch 순서:** 같은 문서의 `fetchCache` 절은 기본값 `'auto'`를 "cache `fetch` requests before Request-time APIs with the `cache` option they provide and not cache `fetch` requests after Request-time APIs"라고 설명한다. `searchParams`가 그 요청 시점 API이므로, 문서만 읽으면 `await searchParams` 뒤에서 부른 fetch는 `revalidate: 86400`과 `tags: ['lab-content']`를 달고 있어도 캐시되지 않는 것처럼 보인다.
+
+**실측 결과는 그렇지 않았다.** Task 8에서 목 API 앞에 요청 수를 세는 프록시를 두고 `next build`와 `next start`로 확인했다. `await searchParams` 뒤에서 부르는 원래 순서에서도 첫 요청만 상위 API를 2회 부르고, 분류와 검색어를 바꾼 이후 요청은 0회였다. 즉 Next.js 16.2.4에서는 fetch에 명시한 캐시 옵션이 요청 시점 API 뒤에서도 그대로 적용된다. 하루 캐시와 태그 무효화는 `force-dynamic`만 지우면 이미 동작한다.
+
+그래도 `searchParams`를 읽는 목록과 FAQ 두 페이지에는 다음 두 가지를 둔다. 고장난 것을 고치는 조치가 아니라, 문서가 경고하는 경계에 기대지 않으려는 보강이다.
+
+- 데이터 요청을 `await searchParams`보다 **앞에서** 시작한다. `listLabContents`는 locale만 있으면 되므로 `params`를 읽고 locale을 검증한 직후에 부른다. `params`는 요청 시점 API가 아니라서 이 순서가 성립한다. 분류와 검색어는 내려받은 목록을 서버에서 거르는 데만 쓴다. 실측에서 이 순서는 빌드 시점에 목록을 미리 받아 두어, 배포 후 첫 요청도 상위 API를 부르지 않았다.
+- 세그먼트에 `export const fetchCache = 'default-cache'`를 둔다. 나중에 누가 순서를 흐트러뜨려도 fetch가 자기 캐시 옵션을 그대로 쓰도록 못을 박는 안전장치다.
+
+상세 페이지는 `searchParams`를 읽지 않고 `generateStaticParams` 없는 동적 세그먼트라, fetch가 요청 시점 API보다 앞에 오므로 두 조치가 필요 없다. 첫 요청에 렌더되어 태그와 함께 캐시된다.
 
 **문장 부호 규칙:** 코드, 주석, 카피, 문서, 커밋 메시지 어디에도 가운데점, em-dash, 화살표, 원형 글자를 쓰지 않는다. 나열은 쉼표나 "와/과"로 잇는다. 원고 본문 안의 문장 부호는 원고의 것이므로 렌더러가 손대지 않는다.
 
@@ -2719,6 +2730,8 @@ EOF
 
 ## Task 8: 아티클 목록 페이지 전환
 
+**계획 보정(Task 8 실측 반영):** 머리말의 계획 보정대로 두 목록 요청을 `await searchParams` 앞으로 올리고 `export const fetchCache = 'default-cache'`를 둔다. 캐시가 고장나 있어서가 아니라 문서가 경고하는 경계에 기대지 않으려는 보강이다. 아래 Step 1 코드에 이미 반영되어 있다.
+
 설계 7.1절이다. 두 컬렉션을 병렬로 읽고, 두상연구소는 카드 격자로, 월령별은 트랙별 목록으로 그린다. 페이지네이션 `offset`은 없앤다. 전체가 50여 편이라 한 번에 내려도 된다.
 
 `export const dynamic = 'force-dynamic'`을 지운다. 계획 머리말의 결정대로, 그대로 두면 `fetch` 캐시 옵션이 전부 무시된다. 이 페이지는 `searchParams`를 읽으므로 요청 시점 렌더가 유지된다.
@@ -2747,6 +2760,11 @@ import type { Locale } from '@/lib/i18n/config'
 
 const RECOMMENDED_COUNT = 3
 
+// 목록 fetch는 revalidate 86400과 lab-content 태그를 달고 있다. 기본값 auto는
+// searchParams 같은 요청 시점 API 뒤에 발견된 fetch를 캐시하지 않는다고 문서에 적혀 있다.
+// 실측으로는 그 경우에도 캐시가 동작했지만, 경계에 기대지 않도록 여기서 못을 박는다.
+export const fetchCache = 'default-cache'
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
   if (!isLocale(locale)) return {}
@@ -2768,19 +2786,22 @@ export default async function ArticlesIndexPage({
   searchParams: Promise<{ cat?: string; q?: string }>
 }) {
   const { locale } = await params
-  const sp = await searchParams
   if (!isLocale(locale)) notFound()
   const loc = locale as Locale
-  const dict = await getDictionary(loc)
 
-  const category: ArticleCategory | undefined = sp.cat && isArticleCategory(sp.cat) ? sp.cat : undefined
-  const query = typeof sp.q === 'string' ? sp.q.trim() : ''
-
+  // 두 요청은 locale만 있으면 되므로 searchParams를 읽기 전에 시작한다.
+  // 분류와 검색어는 내려받은 목록을 서버에서 거르는 데만 쓴다.
   const [labResult, monthlyResult] = await Promise.all([
     listLabContents({ locale: loc, collection: 'head_shape_lab' }),
     listLabContents({ locale: loc, collection: 'home_monthly_information' }),
   ])
   const error = labResult.error ?? monthlyResult.error
+
+  const sp = await searchParams
+  const dict = await getDictionary(loc)
+
+  const category: ArticleCategory | undefined = sp.cat && isArticleCategory(sp.cat) ? sp.cat : undefined
+  const query = typeof sp.q === 'string' ? sp.q.trim() : ''
 
   const labCards = labResult.items.map((item) =>
     toLabArticleCard(item, { collection: 'head_shape_lab', locale: loc }),
@@ -2942,6 +2963,8 @@ EOF
 ## Task 9: 아티클 상세 페이지 `[id]`
 
 **계획 보정(코드 리뷰 반영):** Task 1에서 `getLabContent`가 `{ item, error? }`를 돌려주도록 바뀌었다. 아래 코드는 그 결과를 분해해 쓰고, 상세 페이지는 404일 때만 `notFound()`를 부르며 그 밖의 실패는 던진다.
+
+**계획 보정(Task 8 실측 반영):** 이 페이지는 `searchParams`를 읽지 않아 fetch가 요청 시점 API보다 앞에 온다. 따라서 머리말의 계획 보정이 목록과 FAQ에 요구하는 두 조치는 필요 없고, `fetchCache`도 두지 않는다. `force-dynamic` 줄만 지우면 된다.
 
 설계 7.2절이다. 폴더를 `[slug]`에서 `[id]`로 옮기고 `generateStaticParams`를 없앤다. 하단 홈 기능 링크는 홈에 `#home-features` 앵커가 없으므로 설치 페이지 링크로 바꾸고 이벤트를 `cta_install_click`에 `surface: 'article_body'`로 통일한다.
 
@@ -3485,6 +3508,8 @@ EOF
 
 ## Task 11: FAQ 페이지와 `FaqAccordion`
 
+**계획 보정(Task 8 실측 반영):** 이 페이지도 `searchParams`를 읽으므로 머리말의 계획 보정을 그대로 적용한다. 목록 요청을 `await searchParams` 앞으로 올리고 `export const fetchCache = 'default-cache'`를 둔다. 캐시가 고장나 있어서가 아니라 경계에 기대지 않으려는 보강이다. 아래 Step 3에 반영되어 있다.
+
 설계 7.3절이다. FAQ는 Knowledge Lab의 `kind=faq` 9편을 읽는다. 질문은 본제목, 답변은 요약이 있으면 요약, 없으면 부제다. 카테고리 칩은 없애고 검색 폼은 남긴다. 카카오 문의 영역은 그대로 둔다.
 
 **Files:**
@@ -3684,8 +3709,29 @@ import { listLabContents } from '@/lib/api/knowledgeLab'
 import { matchesQuery, toLabArticleCard } from '@/lib/content/labArticle'
 ```
 
+머리말의 계획 보정대로 세그먼트 설정을 함께 넣는다. `generateMetadata` 위에 둔다.
+
 ```tsx
+// FAQ 목록 fetch는 revalidate 86400과 lab-content 태그를 달고 있다. 기본값 auto는
+// searchParams 같은 요청 시점 API 뒤에 발견된 fetch를 캐시하지 않는다고 문서에 적혀 있다.
+// 실측으로는 그 경우에도 캐시가 동작했지만, 경계에 기대지 않도록 여기서 못을 박는다.
+export const fetchCache = 'default-cache'
+```
+
+목록 요청은 `await searchParams`보다 앞에서 시작한다. `params`를 읽어 locale을 검증한 직후에 부르고, 검색어는 그 뒤에 읽어 내려받은 목록을 거르는 데만 쓴다.
+
+```tsx
+  const { locale } = await params
+  if (!isLocale(locale)) notFound()
+  const loc = locale as Locale
+
+  // 이 요청은 locale만 있으면 되므로 searchParams를 읽기 전에 시작한다.
   const { items, error } = await listLabContents({ locale: loc, collection: 'head_shape_lab', kind: 'faq' })
+
+  const search = await searchParams
+  const dict = await getDictionary(loc)
+  const query = normalizeSearchParam(search.q)
+
   const faqItems: FaqItem[] = items
     .map((item) => toLabArticleCard(item, { collection: 'head_shape_lab', locale: loc }))
     .filter((card) => matchesQuery(card, query))

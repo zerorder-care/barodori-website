@@ -66,6 +66,8 @@ export function labAssetUrl(params: { contentId: string; revisionId: string; ass
 
 - 모든 fetch는 `{ next: { revalidate: 86400, tags: ['lab-content'] } }`로 부른다.
 - 아티클 목록, 상세, FAQ 페이지의 `export const dynamic = 'force-dynamic'`은 지운다. 이 Next 16에서는 그 설정이 페이지 안의 모든 fetch를 `no-store`로 바꾸어 하루 캐시와 태그 무효화를 무력화한다(`node_modules/next/dist/docs/01-app/02-guides/caching-without-cache-components.md`). 목록과 FAQ는 `searchParams`를 읽으므로 요청 시점 렌더가 유지되고, 상세는 첫 요청에 렌더되어 태그와 함께 캐시된다.
+- `searchParams`를 읽는 페이지, 곧 목록과 FAQ는 캐시 경계를 두 가지로 보강한다. 첫째, 데이터 요청을 `await searchParams`보다 앞에서 시작한다. `listLabContents`는 locale만 있으면 되므로 `params`를 읽고 locale을 검증한 직후에 부르고, 분류와 검색어는 내려받은 목록을 서버에서 거르는 데만 쓴다. 둘째, 세그먼트에 `export const fetchCache = 'default-cache'`를 두어 순서가 흐트러져도 fetch가 자기 캐시 옵션을 그대로 쓰게 한다. 상세 페이지는 `searchParams`를 읽지 않아 fetch가 요청 시점 API보다 앞에 오므로 두 조치가 필요 없다.
+- 보강인 이유는 이렇다. 같은 Next 문서의 `fetchCache` 절은 기본값 `'auto'`가 요청 시점 API보다 뒤에서 발견된 fetch를 캐시하지 않는다고 설명하지만, Next.js 16.2.4에서 실측하니 그렇지 않았다. 목 API 앞에 요청 수를 세는 프록시를 두고 `next build`와 `next start`로 확인한 결과, `await searchParams` 뒤에서 부르는 순서에서도 첫 요청만 상위 API를 부르고 이후 요청은 캐시에서 나왔다. 즉 하루 캐시와 태그 무효화는 `force-dynamic`만 지우면 동작한다. 위 두 조치는 문서가 경고하는 경계에 기대지 않으려는 것이고, 앞당긴 fetch는 덤으로 빌드 시점에 목록을 미리 받아 둔다.
 - 시장은 `KR` 상수다. 시장을 바꿀 일이 생기면 locale과 함께 인자로 올린다.
 - 목록과 상세가 실패하면 예외를 던지지 않고 빈 배열이나 null과 함께 `error` 문자열을 돌려주며, 호출부가 그 값으로 안내 문구를 보여준다. 지금 `listArticlePosts`가 하는 방식과 같다.
 - ID는 UUID 형식만 백엔드에 넘긴다. 형식이 아니면 백엔드를 부르지 않고 null을 돌려준다.
