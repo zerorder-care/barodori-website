@@ -1,7 +1,6 @@
 import type { MDXComponents } from 'mdx/types'
 import { Callout } from '@/components/article/mdx/Callout'
 import { MedicalNotice } from '@/components/article/mdx/MedicalNotice'
-import { ExerciseCard } from '@/components/article/mdx/ExerciseCard'
 
 /** Internal builder — not named `use*` so it is safe to call from async Server Components. */
 function buildMDXComponents(components: MDXComponents): MDXComponents {
@@ -30,7 +29,6 @@ function buildMDXComponents(components: MDXComponents): MDXComponents {
     ),
     Callout,
     MedicalNotice,
-    ExerciseCard,
   }
 }
 
