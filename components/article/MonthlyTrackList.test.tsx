@@ -34,13 +34,13 @@ function card(overrides: Partial<LabArticleCardModel>): LabArticleCardModel {
 describe('MonthlyTrackList', () => {
   it('renders only the groups that have articles', () => {
     render(<MonthlyTrackList cards={[card({})]} labels={labels} />)
-    const headings = screen.getAllByRole('heading').map((heading) => heading.textContent)
+    const headings = screen.getAllByRole('heading', { level: 4 }).map((heading) => heading.textContent)
     expect(headings).toEqual(['근성 및 자세성 사경'])
   })
 
   it('puts the torticollis group before the head shape group', () => {
     render(<MonthlyTrackList cards={[card({ id: 'both-1', track: 'both', title: '공통 글' })]} labels={labels} />)
-    const headings = screen.getAllByRole('heading').map((heading) => heading.textContent)
+    const headings = screen.getAllByRole('heading', { level: 4 }).map((heading) => heading.textContent)
     expect(headings).toEqual(['근성 및 자세성 사경', '단순 두상'])
   })
 

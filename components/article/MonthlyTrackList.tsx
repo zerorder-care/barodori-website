@@ -49,7 +49,7 @@ export function MonthlyTrackList({
     <div className="space-y-10">
       {groups.map((group) => (
         <section key={group.key}>
-          <h3 className="text-lg font-bold">{group.title}</h3>
+          <h4 className="text-lg font-bold">{group.title}</h4>
           <ul className="mt-4 divide-y divide-[var(--color-border)] rounded-[8px] border border-[var(--color-border)] bg-white">
             {group.cards.map((card) => {
               const month = monthLabel(labels, card.monthMin, card.monthMax)
