@@ -252,6 +252,7 @@
     "loadError": "We could not load FAQ data. Please try again later.",
     "empty": "No questions are available yet.",
     "emptyWithQuery": "No results for '{query}'. Please contact us through KakaoTalk.",
+    "readMore": "Read more",
     "contactTitle": "Still have questions?",
     "contactBody": "Leave a message on our KakaoTalk channel and we will reply during support hours.",
     "contactCta": "KakaoTalk inquiry"
@@ -275,7 +276,18 @@
     "more": "View more content",
     "end": "You have reached the last content item.",
     "detailCta": "Recording the points from this article in Barodori can help you organize notes before the next consultation.",
-    "detailCtaLink": "Explore features →"
+    "detailCtaLink": "Install the app and continue",
+    "author": "Barodori content team",
+    "tocTitle": "Contents",
+    "relatedTitle": "Related content",
+    "readingTime": "{minutes} min read",
+    "monthRange": "{min} months",
+    "monthRangeSpan": "{min} to {max} months",
+    "monthPlus": "13 months and older",
+    "trackTorticollis": "Muscular and positional torticollis",
+    "trackHeadShape": "Head shape only",
+    "attachment": "Attachment",
+    "featureLink": "Continue in the app"
   },
   "errors": {
     "notFoundTitle": "We could not find this page",

@@ -252,6 +252,7 @@
     "loadError": "FAQ 데이터를 불러오지 못했어요. 잠시 후 다시 시도해주세요.",
     "empty": "등록된 질문이 없어요.",
     "emptyWithQuery": "'{query}'에 대한 결과가 없어요. 카카오톡으로 문의해주세요.",
+    "readMore": "자세히 읽기",
     "contactTitle": "더 궁금한 점이 있으신가요?",
     "contactBody": "카카오톡 채널로 문의를 남겨주시면 운영 시간에 답변드릴게요.",
     "contactCta": "카카오톡 문의"
@@ -275,7 +276,18 @@
     "more": "컨텐츠 더 보기",
     "end": "마지막 컨텐츠예요.",
     "detailCta": "이 글에서 살펴본 내용을 바로도리 앱에 기록해두면, 다음 상담 전에 참고 자료로 정리하기 좋아요.",
-    "detailCtaLink": "기능 살펴보기 →"
+    "detailCtaLink": "앱 설치하고 이어서 하기",
+    "author": "바로도리 콘텐츠팀",
+    "tocTitle": "목차",
+    "relatedTitle": "관련 컨텐츠",
+    "readingTime": "{minutes}분 읽기",
+    "monthRange": "{min}개월",
+    "monthRangeSpan": "{min}개월부터 {max}개월",
+    "monthPlus": "13개월 이상",
+    "trackTorticollis": "근성 및 자세성 사경",
+    "trackHeadShape": "단순 두상",
+    "attachment": "첨부 파일",
+    "featureLink": "앱에서 이어서 하기"
   },
   "errors": {
     "notFoundTitle": "찾으시는 페이지를 찾을 수 없어요",
