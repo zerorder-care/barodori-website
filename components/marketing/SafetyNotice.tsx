@@ -6,7 +6,7 @@ export async function SafetyNotice({ locale, compact = false }: { locale: Locale
   const dict = await getDictionary(locale)
   const copy = compact
     ? [dict.medical.compactBody]
-    : [dict.medical.body, dict.medical.emergency, dict.medical.stress]
+    : [dict.medical.body, dict.medical.emergency]
 
   return (
     <section className={compact ? 'bg-[var(--color-bg-muted)] py-12' : 'py-10'}>

@@ -17,13 +17,12 @@
     "login": "Log in",
     "logout": "Log out",
     "mypage": "My page",
-    "install": "Start the app",
-    "start": "Get started",
+    "install": "Get the app",
     "openMenu": "Open menu",
     "closeMenu": "Close menu"
   },
   "footer": {
-    "tagline": "Worried about your baby's head tilt or head shape? After hospital therapy, keep home-care exercises on track with goals, records, and reports.",
+    "tagline": "Worried about your baby's head tilt or head shape? Keep home care going with exercise and daily records.",
     "support": "Support",
     "businessInfo": "Business info",
     "privacy": "Privacy",
@@ -52,8 +51,7 @@
     "title": "Usage Notice",
     "compactBody": "Barodori does not replace treatment or diagnosis. It helps caregivers set goals, record exercises instructed by clinicians, and review progress through reports at home.",
     "body": "Barodori is a home-care recording tool and does not replace treatment or diagnosis. Exercise methods and intensity should be decided with your clinician or therapist. Records and reports are reference materials for organizing the situation.",
-    "emergency": "If your child shows pain, intense crying, fever, breathing issues, sudden movement restriction, or neurological symptoms, seek medical attention immediately.",
-    "stress": "Caregiver condition-check results are for reference only and must not be used for diagnosis or treatment decisions."
+    "emergency": "If your child shows pain, intense crying, fever, breathing issues, sudden movement restriction, or neurological symptoms, seek medical attention immediately."
   },
   "structuredData": {
     "organizationName": "Zerorder",
@@ -64,11 +62,7 @@
   },
   "launch": {
     "appStatusLabel": "Home-care exercise tracker",
-    "liveNotice": "Install Barodori on iOS or Android and start today's record.",
-    "pendingNotice": "Sign up for launch updates until the store links open.",
-    "pendingCta": "Get download updates",
-    "installCta": "Start recording in the app",
-    "appDownloadPending": "Store links will appear here when they are ready."
+    "liveNotice": "Install Barodori on iOS or Android and start today's record."
   },
   "store": {
     "appStoreDownload": "Download on the App Store",
@@ -85,62 +79,50 @@
   },
   "home": {
     "seo": {
-      "title": "Barodori - Baby Home-Care Exercise Tracker",
-      "description": "Set daily goals for clinician-guided home-care exercises, record time, counts, and your child's response, then review them in calendars and reports."
+      "title": "Barodori - Personalized home care for your baby",
+      "description": "Worried about your baby's head tilt or head shape? Record exercises, sleep, posture, feeding, and play, then review weekly reports and head shape changes. 3-day free trial, no automatic billing when it ends."
     },
     "hero": {
-      "titlePrimary": "Start with Barodori,",
-      "titleSecondary": "home care begins when you open it",
-      "subtitle": "Make head-tilt and head-shape home care less overwhelming with Barodori."
-    },
-    "storySections": [
-      {
-        "id": "home",
-        "title": "AI helps suggest a practical exercise amount",
-        "body": "See progress at a glance and keep exercises at a manageable level without feeling lost.",
-        "chips": ["Today's exercise record", "This week's goal", "Stress check"],
-        "screenAlt": "Barodori home screen showing today's exercise record and this week's goal"
-      },
-      {
-        "id": "exercise",
-        "title": "Exercise together with Dori",
-        "body": "During exercise time, focus only on your child. Barodori keeps the timer and records ready.",
-        "chips": ["Stopwatch", "Children's songs", "Count after finishing"],
-        "screenAlt": "Barodori exercise screen with Dori character, timer, and song playback"
-      },
-      {
-        "id": "record",
-        "title": "Detailed reports\nmake each session more useful",
-        "body": "A careful record can turn small home-care moments into a clearer view of progress.",
-        "chips": ["Left/right counts", "Today's memo", "Photos and videos"],
-        "screenAlt": "Barodori session report showing left and right counts, memos, and photo records"
-      },
-      {
-        "id": "flow",
-        "title": "Accumulated records\nhelp you see the path forward",
-        "body": "Exercise days and therapy visits stay visible on the calendar.\nWeekly goal progress and exercise mix are summarized at a glance.",
-        "chips": ["Appointment and exercise calendar", "Weekly goal progress", "Exercise mix"],
-        "screenAlt": "Barodori calendar and weekly report showing exercise records and goal progress"
-      },
-      {
-        "id": "community",
-        "title": "Feel that you are not doing this alone",
-        "body": "Read real stories from caregivers walking a similar path.",
-        "chips": ["Dori stories", "Exercise journals", "Encouraging comments"],
-        "screenAlt": "Barodori community feed where caregivers share exercise records and experiences"
-      },
-      {
-        "id": "parent",
-        "title": "Barodori also checks in on the caregiver",
-        "body": "Long home-care routines are easier when the caregiver is not exhausted.\nBarodori helps you notice your own condition, too.",
-        "chips": ["1-minute self check", "4-level guide", "Track changes over time"],
-        "screenAlt": "Barodori caregiver condition self-check screen with a 1-minute camera guide"
+      "eyebrow": "3-day free trial, no automatic billing when it ends",
+      "titleLead": "Personalized home care for your baby,",
+      "titleTail": "starting today with",
+      "titleAccent": "Barodori",
+      "body": "Record, manage, and see the change.",
+      "ctaPrimary": "Get the app",
+      "ctaSecondary": "Try the head shape test first",
+      "trust": "iOS and Android, in Korean, English, Japanese, and Spanish",
+      "screens": {
+        "home": "Barodori home screen, start Dori's home care",
+        "weekly": "Barodori weekly report screen",
+        "headReport": "Barodori head shape report screen"
       }
+    },
+    "features": [
+      { "id": "record", "label": "Home care log", "title": "Record every kind of home care in one place", "body": "From exercises to sleep, posture, feeding, and play.", "note": "Group the questions you answer often into a quick record.", "link": "", "screenAlt": "Barodori home care screen, choose exercise, sleep, posture, feeding, or play to record" },
+      { "id": "exercise", "label": "Exercise", "title": "Follow exercises that fit your baby, step by step", "body": "Check the method while you record.", "note": "", "link": "", "screenAlt": "Barodori exercise screen, head tilt 1 of 10 reps" },
+      { "id": "weekly", "label": "Insights", "title": "See this week's home care at a glance", "body": "Review a week of daily records.", "note": "Compare with the average for babies of a similar age.", "link": "", "screenAlt": "Barodori weekly report, this week's tummy time, sleep, feeding, and play" },
+      { "id": "headReport", "label": "Head shape care", "title": "Compare head shape changes at a glance", "body": "Photos and outlines make changes easy to see.", "note": "", "link": "Check your baby's head shape type before installing", "screenAlt": "Barodori head shape report, outline and photo comparison" }
     ],
+    "together": {
+      "label": "Together",
+      "title": "Home care is not a solo job",
+      "cards": [
+        { "id": "guardian", "title": "Two caregivers, one subscription", "body": "Link with an invite code to share records, reports, and the subscription." },
+        { "id": "lab", "title": "Articles by month and a hospital finder", "body": "Read home care tips for your baby's age and find nearby clinics." }
+      ]
+    },
+    "pricing": {
+      "label": "Pricing",
+      "title": "Three days free, then only if you like it",
+      "body": "Nothing is charged when the free trial ends. A subscription starts only when you choose to.",
+      "yearly": { "name": "Yearly", "badge": "51% OFF", "monthlyEquivalent": "", "total": "" },
+      "monthly": { "name": "Monthly", "price": "", "total": "" },
+      "notes": ["Reminder before the first charge, cancel anytime", "Share the subscription with a linked caregiver"],
+      "cta": "Get the app"
+    },
     "installCta": {
-      "eyebrow": "Goals · Records · Reports",
-      "title": "Keep today's home-care record from slipping away",
-      "body": "Continue clinician-guided exercises and tummy time at home, then review time, counts, and your child's response in calendars and reports."
+      "title": "Keep today's home care record from slipping away",
+      "body": "Record exercises, sleep, posture, feeding, and play, then review weekly reports and head shape changes."
     }
   },
   "install": {

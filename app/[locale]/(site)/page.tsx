@@ -1,8 +1,10 @@
 import { notFound } from 'next/navigation'
 import { getDictionary, isLocale } from '@/lib/i18n/dictionary'
 import { buildMetadata, TORTICOLLIS_KEYWORDS } from '@/lib/seo/metadata'
-import { Hero } from '@/components/marketing/Hero'
-import { HomeStorySections } from '@/components/marketing/HomeStorySections'
+import { HeroV2 } from '@/components/marketing/HeroV2'
+import { FeatureSections } from '@/components/marketing/FeatureSections'
+import { TogetherCards } from '@/components/marketing/TogetherCards'
+import { PricingSection } from '@/components/marketing/PricingSection'
 import { SafetyNotice } from '@/components/marketing/SafetyNotice'
 import { InstallCta } from '@/components/marketing/InstallCta'
 import { organizationJsonLd, mobileAppJsonLd, jsonLdScript } from '@/lib/seo/jsonLd'
@@ -47,8 +49,10 @@ export default async function HomePage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLdScript(mobileAppJsonLd(loc, dict)) }}
       />
-      <Hero locale={loc} />
-      <HomeStorySections sections={dict.home.storySections} />
+      <HeroV2 locale={loc} copy={dict.home.hero} />
+      <FeatureSections locale={loc} features={dict.home.features} />
+      <TogetherCards copy={dict.home.together} />
+      <PricingSection locale={loc} copy={dict.home.pricing} />
       <SafetyNotice locale={loc} />
       <InstallCta locale={loc} surface="home" />
     </>
