@@ -44,4 +44,30 @@ describe('JSON-LD generators', () => {
     expect(ld.url).toContain('/en/install')
     expect(ld.inLanguage).toBe('en')
   })
+
+  it('keeps an absolute hero image url and drops the image when there is none', () => {
+    const withAbsolute = articleJsonLd({
+      title: '제목',
+      excerpt: '요약',
+      slug: '11111111-1111-4111-8111-111111111111',
+      locale: 'ko',
+      author: '바로도리 콘텐츠팀',
+      publishedAt: '2026-09-11T02:00:00Z',
+      updatedAt: '2026-09-11T02:00:00Z',
+      heroImage: 'https://api.barodori.com/asset.png',
+    })
+    expect(withAbsolute.image).toBe('https://api.barodori.com/asset.png')
+
+    const withoutImage = articleJsonLd({
+      title: '제목',
+      excerpt: '요약',
+      slug: '11111111-1111-4111-8111-111111111111',
+      locale: 'ko',
+      author: '바로도리 콘텐츠팀',
+      publishedAt: '2026-09-11T02:00:00Z',
+      updatedAt: '2026-09-11T02:00:00Z',
+      heroImage: null,
+    })
+    expect(withoutImage.image).toBeUndefined()
+  })
 })

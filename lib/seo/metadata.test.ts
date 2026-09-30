@@ -49,4 +49,28 @@ describe('buildMetadata', () => {
     const fallback = buildMetadata({ title: 'T', description: 'd', path: '/ko', locale: 'ko' })
     expect(fallback.openGraph?.images).toEqual([{ url: 'https://www.barodori.com/og/default.png' }])
   })
+
+  it('keeps an absolute image url as it is', () => {
+    const metadata = buildMetadata({
+      title: '제목',
+      description: '설명',
+      path: '/ko/articles/11111111-1111-4111-8111-111111111111',
+      locale: 'ko',
+      image: 'https://api.barodori.com/api/v2/knowledge-lab/web/contents/a/revisions/b/assets/c',
+    })
+    expect(metadata.openGraph?.images).toEqual([
+      { url: 'https://api.barodori.com/api/v2/knowledge-lab/web/contents/a/revisions/b/assets/c' },
+    ])
+  })
+
+  it('still prefixes a site relative image path', () => {
+    const metadata = buildMetadata({
+      title: '제목',
+      description: '설명',
+      path: '/ko',
+      locale: 'ko',
+      image: '/og/x.png',
+    })
+    expect(metadata.openGraph?.images).toEqual([{ url: 'https://www.barodori.com/og/x.png' }])
+  })
 })
