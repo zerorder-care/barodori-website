@@ -35,8 +35,15 @@ describe('FaqAccordion', () => {
 
   it('links each item to its detail page', () => {
     render(<FaqAccordion locale="ko" items={items} query="" labels={labels} />)
-    const link = screen.getAllByRole('link', { name: '자세히 읽기' })[0]
+    const link = screen.getAllByRole('link')[0]
+    expect(link).toHaveTextContent('자세히 읽기')
     expect(link).toHaveAttribute('href', items[0].href)
+  })
+
+  it('names each link with its own question so a link list stays distinguishable', () => {
+    render(<FaqAccordion locale="ko" items={items} query="" labels={labels} />)
+    const link = screen.getByRole('link', { name: `${items[1].question} 자세히 읽기` })
+    expect(link).toHaveAttribute('href', items[1].href)
   })
 
   it('does not render category chips', () => {

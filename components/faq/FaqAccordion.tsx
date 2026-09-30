@@ -75,6 +75,7 @@ export function FaqAccordion({
                 <p className="text-sm leading-relaxed text-[var(--color-text-secondary)]">{item.answer}</p>
                 <Link
                   href={item.href}
+                  aria-label={`${item.question} ${labels.readMore}`}
                   className="mt-3 inline-flex text-sm font-semibold text-[var(--color-primary-dark)] underline"
                 >
                   {labels.readMore}
