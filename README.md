@@ -6,7 +6,7 @@
 - Next.js 16 (App Router, 풀-SSG)
 - React 19, TypeScript 5
 - Tailwind v4 + Pretendard
-- MDX 기반 아티클 (`content/articles/{locale}/*.mdx`)
+- 백엔드 Knowledge Lab 런타임 연동 아티클과 FAQ
 - GA4 + Amplitude
 
 ## 개발
@@ -17,7 +17,7 @@ cp .env.example .env.local
 npm run dev
 ```
 
-http://localhost:3000 → /ko 로 리다이렉트.
+http://localhost:3000 은 /ko 로 리다이렉트합니다.
 
 ## 스크립트
 
@@ -28,14 +28,33 @@ http://localhost:3000 → /ko 로 리다이렉트.
 - `npm run typecheck` TypeScript 검사
 - `npm run test` Vitest 단위 테스트
 
-## 콘텐츠 추가
-
-`content/articles/ko/<slug>.mdx` 생성 → frontmatter 작성 → 이미지는 `public/articles/<slug>/` → `npm run build` → 자동 sitemap 등록.
-
 ## 환경변수
 `.env.example` 참고. 모든 키는 미설정 가능하며, 그에 따라 동작이 달라집니다 (스토어 링크 미설정 시 "출시 예정" 상태 등).
 
 소셜 로그인은 Firebase Web 설정(`NEXT_PUBLIC_FIREBASE_*`)이 필요합니다. 카카오/네이버는 서버 라우트에서 OAuth code를 교환하므로 `KAKAO_REST_API_KEY`, `KAKAO_CLIENT_SECRET`, `NAVER_CLIENT_ID`, `NAVER_CLIENT_SECRET`도 배포 환경에 등록해야 합니다.
+
+## 운영
+
+아티클과 FAQ는 백엔드 Knowledge Lab의 공개 읽기 엔드포인트를 서버에서 읽고, 응답을 하루 동안 `lab-content` 태그로 캐시합니다. 백엔드가 게시나 철회를 커밋하면 웹훅으로 캐시를 비웁니다.
+
+- 배포 환경에 `LAB_REVALIDATE_TOKEN`을 등록하고, 백엔드의 `WEBSITE_REVALIDATE_URL`(`https://www.barodori.com/api/revalidate`)과 `WEBSITE_REVALIDATE_TOKEN`에 같은 값을 넣습니다.
+- 손으로 비울 때는 다음처럼 부릅니다.
+
+```bash
+curl -X POST https://www.barodori.com/api/revalidate \
+  -H "Authorization: Bearer $LAB_REVALIDATE_TOKEN" \
+  -H "content-type: application/json" \
+  -d '{"tags":["lab-content"]}'
+```
+
+응답 `{"revalidated":true,"tags":["lab-content"]}`가 오면 다음 방문부터 새 글이 보입니다. 토큰이 설정되지 않았으면 503, 토큰이 틀리면 401이 옵니다.
+
+백엔드가 아직 뜨지 않은 상태에서 웹을 돌려 보려면 픽스처를 내려주는 목 서버를 씁니다. `scripts/mock-lab-fixtures.json`은 `lib/api/__fixtures__/knowledgeLab.ts`와 같은 값을 유지합니다.
+
+```bash
+node scripts/mock-lab-api.mjs
+BARODORI_API_BASE_URL=http://127.0.0.1:4010 npm run dev
+```
 
 ## 설계 문서
 - 설계 spec: `docs/specs/2026-05-04-barodori-website-mvp-design.md`
