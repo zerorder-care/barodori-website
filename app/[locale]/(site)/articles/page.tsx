@@ -68,10 +68,10 @@ export default async function ArticlesIndexPage({
   const showRecommended = !category && query.length === 0
   const recommended = showRecommended ? labCards.slice(0, RECOMMENDED_COUNT) : []
 
-  const gridCards =
-    category === 'monthly'
-      ? []
-      : labCards.filter((card) => !category || card.category === category).filter((card) => matchesQuery(card, query))
+  // 두상연구소 카드는 monthly로 분류되지 않으므로 cat=monthly면 이 필터가 빈 배열을 낸다.
+  const gridCards = labCards
+    .filter((card) => !category || card.category === category)
+    .filter((card) => matchesQuery(card, query))
   const monthlyRows =
     category && category !== 'monthly' ? [] : monthlyCards.filter((card) => matchesQuery(card, query))
   const isEmpty = gridCards.length === 0 && monthlyRows.length === 0
@@ -157,7 +157,7 @@ export default async function ArticlesIndexPage({
               )}
               {monthlyRows.length > 0 && (
                 <section className="mt-14">
-                  <h2 className="text-xl font-bold">{articleCategoryLabels.monthly[loc]}</h2>
+                  <h3 className="text-xl font-bold">{articleCategoryLabels.monthly[loc]}</h3>
                   <div className="mt-6">
                     <MonthlyTrackList cards={monthlyRows} labels={monthLabels} />
                   </div>
