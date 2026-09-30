@@ -2,7 +2,10 @@ import type { MDXComponents } from 'mdx/types'
 import { Callout } from '@/components/article/mdx/Callout'
 import { MedicalNotice } from '@/components/article/mdx/MedicalNotice'
 
-/** Internal builder — not named `use*` so it is safe to call from async Server Components. */
+// 지금 저장소에는 MDX 페이지가 하나도 남아 있지 않다. 아래 매핑은 MDX 지원 자체를
+// 걷어내는 후속 작업 전까지 그대로 둔다.
+
+/** 내부 빌더다. 이름을 `use*`로 두지 않아서 async 서버 컴포넌트에서 불러도 안전하다. */
 function buildMDXComponents(components: MDXComponents): MDXComponents {
   return {
     ...components,
