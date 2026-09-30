@@ -46,15 +46,44 @@ export type MonthLabels = {
 const EXCERPT_MAX_LENGTH = 120
 const CHARACTERS_PER_MINUTE = 500
 
-// "본제목(부제: 부제)" 형태에서 마지막 괄호를 부제로 본다. 괄호 안 라벨은 있어도 되고 없어도 된다.
-const TITLE_SUBTITLE_PATTERN = /^(.*\S)\s*\(\s*(?:부제\s*[:：]\s*)?([^()]*)\)\s*$/
+// 부제 괄호 안의 라벨. "부제:"와 "부제 ：" 처럼 공백과 전각 콜론을 함께 받는다.
+const SUBTITLE_LABEL_PATTERN = /^부제\s*[:：]\s*/
 
+/**
+ * 문자열 끝에 붙은 최상위 괄호 한 쌍의 여는 위치를 찾는다. 괄호가 중첩되어 있어도
+ * 짝을 세어 바깥 괄호를 고르고, 짝이 맞지 않으면 -1을 돌려준다.
+ */
+function trailingGroupStart(text: string): number {
+  if (!text.endsWith(')')) return -1
+  let depth = 0
+  for (let index = text.length - 1; index >= 0; index -= 1) {
+    const char = text[index]
+    if (char === ')') depth += 1
+    else if (char === '(') {
+      depth -= 1
+      if (depth === 0) return index
+    }
+  }
+  return -1
+}
+
+/**
+ * "본제목(부제: 부제)" 형태를 본제목과 부제로 가른다. 끝 괄호가 "부제:" 라벨로 시작할 때만
+ * 부제로 보고, 라벨이 없는 괄호는 제목의 일부로 남긴다. 부제 안의 괄호는 그대로 살린다.
+ */
 export function splitTitle(raw: string): { title: string; subtitle: string | null } {
   const trimmed = raw.trim()
-  const matched = TITLE_SUBTITLE_PATTERN.exec(trimmed)
-  if (!matched) return { title: trimmed, subtitle: null }
-  const subtitle = matched[2].trim()
-  return { title: matched[1].trim(), subtitle: subtitle.length > 0 ? subtitle : null }
+  const start = trailingGroupStart(trimmed)
+  if (start < 0) return { title: trimmed, subtitle: null }
+
+  const head = trimmed.slice(0, start).trim()
+  if (head.length === 0) return { title: trimmed, subtitle: null }
+
+  const inner = trimmed.slice(start + 1, trimmed.length - 1)
+  if (!SUBTITLE_LABEL_PATTERN.test(inner)) return { title: trimmed, subtitle: null }
+
+  const subtitle = inner.replace(SUBTITLE_LABEL_PATTERN, '').trim()
+  return { title: head, subtitle: subtitle.length > 0 ? subtitle : null }
 }
 
 export function resolveCategory(collection: LabCollection, kind: LabKind): ArticleCategory {
@@ -94,8 +123,23 @@ function firstParagraph(document: LabRenderNode[]): string {
   return ''
 }
 
+/**
+ * 글자를 자소 단위로 센다. 이모지나 결합 문자를 반으로 가르지 않기 위해서다.
+ * Intl.Segmenter가 없는 런타임에서는 코드 포인트 단위로 물러선다.
+ */
+function toGraphemes(text: string): string[] {
+  if (typeof Intl !== 'undefined' && typeof Intl.Segmenter === 'function') {
+    const segmenter = new Intl.Segmenter('ko', { granularity: 'grapheme' })
+    return Array.from(segmenter.segment(text), (part) => part.segment)
+  }
+  return Array.from(text)
+}
+
 export function truncate(text: string, max = EXCERPT_MAX_LENGTH): string {
-  return text.length <= max ? text : `${text.slice(0, max)}...`
+  if (text.length <= max) return text
+  const graphemes = toGraphemes(text)
+  if (graphemes.length <= max) return text
+  return `${graphemes.slice(0, max).join('')}...`
 }
 
 export function resolveExcerpt(input: {
@@ -204,6 +248,8 @@ export function toLabArticleCard(card: LabCard, options: MapOptions): LabArticle
     kind: card.kind,
     title,
     subtitle,
+    // 목록 카드에는 본문이 없으므로 세 번째 대체인 첫 문단은 쓸 수 없다.
+    // 요약도 부제도 없으면 excerpt는 빈 문자열이고, 목록 UI가 그 경우를 감당해야 한다.
     excerpt: resolveExcerpt({ summary: card.summary, subtitle, document: [] }),
     heroImage: heroImage && heroImage.length > 0 ? heroImage : null,
     track: resolveTrack(card.targetTracks),

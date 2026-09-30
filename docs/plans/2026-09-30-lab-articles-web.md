@@ -999,6 +999,8 @@ EOF
 
 설계 5.2절의 매핑 규칙을 전부 담는다. 이 파일은 `lib/content/` 아래라 i18n 가드 스캔에서 제외되므로 한국어 리터럴(`부제` 라벨 등)을 그대로 쓸 수 있다.
 
+**계획 보정:** 코드 리뷰를 받아 세 가지를 고쳤다. `splitTitle`은 정규식 대신 끝 괄호의 짝을 세는 주사로 바꿔 중첩 괄호를 견디고, `부제:` 라벨이 붙은 괄호만 부제로 본다(라벨 없는 끝 괄호는 제목에 남는다). `truncate`는 `Intl.Segmenter`로 자소 단위로 자라 이모지를 반으로 가르지 않는다. `stripMarkdown` 테스트의 기대값은 구현이 공백을 한 칸으로 모으므로 `'굵은 제목 링크 코드'`다.
+
 **Files:**
 - Create: `lib/content/labArticle.ts`
 - Create: `lib/content/labArticle.test.ts`
@@ -1008,7 +1010,7 @@ EOF
 `lib/content/labArticle.test.ts`:
 
 ```ts
-import { describe, expect, it } from 'vitest'
+import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 import {
   exerciseContent,
   faqContent,
@@ -1022,6 +1024,7 @@ import {
   documentText,
   estimateReadingMinutes,
   formatPublishedDate,
+  matchesQuery,
   monthLabel,
   resolveCategory,
   resolveExcerpt,
@@ -1030,7 +1033,24 @@ import {
   stripMarkdown,
   toLabArticle,
   toLabArticleCard,
+  truncate,
 } from './labArticle'
+
+const originalApiBaseUrl = process.env.BARODORI_API_BASE_URL
+
+beforeAll(() => {
+  process.env.BARODORI_API_BASE_URL = 'https://api.test'
+})
+
+afterAll(() => {
+  if (originalApiBaseUrl === undefined) delete process.env.BARODORI_API_BASE_URL
+  else process.env.BARODORI_API_BASE_URL = originalApiBaseUrl
+})
+
+/** 짝을 이룬 서러게이트를 지운 뒤에도 서러게이트가 남으면 글자가 반으로 갈린 것이다. */
+function hasLoneSurrogate(text: string): boolean {
+  return /[\uD800-\uDFFF]/.test(text.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, ''))
+}
 
 const monthLabels = {
   monthRange: '{min}개월',
@@ -1046,19 +1066,57 @@ describe('splitTitle', () => {
     })
   })
 
-  it('accepts a parenthesis without the label', () => {
-    expect(splitTitle('사두증이란(머리 뒤가 납작할 때)')).toEqual({
+  it('accepts a space before the opening parenthesis', () => {
+    expect(splitTitle('사두증이란 (부제: 머리 뒤가 납작할 때)')).toEqual({
       title: '사두증이란',
       subtitle: '머리 뒤가 납작할 때',
     })
+  })
+
+  it('keeps parentheses that sit inside the subtitle', () => {
+    expect(splitTitle('제목(부제: 설명 (참고))')).toEqual({
+      title: '제목',
+      subtitle: '설명 (참고)',
+    })
+  })
+
+  it('leaves a trailing parenthesis that is not a subtitle in the title', () => {
+    expect(splitTitle('사두증이란(머리 뒤가 납작할 때)')).toEqual({
+      title: '사두증이란(머리 뒤가 납작할 때)',
+      subtitle: null,
+    })
+    expect(splitTitle('사두증이란()')).toEqual({ title: '사두증이란()', subtitle: null })
   })
 
   it('returns a null subtitle when there is no parenthesis', () => {
     expect(splitTitle('사두증이란')).toEqual({ title: '사두증이란', subtitle: null })
   })
 
-  it('returns a null subtitle when the parenthesis is empty', () => {
-    expect(splitTitle('사두증이란()')).toEqual({ title: '사두증이란', subtitle: null })
+  it('returns a null subtitle when the labelled parenthesis is empty', () => {
+    expect(splitTitle('사두증이란(부제: )')).toEqual({ title: '사두증이란', subtitle: null })
+  })
+
+  it('leaves an unbalanced parenthesis alone', () => {
+    expect(splitTitle('사두증이란 부제: 머리 뒤가 납작할 때)')).toEqual({
+      title: '사두증이란 부제: 머리 뒤가 납작할 때)',
+      subtitle: null,
+    })
+  })
+})
+
+describe('truncate', () => {
+  it('keeps an emoji whole when it sits on the cut boundary', () => {
+    const head = '가'.repeat(119)
+    const cut = truncate(`${head}👍${'나'.repeat(50)}`)
+    expect(cut).toBe(`${head}👍...`)
+    expect(hasLoneSurrogate(cut)).toBe(false)
+  })
+
+  it('stops before an emoji that starts past the limit', () => {
+    const head = '가'.repeat(120)
+    const cut = truncate(`${head}👍${'나'.repeat(50)}`)
+    expect(cut).toBe(`${head}...`)
+    expect(hasLoneSurrogate(cut)).toBe(false)
   })
 })
 
@@ -1124,7 +1182,7 @@ describe('resolveExcerpt', () => {
 describe('stripMarkdown', () => {
   it('removes markers, links and images', () => {
     expect(stripMarkdown('## **굵은** 제목 [링크](https://a.test) ![이미지](lab-asset:x) `코드`')).toBe(
-      '굵은 제목 링크  코드',
+      '굵은 제목 링크 코드',
     )
   })
 })
@@ -1236,6 +1294,40 @@ describe('toLabArticleCard', () => {
     const card = toLabArticleCard(monthlyCards[0], { collection: 'home_monthly_information', locale: 'ko' })
     expect(card.excerpt).toBe('걷기 시작한 뒤에 볼 것')
   })
+
+  it('leaves the excerpt empty when there is neither a summary nor a subtitle', () => {
+    // 카드에는 본문이 없어 첫 문단 대체가 닿지 않는다. 목록 UI가 빈 문자열을 감당해야 한다.
+    const legacyCard = headShapeLabCards[1]
+    expect(legacyCard.summary).toBeNull()
+    const card = toLabArticleCard(legacyCard, { collection: 'head_shape_lab', locale: 'ko' })
+    expect(card.subtitle).toBeNull()
+    expect(card.excerpt).toBe('')
+  })
+})
+
+describe('matchesQuery', () => {
+  const card = toLabArticleCard(headShapeLabCards[0], { collection: 'head_shape_lab', locale: 'ko' })
+
+  it('matches an empty query', () => {
+    expect(matchesQuery(card, '')).toBe(true)
+    expect(matchesQuery(card, '   ')).toBe(true)
+  })
+
+  it('matches the title, the subtitle and the excerpt', () => {
+    expect(matchesQuery(card, '도리도리')).toBe(true)
+    expect(matchesQuery(card, '하루 세 번')).toBe(true)
+    expect(matchesQuery(card, '목을 부드럽게')).toBe(true)
+  })
+
+  it('ignores letter case', () => {
+    const english = { ...card, title: 'Tummy Time', subtitle: null, excerpt: '' }
+    expect(matchesQuery(english, 'tummy')).toBe(true)
+    expect(matchesQuery(english, 'TIME')).toBe(true)
+  })
+
+  it('returns false when nothing matches', () => {
+    expect(matchesQuery(card, '사두증')).toBe(false)
+  })
 })
 
 describe('toLabArticle', () => {
@@ -1329,15 +1421,44 @@ export type MonthLabels = {
 const EXCERPT_MAX_LENGTH = 120
 const CHARACTERS_PER_MINUTE = 500
 
-// "본제목(부제: 부제)" 형태에서 마지막 괄호를 부제로 본다. 괄호 안 라벨은 있어도 되고 없어도 된다.
-const TITLE_SUBTITLE_PATTERN = /^(.*\S)\s*\(\s*(?:부제\s*[:：]\s*)?([^()]*)\)\s*$/
+// 부제 괄호 안의 라벨. "부제:"와 "부제 ：" 처럼 공백과 전각 콜론을 함께 받는다.
+const SUBTITLE_LABEL_PATTERN = /^부제\s*[:：]\s*/
 
+/**
+ * 문자열 끝에 붙은 최상위 괄호 한 쌍의 여는 위치를 찾는다. 괄호가 중첩되어 있어도
+ * 짝을 세어 바깥 괄호를 고르고, 짝이 맞지 않으면 -1을 돌려준다.
+ */
+function trailingGroupStart(text: string): number {
+  if (!text.endsWith(')')) return -1
+  let depth = 0
+  for (let index = text.length - 1; index >= 0; index -= 1) {
+    const char = text[index]
+    if (char === ')') depth += 1
+    else if (char === '(') {
+      depth -= 1
+      if (depth === 0) return index
+    }
+  }
+  return -1
+}
+
+/**
+ * "본제목(부제: 부제)" 형태를 본제목과 부제로 가른다. 끝 괄호가 "부제:" 라벨로 시작할 때만
+ * 부제로 보고, 라벨이 없는 괄호는 제목의 일부로 남긴다. 부제 안의 괄호는 그대로 살린다.
+ */
 export function splitTitle(raw: string): { title: string; subtitle: string | null } {
   const trimmed = raw.trim()
-  const matched = TITLE_SUBTITLE_PATTERN.exec(trimmed)
-  if (!matched) return { title: trimmed, subtitle: null }
-  const subtitle = matched[2].trim()
-  return { title: matched[1].trim(), subtitle: subtitle.length > 0 ? subtitle : null }
+  const start = trailingGroupStart(trimmed)
+  if (start < 0) return { title: trimmed, subtitle: null }
+
+  const head = trimmed.slice(0, start).trim()
+  if (head.length === 0) return { title: trimmed, subtitle: null }
+
+  const inner = trimmed.slice(start + 1, trimmed.length - 1)
+  if (!SUBTITLE_LABEL_PATTERN.test(inner)) return { title: trimmed, subtitle: null }
+
+  const subtitle = inner.replace(SUBTITLE_LABEL_PATTERN, '').trim()
+  return { title: head, subtitle: subtitle.length > 0 ? subtitle : null }
 }
 
 export function resolveCategory(collection: LabCollection, kind: LabKind): ArticleCategory {
@@ -1377,8 +1498,23 @@ function firstParagraph(document: LabRenderNode[]): string {
   return ''
 }
 
+/**
+ * 글자를 자소 단위로 센다. 이모지나 결합 문자를 반으로 가르지 않기 위해서다.
+ * Intl.Segmenter가 없는 런타임에서는 코드 포인트 단위로 물러선다.
+ */
+function toGraphemes(text: string): string[] {
+  if (typeof Intl !== 'undefined' && typeof Intl.Segmenter === 'function') {
+    const segmenter = new Intl.Segmenter('ko', { granularity: 'grapheme' })
+    return Array.from(segmenter.segment(text), (part) => part.segment)
+  }
+  return Array.from(text)
+}
+
 export function truncate(text: string, max = EXCERPT_MAX_LENGTH): string {
-  return text.length <= max ? text : `${text.slice(0, max)}...`
+  if (text.length <= max) return text
+  const graphemes = toGraphemes(text)
+  if (graphemes.length <= max) return text
+  return `${graphemes.slice(0, max).join('')}...`
 }
 
 export function resolveExcerpt(input: {
@@ -1487,6 +1623,8 @@ export function toLabArticleCard(card: LabCard, options: MapOptions): LabArticle
     kind: card.kind,
     title,
     subtitle,
+    // 목록 카드에는 본문이 없으므로 세 번째 대체인 첫 문단은 쓸 수 없다.
+    // 요약도 부제도 없으면 excerpt는 빈 문자열이고, 목록 UI가 그 경우를 감당해야 한다.
     excerpt: resolveExcerpt({ summary: card.summary, subtitle, document: [] }),
     heroImage: heroImage && heroImage.length > 0 ? heroImage : null,
     track: resolveTrack(card.targetTracks),

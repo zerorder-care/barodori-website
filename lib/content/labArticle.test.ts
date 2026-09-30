@@ -1,4 +1,4 @@
-import { beforeAll, describe, expect, it } from 'vitest'
+import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 import {
   exerciseContent,
   faqContent,
@@ -12,6 +12,7 @@ import {
   documentText,
   estimateReadingMinutes,
   formatPublishedDate,
+  matchesQuery,
   monthLabel,
   resolveCategory,
   resolveExcerpt,
@@ -20,11 +21,24 @@ import {
   stripMarkdown,
   toLabArticle,
   toLabArticleCard,
+  truncate,
 } from './labArticle'
+
+const originalApiBaseUrl = process.env.BARODORI_API_BASE_URL
 
 beforeAll(() => {
   process.env.BARODORI_API_BASE_URL = 'https://api.test'
 })
+
+afterAll(() => {
+  if (originalApiBaseUrl === undefined) delete process.env.BARODORI_API_BASE_URL
+  else process.env.BARODORI_API_BASE_URL = originalApiBaseUrl
+})
+
+/** 짝을 이룬 서러게이트를 지운 뒤에도 서러게이트가 남으면 글자가 반으로 갈린 것이다. */
+function hasLoneSurrogate(text: string): boolean {
+  return /[\uD800-\uDFFF]/.test(text.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, ''))
+}
 
 const monthLabels = {
   monthRange: '{min}개월',
@@ -40,19 +54,41 @@ describe('splitTitle', () => {
     })
   })
 
-  it('accepts a parenthesis without the label', () => {
-    expect(splitTitle('사두증이란(머리 뒤가 납작할 때)')).toEqual({
+  it('accepts a space before the opening parenthesis', () => {
+    expect(splitTitle('사두증이란 (부제: 머리 뒤가 납작할 때)')).toEqual({
       title: '사두증이란',
       subtitle: '머리 뒤가 납작할 때',
     })
+  })
+
+  it('keeps parentheses that sit inside the subtitle', () => {
+    expect(splitTitle('제목(부제: 설명 (참고))')).toEqual({
+      title: '제목',
+      subtitle: '설명 (참고)',
+    })
+  })
+
+  it('leaves a trailing parenthesis that is not a subtitle in the title', () => {
+    expect(splitTitle('사두증이란(머리 뒤가 납작할 때)')).toEqual({
+      title: '사두증이란(머리 뒤가 납작할 때)',
+      subtitle: null,
+    })
+    expect(splitTitle('사두증이란()')).toEqual({ title: '사두증이란()', subtitle: null })
   })
 
   it('returns a null subtitle when there is no parenthesis', () => {
     expect(splitTitle('사두증이란')).toEqual({ title: '사두증이란', subtitle: null })
   })
 
-  it('returns a null subtitle when the parenthesis is empty', () => {
-    expect(splitTitle('사두증이란()')).toEqual({ title: '사두증이란', subtitle: null })
+  it('returns a null subtitle when the labelled parenthesis is empty', () => {
+    expect(splitTitle('사두증이란(부제: )')).toEqual({ title: '사두증이란', subtitle: null })
+  })
+
+  it('leaves an unbalanced parenthesis alone', () => {
+    expect(splitTitle('사두증이란 부제: 머리 뒤가 납작할 때)')).toEqual({
+      title: '사두증이란 부제: 머리 뒤가 납작할 때)',
+      subtitle: null,
+    })
   })
 })
 
@@ -112,6 +148,22 @@ describe('resolveExcerpt', () => {
 
   it('returns an empty string when there is nothing to show', () => {
     expect(resolveExcerpt({ summary: '  ', subtitle: null, document: [] })).toBe('')
+  })
+})
+
+describe('truncate', () => {
+  it('keeps an emoji whole when it sits on the cut boundary', () => {
+    const head = '가'.repeat(119)
+    const cut = truncate(`${head}👍${'나'.repeat(50)}`)
+    expect(cut).toBe(`${head}👍...`)
+    expect(hasLoneSurrogate(cut)).toBe(false)
+  })
+
+  it('stops before an emoji that starts past the limit', () => {
+    const head = '가'.repeat(120)
+    const cut = truncate(`${head}👍${'나'.repeat(50)}`)
+    expect(cut).toBe(`${head}...`)
+    expect(hasLoneSurrogate(cut)).toBe(false)
   })
 })
 
@@ -229,6 +281,40 @@ describe('toLabArticleCard', () => {
   it('falls back to the subtitle when there is no summary', () => {
     const card = toLabArticleCard(monthlyCards[0], { collection: 'home_monthly_information', locale: 'ko' })
     expect(card.excerpt).toBe('걷기 시작한 뒤에 볼 것')
+  })
+
+  it('leaves the excerpt empty when there is neither a summary nor a subtitle', () => {
+    // 카드에는 본문이 없어 첫 문단 대체가 닿지 않는다. 목록 UI가 빈 문자열을 감당해야 한다.
+    const legacyCard = headShapeLabCards[1]
+    expect(legacyCard.summary).toBeNull()
+    const card = toLabArticleCard(legacyCard, { collection: 'head_shape_lab', locale: 'ko' })
+    expect(card.subtitle).toBeNull()
+    expect(card.excerpt).toBe('')
+  })
+})
+
+describe('matchesQuery', () => {
+  const card = toLabArticleCard(headShapeLabCards[0], { collection: 'head_shape_lab', locale: 'ko' })
+
+  it('matches an empty query', () => {
+    expect(matchesQuery(card, '')).toBe(true)
+    expect(matchesQuery(card, '   ')).toBe(true)
+  })
+
+  it('matches the title, the subtitle and the excerpt', () => {
+    expect(matchesQuery(card, '도리도리')).toBe(true)
+    expect(matchesQuery(card, '하루 세 번')).toBe(true)
+    expect(matchesQuery(card, '목을 부드럽게')).toBe(true)
+  })
+
+  it('ignores letter case', () => {
+    const english = { ...card, title: 'Tummy Time', subtitle: null, excerpt: '' }
+    expect(matchesQuery(english, 'tummy')).toBe(true)
+    expect(matchesQuery(english, 'TIME')).toBe(true)
+  })
+
+  it('returns false when nothing matches', () => {
+    expect(matchesQuery(card, '사두증')).toBe(false)
   })
 })
 
