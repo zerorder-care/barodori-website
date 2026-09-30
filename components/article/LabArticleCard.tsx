@@ -47,7 +47,9 @@ export function LabArticleCard({
         <h3 className="mt-4 line-clamp-2 min-h-12 text-lg font-bold leading-snug group-hover:underline">
           {card.title}
         </h3>
-        <p className="mt-3 line-clamp-2 text-sm leading-relaxed text-[var(--color-text-secondary)]">{card.excerpt}</p>
+        {card.excerpt && (
+          <p className="mt-3 line-clamp-2 text-sm leading-relaxed text-[var(--color-text-secondary)]">{card.excerpt}</p>
+        )}
         <p className="mt-5 text-xs text-[var(--color-text-secondary)]">{meta}</p>
       </div>
     </Link>

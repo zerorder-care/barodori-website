@@ -43,6 +43,15 @@ describe('LabArticleCard', () => {
     expect(meta.textContent).not.toContain('·')
   })
 
+  it('renders no empty paragraph when the excerpt is empty', () => {
+    const { container } = render(
+      <LabArticleCard card={{ ...card, excerpt: '' }} readingTimeLabel="{minutes}분 읽기" />,
+    )
+    const paragraphs = Array.from(container.querySelectorAll('p')).map((paragraph) => paragraph.textContent)
+    expect(paragraphs).not.toContain('')
+    expect(paragraphs).toEqual(['2026-09-11, 4분 읽기'])
+  })
+
   it('renders a tinted placeholder instead of an image when there is no hero image', () => {
     const { container } = render(
       <LabArticleCard card={{ ...card, heroImage: null }} readingTimeLabel="{minutes}분 읽기" />,
