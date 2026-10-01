@@ -200,6 +200,7 @@ export type LabArticle = LabArticleCard & {
 ## 11. 계측
 
 - 목록 카드 클릭과 상세 진입은 지금 `ArticleViewTracker`가 보내는 `article_view`를 그대로 쓰되 `category`에 새 분류 값을 넣는다.
+- 상세 경로가 슬러그에서 콘텐츠 UUID로 바뀌었으므로 `article_view`의 속성 이름도 `slug`에서 `contentId`로 바꾼다. `category`와 `locale`은 그대로 둔다.
 - 본문 기능 버튼은 `cta_install_click`에 `{ surface: 'article_feature_link', contentId, locale, live: true }`.
 - 상세 하단 설치 CTA는 기존 `InstallCta`의 `surface: article:<id>`를 유지한다.
 

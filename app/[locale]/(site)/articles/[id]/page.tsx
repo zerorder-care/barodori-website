@@ -96,7 +96,7 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
       />
       <Container className="py-12">
         <article className="mx-auto max-w-3xl">
-          <ArticleViewTracker slug={article.id} category={article.category} locale={loc} />
+          <ArticleViewTracker contentId={article.id} category={article.category} locale={loc} />
           <LabArticleHeader
             article={article}
             labels={{
