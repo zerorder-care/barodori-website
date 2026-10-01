@@ -245,7 +245,9 @@ function renderNodes(nodes: LabRenderNode[], components: Components, keyPrefix: 
     return (
       <details key={key} className="my-6 rounded-lg border border-[var(--color-border)] px-4 py-3">
         <summary className="cursor-pointer font-semibold">{node.title}</summary>
-        <div className="mt-2">{renderNodes(node.children, components, `${key}-`)}</div>
+        <div className="mt-2 [&>:first-child]:mt-0 [&>:last-child]:mb-0">
+          {renderNodes(node.children, components, `${key}-`)}
+        </div>
       </details>
     )
   })

@@ -11,7 +11,7 @@ export function LabCallout({ icon, children }: { icon: string | null; children: 
           {icon}
         </span>
       )}
-      <div className="min-w-0 flex-1">{children}</div>
+      <div className="min-w-0 flex-1 [&>:first-child]:mt-0 [&>:last-child]:mb-0">{children}</div>
     </aside>
   )
 }
