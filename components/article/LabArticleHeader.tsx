@@ -27,13 +27,6 @@ export function LabArticleHeader({ article, labels }: { article: LabArticle; lab
         <span>{formatPublishedDate(article.publishedAt)}</span>
         <span>{labels.readingTime.replace('{minutes}', String(article.readingMinutes))}</span>
       </div>
-      {article.heroImage && (
-        <div className="relative mt-8 overflow-hidden rounded-[8px] border border-[var(--color-border)] bg-[var(--color-bg-muted)]">
-          {/* 백엔드 자산은 크기를 알 수 없어 next/image를 쓰지 않는다. */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={article.heroImage} alt={article.title} className="block h-auto w-full object-cover" />
-        </div>
-      )}
     </header>
   )
 }
