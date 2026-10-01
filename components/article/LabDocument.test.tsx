@@ -116,6 +116,40 @@ describe('LabDocument', () => {
     expect(screen.getByText('사경', { selector: 'code' })).toBeInTheDocument()
   })
 
+  it('renders a fence without a language as a block', () => {
+    const { container } = render(
+      <LabDocument
+        document={[{ type: 'markdown', markdown: '```\n첫째 줄\n둘째 줄\n```' }]}
+        assets={[]}
+        contentId={EXERCISE_CONTENT_ID}
+        revisionId={EXERCISE_REVISION_ID}
+        locale="ko"
+        title="언어 표기 없는 코드 블록"
+        labels={labels}
+      />,
+    )
+    const block = container.querySelector('pre')
+    expect(block).not.toBeNull()
+    expect(block).toHaveTextContent('첫째 줄')
+    expect(block).toHaveTextContent('둘째 줄')
+  })
+
+  it('keeps single line inline code inline', () => {
+    const { container } = render(
+      <LabDocument
+        document={[{ type: 'markdown', markdown: '본문 가운데 `사경` 한 낱말입니다.' }]}
+        assets={[]}
+        contentId={EXERCISE_CONTENT_ID}
+        revisionId={EXERCISE_REVISION_ID}
+        locale="ko"
+        title="인라인 코드"
+        labels={labels}
+      />,
+    )
+    expect(container.querySelector('pre')).toBeNull()
+    expect(screen.getByText('사경', { selector: 'code' })).toBeInTheDocument()
+  })
+
   it('renders a gfm table', () => {
     renderExercise()
     expect(screen.getByRole('table')).toBeInTheDocument()

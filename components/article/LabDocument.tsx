@@ -187,8 +187,9 @@ function buildComponents(props: LabDocumentProps): Components {
         </a>
       )
     },
-    // react-markdown 10에는 inline 플래그가 없다. 펜스 코드 블록만 className을 받으므로
-    // pre를 풀고 code에서 갈라 쓴다. 언어 표시가 없는 펜스 블록은 인라인으로 취급된다.
+    // react-markdown 10에는 inline 플래그가 없다. 언어를 적은 펜스 블록만 className을 받으므로
+    // pre를 풀고 code에서 갈라 쓴다. 언어 표기가 없는 펜스는 className이 없지만 본문에 줄바꿈이
+    // 들어 있어, 줄바꿈 여부로 인라인 코드와 가른다. 인라인 코드에는 줄바꿈이 들어오지 않는다.
     pre: ({ children }) => <>{children}</>,
     code: ({ className, children }) => {
       if (className) {
@@ -199,6 +200,13 @@ function buildComponents(props: LabDocumentProps): Components {
         )
       }
       const text = toPlainText(children)
+      if (text.includes('\n')) {
+        return (
+          <pre className="my-6 overflow-x-auto rounded-lg bg-[var(--color-bg-muted)] p-4 text-sm">
+            <code>{children}</code>
+          </pre>
+        )
+      }
       if (isFeatureLinkText(text)) {
         return (
           <TrackedLink
