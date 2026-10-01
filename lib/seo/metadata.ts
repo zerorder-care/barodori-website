@@ -5,6 +5,11 @@ import { getSiteUrl } from '@/lib/seo/siteUrl'
 const SITE_URL = getSiteUrl()
 const DEFAULT_OG = '/og/default.png'
 
+// 백엔드 자산 이미지는 이미 절대 URL이라 사이트 주소를 덧붙이면 안 된다.
+function toAbsoluteUrl(value: string): string {
+  return /^https?:\/\//i.test(value) ? value : `${SITE_URL}${value}`
+}
+
 // 사경·사두 검색 유입은 메타데이터 한정으로만 유도한다.
 // 의료용 앱이 아니므로 가시 본문에는 넣지 않고, <meta keywords>/구조화 데이터에만 노출한다.
 export const TORTICOLLIS_KEYWORDS = [
@@ -29,7 +34,7 @@ export function buildMetadata(params: {
 }): Metadata {
   const { title, description, path, locale, image, keywords } = params
   const canonical = `${SITE_URL}${path}`
-  const ogUrl = `${SITE_URL}${image ?? DEFAULT_OG}`
+  const ogUrl = toAbsoluteUrl(image ?? DEFAULT_OG)
 
   // 같은 path 의 locale 변형 매핑
   const languages: Record<string, string> = {}

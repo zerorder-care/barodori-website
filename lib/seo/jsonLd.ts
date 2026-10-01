@@ -40,15 +40,21 @@ export function articleJsonLd(input: {
   author: string
   publishedAt: string
   updatedAt: string
-  heroImage: string
+  heroImage: string | null
 }) {
   const url = `${SITE_URL}/${input.locale}/articles/${input.slug}`
+  // 백엔드 자산은 절대 URL로 오고, 저장소 이미지는 사이트 상대 경로로 온다.
+  const image = input.heroImage
+    ? /^https?:\/\//i.test(input.heroImage)
+      ? input.heroImage
+      : `${SITE_URL}${input.heroImage}`
+    : undefined
   return {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: input.title,
     description: input.excerpt,
-    image: `${SITE_URL}${input.heroImage}`,
+    image,
     datePublished: input.publishedAt,
     dateModified: input.updatedAt,
     author: { '@type': 'Person', name: input.author },

@@ -1,8 +1,9 @@
 import { describe, expect, it, vi } from 'vitest'
 import sitemap from './sitemap'
 
-vi.mock('@/lib/api/articles', () => ({
-  listArticlePosts: vi.fn(async () => ({ articles: [] })),
+vi.mock('@/lib/seo/labSitemap', () => ({
+  buildArticleSitemapEntries: () => [],
+  loadArticleSitemapCards: vi.fn(async () => []),
 }))
 
 vi.mock('@/lib/seo/siteUrl', () => ({

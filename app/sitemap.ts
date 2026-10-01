@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next'
-import { listArticlePosts } from '@/lib/api/articles'
 import { defaultLocale } from '@/lib/i18n/config'
+import { buildArticleSitemapEntries, loadArticleSitemapCards } from '@/lib/seo/labSitemap'
 import { getSiteUrl } from '@/lib/seo/siteUrl'
 import { siteFeatures } from '@/lib/site/features'
 
@@ -17,16 +17,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${SITE_URL}/${defaultLocale}/faq`, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${SITE_URL}/${defaultLocale}/install`, changeFrequency: 'monthly', priority: 0.7 },
   ]
-  const articleResult = await listArticlePosts({ locale: defaultLocale, limit: 50 })
-  const articles = articleResult.articles
-  const articleRoutes: MetadataRoute.Sitemap = articles.map((a) => ({
-    url: `${SITE_URL}/${defaultLocale}/articles/${a.slug}`,
-    lastModified: a.updatedAt,
-    changeFrequency: 'monthly',
-    priority: 0.6,
-    alternates: {
-      languages: { ko: `${SITE_URL}/ko/articles/${a.slug}` },
-    },
-  }))
-  return [...staticRoutes, ...articleRoutes]
+  const cards = await loadArticleSitemapCards()
+  return [...staticRoutes, ...buildArticleSitemapEntries(SITE_URL, cards)]
 }

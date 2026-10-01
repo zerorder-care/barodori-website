@@ -1,38 +1,42 @@
 import Link from 'next/link'
-import type { FaqCategoryOption } from '@/lib/api/content'
-import type { FaqItem } from '@/lib/content/faq'
 import type { Locale } from '@/lib/i18n/config'
+
+export type FaqItem = {
+  id: string
+  question: string
+  answer: string
+  href: string
+}
+
+export type FaqAccordionLabels = {
+  searchLabel: string
+  searchPlaceholder: string
+  loadError: string
+  empty: string
+  emptyWithQuery: string
+  readMore: string
+}
 
 export function FaqAccordion({
   locale,
-  categories,
   items,
-  category,
   query,
   error,
   labels,
 }: {
   locale: Locale
-  categories: FaqCategoryOption[]
   items: FaqItem[]
-  category: string
   query: string
   error?: string
-  labels: {
-    searchLabel: string
-    searchPlaceholder: string
-    loadError: string
-    empty: string
-    emptyWithQuery: string
-  }
+  labels: FaqAccordionLabels
 }) {
-  const categoryLabelByValue = new Map(categories.map((item) => [item.value, item.label]))
-
   return (
     <div>
       <div className="rounded-[8px] border border-[var(--color-border)] bg-white p-5">
-        <form action={`/${locale}/faq`} className="flex min-h-14 items-center rounded-[8px] border border-[var(--color-border)] bg-[var(--color-bg-muted)] px-5">
-          {category !== 'all' && <input type="hidden" name="category" value={category} />}
+        <form
+          action={`/${locale}/faq`}
+          className="flex min-h-14 items-center rounded-[8px] border border-[var(--color-border)] bg-[var(--color-bg-muted)] px-5"
+        >
           <label htmlFor="faq-search" className="mr-3 text-sm font-semibold text-[var(--color-text-secondary)]">
             {labels.searchLabel}
           </label>
@@ -44,13 +48,6 @@ export function FaqAccordion({
             className="w-full bg-transparent text-sm outline-none"
           />
         </form>
-        <div className="mt-4 flex flex-wrap gap-2">
-          {categories.map((item) => (
-            <Link key={item.value} href={buildFaqHref(locale, item.value, query)} className={chipClass(category === item.value)}>
-              {item.label}
-            </Link>
-          ))}
-        </div>
       </div>
       {error && (
         <p className="mt-5 rounded-[8px] border border-[var(--color-border)] bg-[var(--color-bg-muted)] p-4 text-sm text-[var(--color-text-secondary)]">
@@ -63,46 +60,31 @@ export function FaqAccordion({
         </p>
       ) : (
         <div className="mt-8 divide-y divide-[var(--color-border)] rounded-[8px] border border-[var(--color-border)] bg-white">
-          {items.map((item, index) => {
-            const categoryLabel = categoryLabelByValue.get(item.category)
-            return (
-              <details key={item.id} className="group" open={index === 0}>
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-5 text-left">
-                  <span>
-                    {categoryLabel && (
-                      <span className="mb-2 block text-xs font-semibold text-[var(--color-text-secondary)]">{categoryLabel}</span>
-                    )}
-                    <span className="font-bold">{item.question}</span>
-                  </span>
-                  <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-[var(--color-bg-muted)] text-xl text-[var(--color-text-secondary)] group-open:hidden">
-                    +
-                  </span>
-                  <span className="hidden h-8 w-8 shrink-0 place-items-center rounded-full bg-[var(--color-bg-muted)] text-xl text-[var(--color-text-secondary)] group-open:grid">
-                    -
-                  </span>
-                </summary>
-                <p className="px-5 pb-6 text-sm leading-relaxed text-[var(--color-text-secondary)]">{item.answer}</p>
-              </details>
-            )
-          })}
+          {items.map((item, index) => (
+            <details key={item.id} className="group" open={index === 0}>
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-5 text-left">
+                <span className="font-bold">{item.question}</span>
+                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-[var(--color-bg-muted)] text-xl text-[var(--color-text-secondary)] group-open:hidden">
+                  +
+                </span>
+                <span className="hidden h-8 w-8 shrink-0 place-items-center rounded-full bg-[var(--color-bg-muted)] text-xl text-[var(--color-text-secondary)] group-open:grid">
+                  -
+                </span>
+              </summary>
+              <div className="px-5 pb-6">
+                <p className="text-sm leading-relaxed text-[var(--color-text-secondary)]">{item.answer}</p>
+                <Link
+                  href={item.href}
+                  aria-label={`${item.question} ${labels.readMore}`}
+                  className="mt-3 inline-flex text-sm font-semibold text-[var(--color-primary-dark)] underline"
+                >
+                  {labels.readMore}
+                </Link>
+              </div>
+            </details>
+          ))}
         </div>
       )}
     </div>
   )
-}
-
-function buildFaqHref(locale: Locale, category: string, query: string): string {
-  const params = new URLSearchParams()
-  if (category !== 'all') params.set('category', category)
-  if (query.trim()) params.set('q', query.trim())
-  const suffix = params.toString()
-  return suffix ? `/${locale}/faq?${suffix}` : `/${locale}/faq`
-}
-
-function chipClass(active: boolean) {
-  return `rounded-[8px] px-4 py-2 text-sm font-semibold ${
-    active
-      ? 'bg-[var(--color-primary)] text-[var(--color-text-primary)]'
-      : 'border border-[var(--color-border)] bg-white text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]'
-  }`
 }
