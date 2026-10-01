@@ -59,9 +59,29 @@ describe('decideRevalidate', () => {
     ).toEqual({ status: 200, body: { revalidated: true, tags: ['lab-content'] } })
   })
 
-  it('revalidates nothing when every tag was rejected', () => {
+  it('rejects a request whose every tag was rejected with 400', () => {
     expect(
       decideRevalidate({ authorization: `Bearer ${TOKEN}`, token: TOKEN, body: { tags: ['everything'] } }),
-    ).toEqual({ status: 200, body: { revalidated: true, tags: [] } })
+    ).toEqual({ status: 400, body: { error: 'no_allowed_tags' } })
+  })
+
+  it('rejects an empty tag list with 400', () => {
+    expect(decideRevalidate({ authorization: `Bearer ${TOKEN}`, token: TOKEN, body: { tags: [] } })).toEqual({
+      status: 400,
+      body: { error: 'no_allowed_tags' },
+    })
+  })
+
+  it('rejects a tags field that is not a list with 400', () => {
+    expect(
+      decideRevalidate({ authorization: `Bearer ${TOKEN}`, token: TOKEN, body: { tags: 'lab-content' } }),
+    ).toEqual({ status: 400, body: { error: 'no_allowed_tags' } })
+  })
+
+  it('falls back to the lab content tag when the body is not an object', () => {
+    expect(decideRevalidate({ authorization: `Bearer ${TOKEN}`, token: TOKEN, body: null })).toEqual({
+      status: 200,
+      body: { revalidated: true, tags: ['lab-content'] },
+    })
   })
 })

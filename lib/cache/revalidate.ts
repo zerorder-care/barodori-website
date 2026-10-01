@@ -6,6 +6,7 @@ const ALLOWED_TAGS: readonly string[] = [LAB_CACHE_TAG]
 export type RevalidateDecision =
   | { status: 503; body: { error: 'revalidate_token_not_configured' } }
   | { status: 401; body: { error: 'unauthorized' } }
+  | { status: 400; body: { error: 'no_allowed_tags' } }
   | { status: 200; body: { revalidated: true; tags: string[] } }
 
 export function decideRevalidate(input: {
@@ -17,7 +18,12 @@ export function decideRevalidate(input: {
   if (!token) return { status: 503, body: { error: 'revalidate_token_not_configured' } }
   if (!matchesToken(input.authorization, `Bearer ${token}`)) return { status: 401, body: { error: 'unauthorized' } }
 
-  return { status: 200, body: { revalidated: true, tags: allowedTagsFrom(input.body) } }
+  const tags = allowedTagsFrom(input.body)
+  // 아는 태그가 하나도 없으면 비울 것이 없다. revalidated: true로 답하면 부르는 쪽은
+  // 캐시가 비워진 줄 알고 넘어가므로, 오타 난 태그를 보냈다는 사실을 400으로 알린다.
+  if (tags.length === 0) return { status: 400, body: { error: 'no_allowed_tags' } }
+
+  return { status: 200, body: { revalidated: true, tags } }
 }
 
 // 길이가 같은 틀린 토큰을 앞자리부터 맞춰 보는 공격을 막으려고 바이트 수와 무관하게
