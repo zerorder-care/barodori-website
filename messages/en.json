@@ -266,6 +266,7 @@
     "description": "This does not replace diagnosis or treatment. It helps caregivers organize neck observations, head-shape notes, and tummy-time records before consultation.",
     "searchLabel": "Search",
     "searchPlaceholder": "Search content",
+    "categoryFilterLabel": "Article categories",
     "recommendedEyebrow": "Start here",
     "recommendedTitle": "Helpful reads before consultation",
     "recommendedDescription": "Recommended for caregivers beginning records around neck observation, head shape, or tummy time.",

@@ -266,6 +266,7 @@
     "description": "진단이나 치료를 대신하진 않아요. 목 관찰이나 두상, 터미타임 같은 홈케어 기록을 상담 전에 정리해두도록 도와드려요.",
     "searchLabel": "검색",
     "searchPlaceholder": "컨텐츠 검색",
+    "categoryFilterLabel": "아티클 분류",
     "recommendedEyebrow": "처음이라면 여기부터",
     "recommendedTitle": "상담 전에 한 번 읽어두면 좋아요",
     "recommendedDescription": "사경이나 두상, 터미타임 기록을 막 시작한 보호자에게 권하는 글이에요.",

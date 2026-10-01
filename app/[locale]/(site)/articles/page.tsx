@@ -97,7 +97,7 @@ export default async function ArticlesIndexPage({
 
       <Container className="py-16">
         <div className="flex flex-col gap-4 border-y border-[var(--color-border)] py-5 lg:flex-row lg:items-center lg:justify-between">
-          <CategoryFilter locale={loc} />
+          <CategoryFilter locale={loc} label={dict.article.categoryFilterLabel} />
           <form
             action={`/${loc}/articles`}
             className="flex min-h-12 min-w-0 items-center rounded-[8px] border border-[var(--color-border)] bg-white px-4 lg:w-72"

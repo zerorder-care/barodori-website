@@ -24,6 +24,9 @@ type LabDocumentProps = {
 
 const LAB_ASSET_SCHEME = 'lab-asset:'
 
+/** 외부로 나가는 주소는 http도 https와 같게 본다. 둘 다 새 창으로 열고 opener를 끊는다. */
+const EXTERNAL_LINK_PATTERN = /^https?:\/\//i
+
 /**
  * 앱 기능 버튼 후보를 가려내는 어미 목록이다. 사용자에게 보이는 카피가 아니라 원고 인라인 코드를
  * 분류하는 판별 토큰이므로 사전에 두지 않는다.
@@ -165,7 +168,7 @@ function buildComponents(props: LabDocumentProps): Components {
           </a>
         )
       }
-      if (href?.startsWith('https://')) {
+      if (href && EXTERNAL_LINK_PATTERN.test(href)) {
         return (
           <a
             href={href}

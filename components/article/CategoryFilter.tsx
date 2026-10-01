@@ -10,11 +10,11 @@ import {
 } from '@/lib/content/categories'
 import type { Locale } from '@/lib/i18n/config'
 
-export function CategoryFilter({ locale }: { locale: Locale }) {
+export function CategoryFilter({ locale, label }: { locale: Locale; label: string }) {
   const params = useSearchParams()
   const current = params.get('cat') as ArticleCategory | null
   return (
-    <nav className="flex flex-wrap gap-2">
+    <nav aria-label={label} className="flex flex-wrap gap-2">
       <Link
         href={`/${locale}/articles`}
         className={`rounded-[8px] px-4 py-2 text-sm font-semibold ${

@@ -90,6 +90,24 @@ describe('LabDocument', () => {
     expect(link).toHaveAttribute('rel', expect.stringContaining('noopener'))
   })
 
+  it('opens an external http link in a new tab as well', () => {
+    render(
+      <LabDocument
+        document={[{ type: 'markdown', markdown: '[옛 안내문](http://example.test/guide)' }]}
+        assets={[]}
+        contentId={EXERCISE_CONTENT_ID}
+        revisionId={EXERCISE_REVISION_ID}
+        locale="ko"
+        title="http 링크"
+        labels={labels}
+      />,
+    )
+    const link = screen.getByRole('link', { name: '옛 안내문' })
+    expect(link).toHaveAttribute('href', 'http://example.test/guide')
+    expect(link).toHaveAttribute('target', '_blank')
+    expect(link).toHaveAttribute('rel', 'noopener noreferrer')
+  })
+
   it('turns a feature inline code into an install link and leaves a medical term as code', () => {
     renderExercise()
     const button = screen.getByRole('link', { name: /기록하기/ })
