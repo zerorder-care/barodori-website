@@ -3,10 +3,9 @@
 영아 사경/사두 케어 앱 바로도리(Barodori)의 제품 소개 + 사경 아티클 사이트. (https://barodori.com)
 
 ## 스택
-- Next.js 16 (App Router, 풀-SSG)
+- Next.js 16 App Router를 서버 렌더링으로 씁니다. 아티클과 FAQ는 요청 시점에 백엔드 Knowledge Lab을 읽고 그 응답을 하루 동안 캐시합니다.
 - React 19, TypeScript 5
 - Tailwind v4 + Pretendard
-- 백엔드 Knowledge Lab 런타임 연동 아티클과 FAQ
 - GA4 + Amplitude
 
 ## 개발
@@ -22,7 +21,7 @@ http://localhost:3000 은 /ko 로 리다이렉트합니다.
 ## 스크립트
 
 - `npm run dev` 개발 서버
-- `npm run build` 정적 빌드
+- `npm run build` 프로덕션 빌드
 - `npm run start` 빌드 결과 서빙
 - `npm run lint` ESLint
 - `npm run typecheck` TypeScript 검사
@@ -47,7 +46,7 @@ curl -X POST https://www.barodori.com/api/revalidate \
   -d '{"tags":["lab-content"]}'
 ```
 
-응답 `{"revalidated":true,"tags":["lab-content"]}`가 오면 다음 방문부터 새 글이 보입니다. 토큰이 설정되지 않았으면 503, 토큰이 틀리면 401이 옵니다.
+응답 `{"revalidated":true,"tags":["lab-content"]}`가 오면 다음 방문부터 새 글이 보입니다. 토큰이 설정되지 않았으면 503, 토큰이 틀리면 401이 옵니다. 허용 목록에 없는 태그만 보내면 비울 것이 없으므로 400과 `{"error":"no_allowed_tags"}`가 옵니다.
 
 백엔드가 아직 뜨지 않은 상태에서 웹을 돌려 보려면 픽스처를 내려주는 목 서버를 씁니다. `scripts/mock-lab-fixtures.json`은 `lib/api/__fixtures__/knowledgeLab.ts`와 같은 값을 유지합니다.
 
